@@ -1,0 +1,23 @@
+{
+  "name": "tufang",
+  "version": "1.0.0",
+  "description": "tufang, the best picture televise live weixin web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isanbel/tofang.git"
+  },
+  "keywords": [
+    "tobee",
+    "tufang"
+  ],
+  "author": "isanbel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isanbel/tofang/issues"
+  },
+  "homepage": "https://github.com/isanbel/tofang#readme"
+}
