@@ -1,4 +1,17 @@
 <!--index.wxml-->
 <view class="container">
-  活动页面
+  <view class="slideContainer">
+    <view class="leftHint">
+      <image class="tobee" src="../../assets/icon/tobee.jpg"></image>
+      <text class="headText">图片直播</text>
+    </view>
+
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="{{interval}}" duration="{{duration}}" class="pictureSwiper">
+        <swiper-item wx:for-items="{{imgUrl}}" wx:key="*this">
+          <image src="{{item}}" class="slide-image" mode="widthFix" />
+        </swiper-item>
+    </swiper>
+
+  </view>
+
 </view>

@@ -1,1 +1,29 @@
+.slideContainer {
+}
 
+.tobee {
+  width: 40px;
+  height: 40px;
+}
+
+.headText {
+  writing-mode: vertical-rl;
+  font-family: sans-serif;
+  color: "light";
+  margin-top: 10px;
+}
+
+.leftHint {
+  float: left;
+  width: 70px;
+}
+
+.pictureSwiper {
+  height: 85px;
+  margin-left: 70px;
+}
+
+.slide-image {
+  width: 250px;
+  height: 85px;
+}
