@@ -4,8 +4,8 @@
     "pages/logs/logs",
     "pages/activities/index",
     "pages/calendar/index",
-    "pages/myprofile/index",
-    "pages/tufang/index"
+    "pages/tufang/index",
+    "pages/myprofile/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -29,16 +29,16 @@
         "selectedIconPath": "assets/icon_selected/calendar.png"
       },
       {
-        "pagePath": "pages/myprofile/index",
-        "text": "我的页面",
-        "iconPath": "assets/icon/myprofile.png",
-        "selectedIconPath": "assets/icon_selected/myprofile.png"
-      },
-      {
         "pagePath": "pages/tufang/index",
         "text": "图方页面",
         "iconPath": "assets/icon/tufang.png",
         "selectedIconPath": "assets/icon_selected/tufang.png"
+      },
+      {
+        "pagePath": "pages/myprofile/index",
+        "text": "我的页面",
+        "iconPath": "assets/icon/myprofile.png",
+        "selectedIconPath": "assets/icon_selected/myprofile.png"
       }
     ]
   }
