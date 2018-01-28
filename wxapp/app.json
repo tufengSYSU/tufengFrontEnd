@@ -1,12 +1,40 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/activities/index",
+    "pages/calendar/index",
+    "pages/myprofile/index",
+    "pages/tufang/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "登录页面"
+      },
+      {
+        "pagePath": "pages/activities/index",
+        "text": "活动页面"
+      },
+      {
+        "pagePath": "pages/calendar/index",
+        "text": "日历页面"
+      },
+      {
+        "pagePath": "pages/myprofile/index",
+        "text": "我的页面"
+      },
+      {
+        "pagePath": "pages/tufang/index",
+        "text": "图方页面"
+      }
+    ]
   }
 }
