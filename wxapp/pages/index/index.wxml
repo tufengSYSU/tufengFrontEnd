@@ -1,4 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  登录页面
+  <text class="signin">登录页面</text>
+
+  <button type="primary" bindtap="entry">登录</button>
 </view>
