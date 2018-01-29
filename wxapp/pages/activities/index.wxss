@@ -1,11 +1,20 @@
+/* 1 轮播图模块 */
 .slideContainer {
 }
 
+/** 2 轮播图片左侧tobee图标和字样 */
+.leftHint {
+  float: left;
+  width: 70px;
+}
+
+/*** 3 */
 .tobee {
   width: 40px;
   height: 40px;
 }
 
+/*** 3*/
 .headText {
   writing-mode: vertical-rl;
   font-family: sans-serif;
@@ -13,17 +22,139 @@
   margin-top: 10px;
 }
 
-.leftHint {
-  float: left;
-  width: 70px;
-}
+/*** 3 end*/
+/** 2 end*/
 
+/** 2 轮播图片样式 */
 .pictureSwiper {
   height: 85px;
   margin-left: 70px;
 }
 
+/*** 3 */
 .slide-image {
   width: 250px;
   height: 85px;
 }
+
+/** 2 end */
+/*** 3 end */
+
+/* 1 end */
+
+/* 1 地址和搜索框模块 */
+.searchContainer {
+  clear: both;
+}
+
+/** 2 */
+.searchWrap {
+  margin-top: 5px;  
+}
+
+/*** 3 地址模块 */
+.locationContainer {
+  padding: 2px;
+  background-color: #e6e6e6;
+  float: left;
+  border: 1px solid #e6e6e6;
+  border-radius: 20px;
+  margin: 0px 5px;
+}
+
+/**** 4 */
+.location-image {
+  width: 15px;
+  height: 15px;
+}
+
+/**** 4 end */
+/*** 3 end */
+
+/*** 3 搜索框 */
+.search {
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 2px;
+}
+
+/*** 3 end */
+/** 2 end */
+/* 1 end */
+
+/* 1 推送模块 */
+.articleContainer {
+  margin-top: 10px;
+}
+
+/*** 3 社团信息 */
+.orgInfo {
+  padding: 5px;
+}
+
+/**** 4 */
+.orgMark {
+  float: right;
+  width: 50px;
+  border: 1px solid grey;
+  border-radius: 20px;
+  font-size: 8px;
+  text-align: center;
+  vertical-align: center;
+}
+
+/**** 4 end */
+/*** 3 end */
+
+/*** 3 推送图 */
+.articleContent {
+  margin-top: 10px;
+}
+
+/**** 4 */
+.contentWrapper {
+  border: 1px solid red;
+  border-radius: 5px;
+  margin-top: 5px;
+  position: relative;
+}
+
+/***** 5 */
+.leftInfo {
+  float: left;
+  width: 200px;
+}
+
+/****** 6 */
+.coverImage {
+  width: 200px;
+  height: 50px;
+}
+
+/****** 6 */
+.headLine {
+  position: absolute;
+  top: 70px;
+  left: 0px;
+}
+
+/****** 6 end */
+/****** 6 end */
+/***** 5 end */
+
+/***** 5 */
+.rightInfo {
+  margin-left: 220px;
+}
+
+/****** 6 */
+.detail-button {
+  border: 1px solid grey;
+  border-radius: 20px;
+}
+
+/****** 6 end */
+/***** 5 end */
+/**** 4 end */
+/*** 3 end */
+/* 1 end */

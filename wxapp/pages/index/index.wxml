@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <text class="signin">登录页面</text>
-
-  <button type="primary" bindtap="entry">登录</button>
+  <image src="{{userInfo.avatarUrl}}" class="headimg" />
+  <text>{{userInfo.nickName}}，你好！</text>
+  <button class="signinButton" type="primary" bindtap="entry">登录</button>
 </view>

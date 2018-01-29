@@ -1,4 +1,21 @@
 
-.signin {
-    height: 50px;
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.headimg {
+  width: 81px;
+  height: 81px;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+text {
+  margin: 10px;
 }
