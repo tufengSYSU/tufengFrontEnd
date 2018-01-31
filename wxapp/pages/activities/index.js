@@ -1,10 +1,11 @@
+const app = getApp()
 
 Page({
 
   data:{
     userInfo:{},
     indicatorDots: true,
-    interval: 1500,
+    interval: 3000,
     duration: 500,
     imgUrl: [
       "../../assets/slidepicture/1.jpg",
@@ -18,6 +19,7 @@ Page({
     },
     locationIconUrl: "../../assets/icon/location.png",
     searchKey: "",
+    content: app.globalData.content
   },
   onLoad: function() {
     this.getLocation();
@@ -33,29 +35,32 @@ Page({
           'location.latitude': res.latitude,
           'location.longitude': res.longitude
         })
-        locationString = that.data.location.latitude + "," + that.data.location.longitude
-        wx.request({
-          url: "https://apis.map.qq.com/ws/geocoder/v1/",
-          data: {
-            "key": "6UVBZ-LUKLU-3ZRV7-BUDEO-SZJCZ-CQBN4",
-            "location": locationString
-          },
-          methon: "GET",
-          success: function(res) {
-            that.setData({
-              'location.address': res.data.result.address
-            })
-            console.log("请求成功")
-            console.log("请求地址为：" + res.data.result.address)
-          },
-          fail: function(res) {
-            console.log("定位失败")
-          }
-        })
+        locationString = res.latitude + "," + res.longitude
+        that.requestAddress(locationString)
       }
     })
-
-
+  },
+  requestAddress: function(str) {
+    var that = this
+    wx.request({
+      url: "https://apis.map.qq.com/ws/geocoder/v1/",
+      data: {
+        "key": "6UVBZ-LUKLU-3ZRV7-BUDEO-SZJCZ-CQBN4",
+        "location": str
+      },
+      methon: "GET",
+      success: function(res) {
+        that.setData({
+          'location.address': res.data.result.address
+        })
+        if (that.data.location.address.length > 4) {
+          that.setData({
+            'location.address': that.data.location.address.substr(0, 4) + "..."
+          })
+        }
+        console.log("请求地址为：" + res.data.result.address)
+      },
+    })
   },
   getSearchInput: function(e) {
     this.setData({
@@ -64,3 +69,5 @@ Page({
   }
 
 })
+
+// wxcf38b0daff83a060

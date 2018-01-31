@@ -34,6 +34,60 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    content: [
+      {
+        id: 1,
+        date: new Date(2018, 1, 1),
+        article: [
+          {
+            logoUrl: "../../assets/icon/demo.png",
+            imgUrl: "../../assets/articlepicture/1.png",
+            headLine: "中山大学团委XX活动",
+            mark: ["business", "price", "sport", "food", "chance"],
+            briefIntroduction: "1758"
+          }
+        ]
+      },
+      {
+        id: 2,
+        date: new Date(2018, 1, 2),
+        article: [
+          {
+            logoUrl: "../../assets/icon/demo.png",
+            imgUrl: "../../assets/articlepicture/2.png",
+            headLine: "中山大学团委XX活动",
+            mark: ["business", "price", "sport", "food", "chance"],
+            briefIntroduction: "2758凑字数凑字数"
+          },
+        ]
+      },
+      {
+        id: 3,
+        date: new Date(2018, 1, 3),
+        article: [
+          {
+            logoUrl: "../../assets/icon/demo.png",
+            imgUrl: "../../assets/articlepicture/3.png",
+            headLine: "中山大学团委XX活动",
+            mark: ["business", "price", "sport", "food", "chance"],
+            briefIntroduction: "3758凑字数凑字数凑字数"
+          },
+        ]
+      },
+      {
+        id: 4,
+        date: new Date(2018, 1, 4),
+        article: [
+          {
+            logoUrl: "../../assets/icon/demo.png",
+            imgUrl: "../../assets/articlepicture/4.png",
+            headLine: "中山大学团委XX活动",
+            mark: ["business", "price", "sport", "food", "chance"],
+            briefIntroduction: "4758凑字数凑字数凑字数凑字数"
+          },
+        ]
+      }
+    ]
   }
 })

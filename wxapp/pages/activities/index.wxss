@@ -1,160 +1,163 @@
-/* 1 轮播图模块 */
-.slideContainer {
-}
-
-/** 2 轮播图片左侧tobee图标和字样 */
-.leftHint {
-  float: left;
-  width: 70px;
-}
-
-/*** 3 */
-.tobee {
-  width: 40px;
-  height: 40px;
-}
-
-/*** 3*/
-.headText {
-  writing-mode: vertical-rl;
-  font-family: sans-serif;
-  color: "light";
-  margin-top: 10px;
-}
-
-/*** 3 end*/
-/** 2 end*/
-
-/** 2 轮播图片样式 */
-.pictureSwiper {
-  height: 85px;
-  margin-left: 70px;
-}
-
-/*** 3 */
-.slide-image {
-  width: 250px;
-  height: 85px;
-}
-
-/** 2 end */
-/*** 3 end */
-
-/* 1 end */
-
-/* 1 地址和搜索框模块 */
-.searchContainer {
-  clear: both;
-}
-
-/** 2 */
-.searchWrap {
-  margin-top: 5px;  
-}
-
-/*** 3 地址模块 */
-.locationContainer {
-  padding: 2px;
-  background-color: #e6e6e6;
-  float: left;
-  border: 1px solid #e6e6e6;
-  border-radius: 20px;
-  margin: 0px 5px;
-}
-
-/**** 4 */
-.location-image {
-  width: 15px;
-  height: 15px;
-}
-
-/**** 4 end */
-/*** 3 end */
-
-/*** 3 搜索框 */
-.search {
-  border: 1px solid grey;
-  border-radius: 20px;
-  padding: 2px;
-}
-
-/*** 3 end */
-/** 2 end */
-/* 1 end */
-
-/* 1 推送模块 */
-.articleContainer {
-  margin-top: 10px;
-}
-
-/*** 3 社团信息 */
-.orgInfo {
-  padding: 5px;
-}
-
-/**** 4 */
-.orgMark {
-  float: right;
-  width: 50px;
-  border: 1px solid grey;
-  border-radius: 20px;
-  font-size: 8px;
-  text-align: center;
-  vertical-align: center;
-}
-
-/**** 4 end */
-/*** 3 end */
-
-/*** 3 推送图 */
-.articleContent {
-  margin-top: 10px;
-}
-
-/**** 4 */
-.contentWrapper {
-  border: 1px solid red;
-  border-radius: 5px;
-  margin-top: 5px;
+/* slide-image */
+.slide-container {
   position: relative;
 }
 
-/***** 5 */
-.leftInfo {
-  float: left;
-  width: 200px;
-}
-
-/****** 6 */
-.coverImage {
-  width: 200px;
-  height: 50px;
-}
-
-/****** 6 */
-.headLine {
+.logo {
   position: absolute;
-  top: 70px;
-  left: 0px;
+  left: 47%;
+  top: 30px;
+  z-index: 99;
 }
 
-/****** 6 end */
-/****** 6 end */
-/***** 5 end */
-
-/***** 5 */
-.rightInfo {
-  margin-left: 220px;
+.logo image {
+  width: 25px;
+  height: 25px;
+  opacity: 0.4;
 }
 
-/****** 6 */
-.detail-button {
+/** slide-image style */
+.picture-swiper {
+  height: 85px;
+  width: 100%;
+}
+
+.slide-image {
+  height: 85px;
+}
+
+/** slide-image style end */
+/* slide-image end */
+
+/* location and search bar */
+.search-container {
+  clear: both;
+}
+
+.search-wrap {
+  margin-top: 5px;  
+}
+
+/*** location */
+.location-container {
+  font-size: 11px;
+  color: #576895;
+  border-radius: 20px;
+  background-color: #b2b2b2;
+  float: left;
+  width: 70px;
+  padding: 2px;
+}
+
+.location-image {
+  width: 11px;
+  height: 11px;
+  vertical-align: center;
+}
+
+/*** search bar */
+.search-bar-container {
+  margin-left: 80px;
+  position: relative;  
+}
+
+.icon-search {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.search-bar-input {
+  font-size: 11px;
+  height: 8px;
   border: 1px solid grey;
   border-radius: 20px;
+  text-align: center;
+  vertical-align: middle;
 }
 
-/****** 6 end */
-/***** 5 end */
-/**** 4 end */
-/*** 3 end */
-/* 1 end */
+/*** location end */
+/*** search bar end */
+/* location and search bar end */
+
+/* artical calendar */
+.scroll-calendar-box {
+  margin-top: 10px;
+  white-space: nowrap;
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.calender-box {
+  width: 300rpx;
+  margin-right: 24rpx;
+  display: inline-block;
+}
+
+.article-date {
+  text-align: center;
+  vertical-align: middle;
+  height: 20px;
+  font-size: 11px;
+  color: #576b95;
+}
+
+/*** all articles container(maybe more than one article) */
+.article-wrapper {
+  margin-top: 10rpx;
+}
+
+/**** one article container */
+.article-container {
+  width: 300rpx;
+  height: 350rpx;
+  border: 1px solid grey;
+  position: relative;
+}
+
+.article-coverimage {
+  width: 300rpx;
+  height: 230rpx;
+}
+
+.org-logo {
+  font-size: 11px;
+  vertical-align: middle;
+  height: 30px;
+  float: left;
+}
+
+.org-logo image {
+  width: 12px;
+  height: 12px;
+}
+
+.article-headline {
+  width: 105px;
+  font-size: 11px;
+  white-space: normal;
+  margin-left: 15px;
+}
+
+.mark-container {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.mark-container image {
+  width: 10px;
+  height: 10px;
+}
+
+.activity-brief-headline {
+  clear: both;
+  font-size: 11px;
+  color: #576b95;
+  text-align: center;
+}

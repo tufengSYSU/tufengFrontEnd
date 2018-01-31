@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import '/assets/weui/weui.wxss';
+
 /*
 .container {
   height: 100%;
@@ -10,3 +12,7 @@
   box-sizing: border-box;
 }
 */
+
+.container {
+  padding: 0 5rpx;
+}

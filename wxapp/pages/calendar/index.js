@@ -1,26 +1,27 @@
 Page({
-  data:{
-    
-  },
-  onLoad:function(options){
-    
-  },
-  onReady:function(){
-    
-  },
-  onShow:function(){
-    
-  },
-  onHide:function(){
-    
-  },
-  onUnload:function(){
-    
-  },
-  onPullDownRefresh:function(){
-    
-  },
-  onReachBottom:function(){
-    
+  data: {
+    hotList: [
+      {
+        pic: '../../assets/articlepicture/1.png',
+        title: '玻璃棧道',
+        desc: '22W人去過'
+      }, {
+        pic: '../../assets/articlepicture/1.png',
+        title: '玻璃棧道',
+        desc: '22W人去過'
+      }, {
+        pic: '../../assets/articlepicture/1.png',
+        title: '玻璃棧道',
+        desc: '22W人去過'
+      }, {
+        pic: '../../assets/articlepicture/1.png',
+        title: '玻璃棧道',
+        desc: '22W人去過'
+      }, {
+        pic: '../../assets/articlepicture/1.png',
+        title: '玻璃棧道',
+        desc: '22W人去過'
+      }
+    ]
   }
-})    
+})

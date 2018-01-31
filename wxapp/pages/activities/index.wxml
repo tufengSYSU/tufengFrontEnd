@@ -1,30 +1,69 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- 轮播图  -->
-  <view class="slideContainer">
-    <!-- 轮播图左侧图标和文字 -->
-    <view class="leftHint">
-      <image class="tobee" src="../../assets/icon/tobee.jpg"></image>
-      <text class="headText">图片直播</text>
+  <!-- slide image -->
+  <view class="slide-container">
+    <!-- left icon and words -->
+    <view class="logo">
+      <image src="../../assets/icon/live.png"/>
     </view>
 
-    <!-- 轮播图核心 -->
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="{{interval}}" duration="{{duration}}" class="pictureSwiper">
+    <!-- slide image core code -->
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
         <swiper-item wx:for-items="{{imgUrl}}" wx:key="*this">
           <image src="{{item}}" class="slide-image" mode="widthFix" />
         </swiper-item>
     </swiper>
   </view>
 
-  <!-- 搜索 -->
-  <view class="searchContaniner">
-    <view class="searchWrap">
-      <!-- 地址 -->
-      <view class="locationContainer">
+  <!-- search -->
+  <view class="search-contaniner">
+    <view class="search-wrap">
+      <!-- location -->
+      <view class="location-container">
         <text class="address">{{location.address}}</text>
         <image class="location-image" src="{{locationIconUrl}}"/>
       </view>
-      <input type="text" placeholder="输入搜索内容" class="search" confirm-type="search"/>
+      <!-- search bar -->
+      <view class="search-bar-container">
+        <view class="search-bar">
+          <view class="search-bar-box">
+            <icon class="icon-search" type="search" size="14"></icon>
+            <input type="text" class="search-bar-input" placeholder="搜索" focus="true" bindinput="getSearchInput" />
+          </view>
+        </view>
+      </view>
     </view>
   </view>
+
+  <!-- article calendar  -->
+  <view>
+    <scroll-view class="scroll-calendar-box" scroll-x="true">
+      <view class="calender-box" wx:for="{{content}}" wx:key="{{item.id}}" wx:for-item="test">
+        <view class="article-date">{{test.date.toDateString()}}11111</view>
+        <view class="article-wrapper" wx:for="{{[1,2,3,4,5]}}" wx:key="{{*this}}">
+          <view class="article-container" wx:for="{{test.article}}" wx:for-item="singleArticle">
+            <!-- cover image and article -->
+            <view class="article-image-container"><image src="{{singleArticle.imgUrl}}" class="article-coverimage" /></view>
+            <!-- org logo-->
+            <view class="article-briefinfomation"> 
+              <view class="org-logo">
+                <image src="../../assets/icon/demo.png" />
+              </view>
+              <view class="article-headline">{{singleArticle.headLine}}凑字数都紫薯
+              </view>
+            </view>
+
+             <!-- article mark -->
+             <view class="mark-container">
+               <image src="../../assets/icon/dot/blue.png"/>
+               <image src="../../assets/icon/dot/yellow.png"/>
+               <image src="../../assets/icon/dot/purple.png"/>
+             </view>
+          </view>
+          <view class="activity-brief-headline">#{{singleArticle.briefIntroduction}}11111</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
 </view>

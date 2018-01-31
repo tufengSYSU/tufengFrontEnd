@@ -1,0 +1,27 @@
+.recommend_scroll_x_box {
+  white-space: nowrap;
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.recommend_hot_box {
+  width: 230rpx;
+  margin-right: 24rpx;
+  display: inline-block;
+}
+
+.recommend_hot_image {
+  width: 230rpx;
+  height: 143rpx;
+}
+
+.testItem {
+  width: 230rpx;
+  height: 500rpx;
+  background-color: green;
+}
