@@ -1,15 +1,4 @@
-<view>
-  日历页面
-  用来测试了一下滚动视图
-  <scroll-view class="recommend_scroll_x_box" scroll-x="true">
-    <view class="recommend_hot_box" wx:for="{{hotList}}" wx:key="{{item.title}}">
-    <image src="{{item.pic}}" class="recommend_hot_image"></image>
-    <view class="testItem">
-    </view>
-    <view class="testItem">
-    </view>
-    <view class="testItem">
-    </view>
-    </view>
-  </scroll-view>
+<view class='container'>
+  <view class='calender'>
+  </view>
 </view>
