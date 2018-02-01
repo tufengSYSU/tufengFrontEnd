@@ -1,4 +1,17 @@
 <view class='container'>
   <view class='calender'>
+    <view class='calender-header'>
+      <view class='currentYearAndMonth'>
+        <view>{{yearAndMonth}}</view>
+      </view>
+      <view class='weekday'>
+        <view wx:for='{{weekdayInCH}}' wx:key='{{index}}'>{{item}}</view>
+      </view>
+    </view>
+    <view class='calender-body'>
+      <view class='one-week' wx:for='{{weeks}}' wx:for-item='oneWeek' wx:key='unique'>
+        <view class='one-day' wx:for='{{oneWeek}}' wx:key='{{index}}' wx:for-item='oneDay'>{{oneDay}}</view>
+      </view>
+    </view>
   </view>
 </view>
