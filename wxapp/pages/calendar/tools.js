@@ -35,9 +35,10 @@ const getWeeksOfCurrentMonth = date => {
 
   // push the oneWeeks one by one into weeks
   for (let i = 0; i < dayCount; i++) {
-    if (oneWeek.length == 7) {
+    if (oneWeek.length === 7) {
       weeks.push(oneWeek)
       oneWeek = []
+      oneWeek.push(i + 1)
     }
     else {
       oneWeek.push(i + 1)

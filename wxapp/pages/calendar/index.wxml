@@ -2,7 +2,9 @@
   <view class='calender'>
     <view class='calender-header'>
       <view class='currentYearAndMonth'>
+        <view bindtap='changeMonth' data-direction='prev'> 《 </view>
         <view>{{yearAndMonth}}</view>
+        <view bindtap='changeMonth' data-direction='next'> 》 </view>
       </view>
       <view class='weekday'>
         <view wx:for='{{weekdayInCH}}' wx:key='{{index}}'>{{item}}</view>
