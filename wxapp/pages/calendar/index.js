@@ -10,45 +10,33 @@ Page({
   data: {
     weekdayInCH: weekdayInCH,
     yearAndMonth: null,
-    sameDayInCurrentFullMonth: null,
-    weeks: [],
+    todayInThatMonth: null,
     weeksWithEvents: []
   },
   onLoad() {
     const today = new Date()
-    const yearAndMonth = tools.getCurrentYearAndMonth(today)
-    const weeks = tools.getWeeksOfCurrentMonth(today)
-    const dailyEventsInWeeks = tools.getDailyEventsInWeeks(today, dailyEventsIn201802)
-    const sameDayInCurrentFullMonth = today
-    const weeksWithEvents = tools.zip(weeks, dailyEventsInWeeks)
-    this.setData({
-      yearAndMonth,
-      sameDayInCurrentFullMonth,
-      weeks,
-      dailyEventsInWeeks,
-      weeksWithEvents
-    })
-    wx.setNavigationBarTitle({
-      title: yearAndMonth
-    })
+    this.setDataInAMonth(today)
   },
   // 改变月份
   changeMonth(e) {
 		const direction = e.currentTarget.dataset.direction
-    var sameDay = this.data.sameDayInCurrentFullMonth
+    var sameDay = this.data.todayInThatMonth
     if (direction === 'prev') {
       sameDay = new Date(sameDay.setMonth(sameDay.getMonth() - 1))
     } else {
       sameDay = new Date(sameDay.setMonth(sameDay.getMonth() + 1))
     }
-    const yearAndMonth = tools.getCurrentYearAndMonth(sameDay)
-    const weeks = tools.getWeeksOfCurrentMonth(sameDay)
-    const dailyEventsInWeeks = tools.getDailyEventsInWeeks(sameDay, dailyEventsIn201802)
+    this.setDataInAMonth(sameDay)
+  },
+  // 设置一个月的数据，输入值为当月的某一天
+  setDataInAMonth(oneDay) {
+    const yearAndMonth = tools.getCurrentYearAndMonth(oneDay)
+    const weeks = tools.getWeeksOfCurrentMonth(oneDay)
+    const dailyEventsInWeeks = tools.getDailyEventsInWeeks(oneDay, dailyEventsIn201802)
     const weeksWithEvents = tools.zip(weeks, dailyEventsInWeeks)
     this.setData({
       yearAndMonth,
-      sameDayInCurrentFullMonth: sameDay,
-      weeks,
+      todayInThatMonth: oneDay,
       dailyEventsInWeeks,
       weeksWithEvents
     })
