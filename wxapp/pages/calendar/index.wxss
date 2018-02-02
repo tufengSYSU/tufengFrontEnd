@@ -10,11 +10,16 @@ page {
   background-color: #f3f3f3;
 }
 
+.container, .calender, swiper {
+  height: 100%;
+}
+
 /** calender header  */
 
 .calender-header {
   background-color: white;
   box-shadow: 0px 0px 3px rgba(0,0,0,.14);
+  height: 26px;
 }
 
 .currentYearAndMonth view {
@@ -30,6 +35,10 @@ page {
 /** calender header end */
 
 /** calender body */
+
+.calender-body {
+  height: calc(100% - 26px);
+}
 
 .week {
   background-color: white;

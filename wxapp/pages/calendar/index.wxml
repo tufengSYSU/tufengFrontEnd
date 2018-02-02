@@ -1,29 +1,26 @@
-<view class='container'>
-  <!-- use the default values mostly -->
-  <!-- <swiper>
-    <block wx:for='{{calenders}}' wx:for-item='{{weeksWithEvents}}' wx:key='unique'> -->
-      <view class='calender'>
-        <view class='calender-header'>
-          <view class='currentYearAndMonth'>
-            <view bindtap='changeMonth' data-direction='prev'> 《 </view>
-            <view>{{yearAndMonth}}</view>
-            <view bindtap='changeMonth' data-direction='next'> 》 </view>
-          </view>
-          <view class='weekday'>
-            <view wx:for='{{weekdayInCH}}' wx:key='{{index}}'>{{item}}</view>
-          </view>
-        </view>
-        <view class='calender-body'>
-          <view class='week' wx:for='{{weeksWithEvents}}' wx:for-item='oneWeekWithEvents' wx:key='unique'>
-            <view class='day' wx:for='{{oneWeekWithEvents[0]}}' wx:key='{{index}}' wx:for-item='day'>{{day}}</view>
-            <view class='events' wx:for='{{oneWeekWithEvents[1]}}' wx:key='{{index}}' wx:for-item='dailyEvents'>
-              <view class='event' wx:for='{{dailyEvents}}' wx:key='{{index}}' wx:for-item='event'>
-                <view class='point'></view>{{event}}
+<view class="container">
+  <view class="calender">
+    <view class="calender-header">
+      <view class="weekday">
+        <view wx:for="{{weekdayInCH}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="calender-body">
+      <!-- use the default values mostly -->
+      <swiper current="{{activeIndex}}" circular="true" bindchange="swiperChange">
+        <block wx:for="{{calenders}}" wx:for-item="weeksWithEvents" wx:key="unique">
+          <swiper-item>
+            <view class="week" wx:for="{{weeksWithEvents}}" wx:for-item="oneWeekWithEvents" wx:key="unique">
+              <view class="day" wx:for="{{oneWeekWithEvents[0]}}" wx:key="{{index}}" wx:for-item="day">{{day}}</view>
+              <view class="events" wx:for="{{oneWeekWithEvents[1]}}" wx:key="{{index}}" wx:for-item="dailyEvents">
+                <view class="event" wx:for="{{dailyEvents}}" wx:for-item="event" wx:key="{{index}}">
+                  <view class="point"></view>{{event}}
+                </view>
               </view>
             </view>
-          </view>
-        </view>
-      </view>
-    <!-- </block>
-  </swiper> -->
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
 </view>

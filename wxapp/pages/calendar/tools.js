@@ -99,9 +99,21 @@ const getDailyEventsInWeeks = (date, dailyEventsInMonth) => {
  */
 const zip = (a1, a2) => a1.map((x, i) => [x, a2[i]])
 
+/**
+ * getWeeksWithEventsOfCurrentMonth, the combined func of 3 func called in it
+ *
+ * @param {Date} date
+ * @param {Array} dailyEventsInThatMonth
+ * @return {Array} the zipped
+ */
+const getWeeksWithEventsOfCurrentMonth = (date, dailyEventsInThatMonth) => {
+  return zip(getWeeksOfCurrentMonth(date), getDailyEventsInWeeks(date, dailyEventsInThatMonth))
+}
+
 module.exports = {
   getCurrentYearAndMonth: getCurrentYearAndMonth,
   getWeeksOfCurrentMonth: getWeeksOfCurrentMonth,
   getDailyEventsInWeeks: getDailyEventsInWeeks,
-  zip: zip
+  zip: zip,
+  getWeeksWithEventsOfCurrentMonth
 }
