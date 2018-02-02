@@ -38,53 +38,57 @@ App({
     content: [
       {
         id: 1,
-        date: new Date(2018, 1, 1),
+        date: "Jan 01",
         article: [
           {
+            id: 0,
             logoUrl: "../../assets/icon/demo.png",
             imgUrl: "../../assets/articlepicture/1.png",
-            headLine: "中山大学团委XX活动",
+            headLine: "中山大学团委活动",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "1758"
+            briefIntroduction: "1758舞蹈会"
           }
         ]
       },
       {
         id: 2,
-        date: new Date(2018, 1, 2),
+        date: "Jan 02",
         article: [
           {
+            id: 1,
             logoUrl: "../../assets/icon/demo.png",
             imgUrl: "../../assets/articlepicture/2.png",
-            headLine: "中山大学团委XX活动",
+            headLine: "数据科学与计算机学院学长团",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "2758凑字数凑字数"
+            briefIntroduction: "学长团"
           },
         ]
       },
       {
         id: 3,
-        date: new Date(2018, 1, 3),
+        date: "Jan 03",
         article: [
           {
+            id: 2,
             logoUrl: "../../assets/icon/demo.png",
             imgUrl: "../../assets/articlepicture/3.png",
-            headLine: "中山大学团委XX活动",
+            headLine: "维纳斯歌手大赛",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "3758凑字数凑字数凑字数"
+            briefIntroduction: "维纳斯歌手比赛"
           },
         ]
       },
       {
-        id: 4,
-        date: new Date(2018, 1, 4),
+        id: 3,
+        date: "Jan 04",
         article: [
           {
+            id: 4,
             logoUrl: "../../assets/icon/demo.png",
             imgUrl: "../../assets/articlepicture/4.png",
-            headLine: "中山大学团委XX活动",
+            headLine: "暑假三下乡-把阳光播撒到世界每一个角落",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "4758凑字数凑字数凑字数凑字数"
+            briefIntroduction: "三下乡义教"
           },
         ]
       }

@@ -1,12 +1,12 @@
 /* slide-image */
 .slide-container {
-  position: relative;
+  width: 100%;
 }
 
 .logo {
   position: absolute;
   left: 47%;
-  top: 30px;
+  top: 30px;    
   z-index: 99;
 }
 
@@ -14,6 +14,7 @@
   width: 25px;
   height: 25px;
   opacity: 0.4;
+  background-color: blue;
 }
 
 /** slide-image style */
@@ -23,6 +24,7 @@
 }
 
 .slide-image {
+  width: 100%;
   height: 85px;
 }
 
@@ -40,13 +42,24 @@
 
 /*** location */
 .location-container {
+  width: 15%;
   font-size: 11px;
+  height: 15px;
   color: #576895;
   border-radius: 20px;
   background-color: #b2b2b2;
+  opacity: 0.5;
   float: left;
-  width: 70px;
-  padding: 2px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.address {
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  float: left;
 }
 
 .location-image {
@@ -57,23 +70,25 @@
 
 /*** search bar */
 .search-bar-container {
-  margin-left: 80px;
-  position: relative;  
+  position: relative;
 }
 
 .icon-search {
   position: absolute;
   right: 10px;
   top: 5px;
+  z-index: 99;
 }
 
-.search-bar-input {
+.search-bar-container input {
+  min-height: 24px;
+  vertical-align: middle;
   font-size: 11px;
-  height: 8px;
+  height: 24px;
+  line-height: 24px;  
   border: 1px solid grey;
   border-radius: 20px;
-  text-align: center;
-  vertical-align: middle;
+  text-align: center;  
 }
 
 /*** location end */
@@ -84,13 +99,8 @@
 .scroll-calendar-box {
   margin-top: 10px;
   white-space: nowrap;
-  display: flex;
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling:touch;
 }
 
 .calender-box {
@@ -102,6 +112,7 @@
 .article-date {
   text-align: center;
   vertical-align: middle;
+  width: 100%;
   height: 20px;
   font-size: 11px;
   color: #576b95;
@@ -115,39 +126,50 @@
 /**** one article container */
 .article-container {
   width: 300rpx;
-  height: 350rpx;
-  border: 1px solid grey;
+  height: 370rpx;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px 0px #999;
   position: relative;
+}
+
+.article-image-container {
+  height: 230rpx;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .article-coverimage {
   width: 300rpx;
   height: 230rpx;
+  border-radius: 5px 5px 0px 0px;  
 }
 
 .org-logo {
   font-size: 11px;
   vertical-align: middle;
-  height: 30px;
+  height: 50px;
   float: left;
 }
 
 .org-logo image {
-  width: 12px;
-  height: 12px;
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
+}
+
+.article-brief-information {
+  margin: 5px 0 0 5px;
 }
 
 .article-headline {
-  width: 105px;
+  width: 95%;
   font-size: 11px;
   white-space: normal;
-  margin-left: 15px;
 }
 
 .mark-container {
   position: absolute;
   right: 0px;
-  bottom: 0px;
+  bottom: -5px;
 }
 
 .mark-container image {
@@ -156,8 +178,8 @@
 }
 
 .activity-brief-headline {
+  margin-top: 5px;
   clear: both;
   font-size: 11px;
-  color: #576b95;
   text-align: center;
 }

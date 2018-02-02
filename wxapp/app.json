@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/activities/index",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/activities/index",
     "pages/calendar/index",
     "pages/tufang/index",
     "pages/myprofile/index"
@@ -14,7 +14,7 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "selectedColor": "#1afa29",
+    "selectedColor": "09bb92",
     "list": [
       {
         "pagePath": "pages/activities/index",

@@ -14,56 +14,53 @@
         </swiper-item>
     </swiper>
   </view>
-
   <!-- search -->
   <view class="search-contaniner">
     <view class="search-wrap">
       <!-- location -->
       <view class="location-container">
-        <text class="address">{{location.address}}</text>
+        <view class="address">{{location.address}}</view>
         <image class="location-image" src="{{locationIconUrl}}"/>
       </view>
       <!-- search bar -->
       <view class="search-bar-container">
-        <view class="search-bar">
-          <view class="search-bar-box">
-            <icon class="icon-search" type="search" size="14"></icon>
-            <input type="text" class="search-bar-input" placeholder="搜索" focus="true" bindinput="getSearchInput" />
-          </view>
-        </view>
+        <icon class="icon-search" type="search" size="14"></icon>
+        <input type="text" class="search-bar-input" placeholder="搜索" focus="false" bindinput="getSearchInput" />
       </view>
     </view>
   </view>
 
   <!-- article calendar  -->
-  <view>
-    <scroll-view class="scroll-calendar-box" scroll-x="true">
-      <view class="calender-box" wx:for="{{content}}" wx:key="{{item.id}}" wx:for-item="test">
-        <view class="article-date">{{test.date.toDateString()}}11111</view>
-        <view class="article-wrapper" wx:for="{{[1,2,3,4,5]}}" wx:key="{{*this}}">
-          <view class="article-container" wx:for="{{test.article}}" wx:for-item="singleArticle">
+  <view class="scroll-calendar-box" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">
+    <view class="calender-box" wx:for="{{content}}" wx:key="{{item.id}}" wx:for-item="test" wx:for-index="col" data-col="{{col}}">
+      <view class="article-date">{{test.date}}</view>
+      <!-- article content -->
+      <view style="{{adjust}}">
+        <view class="article-wrapper" wx:for="{{[1,2,3,4,5]}}" wx:key="{{*this}}" wx:for-index="row" data-row="{{col*10+row}}" style="{{visited[col*10+row] == 1 ? changeOpacity : none}}" bindtap="makeVisited">
+          <view class="article-container" style="background-color:{{mark_color[test.article[0].id]}}">
             <!-- cover image and article -->
-            <view class="article-image-container"><image src="{{singleArticle.imgUrl}}" class="article-coverimage" /></view>
-            <!-- org logo-->
-            <view class="article-briefinfomation"> 
-              <view class="org-logo">
-                <image src="../../assets/icon/demo.png" />
+            <view class="article-image-container"><image src="{{test.article[0].imgUrl}}" class="article-coverimage" /></view>
+              <!-- org logo-->
+              <view class="article-brief-information">
+                <view class="org-logo">
+                  <image src="../../assets/icon/demo.png" />
+                </view>
+                <view class="article-headline">{{test.article[0].headLine}}
+                </view>
               </view>
-              <view class="article-headline">{{singleArticle.headLine}}凑字数都紫薯
-              </view>
-            </view>
-
-             <!-- article mark -->
-             <view class="mark-container">
-               <image src="../../assets/icon/dot/blue.png"/>
-               <image src="../../assets/icon/dot/yellow.png"/>
-               <image src="../../assets/icon/dot/purple.png"/>
-             </view>
+               <!-- article mark -->
+               <view class="mark-container">
+                 <image src="../../assets/icon/dot/blue.png"/>
+                 <image src="../../assets/icon/dot/yellow.png"/>
+                 <image src="../../assets/icon/dot/purple.png"/>
+               </view>
           </view>
-          <view class="activity-brief-headline">#{{singleArticle.briefIntroduction}}11111</view>
+          <view class="activity-brief-headline">#{{test.article[0].briefIntroduction}}</view>
         </view>
       </view>
-    </scroll-view>
+    </view>
   </view>
-
+  <!-- 看过的推送设置透明度，同个种类的活动同个背景色 -->
+  <view class="selector">
+  </view>
 </view>
