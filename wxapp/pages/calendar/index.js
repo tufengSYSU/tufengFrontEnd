@@ -11,21 +11,26 @@ Page({
     weekdayInCH: weekdayInCH,
     yearAndMonth: null,
     sameDayInCurrentFullMonth: null,
-    weeks: []
+    weeks: [],
+    weeksWithEvents: []
   },
   onLoad() {
     const today = new Date()
     const yearAndMonth = tools.getCurrentYearAndMonth(today)
     const weeks = tools.getWeeksOfCurrentMonth(today)
+    const dailyEventsInWeeks = tools.getDailyEventsInWeeks(today, dailyEventsIn201802)
     const sameDayInCurrentFullMonth = today
+    const weeksWithEvents = tools.zip(weeks, dailyEventsInWeeks)
     this.setData({
       yearAndMonth,
       sameDayInCurrentFullMonth,
-      weeks
+      weeks,
+      dailyEventsInWeeks,
+      weeksWithEvents
     })
-    // wx.setNavigationBarTitle({
-    //   title: yearAndMonth
-    // })
+    wx.setNavigationBarTitle({
+      title: yearAndMonth
+    })
   },
   // 改变月份
   changeMonth(e) {
@@ -38,10 +43,52 @@ Page({
     }
     const yearAndMonth = tools.getCurrentYearAndMonth(sameDay)
     const weeks = tools.getWeeksOfCurrentMonth(sameDay)
+    const dailyEventsInWeeks = tools.getDailyEventsInWeeks(sameDay, dailyEventsIn201802)
+    const weeksWithEvents = tools.zip(weeks, dailyEventsInWeeks)
     this.setData({
       yearAndMonth,
       sameDayInCurrentFullMonth: sameDay,
-      weeks
+      weeks,
+      dailyEventsInWeeks,
+      weeksWithEvents
+    })
+    wx.setNavigationBarTitle({
+      title: yearAndMonth
     })
   }
 })
+
+// TODO: 这只是一个简单的UI测试，后期需要变成对象的数组，以加入活动链接
+const dailyEventsIn201802 = [
+  [],
+  ['1758'],
+  [],
+  [],
+  ['草地音乐会'],
+  [],
+  ['1758'],
+  [],
+  [],
+  ['草地音乐会','运动会','lala'],
+  [],
+  ['1758'],
+  [],
+  [],
+  ['草地音乐会'],
+  [],
+  [],
+  ['草地音乐会'],
+  [],
+  ['1758'],
+  [],
+  [],
+  ['草地音乐会'],
+  [],
+  ['1758'],
+  [],
+  [],
+  ['草地音乐会','草地'],
+  [],
+  [],
+  ['草地音乐会']
+]

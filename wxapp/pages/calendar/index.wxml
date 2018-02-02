@@ -11,8 +11,13 @@
       </view>
     </view>
     <view class='calender-body'>
-      <view class='one-week' wx:for='{{weeks}}' wx:for-item='oneWeek' wx:key='unique'>
-        <view class='one-day' wx:for='{{oneWeek}}' wx:key='{{index}}' wx:for-item='oneDay'>{{oneDay}}</view>
+      <view class='week' wx:for='{{weeksWithEvents}}' wx:for-item='oneWeekWithEvents' wx:key='unique'>
+        <view class='day' wx:for='{{oneWeekWithEvents[0]}}' wx:key='{{index}}' wx:for-item='day'>{{day}}</view>
+        <view class='events' wx:for='{{oneWeekWithEvents[1]}}' wx:key='{{index}}' wx:for-item='dailyEvents'>
+          <view class='event' wx:for='{{dailyEvents}}' wx:key='{{index}}' wx:for-item='event'>
+            <view class='point'></view>{{event}}
+          </view>
+        </view>
       </view>
     </view>
   </view>

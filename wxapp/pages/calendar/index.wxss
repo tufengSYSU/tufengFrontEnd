@@ -10,8 +10,11 @@ page {
   background-color: #f3f3f3;
 }
 
+/** calender header  */
+
 .calender-header {
   background-color: white;
+  box-shadow: 0px 0px 3px rgba(0,0,0,.14);
 }
 
 .currentYearAndMonth view {
@@ -21,9 +24,37 @@ page {
 .weekday view {
   display: inline-block;
   width: 14%;
+  font-size: 8pt;
 }
 
-.one-week .one-day {
+/** calender header end */
+
+/** calender body */
+
+.week {
+  background-color: white;
+  margin-top: 2px;
+}
+
+.day, .events {
   display: inline-block;
   width: 14%;
 }
+
+.events {
+  padding-bottom: 5px;
+  font-size: 8pt;
+  vertical-align: top;
+  text-align: left;
+}
+
+.event .point {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 2px;
+  background-color: #63da39;
+  border-radius: 50%;
+}
+
+/** calender body end */
