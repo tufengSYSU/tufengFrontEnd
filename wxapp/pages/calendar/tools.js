@@ -24,7 +24,7 @@ const getCurrentYearAndMonth = date => {
  */
 const getWeeksOfCurrentMonth = date => {
   const year = date.getFullYear()
-  const month = date.getMonth() + 1
+  const month = date.getMonth()
   const firstDay = new Date(year, month, 1)
   const lastDay = new Date(year, month + 1, 0)
   const dayCount = lastDay.getDate()
@@ -61,7 +61,7 @@ const getWeeksOfCurrentMonth = date => {
  */
 const getDailyEventsInWeeks = (date, dailyEventsInMonth) => {
   const year = date.getFullYear()
-  const month = date.getMonth() + 1
+  const month = date.getMonth()
   const firstDay = new Date(year, month, 1)
   const lastDay = new Date(year, month + 1, 0)
   const dayCount = lastDay.getDate()
