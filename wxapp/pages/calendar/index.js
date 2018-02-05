@@ -17,8 +17,8 @@ Page({
   },
   onLoad: function() {
     const curDay = new Date()
-    const curDayInPrevMonth = new Date((new Date(curDay)).setMonth(curDay.getMonth() - 1))
-    const curDayInNextMonth = new Date((new Date(curDay)).setMonth(curDay.getMonth() + 1))
+    const curDayInPrevMonth = this.getTheSameDayInThatMonthWithOffset(curDay, -1)
+    const curDayInNextMonth = this.getTheSameDayInThatMonthWithOffset(curDay, 1)
     this.setData({
       todayInThatMonth: curDay,
       calenders: [
@@ -29,37 +29,58 @@ Page({
     })
     this.syncTitle()
   },
+  // when the swiper changes
   swiperChange: function(e) {
+    const circularSize = 3
     const index = e.detail.current
     const activeIndex = this.data.activeIndex
-    console.log(index)
-    // console.log(this.data.calenders[index])
-    // // swipe to right
-    // if (index < activeIndex || (index === 2 && activeIndex)) {
-    //
-    // }
-    const curDay = new Date()
-    const curDayInPrevMonth = new Date((new Date(curDay)).setMonth(curDay.getMonth() - 1))
-    const curDayInNextMonth = new Date((new Date(curDay)).setMonth(curDay.getMonth() + 1))
-    var oneDayInCurMonth = null
-    switch (index) {
-      case 0:
-        oneDayInCurMonth = curDayInPrevMonth
-        break;
-      case 1:
-        oneDayInCurMonth = curDay
-        break;
-      case 2:
-        oneDayInCurMonth = curDayInNextMonth
-        break;
-      default:
-        break
+    const lastToday = this.data.todayInThatMonth
+
+    var todayInCurrentMonth = null
+    var calenders = this.data.calenders
+
+    // swipe to right
+    if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'right')) {
+      todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, 1)
+      calenders[this.getCircularSiblingIndex(circularSize, index, 'right')] = this.getWeeksWithEvents(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
     }
+    // swipe to left
+    else if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'left')) {
+      todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, -1)
+      calenders[this.getCircularSiblingIndex(circularSize, index, 'left')] = this.getWeeksWithEvents(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+    }
+    // error
+    else {
+      console.error('swipe error');
+    }
+
     this.setData({
       activeIndex: index,
-      todayInThatMonth: oneDayInCurMonth
+      todayInThatMonth: todayInCurrentMonth,
+      calenders: calenders
     })
     this.syncTitle()
+  },
+  getTheSameDayInThatMonthWithOffset: function(curDay, monthOffset) {
+    return new Date((new Date(curDay)).setMonth(curDay.getMonth() + monthOffset))
+  },
+  getCircularSiblingIndex: function(circularSize, curIndex, direction) {
+    if (curIndex < 0 || curIndex >= circularSize) {
+      console.error('curIndex out of range');
+    }
+    if (direction === 'right') {
+      if (curIndex + 1 < circularSize) {
+        return curIndex + 1
+      } else {
+        return 0
+      }
+    } else {
+      if (curIndex > 0) {
+        return curIndex - 1
+      } else {
+        return circularSize - 1
+      }
+    }
   },
   // 获得一个月的数据，输入值为当月的某一天
   getWeeksWithEvents: function(oneDay) {
