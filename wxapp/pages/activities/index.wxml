@@ -30,37 +30,77 @@
     </view>
   </view>
 
+  <swiper class="swiper-calendar-contanier" current="currentTab" bindchange="switchTab" duration="300">
+    <swiper-item wx:for="{{indexSeq}}" wx:key="{{*this}}" wx:for-item="index">
+      <view class='calendar-wrapper'>
+        <view class="calendar-container" wx:for="{{[index*2, index*2+1]}}" wx:key="{{*this}}" wx:for-item="pos" wx:if="{{pos < content.length}}">
+          <view class="article-date">{{content[pos].date}}</view>
+          <view class="article-contaniner" wx:for="{{[1,2,3,4,5]}}" wx:key="{{*this}}" bindtap="makeVisited">
+            <view class="article-description-container">
+              <!-- style="background-color:{{mark_color[test.article[0].id]}}" -->
+              <!-- cover image and article -->
+              <view class="article-image-container"><image mode="center" src="{{content[pos].article[0].imgUrl}}" class="article-coverimage" /></view>
+                <!-- activities mark -->
+                <view class="mark-container">
+                  <view class="mark">
+                    <text class="yellow-font">公益时 </text>
+                    <text class="green-font">体育章 </text>
+                    <text class="red-font">奖金</text>
+                  </view>
+                </view>
+                <view class="article-description">
+                  <view class="article-brief-information">
+                    <!-- org logo-->
+                    <view class="org-logo" style="height: {{content[pos].article[0].height}}px">
+                      <image src="../../assets/icon/demo.png" mode="center"/>
+                    </view>
+                    <view class="article-headline">{{content[pos].article[0].headLine}}
+                    </view>
+                  </view>
+                </view>
+            </view>
+            <view class="activity-brief-headline">{{content[pos].article[0].briefIntroduction}}</view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
   <!-- article calendar  -->
-  <view class="scroll-calendar-box" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">
-    <view class="calender-box" wx:for="{{content}}" wx:key="{{item.id}}" wx:for-item="test" wx:for-index="col" data-col="{{col}}">
+  <view style="display:none">
+  <view class="scroll-calendar-container" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">
+    <view class="calendar-container" wx:for="{{content}}" wx:key="{{item.id}}" wx:for-item="test" wx:for-index="col" data-col="{{col}}">
       <view class="article-date">{{test.date}}</view>
       <!-- article content -->
       <view style="{{adjust}}">
-        <view class="article-wrapper" wx:for="{{[1,2,3,4,5]}}" wx:key="{{*this}}" wx:for-index="row" data-row="{{col*10+row}}" style="{{visited[col*10+row] == 1 ? changeOpacity : none}}" bindtap="makeVisited">
-          <view class="article-container" style="background-color:{{mark_color[test.article[0].id]}}">
+        <view class="article-container" wx:for="{{[1,2,3,4,5]}}" wx:key="{{*this}}" wx:for-index="row" data-row="{{col*10+row}}" bindtap="makeVisited">
+          <!-- style="{{visited[col*10+row] == 1 ? changeOpacity : none}}" -->
+          <view style="background-image: url({{test.article[0].imgUrl}});" class="article-description-container">
+            <!-- style="background-color:{{mark_color[test.article[0].id]}}" -->
             <!-- cover image and article -->
-            <view class="article-image-container"><image src="{{test.article[0].imgUrl}}" class="article-coverimage" /></view>
-              <!-- org logo-->
-              <view class="article-brief-information">
-                <view class="org-logo">
-                  <image src="../../assets/icon/demo.png" />
-                </view>
-                <view class="article-headline">{{test.article[0].headLine}}
+            <view class="article-image-container"><image mode="center" src="{{test.article[0].imgUrl}}" class="article-coverimage" /></view>
+              <!-- activities mark -->
+              <view class="mark-container">
+                <view class="mark">
+                  <text class="yellow-font">公益时 </text>
+                  <text class="green-font">体育章 </text>
+                  <text class="red-font">奖金</text>
                 </view>
               </view>
-               <!-- article mark -->
-               <view class="mark-container">
-                 <image src="../../assets/icon/dot/blue.png"/>
-                 <image src="../../assets/icon/dot/yellow.png"/>
-                 <image src="../../assets/icon/dot/purple.png"/>
-               </view>
+              <view class="article-description">
+                <view class="article-brief-information">
+                  <!-- org logo-->
+                  <view class="org-logo" style="height: {{test.article[0].height}}px">
+                    <image src="../../assets/icon/demo.png" mode="center"/>
+                  </view>
+                  <view class="article-headline">{{test.article[0].headLine}}
+                  </view>
+                </view>
+              </view>
           </view>
           <view class="activity-brief-headline">#{{test.article[0].briefIntroduction}}</view>
         </view>
       </view>
     </view>
   </view>
-  <!-- 看过的推送设置透明度，同个种类的活动同个背景色 -->
-  <view class="selector">
   </view>
 </view>

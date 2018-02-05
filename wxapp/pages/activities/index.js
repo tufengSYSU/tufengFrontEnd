@@ -22,15 +22,23 @@ Page({
     content: app.globalData.content,
     changeOpacity: "opacity:0.5",
     visited: [],
-    mark_color: [
-    '#e0f3db', '#fde0dd', '#ffffd9', '#e0de6d'],
-    startY: 0,
-    disFromTop: 135,
-    movedis: 0,
-    adjust: ""
+    switchFlag: true,
+    background: [
+      "red-background",
+      "blue-background",
+      "yellow-background",
+      "green-background"
+    ],
+    currentTab: 0,
+    indexSeq: []
   },
   onLoad: function() {
     this.getLocation();
+    var n = Math.round(this.data.content.length/2)
+    var seq = Array.from(new Array(n),(val,index)=>index)
+    this.setData({
+      indexSeq: seq
+    })
   },
   getLocation: function() {
     var that = this
@@ -78,29 +86,10 @@ Page({
       visited: this.data.visited
     })
   },
-  touchS: function(e) {
+  switchTab: function(e) {
     this.setData({
-      startY: e.touches[0].clientY
+      currentTab: e.detail.current
     })
-  },
-  touchM: function(e) {
-    var dis = this.data.startY - e.touches[0].clientY
-    console.log(dis)
-    if (dis > this.data.disFromTop) {
-      this.setData({
-        adjust: "overflow-y:scroll;height:400px"
-      })
-    }
-    
-  },
-  touchE: function(e) {
-    var dis = this.data.startY - e.changedTouches[0].clientY
-    console.log(dis)
-    if (dis > this.data.disFromTop) {
-      this.setData({
-        adjust: "overflow-y:scroll;height:400px"
-      })
-    }
   }
 })
 

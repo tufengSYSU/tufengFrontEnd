@@ -6,7 +6,7 @@
 .logo {
   position: absolute;
   left: 47%;
-  top: 30px;    
+  top: 30px;
   z-index: 99;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .search-wrap {
-  margin-top: 5px;  
+  margin-top: 5px;
 }
 
 /*** location */
@@ -85,10 +85,10 @@
   vertical-align: middle;
   font-size: 11px;
   height: 24px;
-  line-height: 24px;  
+  line-height: 24px;
   border: 1px solid grey;
   border-radius: 20px;
-  text-align: center;  
+  text-align: center;
 }
 
 /*** location end */
@@ -96,16 +96,25 @@
 /* location and search bar end */
 
 /* artical calendar */
-.scroll-calendar-box {
+.scroll-calendar-container {
   margin-top: 10px;
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow-x: scroll;
-  -webkit-overflow-scrolling:touch;
+  -webkit-overflow-scrolling:touch; */
 }
 
-.calender-box {
+.swiper-calendar-contanier {
+  margin-top: 10px;
+  height: 700px;
+}
+
+.calendar-wrapper {
+  padding-left: 32px;
+}
+
+.calendar-container {
   width: 300rpx;
-  margin-right: 24rpx;
+  margin-right: 30rpx;
   display: inline-block;
 }
 
@@ -118,18 +127,18 @@
   color: #576b95;
 }
 
-/*** all articles container(maybe more than one article) */
-.article-wrapper {
+.article-container {
   margin-top: 10rpx;
 }
 
-/**** one article container */
-.article-container {
+/**** article description container: ie... orglogo headline*/
+.article-description-container {
   width: 300rpx;
-  height: 370rpx;
+  height: 280rpx;
   border-radius: 5px;
   box-shadow: 0px 0px 1px 0px #999;
   position: relative;
+  background-position: center;
 }
 
 .article-image-container {
@@ -139,14 +148,26 @@
 
 .article-coverimage {
   width: 300rpx;
-  height: 230rpx;
-  border-radius: 5px 5px 0px 0px;  
+  height: 280rpx;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.article-description {
+  position: absolute;
+  bottom: 0px;
+  color: white;
+  width: 100%;
+  font-size: 11px;
+  border-radius: 0 0 5px 5px;
+}
+
+.article-brief-information {
+  margin: 5px 0 0 5px;
 }
 
 .org-logo {
-  font-size: 11px;
   vertical-align: middle;
-  height: 50px;
+  /* height: 30px; */
   float: left;
 }
 
@@ -156,20 +177,28 @@
   height: 15px;
 }
 
-.article-brief-information {
-  margin: 5px 0 0 5px;
-}
-
 .article-headline {
-  width: 95%;
-  font-size: 11px;
+  width: 100%;
   white-space: normal;
+  text-align: center;
 }
 
 .mark-container {
+  text-align: center;
+  font-size: 9px;
   position: absolute;
-  right: 0px;
-  bottom: -5px;
+  top: 0px;
+  width: 100%;
+}
+
+.mark {
+    margin: 0 auto;
+    width: 100px;
+    border-bottom: 5rpx solid white;
+    border-left: 3rpx solid transparent;
+    border-right: 3rpx solid transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
 }
 
 .mark-container image {
@@ -180,6 +209,37 @@
 .activity-brief-headline {
   margin-top: 5px;
   clear: both;
-  font-size: 11px;
+  font-size: 13px;
+  line-height: 30px;
   text-align: center;
+}
+
+.red-background {
+  /* background-color: rgba(206,255,220,0.5); */
+  background-color: rgba(232,112,71,0.7)
+}
+
+.green-background {
+  background-color: rgba(232,148,51,0.5)
+}
+
+.blue-background {
+  background-color: rgba(255,205,56,0.5)
+}
+
+.yellow-background {
+  background-color: rgba(255,0,155, 0.5)
+}
+
+.red-font {
+  color: #E83C4A;
+}
+
+.yellow-font {
+  /* color: yellow; */
+  color: #FFA300;
+}
+
+.green-font {
+  color: #4257FF;
 }
