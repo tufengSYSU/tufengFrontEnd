@@ -1,8 +1,8 @@
 {
   "pages":[
-    "pages/activities/index",
     "pages/index/index",
     "pages/logs/logs",
+    "pages/activities/index",
     "pages/calendar/index",
     "pages/tufang/index",
     "pages/myprofile/index"

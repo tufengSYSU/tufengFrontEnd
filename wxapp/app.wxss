@@ -15,4 +15,5 @@
 
 .container {
   padding: 0 5rpx;
+  font-family: "Microsoft YaHei","SimHei", 微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 }

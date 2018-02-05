@@ -37,7 +37,7 @@ App({
     userInfo: null,
     content: [
       {
-        id: 1,
+        id: 0,
         date: "Jan 01",
         article: [
           {
@@ -46,12 +46,13 @@ App({
             imgUrl: "../../assets/articlepicture/1.png",
             headLine: "中山大学团委活动",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "1758舞蹈会"
+            briefIntroduction: "1758舞蹈会",
+            height: 17
           }
         ]
       },
       {
-        id: 2,
+        id: 1,
         date: "Jan 02",
         article: [
           {
@@ -60,12 +61,13 @@ App({
             imgUrl: "../../assets/articlepicture/2.png",
             headLine: "数据科学与计算机学院学长团",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "学长团"
+            briefIntroduction: "学长团",
+            height: 34
           },
         ]
       },
       {
-        id: 3,
+        id: 2,
         date: "Jan 03",
         article: [
           {
@@ -74,7 +76,8 @@ App({
             imgUrl: "../../assets/articlepicture/3.png",
             headLine: "维纳斯歌手大赛",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "维纳斯歌手比赛"
+            briefIntroduction: "维纳斯歌手比赛",
+            height: 17
           },
         ]
       },
@@ -83,12 +86,13 @@ App({
         date: "Jan 04",
         article: [
           {
-            id: 4,
+            id: 3,
             logoUrl: "../../assets/icon/demo.png",
             imgUrl: "../../assets/articlepicture/4.png",
             headLine: "暑假三下乡-把阳光播撒到世界每一个角落",
             mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "三下乡义教"
+            briefIntroduction: "三下乡义教",
+            height: 51
           },
         ]
       }
