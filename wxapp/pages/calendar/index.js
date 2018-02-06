@@ -28,6 +28,7 @@ Page({
       ]
     })
     this.syncTitle()
+    this.getScreenWidth()
   },
   // when the swiper changes
   swiperChange: function(e) {
@@ -93,6 +94,34 @@ Page({
     const yearAndMonth = tools.getCurrentYearAndMonth(oneDay)
     wx.setNavigationBarTitle({
       title: yearAndMonth
+    })
+  },
+  slideOut: function(e) {
+    console.log(e);
+    // TODO: get bind-data, the event identifier(url etc.)
+    const screenWidth = this.data.screenWidth
+    const leftPanellWidth = screenWidth * (1 - 0.56)
+    const offset = e.detail.x * (leftPanellWidth / screenWidth) / screenWidth * 100
+    this.setData({
+      slideOut: true,
+      calenderSlideStyle: "transform: translateX(-" + offset + "%);transition: 0.3s;"
+    })
+  },
+  slideAway: function(e) {
+    this.setData({
+      slideOut: false,
+      calenderSlideStyle: "transform: translateX(0%);transition: 0.3s;"
+    })
+  },
+  getScreenWidth: function() {
+    var that = this
+    wx.getSystemInfo({
+      success: function(res) {
+        const screenWidth = res.screenWidth
+        that.setData({
+          screenWidth
+        })
+      }
     })
   }
 })

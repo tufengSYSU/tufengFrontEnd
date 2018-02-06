@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="calender">
+  <view class="calender {{slideOut ? 'active':''}}" style="{{calenderSlideStyle}}">
     <view class="calender-header">
       <view class="weekday">
         <view wx:for="{{weekdayInCH}}" wx:key="{{index}}">{{item}}</view>
@@ -13,7 +13,7 @@
             <view class="week" wx:for="{{weeksWithEvents}}" wx:for-item="oneWeekWithEvents" wx:key="unique">
               <view class="day" wx:for="{{oneWeekWithEvents[0]}}" wx:key="{{index}}" wx:for-item="day">{{day}}</view>
               <view class="events" wx:for="{{oneWeekWithEvents[1]}}" wx:key="{{index}}" wx:for-item="dailyEvents">
-                <view class="event" wx:for="{{dailyEvents}}" wx:for-item="event" wx:key="{{index}}">
+                <view class="event" wx:for="{{dailyEvents}}" wx:for-item="event" wx:key="{{index}}" bindtap="slideOut">
                   <view class="point"></view>{{event}}
                 </view>
               </view>
@@ -22,5 +22,10 @@
         </block>
       </swiper>
     </view>
+  </view>
+  <!-- the left is mask, and the right is the info panel -->
+  <view id="left" class="{{slideOut ? 'active':''}}" bindtap="slideAway"></view>
+  <view id="right" class="{{slideOut ? 'active':''}}">
+    right
   </view>
 </view>
