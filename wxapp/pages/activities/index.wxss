@@ -105,16 +105,19 @@
 
 .swiper-calendar-contanier {
   margin-top: 10px;
-  height: 700px;
+  height: 1200px;
+}
+
+swiper-item {
+    margin-left: 40px;
 }
 
 .calendar-wrapper {
-  padding-left: 32px;
 }
 
 .calendar-container {
   width: 300rpx;
-  margin-right: 30rpx;
+  margin-right: 40px;
   display: inline-block;
 }
 
@@ -134,7 +137,7 @@
 /**** article description container: ie... orglogo headline*/
 .article-description-container {
   width: 300rpx;
-  height: 280rpx;
+  height: 300rpx;
   border-radius: 5px;
   box-shadow: 0px 0px 1px 0px #999;
   position: relative;
@@ -142,13 +145,13 @@
 }
 
 .article-image-container {
-  height: 230rpx;
+  height: 300rpx;
   border-radius: 5px 5px 0px 0px;
 }
 
 .article-coverimage {
   width: 300rpx;
-  height: 280rpx;
+  height: 300rpx;
   border-radius: 5px 5px 5px 5px;
 }
 
@@ -157,8 +160,10 @@
   bottom: 0px;
   color: white;
   width: 100%;
+  letter-spacing: 1px;
   font-size: 11px;
   border-radius: 0 0 5px 5px;
+  background-color: rgba(0,0,0,0.5);
 }
 
 .article-brief-information {
@@ -167,12 +172,12 @@
 
 .org-logo {
   vertical-align: middle;
+  margin-right: 2px;
   /* height: 30px; */
   float: left;
 }
 
 .org-logo image {
-  margin: 0 5px;
   width: 15px;
   height: 15px;
 }
@@ -186,19 +191,16 @@
 .mark-container {
   text-align: center;
   font-size: 9px;
+  font-weight: lighter;
   position: absolute;
   top: 0px;
   width: 100%;
 }
 
 .mark {
-    margin: 0 auto;
-    width: 100px;
-    border-bottom: 5rpx solid white;
-    border-left: 3rpx solid transparent;
-    border-right: 3rpx solid transparent;
-    border-color: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
+  margin: 0 auto;
+  width: 100px;
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .mark-container image {
@@ -207,39 +209,43 @@
 }
 
 .activity-brief-headline {
+  margin: 0 auto;
   margin-top: 5px;
   clear: both;
   font-size: 13px;
-  line-height: 30px;
+  line-height: 20px;
+  width: 70%;
   text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .red-background {
   /* background-color: rgba(206,255,220,0.5); */
-  background-color: rgba(232,112,71,0.7)
+  border-color: rgba(232,112,71,0.7)
 }
 
 .green-background {
-  background-color: rgba(232,148,51,0.5)
+  border-color: #ff7761;
 }
 
 .blue-background {
-  background-color: rgba(255,205,56,0.5)
+  border-color: #fdc23e;
 }
 
 .yellow-background {
-  background-color: rgba(255,0,155, 0.5)
+  border-color: #f9a11b;
 }
 
 .red-font {
-  color: #E83C4A;
+  color: #274555;
 }
 
 .yellow-font {
   /* color: yellow; */
-  color: #FFA300;
+  color: #aacfd0;
 }
 
 .green-font {
-  color: #4257FF;
+  color: #ff7761;
 }

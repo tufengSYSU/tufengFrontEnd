@@ -89,7 +89,7 @@ App({
             id: 3,
             logoUrl: "../../assets/icon/demo.png",
             imgUrl: "../../assets/articlepicture/4.png",
-            headLine: "暑假三下乡-把阳光播撒到世界每一个角落",
+            headLine: "暑假三下乡-把阳光撒到世界每一个角落",
             mark: ["business", "price", "sport", "food", "chance"],
             briefIntroduction: "三下乡义教",
             height: 51
