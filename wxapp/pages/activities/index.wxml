@@ -1,21 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- slide image -->
-  <view class="slide-container">
-    <!-- left icon and words -->
-    <view class="logo">
-      <image src="../../assets/icon/live.png"/>
-    </view>
 
-    <!-- slide image core code -->
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
-        <swiper-item wx:for-items="{{imgUrl}}" wx:key="*this">
-          <image src="{{item}}" class="slide-image" mode="widthFix" />
-        </swiper-item>
-    </swiper>
-  </view>
   <!-- search -->
-  <view class="search-contaniner">
+  <view class="search-container">
     <view class="search-wrap">
       <!-- location -->
       <view class="location-container">
@@ -24,46 +11,49 @@
       </view>
       <!-- search bar -->
       <view class="search-bar-container">
-        <icon class="icon-search" type="search" size="14"></icon>
-        <input type="text" class="search-bar-input" placeholder="搜索" focus="false" bindinput="getSearchInput" />
+        <image class="search-icon" src="{{searchIconUrl}}"/>
+        <input type="text" class="search-bar-input" focus="{{false}}" bindinput="getSearchInput" />
       </view>
     </view>
   </view>
+
+  <!-- slide image -->
+  <view class="slide-container">
+    <!-- slide image core code -->
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
+        <swiper-item wx:for-items="{{imgUrl}}" wx:key="*this">
+          <image mode="widthFix" src="{{item}}" class="slide-image" />
+        </swiper-item>
+    </swiper>
+  </view>
   <!-- article-calendar-container -->
-  <swiper class="swiper-calendar-contanier" current="currentTab" bindchange="switchTab" duration="300">
-    <swiper-item wx:for="{{indexSeq}}" wx:key="{{*this}}" wx:for-item="index">
-      <view class="calendar-container" wx:for="{{[index*2, index*2+1]}}" wx:key="{{*this}}" wx:for-item="pos" wx:if="{{pos < content.length}}">
-        <!-- article date -->
-        <view class="article-date">{{content[pos].date}}</view>
-        <view class="article-container" wx:for="{{[1,2,3,4,5]}}" wx:key="{{*this}}" bindtap="makeVisited">
-          <view class="article-description-container">
-            <!-- article coverimage -->
-            <view class="article-image-container"><image mode="center" src="{{content[pos].article[0].imgUrl}}" class="article-coverimage" /></view>
-              <!-- activities mark -->
-              <view class="mark-container">
-                <view class="mark">
-                  <text class="yellow-font">公益时 </text>
-                  <text class="green-font">体育章 </text>
-                  <text class="red-font">奖金</text>
-                </view>
-              </view>
-              <!-- article description -->
-              <view class="article-description">
-                <view class="article-brief-information">
-                  <!-- organazation logo-->
-                  <view class="org-logo">
-                    <image src="../../assets/icon/demo.png" mode="center"/>
-                  </view>
-                  <!-- article headline -->
-                  <view class="article-headline">{{content[pos].article[0].headLine}}
-                  </view>
-                </view>
-              </view>
+  <view class="article-calendar-container">
+    <view class="brief-description-container">
+      <view class="brief-description {{background[idx]}}" wx:for="{{briefDescription}}" wx:for-index="idx">
+        {{briefDescription[idx]}}
+      </view>
+    </view>
+
+    <view class="calendar-container">
+      <view class="single-day-articles" wx:for="{{content}}" wx:for-item="dailyArticles">
+        <view class="article-date">
+          {{dailyArticles.date}}
+        </view>
+        <view class="" wx:for="{{[1,2,3,4,5]}}">
+          <view class="article-container">
+            <image class="article-coverimage" src="{{dailyArticles.article[0].imgUrl}}" />
+            <view class="mark-container">
+              <image src="../../assets/icon/mark/aixin.png"/>
+              <image src="../../assets/icon/mark/ball.png"/>
+              <image src="../../assets/icon/mark/money.png"/>
+            </view>
+            <view class="article-description">
+              {{dailyArticles.article[0].headLine}}
+            </view>
           </view>
-          <!-- activity brief headline -->
-          <view class="activity-brief-headline {{background[content[pos].article[0].id]}}">{{content[pos].article[0].briefIntroduction}}</view>
         </view>
       </view>
-    </swiper-item>
-  </swiper>
+    </view>
+  </view>
+
 </view>

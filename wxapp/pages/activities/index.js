@@ -10,6 +10,8 @@ const Sticky = require('../../utils/sticky.min.js')
 Page({
   data:{
     userInfo:{},
+    windowWidth: 0,
+    searchKey: "",
     // 轮播图参数
     indicatorDots: true,
     interval: 3000,
@@ -20,39 +22,52 @@ Page({
       "../../assets/slidepicture/2.jpg",
       "../../assets/slidepicture/3.jpg"
     ],
+    locationIconUrl: "../../assets/icon/location.png",
+    searchIconUrl: "../../assets/icon/search.png",
     // 地理位置经度纬度
     location: {
       latitude: 0,
       longitude: 0,
       address: "中山大学"
     },
-    locationIconUrl: "../../assets/icon/location.png",
-    searchKey: "",
     // 每篇推送的信息存在此
     content: app.globalData.content,
+    mark: [
+      "体育",
+      "公益时",
+      "奖金"
+    ],
+    briefDescription: [
+      "1758",
+      "张剑演唱会",
+      "定向越野",
+      "维纳斯",
+      "十大提案"
+    ],
     // 每篇推送是否已阅览
     visited: [],
-    switchFlag: true,
-    currentTab: 0,
     background: [
       "red-background",
       "blue-background",
       "yellow-background",
-      "green-background"
+      "green-background",
+      "grey-background"
     ],
-    // 文章内容索引，把推送的数目二，分成两个日期的推送一组，一个索引表示两个日期的文章数组(在content的位置2*n, 2*n+1)
-    indexSeq: []
   },
   /**
    * 初始化数据
    */
   onLoad: function() {
+    var that = this
     this.getLocation();
-    var n = Math.round(this.data.content.length/2)
-    var seq = Array.from(new Array(n),(val,index)=>index)
-    this.setData({
-      indexSeq: seq
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          windowWidth: res.windowWidth
+      })
+    }
     })
+    console.log(this.data.windowWidth);
   },
   /**
    * 获取当前位置
@@ -113,15 +128,6 @@ Page({
     this.data.visited[row] = 1
     this.setData({
       visited: this.data.visited
-    })
-  },
-  /**
-   * 轮播图更换页面
-   * @param {object} e 触发事件
-   */
-  switchTab: function(e) {
-    this.setData({
-      currentTab: e.detail.current
     })
   }
 })

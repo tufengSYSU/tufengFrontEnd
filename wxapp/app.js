@@ -38,7 +38,7 @@ App({
     content: [
       {
         id: 0,
-        date: "Jan 01",
+        date: "2月7号",
         article: [
           {
             id: 0,
@@ -53,7 +53,7 @@ App({
       },
       {
         id: 1,
-        date: "Jan 02",
+        date: "2月8号",
         article: [
           {
             id: 1,
@@ -68,7 +68,7 @@ App({
       },
       {
         id: 2,
-        date: "Jan 03",
+        date: "2月9号",
         article: [
           {
             id: 2,
@@ -83,7 +83,7 @@ App({
       },
       {
         id: 3,
-        date: "Jan 04",
+        date: "2月10号",
         article: [
           {
             id: 3,
