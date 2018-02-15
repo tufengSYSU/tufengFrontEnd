@@ -1,0 +1,28 @@
+.container {
+  border-top: 1px solid #DADADA;
+  padding-top: 10px;
+}
+
+.activity-information-container {
+
+}
+
+.activity-information-container .activity-information {
+  width: 50%;
+}
+
+.activity-information-container .headline {
+
+}
+
+.activity-information-container .date {
+
+}
+
+.activity-information-container .place {
+
+}
+
+.activity-information-container .sponsor {
+
+}
