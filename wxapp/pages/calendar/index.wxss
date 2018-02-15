@@ -73,3 +73,22 @@ swiper-item {
 }
 
 /** calender body end */
+
+/** 3D effort */
+
+swiper-item {
+	/* overall animation container */
+  /* overflow: inherit; */
+	transition-property: height;
+	transition-duration: 1s;
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+
+.week {
+  transform: rotateX(-30deg);
+	transform-origin: top;
+	transition-property: all;
+}
+
+/** 3D effort end */

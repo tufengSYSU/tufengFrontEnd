@@ -10,7 +10,7 @@
       <swiper current="{{activeIndex}}" circular="true" bindchange="swiperChange">
         <block wx:for="{{calenders}}" wx:for-item="weeksWithEvents" wx:key="unique">
           <swiper-item>
-            <view class="week" wx:for="{{weeksWithEvents}}" wx:for-item="oneWeekWithEvents" wx:key="unique">
+            <view class="week" wx:for="{{weeksWithEvents}}" wx:for-item="oneWeekWithEvents" wx:key="unique" style="{{style[index]}}">
               <view class="day" wx:for="{{oneWeekWithEvents[0]}}" wx:key="{{index}}" wx:for-item="day">{{day}}</view>
               <view class="events" wx:for="{{oneWeekWithEvents[1]}}" wx:key="{{index}}" wx:for-item="dailyEvents">
                 <view class="event" wx:for="{{dailyEvents}}" wx:for-item="event" wx:key="{{index}}" bindtap="slideOut">

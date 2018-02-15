@@ -5,6 +5,7 @@
 
 const tools = require('./tools.js')
 const WEEKDAY_IN_CH = ['日','一','二','三','四','五','六']
+const DEG = [0, 0, 0, 0, -30, 0]
 
 Page({
   data: {
@@ -29,6 +30,7 @@ Page({
     })
     this.syncTitle()
     this.getScreenWidth()
+    this.set3DStyle()
   },
   // when the swiper changes
   swiperChange: function(e) {
@@ -100,7 +102,7 @@ Page({
     console.log(e);
     // TODO: get bind-data, the event identifier(url etc.)
     const screenWidth = this.data.screenWidth
-    const leftPanellWidth = screenWidth * (1 - 0.56)
+    const leftPanellWidth = screenWidth * (1 - 0.56 + 0.1)
     const offset = e.detail.x * (leftPanellWidth / screenWidth) / screenWidth * 100
     this.setData({
       slideOut: true,
@@ -122,6 +124,12 @@ Page({
           screenWidth
         })
       }
+    })
+  },
+  set3DStyle: function() {
+    const style = DEG.map(deg => {return 'transform: rotateX(' + deg + 'deg);'})
+    this.setData({
+      style
     })
   }
 })
