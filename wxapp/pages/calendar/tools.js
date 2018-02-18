@@ -4,16 +4,16 @@
  */
 
 /**
- * getCurrentYearAndMonth 返回年月
+ * getCurrentYearAndMonthTitle 返回年月
  *
  * @param {Date} date
  * @return {String} eg. 2018年2月
  */
-const getCurrentYearAndMonth = date => {
+const getCurrentYearAndMonthTitle = date => {
   const year = date.getFullYear()
-  const month = date.getMonth() + 1
-
-  return year + '年' + month + '月'
+  const month = date.getMonth()
+  const monthInCHN = ['一','二','三','四','五','六','七','八','九','十','十一','十二']
+  return {year: year, month: monthInCHN[month]+'月'}
 }
 
 /**
@@ -53,67 +53,63 @@ const getWeeksOfCurrentMonth = date => {
 }
 
 /**
- * getDailyEventsInWeeks 获得当天所在月的所有活动，按周整理
- * TODO: 根据实际情况调整传入的参数，有时可以传入一个dailyEventsInMonth对象，就不用date了
+ * getDailyDataInWeeks 获得当天所在月的所有数据，按周整理
+ * TODO: 根据实际情况调整传入的参数，有时可以传入一个dailyDataInMonth对象，就不用date了
  *
- * @param {Array} dailyEventsInMonth 在一月里，每天的活动组成的数组
+ * @param {Array} dailyDataInMonth 在一月里，每天的活动组成的数组
  * @return {Array} dailyEventsInWeeks
  */
-const getDailyEventsInWeeks = (date, dailyEventsInMonth) => {
+const getDailyDataInWeeks = (date, dailyDataInMonth) => {
   const year = date.getFullYear()
   const month = date.getMonth()
   const firstDay = new Date(year, month, 1)
   const lastDay = new Date(year, month + 1, 0)
   const dayCount = lastDay.getDate()
 
-  var dailyEventsInWeeks = []
+  var dailyDataInWeeks = []
   // firstly fill the days before first day in current month of the first week with []
-  var dailyEventsInOneWeek = new Array(firstDay.getDay()).fill([])
+  const emptyObj = null
+  var dailyDataInOneWeek = new Array(firstDay.getDay()).fill(emptyObj)
 
-  // push the dailyEventsInOneWeek one by one into dailyEventsInWeeks
+  // push the dailyDataInOneWeek one by one into dailyDataInWeeks
   for (let i = 0; i < dayCount; i++) {
-    if (dailyEventsInOneWeek.length === 7) {
-      dailyEventsInWeeks.push(dailyEventsInOneWeek)
-      dailyEventsInOneWeek = []
-      dailyEventsInOneWeek.push(dailyEventsInMonth[i])
+    if (dailyDataInOneWeek.length === 7) {
+      dailyDataInWeeks.push(dailyDataInOneWeek)
+      dailyDataInOneWeek = []
+      dailyDataInOneWeek.push(dailyDataInMonth[i])
     }
     else {
-      dailyEventsInOneWeek.push(dailyEventsInMonth[i])
+      dailyDataInOneWeek.push(dailyDataInMonth[i])
     }
   }
-  if (dailyEventsInOneWeek.length > 0) {
-    dailyEventsInOneWeek = dailyEventsInOneWeek.concat(new Array(7 - dailyEventsInOneWeek.length).fill([]))
-    dailyEventsInWeeks.push(dailyEventsInOneWeek)
+  if (dailyDataInOneWeek.length > 0) {
+    dailyDataInOneWeek = dailyDataInOneWeek.concat(new Array(7 - dailyDataInOneWeek.length).fill(emptyObj))
+    dailyDataInWeeks.push(dailyDataInOneWeek)
   }
 
-  return dailyEventsInWeeks
+  return dailyDataInWeeks
 }
 
 /**
- * zip https://stackoverflow.com/questions/32937181/javascript-es6-map-multiple-arrays
- * which allows you to do: zip(["a","b","c"], [1,2,3]); // ["a", 1], ["b", 2], ["c", 3]
+ * isToday 判断是否是今天
  *
- * @param {Array} a1
- * @param {Array} a2
- * @return {Array} the zipped
+ * @param {Date} oneDayInThatMonth 在一月里的一天
+ * @param {Number} date 日期
+ * @return {Boolean} 是否是今天
  */
-const zip = (a1, a2) => a1.map((x, i) => [x, a2[i]])
-
-/**
- * getWeeksWithEventsOfCurrentMonth, the combined func of 3 func called in it
- *
- * @param {Date} date
- * @param {Array} dailyEventsInThatMonth
- * @return {Array} the zipped
- */
-const getWeeksWithEventsOfCurrentMonth = (date, dailyEventsInThatMonth) => {
-  return zip(getWeeksOfCurrentMonth(date), getDailyEventsInWeeks(date, dailyEventsInThatMonth))
+const isToday = (oneDayInThatMonth, date) => {
+    var theDay = new Date(oneDayInThatMonth.setDate(date))
+    var today = new Date()
+    if(theDay.setHours(0,0,0,0) == today.setHours(0,0,0,0)){
+        return true
+    } else {
+        return false
+    }
 }
 
 module.exports = {
-  getCurrentYearAndMonth: getCurrentYearAndMonth,
+  getCurrentYearAndMonthTitle: getCurrentYearAndMonthTitle,
   getWeeksOfCurrentMonth: getWeeksOfCurrentMonth,
-  getDailyEventsInWeeks: getDailyEventsInWeeks,
-  zip: zip,
-  getWeeksWithEventsOfCurrentMonth
+  getDailyDataInWeeks: getDailyDataInWeeks,
+  isToday: isToday
 }

@@ -5,7 +5,6 @@
 
 const tools = require('./tools.js')
 const WEEKDAY_IN_CH = ['日','一','二','三','四','五','六']
-const DEG = [0, 0, 0, 0, -30, 0]
 
 Page({
   data: {
@@ -23,14 +22,13 @@ Page({
     this.setData({
       todayInThatMonth: curDay,
       calenders: [
-        this.getWeeksWithEvents(curDayInPrevMonth),
-        this.getWeeksWithEvents(curDay),
-        this.getWeeksWithEvents(curDayInNextMonth),
+        this.getDataInWeeks(curDayInPrevMonth),
+        this.getDataInWeeks(curDay),
+        this.getDataInWeeks(curDayInNextMonth),
       ]
     })
     this.syncTitle()
     this.getScreenWidth()
-    this.set3DStyle()
   },
   // when the swiper changes
   swiperChange: function(e) {
@@ -45,12 +43,12 @@ Page({
     // swipe to right
     if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'right')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, 1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'right')] = this.getWeeksWithEvents(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
+      calenders[this.getCircularSiblingIndex(circularSize, index, 'right')] = this.getDataInWeeks(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
     }
     // swipe to left
     else if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'left')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, -1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'left')] = this.getWeeksWithEvents(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+      calenders[this.getCircularSiblingIndex(circularSize, index, 'left')] = this.getDataInWeeks(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
     }
     // error
     else {
@@ -86,16 +84,26 @@ Page({
     }
   },
   // 获得一个月的数据，输入值为当月的某一天
-  getWeeksWithEvents: function(oneDay) {
-    // TODO: get dailyEventsInThatMonth by http request
-    return tools.getWeeksWithEventsOfCurrentMonth(oneDay, dailyEventsIn201802)
+  getDataInWeeks: function(oneDay) {
+    // TODO: get data by http request
+    let date = 0
+    const eventsInOneMonth = dailyEventsIn201802
+    const data = eventsInOneMonth.map(events => {
+      date += 1
+      return {
+        date,
+        events,
+        istoday: tools.isToday(oneDay, date)
+      }
+    })
+    return tools.getDailyDataInWeeks(oneDay, data)
   },
   // 同步页面标题
   syncTitle: function() {
     const oneDay = this.data.todayInThatMonth
-    const yearAndMonth = tools.getCurrentYearAndMonth(oneDay)
-    wx.setNavigationBarTitle({
-      title: yearAndMonth
+    const dateTitle = tools.getCurrentYearAndMonthTitle(oneDay)
+    this.setData({
+      title: dateTitle
     })
   },
   slideOut: function(e) {
@@ -124,12 +132,6 @@ Page({
           screenWidth
         })
       }
-    })
-  },
-  set3DStyle: function() {
-    const style = DEG.map(deg => {return 'transform: rotateX(' + deg + 'deg);'})
-    this.setData({
-      style
     })
   }
 })
