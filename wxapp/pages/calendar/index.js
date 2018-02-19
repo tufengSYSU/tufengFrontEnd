@@ -93,7 +93,7 @@ Page({
       return {
         date,
         events,
-        istoday: tools.isToday(oneDay, date),
+        istoday: tools.isToday(new Date(oneDay), date),
         hasmore: events.length > 4 ? true:false
       }
     })
