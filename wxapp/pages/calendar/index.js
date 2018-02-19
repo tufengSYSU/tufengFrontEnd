@@ -93,7 +93,8 @@ Page({
       return {
         date,
         events,
-        istoday: tools.isToday(oneDay, date)
+        istoday: tools.isToday(oneDay, date),
+        hasmore: events.length > 4 ? true:false
       }
     })
     return tools.getDailyDataInWeeks(oneDay, data)

@@ -19,7 +19,7 @@
             <view class="week" wx:for="{{calender}}" wx:for-item="dailyDataInOneWeek" wx:key="unique">
               <view class="day" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay">
                 <view wx-if="{{oneDay !== null}}">
-                  <view class="day-head hasmore {{oneDay.istoday ? 'istoday':''}}">
+                  <view class="day-head {{oneDay.hasmore ? 'hasmore':''}} {{oneDay.istoday ? 'istoday':''}}">
                     <view class="uppon-line {{oneDay.date === '' ? '':'show'}}"></view>
                     <view class="more-point"></view>
                     <view class="today-bg"></view>
