@@ -155,7 +155,7 @@ Page({
       slideOutData: {
         dailyData,
         colors,
-        lDate: lunar.getLunarDate(new Date(dailyData.date)),
+        lDate: lunar.getLunarDateStr(new Date(dailyData.date)),
         festival: festival.getFesitval(new Date(dailyData.date)),
       }
     })

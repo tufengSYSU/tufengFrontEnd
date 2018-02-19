@@ -4,8 +4,10 @@
  * reference: https://www.bbsmax.com/A/B0zqO6r5vL/
  */
 
-const FTV = [
-  //公历节日
+const lunar = require('./lunar.js')
+
+//公历节日
+const CFTV = [
   "0101 元旦",
   "0214 情人节",
   "0308 妇女节",
@@ -24,8 +26,11 @@ const FTV = [
   "1006 老人节",
   "1024 联合国日",
   "1224 平安夜",
-  "1225 圣诞节",
-  //农历节日
+  "1225 圣诞节"
+]
+
+//农历节日
+const LFTV = [
   "0101 春节",
   "0115 元宵节",
   "0505 端午节",
@@ -56,11 +61,21 @@ const formatNumber = n => {
  * @return {String} eg. 2018年2月
  */
 const getFesitval = (date) => {
-  const formatedDate = formatTime(date)
-  const formatedFtvDate = FTV.map(ftvStr => {return ftvStr.split(' ')[0]})
-  const ftv = FTV.map(ftvStr => {return ftvStr.split(' ')[1]})
-  const index = formatedFtvDate.indexOf(formatedDate)
-  return (index >= 0) ? ftv[index] : ' '
+  const formatedCFtvDate = CFTV.map(ftvStr => {return ftvStr.split(' ')[0]})
+  const formatedLFtvDate = LFTV.map(ftvStr => {return ftvStr.split(' ')[0]})
+  const cftv = CFTV.map(ftvStr => {return ftvStr.split(' ')[1]})
+  const lftv = LFTV.map(ftvStr => {return ftvStr.split(' ')[1]})
+
+  const indexC = formatedCFtvDate.indexOf(formatTime(date))
+  const indexL = formatedLFtvDate.indexOf(formatTime(lunar.getLunarDate(date)))
+  var ftv = []
+  if (indexC >= 0) {
+    ftv.push(cftv[indexC])
+  }
+  if (indexL >= 0) {
+    ftv.push(lftv[indexL])
+  }
+  return ftv.join(' ')
 }
 
 module.exports = {

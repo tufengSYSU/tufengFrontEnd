@@ -114,8 +114,13 @@ function GetLunarDay(solarYear,solarMonth,solarDay){
     }
 }
 
-/*获取某一天的农历*/
-function getLunarDate(D){
+/**
+ * getLunarDateStr 获取某一天的农历
+ *
+ * @param {Date} D
+ * @return {String} eg. 戊戌年正月初一
+ */
+function getLunarDateStr(D){
     var yy=D.getFullYear();
     var mm=D.getMonth()+1;
     var dd=D.getDate();
@@ -125,9 +130,27 @@ function getLunarDate(D){
     return GetLunarDay(yy,mm,dd);
 }
 
+/**
+ * getLunarDate 获取某一天的农历对象
+ *
+ * @param {Date} D
+ * @return {Obj} eg. 2018年2月
+ */
+function getLunarDate(D){
+    var yy=D.getFullYear();
+    var mm=D.getMonth()+1;
+    var dd=D.getDate();
+    var ww=D.getDay();
+    var ss=parseInt(D.getTime() / 1000);
+    if (yy<100) yy="19"+yy;
+    GetLunarDay(yy,mm,dd);
+    return new Date(cYear, cMonth-1, cDay)
+}
+
 /*调用农历函数*/
 // var lunarHtml ="农历"+ show_lunar_calendar();
 
 module.exports = {
+  getLunarDateStr: getLunarDateStr,
   getLunarDate: getLunarDate,
 }
