@@ -24,7 +24,7 @@
     </view>
 
     <view class="mark-container">
-      <image src="{{item.url}}" wx:for="{{content.markUrl}}" />
+      <image src="{{item.url}}" wx:for="{{content.markUrl}}" wx:key="{{*this}}" />
     </view>
   </view>
   <!-- 报名 -->

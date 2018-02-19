@@ -22,11 +22,11 @@ Page({
           {
             date: "1月1号",
             description: "擂台"
-          }
+          },
           {
             date: "1月2号",
             description: "初赛"
-          }
+          },
           {
             date: "1月3号",
             description: "决赛"
@@ -57,7 +57,7 @@ Page({
           {
             imageUrl: "../../../assets/articlepicture/4.png",
             headline: "1758晚会"
-          }
+          },
           {
             imageUrl: "../../../assets/articlepicture/2.png",
             headline: "依衫贝尔吉他协会"
