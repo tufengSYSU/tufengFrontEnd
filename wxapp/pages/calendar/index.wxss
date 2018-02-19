@@ -13,6 +13,7 @@ swiper-item {
   height: 100%;
   text-align: left;
   font-size: 12pt;
+  font-family: Heiti;
 }
 
 .container, .calender, swiper {
@@ -76,21 +77,21 @@ swiper-item {
 
 /*** day */
 
+.day {
+  display: inline-block;
+  width: 14%;
+}
+
 .day-head {
-  height: 23px;
+  height: 30px;
 }
 
 .day-head .date {
   width: 14px;
-  padding: 5px 0;
+  line-height: 30px;
   text-align: center;
   font-size: 12px;
   color: #969696;
-}
-
-.day {
-  display: inline-block;
-  width: 14%;
 }
 
 .day-head, .events {
@@ -105,7 +106,7 @@ swiper-item {
 }
 
 .day-head.istoday .date {
-  position: absolute;
+  position: relative;
   color: white;
   z-index: 10;
 }
@@ -113,7 +114,7 @@ swiper-item {
 .day-head.istoday .today-bg {
   position: absolute;
   left: -5px;
-  top: 5px;
+  top: 3px;
   height: 24px;
   width: 24px;
   border-radius: 50%;
@@ -129,7 +130,6 @@ swiper-item {
   left: -6px;
   width: 140%;
   height: 1px;
-  margin: 2px 0;
   background-color: #ededed;
 }
 

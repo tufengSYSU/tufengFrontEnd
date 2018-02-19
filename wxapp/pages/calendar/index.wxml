@@ -21,9 +21,9 @@
                 <view wx-if="{{oneDay !== null}}">
                   <view class="day-head hasmore {{oneDay.istoday ? 'istoday':''}}">
                     <view class="uppon-line {{oneDay.date === '' ? '':'show'}}"></view>
-                    <view class="date">{{oneDay.date}}</view>
                     <view class="more-point"></view>
                     <view class="today-bg"></view>
+                    <view class="date">{{oneDay.date}}</view>
                   </view>
                   <view class="events">
                     <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" bindtap="slideOut">
