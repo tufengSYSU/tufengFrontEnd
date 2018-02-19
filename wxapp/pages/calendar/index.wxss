@@ -13,7 +13,6 @@ swiper-item {
   height: 100%;
   text-align: left;
   font-size: 12pt;
-  font-family: Heiti;
 }
 
 .container, .calender, swiper {
