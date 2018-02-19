@@ -44,7 +44,7 @@
   <view id="right" class="{{slideOut ? 'active':''}}">
     <view class="right-panel">
       <view class="title">
-        <view class="gregorian-date">{{slideOutData.date.month}}月{{slideOutData.date.date}}日</view>
+        <view class="gregorian-date">{{slideOutData.dailyData.dateObj.month}}月{{slideOutData.dailyData.dateObj.date}}日</view>
         <view class="lunar-date">{{slideOutData.lDate}}</view>
         <view class="festival">{{slideOutData.festival}}</view>
       </view>
