@@ -138,7 +138,7 @@ swiper-item {
 
 /*** day end */
 
-.uppon-line.show {
+.uppon-line {
   position: relative;
   left: -6px;
   width: 140%;
