@@ -59,10 +59,7 @@ const getFesitval = (date) => {
   const formatedDate = formatTime(date)
   const formatedFtvDate = FTV.map(ftvStr => {return ftvStr.split(' ')[0]})
   const ftv = FTV.map(ftvStr => {return ftvStr.split(' ')[1]})
-  console.log(formatedFtvDate);
-  console.log(formatedDate);
   const index = formatedFtvDate.indexOf(formatedDate)
-  console.log(index);
   return (index >= 0) ? ftv[index] : ' '
 }
 
