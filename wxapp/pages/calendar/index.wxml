@@ -1,0 +1,47 @@
+<view class="container">
+
+  <view class="calender {{slideOut ? 'active':''}}" style="{{calenderSlideStyle}}">
+    <view class="calender-header">
+      <view class="year-month-title">
+        <view class="month">{{title.month}}</view>
+        <view class="year">{{title.year}}</view>
+      </view>
+      <view class="weekday">
+        <view wx:for="{{weekdayInCH}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+    </view>
+    {{getone()}}
+    <view class="calender-body">
+      <!-- use the default values mostly -->
+      <swiper current="{{activeIndex}}" circular="true" bindchange="swiperChange">
+        <block wx:for="{{calenders}}" wx:for-item="calender" wx:key="unique">
+          <swiper-item>
+            <view class="week" wx:for="{{calender}}" wx:for-item="dailyDataInOneWeek" wx:key="unique">
+              <view class="day" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay">
+                <view wx-if="{{oneDay !== null}}">
+                  <view class="day-head hasmore {{oneDay.istoday ? 'istoday':''}}">
+                    <view class="uppon-line {{oneDay.date === '' ? '':'show'}}"></view>
+                    <view class="more-point"></view>
+                    <view class="today-bg"></view>
+                    <view class="date">{{oneDay.date}}</view>
+                  </view>
+                  <view class="events">
+                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" bindtap="slideOut">
+                      {{event}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <!-- the left is mask, and the right is the info panel -->
+  <view id="left" class="{{slideOut ? 'active':''}}" bindtap="slideAway"></view>
+  <view id="right" class="{{slideOut ? 'active':''}}">
+    right
+  </view>
+</view>

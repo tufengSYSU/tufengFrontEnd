@@ -1,0 +1,143 @@
+@import "slideout.wxss";
+
+page {
+  height: 100%;
+}
+
+swiper-item {
+  overflow: scroll;
+}
+
+.container {
+  padding: 0;
+  height: 100%;
+  text-align: left;
+  font-size: 12pt;
+  font-family: Heiti;
+}
+
+.container, .calender, swiper {
+  height: 100%;
+}
+
+/** calender header  */
+
+.calender-header {
+  height: 58px;
+  padding: 0 20px;
+  background-color: white;
+}
+
+.year-month-title {
+  text-align: left;
+}
+
+.year-month-title view {
+  display: inline-block;
+}
+
+.year-month-title .month {
+  font-size: 20px;
+  font-weight: 700;
+  color: #767676;
+}
+
+.year-month-title .year {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #919191;
+}
+
+.currentYearAndMonth view {
+  display: inline-block;
+}
+
+.weekday view {
+  display: inline-block;
+  width: 14%;
+  font-size: 14px;
+  color: #929292;
+}
+
+/** calender header end */
+
+/** calender body */
+
+.calender-body {
+  height: calc(100% - 58px);
+}
+
+.week {
+  padding: 0 20px;
+  height: 200rpx;
+  overflow: hidden;
+  background-color: white;
+}
+
+/*** day */
+
+.day {
+  display: inline-block;
+  width: 14%;
+}
+
+.day-head {
+  height: 30px;
+}
+
+.day-head .date {
+  width: 14px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #969696;
+}
+
+.day-head, .events {
+  display: inline-block;
+  width: 100%;
+}
+
+/**** is today */
+
+.day-head.istoday {
+  position: relative;
+}
+
+.day-head.istoday .date {
+  position: relative;
+  color: white;
+  z-index: 10;
+}
+
+.day-head.istoday .today-bg {
+  position: absolute;
+  left: -5px;
+  top: 3px;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background-color: #fe5e67;
+}
+
+/**** is today end */
+
+/*** day end */
+
+.uppon-line.show {
+  position: relative;
+  left: -6px;
+  width: 140%;
+  height: 1px;
+  background-color: #ededed;
+}
+
+.events {
+  padding-bottom: 5px;
+  font-size: 8pt;
+  vertical-align: top;
+  text-align: left;
+}
+
+/** calender body end */

@@ -17,15 +17,6 @@
     </view>
   </view>
 
-  <!-- slide image -->
-  <view class="slide-container">
-    <!-- slide image core code -->
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
-        <swiper-item wx:for-items="{{imgUrl}}" wx:key="*this">
-          <image mode="widthFix" src="{{item}}" class="slide-image" />
-        </swiper-item>
-    </swiper>
-  </view>
   <!-- article-calendar-container -->
   <view class="article-calendar-container">
     <view class="brief-description-container">
@@ -33,6 +24,21 @@
         {{briefDescription[idx]}}
       </view>
     </view>
+  </view>
+
+  <!-- slide image -->
+  <view class="slide-container">
+    <!-- slide image core code -->
+    <swiper autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
+      <swiper-item wx:for-items="{{imgUrl}}" wx:key="*this">
+        <view class="imageContainer">
+          <image mode="widthFix" src="{{item}}" class="slide-image" />
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- article-calendar-container -->
+  <view class="article-calendar-container">
 
     <view class="calendar-container">
       <view class="single-day-articles" wx:for="{{content}}" wx:for-item="dailyArticles">
