@@ -4,6 +4,8 @@
  */
 
 const tools = require('./tools.js')
+const lunar = require('./lunar.js')
+const festival = require('./festival.js')
 const WEEKDAY_IN_CH = ['日','一','二','三','四','五','六']
 
 Page({
@@ -86,14 +88,21 @@ Page({
   // 获得一个月的数据，输入值为当月的某一天
   getDataInWeeks: function(oneDay) {
     // TODO: get data by http request
-    let date = 0
+    let date = new Date(oneDay)
+    date.setDate(0)
     const eventsInOneMonth = dailyEventsIn201802
     const data = eventsInOneMonth.map(events => {
-      date += 1
+      date.setDate(date.getDate() + 1)
       return {
-        date,
+        date: new Date(date),
+        dateObj: {
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          date: date.getDate(),
+        },
         events,
-        istoday: tools.isToday(oneDay, date)
+        istoday: tools.isToday(date),
+        hasmore: events.length > 4 ? true:false
       }
     })
     return tools.getDailyDataInWeeks(oneDay, data)
@@ -107,11 +116,15 @@ Page({
     })
   },
   slideOut: function(e) {
-    console.log(e);
-    // TODO: get bind-data, the event identifier(url etc.)
+
+    // 确定滑出页的数据
+    const day = e.currentTarget.dataset.day
+    this.setSlideOutData(day)
+
+    // 滑出页动画
     const screenWidth = this.data.screenWidth
-    const leftPanellWidth = screenWidth * (1 - 0.56 + 0.1)
-    const offset = e.detail.x * (leftPanellWidth / screenWidth) / screenWidth * 100
+    const leftPanellWidth = screenWidth * (1 - 0.40)
+    const offset = e.detail.x * (1 - leftPanellWidth / screenWidth) / screenWidth * 100
     this.setData({
       slideOut: true,
       calenderSlideStyle: "transform: translateX(-" + offset + "%);transition: 0.3s;"
@@ -133,6 +146,19 @@ Page({
         })
       }
     })
+  },
+  setSlideOutData: function(dailyData) {
+    const colors = dailyData.events.map(event => {
+      return tools.getRandomColor()
+    })
+    this.setData({
+      slideOutData: {
+        dailyData,
+        colors,
+        lDate: lunar.getLunarDateStr(new Date(dailyData.date)),
+        festival: festival.getFesitval(new Date(dailyData.date)),
+      }
+    })
   }
 })
 
@@ -140,34 +166,355 @@ Page({
 // TODO: 所有使用此值的地方，将来都会变成发起的数据请求
 const dailyEventsIn201802 = [
   [],
-  ['1758'],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '东校区荒野行动',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['东校区荒野行动','定向越野','张剑见面会'],
-  ['草地音乐会'],
+  [
+    {
+      name: '定向越野',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '张剑见面会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '草地音乐会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '运动会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'event',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '届唱非自我',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '东校区荒野行动',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '定向越野',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'no',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'today',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '草地音乐会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '运动会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'event',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['1758'],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '东校区荒野行动',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['no','event'],
-  ['草地音乐会','运动会','lala'],
+  [
+    {
+      name: '定向越野',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '张剑见面会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '草地音乐会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '运动会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'event',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '届唱非自我',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '东校区荒野行动',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '定向越野',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'no',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'today',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '草地音乐会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '运动会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'event',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['1758'],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '东校区荒野行动',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['荧光夜跑','第13届唱非自我','东校区荒野行动','定向越野','张剑见面会'],
-  ['草地音乐会'],
+  [
+    {
+      name: '定向越野',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '张剑见面会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
+  [
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '1758',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['no','event','today'],
-  ['草地音乐会'],
+  [
+    {
+      name: '届唱非自我',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '东校区荒野行动',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '定向越野',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'no',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'today',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['荧光夜跑','第13届唱非自我','东校区荒野行动','定向越野','张剑见面会'],
-  ['1758'],
+  [
+    {
+      name: '草地音乐会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '运动会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'event',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['草地音乐会'],
+  [
+    {
+      name: '届唱非自我',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '东校区荒野行动',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '定向越野',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'no',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'today',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
   [],
-  ['1758'],
-  ['草地音乐会','运动会','lala'],
-  [],
-  ['草地音乐会','草地'],
-  ['no event'],
-  ['no','event'],
-  ['草地音乐会']
+  [
+    {
+      name: '草地音乐会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: '运动会',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    },
+    {
+      name: 'event',
+      timeInterval: '12:00~18:00',
+      place: '三饭小广场'
+    }
+  ],
 ]

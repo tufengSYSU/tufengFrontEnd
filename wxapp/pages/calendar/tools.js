@@ -93,23 +93,36 @@ const getDailyDataInWeeks = (date, dailyDataInMonth) => {
 /**
  * isToday 判断是否是今天
  *
- * @param {Date} oneDayInThatMonth 在一月里的一天
- * @param {Number} date 日期
+ * @param {Date} date 一天
  * @return {Boolean} 是否是今天
  */
-const isToday = (oneDayInThatMonth, date) => {
-    var theDay = new Date(oneDayInThatMonth.setDate(date))
-    var today = new Date()
-    if(theDay.setHours(0,0,0,0) == today.setHours(0,0,0,0)){
-        return true
-    } else {
-        return false
-    }
+const isToday = (date) => {
+  var today = new Date()
+  if(date.setHours(0,0,0,0) == today.setHours(0,0,0,0)){
+      return true
+  } else {
+      return false
+  }
+}
+
+/**
+ * getRandomColor https://stackoverflow.com/questions/1484506/random-color-generator
+ *
+ * @return {String} color
+ */
+const getRandomColor = () => {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 module.exports = {
   getCurrentYearAndMonthTitle: getCurrentYearAndMonthTitle,
   getWeeksOfCurrentMonth: getWeeksOfCurrentMonth,
   getDailyDataInWeeks: getDailyDataInWeeks,
-  isToday: isToday
+  isToday: isToday,
+  getRandomColor: getRandomColor,
 }

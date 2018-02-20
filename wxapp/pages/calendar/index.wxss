@@ -13,7 +13,6 @@ swiper-item {
   height: 100%;
   text-align: left;
   font-size: 12pt;
-  font-family: Heiti;
 }
 
 .container, .calender, swiper {
@@ -99,16 +98,19 @@ swiper-item {
   width: 100%;
 }
 
-/**** is today */
+/**** is today or hasmore */
 
-.day-head.istoday {
+.day-head.istoday, .day-head.hasmore {
   position: relative;
 }
 
-.day-head.istoday .date {
+.day-head.istoday .date, .day-head.hasmore .date {
   position: relative;
-  color: white;
   z-index: 10;
+}
+
+.day-head.istoday .date {
+  color: white;
 }
 
 .day-head.istoday .today-bg {
@@ -121,11 +123,21 @@ swiper-item {
   background-color: #fe5e67;
 }
 
-/**** is today end */
+.day-head.hasmore .more-point {
+  position: absolute;
+  left: 12px;
+  top: 3px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #fe5e67;
+}
+
+/**** is today or hasmore end */
 
 /*** day end */
 
-.uppon-line.show {
+.uppon-line {
   position: relative;
   left: -6px;
   width: 140%;

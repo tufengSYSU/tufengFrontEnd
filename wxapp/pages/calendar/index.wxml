@@ -17,17 +17,17 @@
         <block wx:for="{{calenders}}" wx:for-item="calender" wx:key="unique">
           <swiper-item>
             <view class="week" wx:for="{{calender}}" wx:for-item="dailyDataInOneWeek" wx:key="unique">
-              <view class="day" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay">
-                <view wx-if="{{oneDay !== null}}">
-                  <view class="day-head hasmore {{oneDay.istoday ? 'istoday':''}}">
-                    <view class="uppon-line {{oneDay.date === '' ? '':'show'}}"></view>
+              <view class="day" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay" bindtap="slideOut" data-day="{{oneDay}}">
+                <view wx:if="{{oneDay !== null}}">
+                  <view class="day-head {{oneDay.hasmore ? 'hasmore':''}} {{oneDay.istoday ? 'istoday':''}}">
+                    <view class="uppon-line"></view>
                     <view class="more-point"></view>
                     <view class="today-bg"></view>
-                    <view class="date">{{oneDay.date}}</view>
+                    <view class="date">{{oneDay.dateObj.date}}</view>
                   </view>
                   <view class="events">
-                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" bindtap="slideOut">
-                      {{event}}
+                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}">
+                      {{event.name}}
                     </view>
                   </view>
                 </view>
@@ -42,6 +42,26 @@
   <!-- the left is mask, and the right is the info panel -->
   <view id="left" class="{{slideOut ? 'active':''}}" bindtap="slideAway"></view>
   <view id="right" class="{{slideOut ? 'active':''}}">
-    right
+    <view class="right-panel">
+      <view class="title">
+        <view class="gregorian-date">{{slideOutData.dailyData.dateObj.month}}月{{slideOutData.dailyData.dateObj.date}}日</view>
+        <view class="lunar-date">{{slideOutData.lDate}}</view>
+        <view class="festival">{{slideOutData.festival}}</view>
+      </view>
+      <view class="info">
+        <view class="heading">先锋情报</view>
+        <view class="events-in-detail">
+          <view class="event-in-detail" wx:for="{{slideOutData.dailyData.events}}" wx:for-item="event" wx:key="{{index}}">
+            <view class="event-name" style="color: {{slideOutData.colors[index]}}">{{event.name}}</view>
+            <view class="event-time-and-place">{{event.timeInterval}} {{event.place}}</view>
+          </view>
+        </view>
+        <view  wx:if="{{slideOutData.dailyData.events.length === 0}}" class="message">
+          没有活动~
+        </view>
+        <view></view>
+      </view>
+    </view>
   </view>
+
 </view>

@@ -23,12 +23,80 @@
 
 #right {
   height: 100%;
-  background-color: #f5f5f5;
+  background-color: white;
   transition: 0.3s;
   z-index: 102;
 }
 
 #right.active {
-  width: 56%;
+  width: 40%;
   transition: 0.3s;
 }
+
+/* right panel */
+
+#right .right-panel {
+  /* width is 40% of screen width(750rpx) */
+  width: 300rpx;
+}
+
+/** right panel title */
+
+#right .right-panel .title {
+  padding: 10px 10px 20px 10px;
+}
+
+#right .right-panel .title .gregorian-date {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+#right .right-panel .title .lunar-date {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.60);
+}
+
+#right .right-panel .title .festival {
+  font-size: 16px;
+  color: rgba(255, 0, 0, 0.77);
+}
+
+/** right panel title end */
+
+/** right panel info */
+
+.right-panel .info {
+  text-align: center;
+}
+
+.right-panel .info .heading {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.event-in-detail {
+  margin: 10px 0 30px 0;
+}
+
+.event-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.event-time-and-place {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.right-panel .info .message {
+  padding: 50px 0;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/** right panel info end */
+
+/* right panel end*/
