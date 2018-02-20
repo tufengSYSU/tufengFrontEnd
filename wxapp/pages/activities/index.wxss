@@ -53,6 +53,27 @@
   padding-left:30px;
 }
 
+.brief-description-container {
+  white-space: nowrap;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+
+.brief-description-container {
+  font-size: 18px;
+  color: white;
+}
+
+.brief-description {
+  border-radius: 4px;
+  padding-right: 15px;
+  padding-left: 15px;
+  line-height: 30px;
+  box-shadow: 0 0 3px 3px #FAFAFA;
+  margin-right: 10px;
+  display: inline-block;
+}
+
 /*** location end */
 /*** search bar end */
 /* location and search bar end */
@@ -80,35 +101,22 @@
 /* slide-image end */
 
 /* artical calendar */
-.article-calendar-container {
-  padding: 4px 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  overflow-x: scroll;
+.article-calendar-container swiper{
+  height: 1200px;
 }
 
-.brief-description-container {
-  font-size: 18px;
-  color: white;
-}
-
-.brief-description {
-  border-radius: 4px;
-  padding-right: 15px;
-  padding-left: 15px;
-  line-height: 30px;
-  box-shadow: 0 0 3px 3px #FAFAFA;
-  margin-right: 10px;
-  display: inline-block;
+.article-calendar-container swiper-item {
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
 
 .calendar-container {
-  margin-top: 3px;
+  margin-top: 3vw;
 }
 
 .single-day-articles {
-  width: 250rpx;
-  margin-right: 10px;
+  width: 220rpx;
+  margin-right: 3vw;
   display: inline-block;
 }
 
@@ -120,14 +128,16 @@
 }
 
 .article-container {
-  margin-top: 12rpx;
+  margin-top: 10px;
   position: relative;
-  height: 250rpx;
+  height: 220rpx;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .article-coverimage {
-  width: 250rpx;
-  height: 250rpx;
+  width: 100%;
+  height: 100%;
   border-radius: 2px;
 }
 
@@ -168,4 +178,8 @@
 }
 .grey-background {
   background-color: #DCDCDC;
+}
+
+.visited {
+  opacity: 0.5;
 }

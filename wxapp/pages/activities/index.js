@@ -46,6 +46,8 @@ Page({
     ],
     // 每篇推送是否已阅览
     visited: [],
+    visitedCss: "visited",
+    nullstr: "",
     background: [
       "red-background",
       "blue-background",
@@ -53,6 +55,7 @@ Page({
       "green-background",
       "grey-background"
     ],
+    seq: []
   },
   /**
    * 初始化数据
@@ -68,6 +71,10 @@ Page({
     }
     })
     console.log(this.data.windowWidth);
+
+    this.setData({
+      seq: Array.from(new Array(Math.ceil(this.data.content.length/3)), (val,index)=>index)
+    })
   },
   /**
    * 获取当前位置
@@ -122,10 +129,9 @@ Page({
    * @param {object} e 触发事件
    */
   makeVisited: function(e) {
-    var row = e.currentTarget.dataset.row
-    console.log(e)
-    console.log(row)
-    this.data.visited[row] = 1
+    var index = e.currentTarget.dataset.index
+    this.data.visited[index] = 1
+    console.log(index)
     this.setData({
       visited: this.data.visited
     })
