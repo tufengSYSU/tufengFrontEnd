@@ -75,6 +75,7 @@ Page({
     this.setData({
       seq: Array.from(new Array(Math.ceil(this.data.content.length/3)), (val,index)=>index)
     })
+    console.log(this.data.seq)
   },
   /**
    * 获取当前位置

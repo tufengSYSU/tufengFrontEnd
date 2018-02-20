@@ -41,20 +41,20 @@
   <view class="article-calendar-container">
     <swiper autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
       <swiper-item wx:for-items="{{seq}}" wx:key="*this">
-        <view class="single-day-articles" wx:for="{{[3*item,3*item+1,3*item+2]}}" wx:if="{{index<content.length}}" wx:for-item="index">
+        <view class="single-day-articles" wx:for="{{[3*item,3*item+1,3*item+2]}}" wx:if="{{i < content.length}}" wx:for-item="i">
           <view class="article-date">
-            {{content[index].date}}
+            {{content[i].date}}
           </view>
           <view class="" wx:for="{{[1,2,3,4,5]}}">
-            <view class="article-container {{visited[index] == 1 ? visitedCss : \" \" }}" bindtap="makeVisited" data-index="{{index}}">
-              <image class="article-coverimage" src="{{content[index].article[0].imgUrl}}" />
+            <view class="article-container">
+              <image class="article-coverimage" src="{{content[i].article[0].imgUrl}}" />
               <view class="mark-container">
                 <image src="../../assets/icon/mark/aixin.png"/>
                 <image src="../../assets/icon/mark/ball.png"/>
                 <image src="../../assets/icon/mark/money.png"/>
               </view>
               <view class="article-description">
-                {{content[index].article[0].headLine}}
+                {{content[i].article[0].headLine}}
               </view>
             </view>
           </view>
