@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="organization-information-container">
+    <view class="image-container">
+      <image class="cover-image" src="{{coverImageUrl}}"/>
+      <image class="logo" src="{{logoUrl}}"/>
+      <view class="attention-container">
+        <image class="attention-icon" src="{{iconUrl[0]}}" bindtap="makeAttention" />
+        <view class="text">
+          关注
+        </view>
+      </view>
+    </view>
+
+    <view class="organization-name">中珠广播台</view>
+    <view class="brief-introduction">
+      <view class="header">社团简介<image src="{{iconUrl[1]}}"/></view>
+      <ul class="information-sider">
+        <li><image src="{{iconUrl[2]}}"/>中山大学 珠海校区</li>
+        <li><image src="{{iconUrl[3]}}"/>有声部 咨讯部 策划部</li>
+        <li><image src="{{iconUrl[4]}}"/>中山大学十佳社团</li>
+      </ul>
+    </view>
+  </view>
+
+  <view class="dashline">
+  </view>
+
+  <view class="menu-container">
+    <text class="activity {{hoverclass[0]}}" data-index="0" bindtap="changeHoverClass">活动 </text>
+    <text class="album {{hoverclass[1]}}" data-index="1" bindtap="changeHoverClass">相册</text>
+  </view>
+
+  <view class="activities-container">
+    <view class="hint">热门活动</view>
+    <view class="activity" wx:for="{{activity}}">
+      <view class="activity-cover-image cross-cover-image"><image src="{{item.imgUrl}}"/></view>
+      <view class="progress" wx:if="{{item.progress}}">进行中</view>
+      <view class="activity-introduction cross-activity-introduction">{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class="album-container">
+    <view class="hint">一周内</view>
+    <view class="picture-container">
+      <image mode="widthFix" wx:for="{{picture}}" src="{{item}}"/>
+    </view>
+  </view>
+
+  <view class="test">
+    <image mode="widthFix" wx:for="{{picture}}" src="{{item}}"/>
+  </view>
+</view>

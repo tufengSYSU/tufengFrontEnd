@@ -1,4 +1,4 @@
 <!--index.wxml-->
 <view class="container">
-  我的页面
+  <navigator url="/pages/myprofile/organization/index" hover-class="navigator-hover">跳转到新页面</navigator>
 </view>
