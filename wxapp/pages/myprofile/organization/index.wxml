@@ -30,23 +30,22 @@
     <text class="album {{hoverclass[1]}}" data-index="1" bindtap="changeHoverClass">相册</text>
   </view>
 
-  <view class="activities-container">
+  <view class="activities-container" wx:if="{{activityOrAlbum}}">
     <view class="hint">热门活动</view>
-    <view class="activity" wx:for="{{activity}}">
-      <view class="activity-cover-image cross-cover-image"><image src="{{item.imgUrl}}"/></view>
+    <view class="activity" wx:for="{{activity}}" wx:key="unique">
+      <view class="activity-cover-image {{coverImageCss[index%2]}}"><image lazy-load="{{true}}" mode="center" src="{{item.imgUrl}}"/></view>
       <view class="progress" wx:if="{{item.progress}}">进行中</view>
-      <view class="activity-introduction cross-activity-introduction">{{item.name}}</view>
+      <view class="activity-introduction {{introductionCss[index%2]}}">{{item.name}}</view>
     </view>
   </view>
 
-  <view class="album-container">
+  <view class="album-container" style="{{test_css}}">
     <view class="hint">一周内</view>
     <view class="picture-container">
-      <image mode="widthFix" wx:for="{{picture}}" src="{{item}}"/>
+      <image lazy-load="{{true}}" mode="widthFix" wx:for="{{picture}}" wx:key="unique" src="{{item}}"/>
     </view>
   </view>
 
-  <view class="test">
-    <image mode="widthFix" wx:for="{{picture}}" src="{{item}}"/>
-  </view>
+  <image src="http://img.pailixiang.com/album/tobe/a23471622/1172.jpg%40!lphoto"/>
+
 </view>
