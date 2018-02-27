@@ -80,8 +80,8 @@ Page({
 
 // the sample data
 const USER_SAMPLE = {
-  background: ASSETS + "/picture/background0.png",
-  avatar: ASSETS + "/avatar/avatar0.png",
+  background: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
+  avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
   name: "李三",
   gender: "male",
   description: "半透明的影子，是流动的风",
