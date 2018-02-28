@@ -62,16 +62,38 @@
 
 .headline {
   text-align: center;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
 .profile .headline .name {
+  display: inline-block;
+  position: relative;
   font-size: 24px;
   font-weight: bold;
+  letter-spacing: 10px;
+}
+
+.profile .headline .name.long {
+  letter-spacing: 2px;
 }
 
 .profile.male .headline .name {
   color: #35A4DFE5;
+}
+
+.profile.female .headline .name {
+  color: #FFAAFFE5;
+}
+
+.profile .headline .gender-icon {
+  position: absolute;
+  top: -5px;
+  right: -20px;
+}
+
+.profile .headline .gender-icon image {
+  height: 20px;
+  width: 20px;
 }
 
 .profile .headline .description {
@@ -79,22 +101,44 @@
   opacity: 0.3;
 }
 
-.profile .headline .userinfo {
+/*** headline end */
+
+/*** userinfo */
+
+.profile .userinfo {
   text-align: left;
+  line-height: 2em;
+  padding: 0px 20px 18px 20px;
 }
 
-.profile .headline .userinfo .one-info {
+.profile .userinfo .one-info {
   display: inline-block;
   width: 50%;
   vertical-align: top;
 }
 
-.profile .headline .userinfo .one-info image {
-  width: 18px;
-  height: 18px;
+.profile .userinfo .one-info .icon {
+  display: inline-block;
+  width: 20%;
+  padding-top: 4px;
+  vertical-align: top;
+  text-align: center;
+  line-height: 0;
 }
 
-/*** headline end */
+.profile .userinfo .one-info .text {
+  display: inline-block;
+  width: 70%;
+  vertical-align: top;
+  opacity: 0.5;
+}
+
+.profile .userinfo .one-info image {
+  width: 22px;
+  height: 22px;
+}
+
+/*** userinfo end */
 
 /** profile end */
 
