@@ -102,7 +102,7 @@
               {{moment.likers.length}}人觉得很赞
             </view>
             <view class="right-icons">
-              <image src="{{voteIcon}}"></image>
+              <image src="{{voteIcon}}" bindtap="voteUp" data-momentindex="{{index}}"></image>
               <image src="{{commentIcon}}"></image>
             </view>
           </view>

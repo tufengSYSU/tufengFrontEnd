@@ -98,11 +98,47 @@ Page({
         })
       }
     })
+  },
+  voteUp: function(e) {
+    const momentIndex = e.currentTarget.dataset.momentindex
+    console.log(momentIndex);
+    var moments = this.data.moments
+    var moment = moments[momentIndex]
+    var user = this.data.user
+
+    var momentLikersIds = moment.likers.map(liker => {return liker.id})
+    var indexOfUserId = momentLikersIds.indexOf(user.id)
+    if (indexOfUserId >= 0) {
+      // TODO: be real
+      moment.likers.splice(indexOfUserId, 1);
+      wx.showToast({
+        title: '赞-1',
+        icon: 'success',
+        duration: 500
+      })
+    }
+    else {
+      // TODO: be real
+      moment.likers.push({
+        id: user.id,
+        name: user.name
+      })
+      wx.showToast({
+        title: '赞+1',
+        icon: 'success',
+        duration: 500
+      })
+    }
+    moments[momentIndex] = moment
+    this.setData({
+      moments
+    })
   }
 })
 
 // the sample data
 const USER_SAMPLE = {
+  id: "123",
   background: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
   avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
   name: "李三",
@@ -122,6 +158,7 @@ const USER_SAMPLE = {
 
 const MOMENTS_SAMPLE = [
   {
+    id: "1",
     author: USER_SAMPLE,
     date: new Date(2018, 1, 2),
     content: "乘着旧日的叮叮电车 寻觅温暖旧情怀 Encore维纳斯歌友会 逆时而上 再现那些声音的传奇",
@@ -172,6 +209,7 @@ const MOMENTS_SAMPLE = [
     ]
   },
   {
+    id: "2",
     author: USER_SAMPLE,
     date: new Date(2018, 1, 2),
     content: "转发了",
