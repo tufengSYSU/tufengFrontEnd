@@ -139,16 +139,16 @@ Page({
 // the sample data
 const USER_SAMPLE = {
   id: "123",
-  background: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
+  background_image: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
   avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
   name: "李三",
   gender: "male",
   description: "半透明的影子，是流动的风",
   info: {
-    person_info: "广东 广州 双子座",
+    personal_info: "广东 广州 双子座",
     school: "中山大学 2017级 传播与设计学院",
     contact: "QQ/WeChat/eMail",
-    hobby: ["摄影", "演唱", "足球"],
+    hobbies: ["摄影", "演唱", "足球"],
   },
   organizations: ["中珠广播台", "足协"]
 }

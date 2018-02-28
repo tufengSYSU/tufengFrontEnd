@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
   <view class="background">
-    <image src="{{user.background}}" mode="widthFix"></image>
+    <image src="{{user.background_image}}" mode="widthFix"></image>
   </view>
   <view class="background-window">
   </view>
@@ -24,9 +24,9 @@
       <view class="userinfo">
         <view class="one-info">
           <view class="icon">
-            <image src="{{user.infoIcon.person_info}}"></image>
+            <image src="{{user.infoIcon.personal_info}}"></image>
           </view>
-          <view class="text">{{user.info.person_info}}</view>
+          <view class="text">{{user.info.personal_info}}</view>
         </view>
         <view class="one-info">
           <view class="icon">
@@ -42,9 +42,9 @@
         </view>
         <view class="one-info">
           <view class="icon">
-            <image src="{{user.infoIcon.hobby}}"></image>
+            <image src="{{user.infoIcon.hobbies}}"></image>
           </view>
-          <view class="text">{{user.info.hobby}}</view>
+          <view class="text">{{user.info.hobbies}}</view>
         </view>
       </view>
     </view>
@@ -142,7 +142,7 @@
         <view class="organizations" wx:if="{{tabIndex === 1}}">
           Nothing yet.
         </view>
-        
+
       </view>
     </view>
   </view>
