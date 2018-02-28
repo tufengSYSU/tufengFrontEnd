@@ -296,6 +296,16 @@
 
 /**** moment end */
 
+/**** organizations */
+
+.organizations {
+  height: 200%;
+  padding: 10px;
+  background-color: white;
+}
+
+/**** organizations end */
+
 /*** tabpage end */
 
 /** explore end */
