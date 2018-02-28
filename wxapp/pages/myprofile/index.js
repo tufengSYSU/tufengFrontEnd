@@ -51,7 +51,7 @@ Page({
         reachTop: true
       })
     }
-    if (reachTop === true && e.detail.scrollHeight - e.detail.scrollTop >= windowSize.height) {
+    if (reachTop === true && e.detail.scrollHeight - e.detail.scrollTop >= windowSize.height + 30) {
       this.setData({
         reachTop: false
       })
