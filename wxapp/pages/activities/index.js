@@ -18,9 +18,9 @@ Page({
     duration: 500,
     // 轮播图片的路径
     imgUrl: [
-      "../../assets/slidepicture/1.jpg",
-      "../../assets/slidepicture/2.jpg",
-      "../../assets/slidepicture/3.jpg"
+      "https://i.loli.net/2018/02/28/5a95a3cf185a3.jpg",
+      "https://i.loli.net/2018/02/28/5a95a3cf1a516.jpg",
+      "https://i.loli.net/2018/02/28/5a95a3cf28745.jpg"
     ],
     locationIconUrl: "../../assets/icon/location.png",
     searchIconUrl: "../../assets/icon/search.png",

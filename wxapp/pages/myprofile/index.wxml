@@ -1,4 +1,149 @@
 <!--index.wxml-->
-<view class="container">
-  <navigator url="/pages/myprofile/organization/index" hover-class="navigator-hover">跳转到新页面</navigator>
-</view>
+<scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
+  <view class="background">
+    <image src="{{user.background_image}}" mode="widthFix"></image>
+  </view>
+  <view class="background-window">
+  </view>
+  <view class="main-body">
+    <view class="profile {{user.gender}}">
+      <view class="headline">
+        <view class="avatar">
+          <image src="{{user.avatar}}"></image>
+        </view>
+        <view class="name {{user.name.length > 2 ? 'long' : ''}}">
+          {{user.name}}
+          <view class="gender-icon">
+            <image src="{{user.genderIcon}}"></image>
+          </view>
+        </view>
+        <view class="description">
+          {{user.description}}
+        </view>
+      </view>
+      <view class="userinfo">
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.personal_info}}"></image>
+          </view>
+          <view class="text">{{user.info.personal_info}}</view>
+        </view>
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.contact}}"></image>
+          </view>
+          <view class="text">{{user.info.contact}}</view>
+        </view>
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.school}}"></image>
+          </view>
+          <view class="text">{{user.info.school}}</view>
+        </view>
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.hobbies}}"></image>
+          </view>
+          <view class="text">{{user.info.hobbies}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="hr"></view>
+    <view class="explore">
+      <view class="tabs">
+        <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
+          {{tab}}
+        </view>
+      </view>
+      <view class="tabpage {{reachTop ? 'scroll' : ''}}">
+
+        <!-- 动态 -->
+        <view class="moments" wx:if="{{tabIndex === 0}}">
+          <view class="moment" wx:for="{{moments}}" wx:for-item="moment" wx:key="{{*index}}">
+            <view class="title">
+              <view class="avatar">
+                <image src="{{moment.author.avatar}}"></image>
+              </view>
+              <view class="moment-info">
+                <view class="athor-name">
+                  {{moment.author.name}}
+                </view>
+                <view class="date">
+                  {{moment.date}}
+                </view>
+              </view>
+            </view>
+
+            <!-- 内容 -->
+            <view class="text">
+              {{moment.content}}
+            </view>
+
+            <!-- 图片 -->
+            <view class="images" wx:if="{{moment.images.length > 0}}">
+              <image src="{{moment.images[0]}}" mode="widthFix"></image>
+            </view>
+
+            <!-- 转发 -->
+            <view class="forward" wx:if="{{!!moment.forward}}">
+              <!-- 内容 -->
+              <view class="text">
+                <text class="bold">{{moment.forward.author.name}}：</text>{{moment.forward.content}}
+              </view>
+
+              <!-- 图片 -->
+              <view class="images">
+                <image src="{{moment.forward.images[0]}}" mode="widthFix"></image>
+              </view>
+            </view>
+
+            <!-- vote-bar -->
+            <view class="vote-bar">
+              <view class="outline">
+                {{moment.likers.length}}人觉得很赞
+              </view>
+              <view class="right-icons">
+                <image src="{{voteIcon}}" bindtap="voteUp" data-momentindex="{{index}}"></image>
+                <image src="{{commentIcon}}"></image>
+              </view>
+            </view>
+
+            <view class="hr comments-divider"></view>
+            <!-- 评论 -->
+            <view class="comments">
+              <view class="liker-bar">
+                <view class="heart">
+                  <image src="{{heartIcon}}"></image>
+                </view>
+                <view class="likers bold">
+                  <view class="liker" wx:for="{{moment.likers}}" wx:for-item="liker" wx:key="{{*index}}">
+                    {{liker.name}}{{moment.likers.length > index + 1 ? "、" : ""}}
+                  </view>
+                </view>
+              </view>
+              <view class="comments-detail">
+                <view class="comment" wx:for="{{moment.comments}}" wx:for-item="comment" wx:key="{{*index}}">
+                  <span class="bold">{{comment.author.name}}</span>
+                  <span wx:if="{{!comment.reply_to}}">
+                    <span class="bold">：</span>{{comment.content}}
+                  </span>
+                  <span wx:else="{{!comment.reply_to}}">
+                    {{" 回复 "}}
+                    <span class="bold">{{comment.reply_to.name}}</span>
+                    <span class="bold">：</span>{{comment.content}}
+                  </span>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 社团 -->
+        <view class="organizations" wx:if="{{tabIndex === 1}}">
+          Nothing yet.
+        </view>
+
+      </view>
+    </view>
+  </view>
+</scroll-view>
