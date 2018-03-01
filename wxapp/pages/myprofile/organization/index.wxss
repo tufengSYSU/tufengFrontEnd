@@ -13,7 +13,7 @@
 
 .cover-image {
   width: 100%;
-  height: 200px;
+  height: 180px;
 }
 
 .logo {
@@ -22,7 +22,7 @@
   border-radius: 50%;
   position: absolute;
   left: calc(50% - 50px);
-  top: 150px;
+  top: 130px;
 }
 
 .attention-container {
@@ -82,7 +82,8 @@
 
 .menu-container {
   margin-top: 10px;
-  margin-left: 10px;
+  padding-left: 10px;
+  background-color: red;
   font-size: 21px;
   font-weight: bolder;
   color: black;
@@ -179,4 +180,12 @@
   width: 100%;
   max-width: 100%;
   height: auto;
+}
+
+.fix {
+  position: fixed;
+}
+
+scroll-view {
+  height: 100%;
 }

@@ -1,4 +1,5 @@
-<view class="container">
+<scroll-view bindscroll="touchS" scroll-y="true">
+<view class="container" bind:touchstart="touchS" bind:touchmove="touchM" bind:touchend="touchE">
   <view class="organization-information-container">
     <view class="image-container">
       <image class="cover-image" src="{{coverImageUrl}}"/>
@@ -39,13 +40,12 @@
     </view>
   </view>
 
-  <view class="album-container" style="{{test_css}}">
+  <view class="album-container" style="{{hiddenCss}}">
     <view class="hint">一周内</view>
     <view class="picture-container">
-      <image lazy-load="{{true}}" mode="widthFix" wx:for="{{picture}}" wx:key="unique" src="{{item}}"/>
+      <image bindtap="previewImage" lazy-load="{{true}}" data-src="{{item}}" mode="widthFix" wx:for="{{picture}}" wx:key="unique" src="{{item}}"/>
     </view>
   </view>
 
-  <image src="http://img.pailixiang.com/album/tobe/a23471622/1172.jpg%40!lphoto"/>
-
 </view>
+</scroll-view>

@@ -61,8 +61,10 @@ Page({
       "cross-activity-introduction",
       "vertical-activity-introduction"
     ],
-    test: false,
-    test_css: "display: none"
+    hiddenCss: "display: none",
+    fixCss: "",
+    pageY: 0,
+    dif: 0
   },
 
   onLoad: function() {
@@ -73,13 +75,11 @@ Page({
     this.data.hoverclass[0] = "non-hover-text";
     this.data.hoverclass[1] = "non-hover-text";
     this.data.hoverclass[index] = "hover-text";
-    this.data.test = (index == 1 ? true : false);
-    this.data.test_css = (index == 1 ? "" : "display: none");
+    this.data.hiddenCss = (index == 1 ? "" : "display: none");
     this.setData({
       hoverclass: this.data.hoverclass,
       activityOrAlbum: (index == 0 ? true : false),
-      test: this.data.test,
-      test_css: this.data.test_css
+      hiddenCss: this.data.hiddenCss
     })
   },
   makeAttention: function(obj) {
@@ -89,5 +89,37 @@ Page({
       attention: !this.data.attention,
       "iconUrl[0]": (this.data.iconUrl[0] == origin ? selected : origin)
     })
+  },
+  previewImage: function(e) {
+    var that = this;
+    wx.previewImage({
+      urls: []
+    })
+  },
+  touchS: function(e) {
+    console.log(e);
+    this.setData({
+      pageY: e.touches[0].clientY
+    })
+    console.log(this.data.pageY);
+  },
+  touchM: function(e) {
+    var different = this.data.pageY - e.touches[0].clientY;
+    if (different + this.data.dif > 398) {
+      this.data.fixCss = "fix";
+    }
+    else {
+      this.data.fixCss = "";
+    }
+    this.setData({
+      fixCss: this.data.fixCss
+    });
+    console.log(different + this.data.dif);
+    console.log(this.data.fixCss);
+  },
+  touchE: function(e) {
+    this.setData({
+      dif: this.data.dif + this.data.pageY - e.changedTouches[0].clientY
+    });
   }
 })
