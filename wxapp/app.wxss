@@ -1,5 +1,5 @@
 /**app.wxss**/
-@import '/assets/weui/weui.wxss';
+@import '/utils/weui/weui.wxss';
 
 /*
 .container {
