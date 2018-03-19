@@ -100,15 +100,13 @@ Page({
   pageScroll: function(e) {
     const windowSize = this.data.windowSize;
     const reachTop = this.data.reachTop;
-    console.log(windowSize)
-    console.log(e.detail.scrollHeight);
-    console.log(e.detail.scrollHeight - e.detail.scrollTop);
-    if (reachTop === false && e.detail.scrollHeight - e.detail.scrollTop <= windowSize.height) {
+    console.log(reachTop);
+    if (reachTop === false && this.judge(e.detail.scrollHeight, e.detail.scrollTop, windowSize.height)) {
       this.setData({
         reachTop: true
       })
     }
-    if (reachTop === true && e.detail.scrollHeight - e.detail.scrollTop >= 33) {
+    if (reachTop === true && e.detail.scrollHeight - e.detail.scrollTop >= windowSize.height + 60) {
       this.setData({
         reachTop: false
       })
@@ -119,6 +117,9 @@ Page({
     this.setData({
       reachTop: true
     })
+  },
+  judge: function(a, b, c) {
+    return Math.abs(a-b-c) < 5;
   }
 })
 
