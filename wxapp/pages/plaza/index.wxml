@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="main-body">
+    <view class="bar">
+      <text class="{{hover[index] === 1 ? 'hover' : ''}}" wx:for="{{user.bar}}" wx:key="{{*index}}">item </text>
+    </view>
+
+    <view class="explore">
+      <view class="moments">
+
+      </view>
+
+      <view class="organization-wall">
+      </view>
+    </view>
+  </view>
+
+</view>
