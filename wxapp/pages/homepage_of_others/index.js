@@ -1,5 +1,5 @@
 /**
- * @file myprofile/index.js
+ * @file homepage_of_others/index.js
  * @author isanbel(theisanbel@gmail.com)
  */
 

@@ -5,7 +5,7 @@
     "pages/activities/index",
     "pages/calendar/index",
     "pages/tufang/index",
-    "pages/myprofile/index"
+    "pages/homepage/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
