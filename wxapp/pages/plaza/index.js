@@ -26,7 +26,12 @@ Page({
     this.getConcerns();
     this.getMyOrganizaion();
     this.getNearbyOrganization();
-  }，
+  },
+  switchTab: function() {
+    wx.switchTab({
+      url: "/pages/myprofile/index"
+    })
+  },
   getHotSample: function() {
     var user = {};
     user.recommend = HOT_SAMPLE;
@@ -36,14 +41,31 @@ Page({
   },
   getIcon: function() {
     let user = this.data.user;
-    user.message = MESSAGE_ICON;
-    user.push = PUSH_ICON;
     user.location = LOCATION_ICON;
     user.label = LABEL_ICON;
-    user.moments = MOMENTS_ICON;
-    user.setting = SETTING_ICON;
     user.photo = PHOTO_ICON;
-    user.yellowpage = YELLOWPAGE_ICON;
+    user.organizationIcon = [
+      {
+        text: "消息通知",
+        avatar: MESSAGE_ICON
+      },
+      {
+        text: "编辑推送",
+        avatar: PUSH_ICON
+      },
+      {
+        text: "发布动态",
+        avatar: MOMENTS_ICON
+      },
+      {
+        text: "相关设置",
+        avatar: SETTING_ICON
+      },
+      {
+        text: "社团黄页",
+        avatar: YELLOWPAGE_ICON
+      }
+    ]
   },
   getMoments: function() {
     let user = this.data.user;
@@ -89,7 +111,10 @@ const HOT_SAMPLE = [
 const MOMENTS_SAMPLE = [
   {
     id: "1",
-    author: USER_SAMPLE,
+    author: {
+      name: "张剑",
+      avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
+    },
     date: new Date(2018, 1, 2),
     content: "乘着旧日的叮叮电车 寻觅温暖旧情怀 Encore维纳斯歌友会 逆时而上 再现那些声音的传奇",
     images: ["https://i.loli.net/2018/02/28/5a960c61ee6b5.png"],
@@ -140,7 +165,10 @@ const MOMENTS_SAMPLE = [
   },
   {
     id: "2",
-    author: USER_SAMPLE,
+    author: {
+      name: "张剑",
+      avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
+    },
     date: new Date(2018, 1, 2),
     content: "转发了",
     forward: {
@@ -211,7 +239,7 @@ const CONCERN_SAMPLE = [
     avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
   },
   {
-    id:"".
+    id:"",
     avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
   }
 ]
@@ -221,18 +249,21 @@ const MY_ORGANIZATION_SAMPLE = [
     id: "",
     name: "中东广播台",
     occupation: "资讯部 干事",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
     numberOfMessages: 7
   },
   {
     id: "",
     name: "中东广播台",
     occupation: "资讯部 干事",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
     numberOfMessages: 7
   },
   {
     id: "",
     name: "中东广播台",
     occupation: "资讯部 干事",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
     numberOfMessages: 7
   }
 ]

@@ -1,14 +1,21 @@
 <view class="container">
+  <view bindtap="switchTab">
+    点击我跳转到个人主页
+  </view>
+
   <view class="main-body">
     <view class="bar">
-      <text class="{{tabIndex === index ? 'active' : ''}}" wx:for="{{bar}}" wx:key="{{*index}}">item </text>
+      <text class="{{tabIndex === index ? 'active' : ''}}" wx:for="{{bar}}" wx:key="{{*index}}">{{item}} </text>
     </view>
 
+    <view class="white-block"></view>
+
     <view class="explore">
-      <view class="moments">
+      <view class="moments" wx:if="{{false}}">
         <view class="recommend">
-          <image wx:for="{{user.recommend}}" wx:key="{{*index}}" src="{{item.avatar}}"/>
+          <image class="avatar" wx:for="{{user.recommend}}" wx:key="{{*index}}" src="{{item.avatar}}"/>
         </view>
+        <view class="white-block"></view>
         <!-- 动态 -->
         <view class="moment" wx:for="{{user.moments}}" wx:for-item="moment" wx:key="{{*index}}">
           <view class="title">
@@ -91,16 +98,45 @@
 
       <view class="organization-wall">
         <view class="concerns">
+          <view class="outline">我关注的</view>
           <image wx:for="{{user.concerns}}" src="{{item.avatar}}" wx:key="{{*index}}" />
         </view>
 
         <view class="participate-organization">
+          <view class="outline">我加入的</view>
+          <!-- 社团名片 -->
+          <view class="organization-card">
+            <!-- 顶部信息 -->
+            <view class="avatar">
+              <image src="{{user.myOrganization[0].avatar}}" />
+            </view>
+            <view class="organization-name">
+              {{user.myOrganization[0].name}}
+            </view>
+            <view class="occupation">
+              {{user.myOrganization[0].occupation}}
+            </view>
+            <!-- 分割线 -->
+            <view class="dashline"></view>
+            <!-- 下部信息 icon等 -->
+            <view class="organization-controllers">
+              <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
+                <view class="icon">
+                  <image src="{{menu.avatar}}" />
+                </view>
+                <view class="text">
+                  {{menu.text}}
+                </view>
+              </view>
+            </view>
+          </view>
         </view>
 
-        <view class="nearby-organization">
-          <view class="" wx:for="{{user.nearbyOrganization}}" wx:key="{{*index}}">
+        <view class="nearby">
+          <view class="outline">我附近的</view>
+          <view class="organization" wx:for="{{user.nearbyOrganization}}" wx:key="{{*index}}">
             <image src="{{item.avatar}}" />
-            <text>{{item.name}}</text>
+            <view>{{item.name}}</view>
           </view>
         </view>
       </view>
