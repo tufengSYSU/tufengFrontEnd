@@ -35,10 +35,10 @@
         "selectedIconPath": "assets/icon_selected/tufang.png"
       },
       {
-        "pagePath": "pages/myprofile/index",
+        "pagePath": "pages/homepage/index",
         "text": "我的",
-        "iconPath": "assets/icon/myprofile.png",
-        "selectedIconPath": "assets/icon_selected/myprofile.png"
+        "iconPath": "assets/icon/homepage.png",
+        "selectedIconPath": "assets/icon_selected/homepage.png"
       }
     ]
   }

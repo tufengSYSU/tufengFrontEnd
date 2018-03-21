@@ -3,4 +3,4 @@
  * @author isanbel(theisanbel@gmail.com)
  */
 
-Page()    
+Page({})    
