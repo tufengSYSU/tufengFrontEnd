@@ -3,7 +3,7 @@ const ASSETS = "../../assets/plaza_icon";
 const MESSAGE_ICON = ASSETS + "/message.png";
 const PUSH_ICON = ASSETS + "/push.png";
 const LOCATION_ICON = ASSETS + "/location.png";
-const LEBEL_ICON = ASSETS + "/label.png";
+const LABEL_ICON = ASSETS + "/label.png";
 const MOMENTS_ICON = ASSETS + "/moments.png";
 const SETTING_ICON = ASSETS + "/setting.png";
 const PHOTO_ICON = ASSETS + "/photo.png";
@@ -11,14 +11,21 @@ const YELLOWPAGE_ICON = ASSETS + "/yellowpage.png";
 
 Page({
   data: {
-    user: null
+    user: null,
+    bar: ["蜂动态", "社团墙"],
+    tabIndex: 0,
+    voteIcon: "../../assets/myprofile_icon/vote.png",
+    commentIcon: "../../assets/myprofile_icon/comment.png",
+    heartIcon: "../../assets/myprofile_icon/heart.png",
+    arrowIcon: "../../assets/myprofile_icon/organization/arrow.png"
   },
   onLoad: function() {
-    getHotSample();
-    getMoments();
-    getConcerns();
-    getMyOrganizaion();
-    getNearbyOrganization();
+    this.getHotSample();
+    this.getIcon();
+    this.getMoments();
+    this.getConcerns();
+    this.getMyOrganizaion();
+    this.getNearbyOrganization();
   }，
   getHotSample: function() {
     var user = {};
@@ -26,6 +33,17 @@ Page({
     this.setData({
       user
     })
+  },
+  getIcon: function() {
+    let user = this.data.user;
+    user.message = MESSAGE_ICON;
+    user.push = PUSH_ICON;
+    user.location = LOCATION_ICON;
+    user.label = LABEL_ICON;
+    user.moments = MOMENTS_ICON;
+    user.setting = SETTING_ICON;
+    user.photo = PHOTO_ICON;
+    user.yellowpage = YELLOWPAGE_ICON;
   },
   getMoments: function() {
     let user = this.data.user;
@@ -223,13 +241,16 @@ const NEARBY_ORGANIZAION_SAMPLE = [
   {
     id: "",
     name: "中东广播台",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
   },
   {
     id: "",
     name: "中东广播台",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
   },
   {
     id: "",
     name: "中东广播台",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
   }
 ]
