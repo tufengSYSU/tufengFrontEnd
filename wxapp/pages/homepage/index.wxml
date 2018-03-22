@@ -8,21 +8,28 @@
     <image src="{{user.background_image}}" mode="widthFix"></image>
   </view>
   <view class="background-window">
-  </view>
-  <view class="tabs">
-    <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
-      {{tab}}
+    <view class="profile">
+      <view class="avatar">
+        <image src="{{user.avatar}}"></image>
+      </view>
     </view>
   </view>
-  <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-
-    <!-- 动态 -->
-    <template is="moments" data="{{moments}}" wx:if="{{tabIndex === 0}}" />
-
-    <!-- 社团 -->
-    <view class="organizations" wx:if="{{tabIndex === 1}}">
-      Nothing yet.
+  <view class="main-body">
+    <view class="tabs" style="background-image: url('../../assets/homepage/tabs_background.png')">
+      <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
+        {{tab}}
+      </view>
     </view>
-    
+    <view class="tabpage {{reachTop ? 'scroll' : ''}}">
+
+      <!-- 动态 -->
+      <template is="moments" data="{{moments}}" wx:if="{{tabIndex === 1}}" />
+
+      <!-- 社团 -->
+      <!-- <view class="organizations" wx:if="{{tabIndex === 1}}">
+        Nothing yet.
+      </view> -->
+
+    </view>
   </view>
 </scroll-view>
