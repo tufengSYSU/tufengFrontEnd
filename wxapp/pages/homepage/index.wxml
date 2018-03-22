@@ -1,4 +1,28 @@
 <!--index.wxml-->
-<view class="container">
-  个人主页
-</view>
+
+<!-- import templates -->
+<import src="../../resources/templates/moments/moments.wxml" />
+
+<scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
+  <view class="background">
+    <image src="{{user.background_image}}" mode="widthFix"></image>
+  </view>
+  <view class="background-window">
+  </view>
+  <view class="tabs">
+    <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
+      {{tab}}
+    </view>
+  </view>
+  <view class="tabpage {{reachTop ? 'scroll' : ''}}">
+
+    <!-- 动态 -->
+    <template is="moments" data="{{moments}}" wx:if="{{tabIndex === 0}}" />
+
+    <!-- 社团 -->
+    <view class="organizations" wx:if="{{tabIndex === 1}}">
+      Nothing yet.
+    </view>
+    
+  </view>
+</scroll-view>

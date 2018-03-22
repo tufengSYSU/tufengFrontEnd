@@ -4,15 +4,15 @@
  */
 
 const ASSETS = "../../assets"
-const MALE_ICON = ASSETS + "/myprofile_icon/male.png"
-const FEMALE_ICON = ASSETS + "/myprofile_icon/female.png"
-const PERSON_ICON = ASSETS + "/myprofile_icon/person.png"
-const SCHOOL_ICON = ASSETS + "/myprofile_icon/school.png"
-const CONTACT_ICON = ASSETS + "/myprofile_icon/contact.png"
-const HOBBY_ICON = ASSETS + "/myprofile_icon/hobby.png"
-const VOTE_ICON = ASSETS + "/myprofile_icon/vote.png"
-const COMMENT_ICON = ASSETS + "/myprofile_icon/comment.png"
-const HEART_ICON = ASSETS + "/myprofile_icon/heart.png"
+const MALE_ICON = ASSETS + "/homepage_of_others_icon/male.png"
+const FEMALE_ICON = ASSETS + "/homepage_of_others_icon/female.png"
+const PERSON_ICON = ASSETS + "/homepage_of_others_icon/person.png"
+const SCHOOL_ICON = ASSETS + "/homepage_of_others_icon/school.png"
+const CONTACT_ICON = ASSETS + "/homepage_of_others_icon/contact.png"
+const HOBBY_ICON = ASSETS + "/homepage_of_others_icon/hobby.png"
+const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
+const COMMENT_ICON = ASSETS + "/homepage_of_others_icon/comment.png"
+const HEART_ICON = ASSETS + "/homepage_of_others_icon/heart.png"
 
 Page({
   data:{
