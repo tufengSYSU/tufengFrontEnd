@@ -18,8 +18,13 @@ const FINISHED_ICON = ASSETS + "/homepage/已完成.png"
 Page({
   data:{
     user: null,
+<<<<<<< HEAD
     tabs: ["消息", "动态", "活动", "相册", "个性化"],
     tabIndex: 2,
+=======
+    tabs: ["消息", "动态", "活动", "相册", "个性化" ],
+    tabIndex: 0,
+>>>>>>> 323745a75cec78e32b4295a53d915a5c3dd96b58
     reachTop: false,
     actTabs: [
       { icon: SIGNED_ICON, name: "已报名" },
