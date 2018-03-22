@@ -34,10 +34,11 @@
             <view>我关注的活动 ></view>
           </view>
           <view class="hr"></view>
+            <view style="background-image: url('../../assets/homepage/tabs_background.png')"></view>
           <view class="tabs-container">
-            <view class="act-tab" wx:for="{{actTabs}}" wx:for-item="actTab">
-              <view class="act-tab-icon">
-                <image src="{{actTab.icon}}"></image>
+            <view class="act-tab {{actTabIndex === index ? 'active' : ''}}" wx:for="{{actTabs}}" wx:for-item="actTab" wx:key="actTab.name" bindtap="clickActTab" data-index="{{index}}">
+              <view class="icon-area">
+                <view class="act-tab-icon" style="background-image: url('{{actTab.icon}}')"></view>
               </view>
               <view>{{actTab.name}}</view>
             </view>

@@ -11,15 +11,16 @@ const COMMENT_ICON = ASSETS + "/homepage_of_others_icon/comment.png"
 const HEART_ICON = ASSETS + "/homepage_of_others_icon/heart.png"
 
 // 活动图标
-const SIGNED_ICON = ASSETS + "/homepage/已报名.png"
-const PROCESSING_ICON = ASSETS + "/homepage/进行中.png"
-const FINISHED_ICON = ASSETS + "/homepage/已完成.png"
+const SIGNED_ICON = ASSETS + "/homepage/signed.png"
+const PROCESSING_ICON = ASSETS + "/homepage/processing.png"
+const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 
 Page({
   data:{
     user: null,
     tabs: ["消息", "动态", "活动", "相册", "个性化" ],
-    tabIndex: 0,
+    tabIndex: 2,
+    actTabIndex: 0,
     reachTop: false,
     actTabs: [
       { icon: SIGNED_ICON, name: "已报名" },
@@ -62,6 +63,12 @@ Page({
     const index = e.currentTarget.dataset.index
     this.setData({
       tabIndex: index
+    })
+  },
+  clickActTab: function(e) {
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      actTabIndex: index
     })
   },
   tabpageScroll: function(e) {
