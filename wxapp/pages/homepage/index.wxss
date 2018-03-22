@@ -91,15 +91,15 @@
   overflow: scroll;
 }
 
-/**** organizations */
+/**** activities */
 
-.organizations {
+.activities {
   height: 200%;
   padding: 10px;
   background-color: white;
 }
 
-/**** organizations end */
+/**** activities end */
 
 /*** tabpage end */
 

@@ -25,10 +25,10 @@
       <!-- 动态 -->
       <template is="moments" data="{{moments}}" wx:if="{{tabIndex === 1}}" />
 
-      <!-- 社团 -->
-      <!-- <view class="organizations" wx:if="{{tabIndex === 1}}">
-        Nothing yet.
-      </view> -->
+      <!-- 活动 -->
+      <view class="activities" wx:if="{{tabIndex === 2}}">
+        活动
+      </view>
 
     </view>
   </view>
