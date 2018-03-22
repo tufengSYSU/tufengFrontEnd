@@ -27,7 +27,39 @@
 
       <!-- 活动 -->
       <view class="activities" wx:if="{{tabIndex === 2}}">
-        活动
+
+        <view class="activites-tabbar">
+          <view class="my-activites">
+            <view>我的活动</view>
+            <view>我关注的活动 ></view>
+          </view>
+          <view class="hr"></view>
+          <view class="tabs-container">
+            <view class="act-tab" wx:for="{{actTabs}}" wx:for-item="actTab">
+              <view class="act-tab-icon">
+                <image src="{{actTab.icon}}"></image>
+              </view>
+              <view>{{actTab.name}}</view>
+            </view>
+          </view>
+        </view>
+
+        <block>
+          <view class="activity">
+            <view class="activity-image">
+            </view>
+            <view class="activity-detail">
+              <view class="title">
+              </view>
+            </view>
+          </view>
+        </block>
+
+      </view>
+
+      <!-- 相册 -->
+      <view class="album" wx:if="{{tabIndex === 3}}">
+        相册
       </view>
 
     </view>
