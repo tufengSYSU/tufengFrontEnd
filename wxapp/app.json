@@ -30,8 +30,8 @@
       {
         "pagePath": "pages/square/index",
         "text": "先蜂广场",
-        "iconPath": "assets/icon/tufang.png",
-        "selectedIconPath": "assets/icon_selected/tufang.png"
+        "iconPath": "assets/icon/square.png",
+        "selectedIconPath": "assets/icon_selected/square.png"
       },
       {
         "pagePath": "pages/homepage/index",
