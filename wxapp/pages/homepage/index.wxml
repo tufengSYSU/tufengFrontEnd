@@ -23,7 +23,7 @@
     <view class="tabpage {{reachTop ? 'scroll' : ''}}">
 
       <!-- 动态 -->
-      <template is="moments" data="{{moments}}" wx:if="{{tabIndex === 1}}" />
+      <template is="moments" data="{{moments, voteIcon, commentIcon, heartIcon}}" wx:if="{{tabIndex === 1}}" />
 
       <!-- 活动 -->
       <view class="activities" wx:if="{{tabIndex === 2}}">

@@ -3,6 +3,11 @@
  * @author isanbel(theisanbel@gmail.com)
  */
 
+const ASSETS = "../../assets"
+const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
+const COMMENT_ICON = ASSETS + "/homepage_of_others_icon/comment.png"
+const HEART_ICON = ASSETS + "/homepage_of_others_icon/heart.png"
+
 Page({
   data:{
     user: null,
@@ -18,6 +23,7 @@ Page({
   onLoad: function() {
     this.getMyProfile()
     this.getMoments()
+    this.getIcons()
     this.getScreenData()
   },
   getMyProfile: function() {
@@ -36,6 +42,13 @@ Page({
     })
     this.setData({
       moments
+    })
+  },
+  getIcons: function() {
+    this.setData({
+      voteIcon: VOTE_ICON,
+      commentIcon: COMMENT_ICON,
+      heartIcon: HEART_ICON,
     })
   },
   clickTab: function(e) {
