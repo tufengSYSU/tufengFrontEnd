@@ -1,10 +1,9 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
     "pages/activities/index",
     "pages/calendar/index",
-    "pages/tufang/index",
+    "pages/square/index",
     "pages/homepage/index"
   ],
   "window":{
@@ -29,8 +28,8 @@
         "selectedIconPath": "assets/icon_selected/calendar.png"
       },
       {
-        "pagePath": "pages/tufang/index",
-        "text": "图方",
+        "pagePath": "pages/square/index",
+        "text": "先蜂广场",
         "iconPath": "assets/icon/tufang.png",
         "selectedIconPath": "assets/icon_selected/tufang.png"
       },
