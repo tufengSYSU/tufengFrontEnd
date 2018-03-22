@@ -1,0 +1,75 @@
+<!--index.wxml-->
+
+<!-- import templates -->
+<import src="../../resources/templates/moments/moments.wxml" />
+
+<scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
+  <view class="background">
+    <image src="{{user.background_image}}" mode="widthFix"></image>
+  </view>
+  <view class="background-window">
+  </view>
+  <view class="main-body">
+    <view class="profile {{user.gender}}">
+      <view class="headline">
+        <view class="avatar">
+          <image src="{{user.avatar}}"></image>
+        </view>
+        <view class="name {{user.name.length > 2 ? 'long' : ''}}">
+          {{user.name}}
+          <view class="gender-icon">
+            <image src="{{user.genderIcon}}"></image>
+          </view>
+        </view>
+        <view class="description">
+          {{user.description}}
+        </view>
+      </view>
+      <view class="userinfo">
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.personal_info}}"></image>
+          </view>
+          <view class="text">{{user.info.personal_info}}</view>
+        </view>
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.contact}}"></image>
+          </view>
+          <view class="text">{{user.info.contact}}</view>
+        </view>
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.school}}"></image>
+          </view>
+          <view class="text">{{user.info.school}}</view>
+        </view>
+        <view class="one-info">
+          <view class="icon">
+            <image src="{{user.infoIcon.hobbies}}"></image>
+          </view>
+          <view class="text">{{user.info.hobbies}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="hr"></view>
+    <view class="explore">
+      <view class="tabs">
+        <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
+          {{tab}}
+        </view>
+      </view>
+      <view class="tabpage {{reachTop ? 'scroll' : ''}}">
+
+        <!-- 动态 -->
+        <template is="moments" data="{{moments, voteIcon, commentIcon, heartIcon}}" wx:if="{{tabIndex === 0}}" />
+
+        <!-- 社团 -->
+        <view class="organizations" wx:if="{{tabIndex === 1}}">
+          Nothing yet.
+        </view>
+
+      </view>
+    </view>
+  </view>
+</scroll-view>

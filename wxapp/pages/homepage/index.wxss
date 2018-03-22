@@ -1,0 +1,108 @@
+/* myprofile index.wxss */
+
+@import "../../resources/templates/moments/moments.wxss";
+
+.container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+/* background */
+
+.background {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 200px;
+  /* remove the empty distance */
+  font-size: 0;
+  z-index: -1;
+}
+
+.background image {
+  width: 100%;
+}
+
+/* background end */
+
+.background-window {
+  width: 100%;
+  height: 114px;
+}
+
+/* main-body */
+
+.main-body {
+  position: relative;
+}
+
+/** profile  */
+
+.profile {
+  text-align: center;
+}
+
+.profile .avatar {
+  padding-top: 35px;
+}
+
+.profile .avatar image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+/** profile end */
+
+.tabs {
+  height: 36px;
+  /* There's a bug and it's needed to be added in wxml instead */
+  /* background-image: url("../../assets/homepage/tabs_background.png"); */
+  background-size: contain;
+  background-repeat: repeat-x;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+.tab {
+  display: inline-block;
+  line-height: 18px;
+  padding: 9px 0 9px 15px;
+}
+
+.tab.active {
+  color: #ff9800;
+}
+
+/*** tabpage */
+
+.tabpage {
+  height: calc(100vh - 36px);
+  background-color: #f4f4f4;
+  /* default hidden, scroll when the tabs area reach the top of the page */
+  overflow: hidden;
+}
+
+.tabpage.scroll {
+  /* when the tabs area reach the top of the page */
+  overflow: scroll;
+}
+
+/**** activities */
+
+.activities {
+  height: 200%;
+  padding: 10px;
+  background-color: white;
+}
+
+/**** activities end */
+
+/*** tabpage end */
+
+/** explore end */
+
+/* main-body end */

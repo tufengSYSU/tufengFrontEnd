@@ -1,0 +1,204 @@
+/* myprofile index.wxss */
+
+@import "../../resources/templates/moments/moments.wxss";
+
+.container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* background */
+
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 200px;
+  /* remove the empty distance */
+  font-size: 0;
+}
+
+.background image {
+  width: 100%;
+}
+
+/* background end */
+
+.background-window {
+  width: 100%;
+  height: 150px;
+}
+
+/* main-body */
+
+.main-body {
+  position: relative;
+  /* top: 150px; */
+  background-color: white;
+}
+
+/** profile  */
+
+.profile {
+  position: relative;
+}
+
+/*** headline */
+
+.headline .avatar {
+  position: absolute;
+  top: -40px;
+  left: 40px;
+}
+
+.headline .avatar image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.headline {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.profile .headline .name {
+  display: inline-block;
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+.profile .headline .name.long {
+  letter-spacing: 2px;
+}
+
+.profile.male .headline .name {
+  color: #35A4DFE5;
+}
+
+.profile.female .headline .name {
+  color: #FFAAFFE5;
+}
+
+.profile .headline .gender-icon {
+  position: absolute;
+  top: -5px;
+  right: -20px;
+}
+
+.profile .headline .gender-icon image {
+  height: 20px;
+  width: 20px;
+}
+
+.profile .headline .description {
+  font-size: 12px;
+  opacity: 0.3;
+}
+
+/*** headline end */
+
+/*** userinfo */
+
+.profile .userinfo {
+  text-align: left;
+  line-height: 2em;
+  padding: 0px 20px 18px 20px;
+}
+
+.profile .userinfo .one-info {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
+
+.profile .userinfo .one-info .icon {
+  display: inline-block;
+  width: 20%;
+  padding-top: 4px;
+  vertical-align: top;
+  text-align: center;
+  line-height: 0;
+}
+
+.profile .userinfo .one-info .text {
+  display: inline-block;
+  width: 70%;
+  vertical-align: top;
+  opacity: 0.5;
+}
+
+.profile .userinfo .one-info image {
+  width: 22px;
+  height: 22px;
+}
+
+/*** userinfo end */
+
+/** profile end */
+
+.hr {
+  border: 0;
+  border-bottom: 1px dashed #BBBBBB66;
+  background: #fff;
+}
+
+/** explore（发现） */
+
+.explore {
+  height: 100vh;
+  background-color: #F2F2F299;
+}
+
+.tabs {
+  height: 52px;
+  background-color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tab {
+  display: inline-block;
+  padding: 10px 0 10px 15px;
+  opacity: 0.4;
+}
+
+.tab.active {
+  opacity: 1;
+}
+
+/*** tabpage */
+
+.tabpage {
+  height: calc(100vh - 52px);
+  /* default hidden, scroll when the tabs area reach the top of the page */
+  overflow: hidden;
+}
+
+.tabpage.scroll {
+  /* when the tabs area reach the top of the page */
+  overflow: scroll;
+}
+
+/**** organizations */
+
+.organizations {
+  height: 200%;
+  padding: 10px;
+  background-color: white;
+}
+
+/**** organizations end */
+
+/*** tabpage end */
+
+/** explore end */
+
+/* main-body end */

@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="organization">
+    社团全称
+    <input bindinput="getOrganizationInput" placeholder="单行输入" auto-focus/>
+  </view>
+
+  <view class="short">
+    社团简称
+    <input bindinput="getShort" placeholder="单行输入" auto-focus/>
+  </view>
+
+  <view class="location">
+    社团地址
+    <picker>
+
+    </picker>
+  </view>
+
+  <view class="type">
+    <picker mode="selector" >
+
+    </picker>
+  </view>
+</view>

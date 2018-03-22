@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="">
+    <view>设置管理员</view>
+    <view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{section}}">
+        <view class="picker">
+          {{section[index]}}
+        </view>
+      </picker>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{partner}}">
+        <view class="picker">
+          {{partner[index]}}
+        </view>
+      </picker>
+      <button>确认</button>
+    </view>
+
+    <view>管理员列表</view>
+    <view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{name}}">
+        <view class="picker">
+          {{name[index]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>

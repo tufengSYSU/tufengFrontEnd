@@ -1,0 +1,9 @@
+<view class="container">
+
+  <view class="moment">
+    <form bindsubmit="bindFormSubmit">
+      <textarea bindblur="bindTextAreaBlur" placeholder="输入文字" auto-height />
+      <button form-type="submit">提交</button>
+    </form>
+  </view>
+</view>

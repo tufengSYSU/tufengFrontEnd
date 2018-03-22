@@ -1,4 +1,7 @@
 /**app.wxss**/
+@import '/utils/weui/weui.wxss';
+
+/*
 .container {
   height: 100%;
   display: flex;
@@ -7,4 +10,15 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+*/
+
+.container {
+  padding: 0 5rpx;
+  font-family: Heiti;
+  /* font-family: Heiti, "Microsoft YaHei","SimHei", 微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu; */
+}
+
+.bold {
+  font-weight: bold;
+}

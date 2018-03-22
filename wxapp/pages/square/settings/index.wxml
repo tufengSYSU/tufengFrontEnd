@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="authority">
+    权限设置
+    <image src="{{arrowIcon}}"/>
+  </view>
+
+  <view class="information">
+    信息维护
+    <image src="{{arrowIcon}}"/>
+  </view>
+</view>
