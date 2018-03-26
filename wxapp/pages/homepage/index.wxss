@@ -1,4 +1,4 @@
-/* myprofile index.wxss */
+/* homepage index.wxss */
 
 @import "../../resources/templates/moments/moments.wxss";
 @import "../../resources/templates/messages/messages.wxss";

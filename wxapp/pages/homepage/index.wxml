@@ -63,13 +63,31 @@
 
       <!-- 相册 -->
       <view class="album" wx:if="{{tabIndex === 3}}">
-        相册
-      </view>
-
-      <!-- 相册 -->
-      <view class="activities" wx:if="{{tabIndex === 3}}">
-        相册
-      </view>
+        <view class="" bindtap="chooseImage">
+          <image class="weui-uploader__img" src="{{photoIcon}}" mode="aspectFill" />
+          选择图片
+        </view>
+        <view class="weui-cells">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                  <view class="weui-uploader__title">一周内</view>
+                </view>
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files">
+                    <block wx:for="{{images}}" wx:key="*this" wx:for-item="image">
+                      <view class="weui-uploader__file" bindtap="previewImage" id="{{image}}" style="{{imageStyles[index]}}">
+                        <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        </view>
 
       <!-- 个性化 -->
       <template is="personalizations" data="{{personalizations}}" wx:if="{{tabIndex === 4}}" />

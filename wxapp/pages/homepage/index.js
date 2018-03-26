@@ -20,14 +20,18 @@ Page({
   data:{
     user: null,
     tabs: ["消息", "动态", "活动", "相册", "个性化" ],
-    tabIndex: 2,
+    tabIndex: 0,
     actTabIndex: 0,
     reachTop: false,
     actTabs: [
       { icon: SIGNED_ICON, name: "已报名" },
       { icon: PROCESSING_ICON, name: "进行中" },
       { icon: FINISHED_ICON, name: "已完成" },
-    ]
+    ],
+    photoIcon: ASSETS + "/homepage/photo.png",
+    images: [
+      "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
+    ],
   },
   onLoad: function() {
     this.getMyProfile()
@@ -128,6 +132,30 @@ Page({
           windowSize
         })
       }
+    })
+  },
+  // 相册相关
+  chooseImage: function() { // 添加商品图片
+    var that = this;
+    wx.chooseImage({
+      // count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var images = that.data.images;
+        images = images.concat(res.tempFilePaths);
+        that.setData({
+          images
+        })
+      }
+    })
+  },
+  previewImage: function(e) {
+    var that = this;
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: that.data.images // 需要预览的图片http链接列表
     })
   },
 })
