@@ -4,22 +4,30 @@
  */
 
 const ASSETS = "../../assets"
+
+// 动态图标
 const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
 const COMMENT_ICON = ASSETS + "/homepage_of_others_icon/comment.png"
 const HEART_ICON = ASSETS + "/homepage_of_others_icon/heart.png"
 const ADDRESSLIST_ICON = ASSETS + "/homepage_of_others_icon/person.png"
 
+// 活动图标
+const SIGNED_ICON = ASSETS + "/homepage/signed.png"
+const PROCESSING_ICON = ASSETS + "/homepage/processing.png"
+const FINISHED_ICON = ASSETS + "/homepage/finished.png"
+
 Page({
   data:{
     user: null,
-    tabs: ["消息", "动态", "活动", "相册", "个性化"],
-    tabIndex: 0,
+    tabs: ["消息", "动态", "活动", "相册", "个性化" ],
+    tabIndex: 2,
+    actTabIndex: 0,
     reachTop: false,
-    item: {
-      index: 0,
-      msg: 'this is a template',
-      time: '2016-09-15'
-    }
+    actTabs: [
+      { icon: SIGNED_ICON, name: "已报名" },
+      { icon: PROCESSING_ICON, name: "进行中" },
+      { icon: FINISHED_ICON, name: "已完成" },
+    ]
   },
   onLoad: function() {
     this.getMyProfile()
@@ -80,6 +88,12 @@ Page({
     const index = e.currentTarget.dataset.index
     this.setData({
       tabIndex: index
+    })
+  },
+  clickActTab: function(e) {
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      actTabIndex: index
     })
   },
   tabpageScroll: function(e) {
@@ -349,5 +363,5 @@ const PERSONALIZATIONS_SAMPLE = [
     major: "网络与新媒体",
     hometown: "江苏-苏州"
   }
- 
+
 ]

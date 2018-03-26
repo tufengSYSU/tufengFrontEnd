@@ -34,12 +34,6 @@
   height: 114px;
 }
 
-/* main-body */
-
-.main-body {
-  position: relative;
-}
-
 /** profile  */
 
 .profile {
@@ -58,6 +52,12 @@
 
 /** profile end */
 
+/* main-body */
+
+.main-body {
+  position: relative;
+}
+
 .tabs {
   height: 36px;
   /* There's a bug and it's needed to be added in wxml instead */
@@ -66,7 +66,6 @@
   background-repeat: repeat-x;
   font-size: 18px;
   color: white;
-  font-weight: bold;
 }
 
 .tab {
@@ -79,7 +78,7 @@
   color: #ff9800;
 }
 
-/*** tabpage */
+/** tabpage */
 
 .tabpage {
   height: calc(100vh - 36px);
@@ -93,18 +92,87 @@
   overflow: scroll;
 }
 
-/**** activities */
+/*** activities */
 
-.activities {
+.activites-tabbar {
+  background-color: white;
+}
+
+.my-activites {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.my-activites view:first-child {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 14px;
+  color: #919191;
+}
+
+.my-activites view:last-child {
+  float: right;
+  font-size: 12px;
+  color: #b4b4b4;
+}
+
+.hr {
+  border: 0;
+  border-bottom: 1px solid #e7e7e7;
+  background: #fff;
+}
+
+.activity {
+  margin-top: 10px;
+  background-color: white;
+}
+
+.tabs-container {
+  text-align: center;
+}
+
+.tabs-container .act-tab {
+  display: inline-block;
+  width: 33%;
+  padding: 10px 0 5px 0;
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+.icon-area {
+  width: 34px;
+  height: 34px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.act-tab-icon {
+  background-size: contain;
+  width: 34px;
+  height: 34px;
+}
+
+.act-tab.active .act-tab-icon {
+  position: relative;
+  left: -34px;
+  -webkit-filter: drop-shadow(34px 0 #ffac32);
+  filter: drop-shadow(34px 0 #ffac32);
+}
+
+/*** activities end */
+
+/*** album */
+
+.album {
   height: 200%;
   padding: 10px;
   background-color: white;
 }
 
-/**** activities end */
+/*** album end */
 
-/*** tabpage end */
-
-/** explore end */
+/** tabpage end */
 
 /* main-body end */
