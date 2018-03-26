@@ -1,0 +1,77 @@
+/**** moment */
+.message {
+  background-color: white;
+  margin-bottom: 1px;
+  padding: 10px;
+}
+
+.message .avatar image {
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  border:1px solid #E8E8E8;
+
+}
+
+.message .message-info {
+  font-size: 16px;
+  margin-top: 10px;
+}
+.avatar {
+  margin-top: 14px;
+}
+
+.time {
+  margin-top: 8px;
+}
+.author-name {
+  color: #101010;
+  display: inline-block;
+}
+
+.remark {
+  font-size: 13px;
+  color: #878787;
+}
+
+.avatar {
+  display: inline-block;
+  vertical-align: top;
+  width: 21%;
+  position: relative;
+  left: 2%;
+  top: 4px;
+}
+.message-info {
+  display: inline-block;
+  vertical-align: top;
+  width: 64%;
+}
+
+.time {
+  display: inline-block;
+  vertical-align: top;
+  width: 15%;
+  color: #878787;
+  font-size: 11px;
+}
+
+.message {
+  line-height: 1.8;
+  padding: 0;
+}
+
+.addressList {
+  background-color: #F0F0F0;
+}
+
+.attention {
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: red;
+  position: relative;
+  left: 6px;
+  top: -8px;
+}

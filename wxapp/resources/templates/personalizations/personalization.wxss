@@ -1,0 +1,56 @@
+/**** moment */
+
+
+.table {
+  opacity: 0.9;
+  width: 100%;
+  margin-top: 15px; 
+}
+
+.tr {
+  display: flex;
+  width: 100%;
+  margin-top: 1px;
+  background-color: white;
+}
+
+.td {
+  display: flex;
+  width: 3%;
+  line-height: 2;
+}
+
+.td1 {
+  display: flex;
+  width: 22%;
+  color: #858585;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.td2 {
+  display: flex;
+  width: 75%;
+  color: #545354;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.td-p2 {
+  display: flex;
+  width: 63%;
+  color: #545354;
+  font-size: 14px;
+  line-height: 2;
+}
+.p-avatar {
+  display: flex;
+  width: 12%;
+}
+
+.p-avatar image {
+  opacity: 0.4;
+  height: 25px;
+  width: 30px;
+  text-align: center;
+}

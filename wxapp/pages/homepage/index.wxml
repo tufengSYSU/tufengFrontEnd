@@ -2,6 +2,8 @@
 
 <!-- import templates -->
 <import src="../../resources/templates/moments/moments.wxml" />
+<import src="../../resources/templates/messages/messages.wxml" />
+<import src="../../resources/templates/personalizations/personalization.wxml" />
 
 <scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
   <view class="background">
@@ -21,7 +23,8 @@
       </view>
     </view>
     <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-
+      <!-- 消息 -->
+      <template is="messages" data="{{messages, addressListIcon}}" wx:if="{{tabIndex === 0}}" />
       <!-- 动态 -->
       <template is="moments" data="{{moments, voteIcon, commentIcon, heartIcon}}" wx:if="{{tabIndex === 1}}" />
 
@@ -29,6 +32,14 @@
       <view class="activities" wx:if="{{tabIndex === 2}}">
         活动
       </view>
+
+      <!-- 相册 -->
+      <view class="activities" wx:if="{{tabIndex === 3}}">
+        相册
+      </view>
+
+      <!-- 个性化 -->
+      <template is="personalizations" data="{{personalizations}}" wx:if="{{tabIndex === 4}}" />
 
     </view>
   </view>

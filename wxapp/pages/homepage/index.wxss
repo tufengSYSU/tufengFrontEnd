@@ -1,6 +1,8 @@
 /* myprofile index.wxss */
 
 @import "../../resources/templates/moments/moments.wxss";
+@import "../../resources/templates/messages/messages.wxss";
+@import "../../resources/templates/personalizations/personalization.wxss";
 
 .container {
   height: 100vh;
