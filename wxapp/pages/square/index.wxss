@@ -1,4 +1,6 @@
 
+@import "../../resources/templates/moments/moments.wxss";
+
 .bar {
   background-color: white;
   position: fixed;
@@ -6,6 +8,16 @@
   width: 100%;
   height: 30px;
   padding: 10px;
+  font-weight: bold;
+  z-index: 99;
+}
+
+.bar text {
+  opacity: 0.5;
+}
+
+.bar .active {
+  opacity: 1;
 }
 
 .active {
@@ -13,11 +25,11 @@
 }
 
 .white-block {
-  height: 30px;
+  height: 35px;
 }
 
 .recommend {
-  padding: 10px;
+  padding: 36px 10px 10px 10px;
 }
 
 .recommend .avatar {
@@ -26,119 +38,12 @@
   height: 48px;
 }
 
-.moment {
-  background-color: white;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.moment .title .avatar {
-  display: inline-block;
-}
-
-.moment .title .avatar image {
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-}
-
-.moment .title .moment-info {
-  display: inline-block;
-  vertical-align: top;
-  padding: 5px;
-}
-
-.moment .title .moment-info .date {
-  font-size: 12px;
-  opacity: 0.5;
-}
-
-.moment .text {
-  line-height: 2em;
-  padding: 6px 0;
-}
-
-.moment .forward {
-  padding: 10px;
-  background-color: #F2F2F24C;
-}
-
-.moment .forward .text {
-  line-height: 2em;
-  padding: 0;
-}
-
-.vote-bar {
-  height: 46px;
-}
-
-.vote-bar .outline {
-  float: left;
-  font-size: 12px;
-  opacity: 0.4;
-  /* to center */
-  padding: 17px;
-  line-height: 12px;
-}
-
-.vote-bar .right-icons {
-  float: right;
-}
-
-.vote-bar .right-icons image {
-  height: 30px;
-  width: 30px;
-  padding: 8px;
-  text-align: right;
-}
-
-.hr.comments-divider {
-  border: 0;
-  border-bottom: 1px solid #F2F2F299;
-  background: white;
-}
-
-.comments {
-  font-size: 13px;
-  line-height: 1.6em;
-  padding-bottom: 10px;
-}
-
-.comments .liker-bar {
-  margin-top: 3px;
-}
-
-.comments .liker-bar .heart {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.comments .liker-bar .heart image {
-  height: 22px;
-  width: 22px;
-  padding-right: 5px;
-}
-
-.comments .liker-bar .likers, .comments .liker-bar .likers .liker {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.comments .liker-bar .likers{
-  opacity: 0.8;
-}
-
-.comments .comments-detail {
-  padding-left: 27px;
-  opacity: 0.8;
-}
-
-.organization-wall {
-  padding: 10px;
-}
-
 .organization-wall .outline {
   font-size: 16px;
+}
+
+.concerns {
+  padding: 10px;
 }
 
 .concerns image {
@@ -152,14 +57,23 @@
 }
 
 .participate-organization .outline {
+  padding: 10px;
   color: #35A4DFE5;
 }
 
+swiper {
+  height: 300px;
+}
+
 .organization-card {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 10px;
   box-shadow: 0 0 35px #E6E6E6;
   width: 220px;
-  height: 220px;
+  height: auto;
+  padding: 10px;
   background-color: white;
 }
 
@@ -200,7 +114,7 @@
   position: relative;
   height: 50px;
   float:left;
-  padding-left: 20px;
+  padding-left: 15px;
   padding-bottom: 10px;
 }
 
@@ -214,6 +128,7 @@
 }
 
 .nearby .outline {
+  padding: 10px;
   color: #FF9800E5;
 }
 
@@ -222,6 +137,10 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
+}
+
+.nearby .organization {
+  padding: 10px;
 }
 
 .nearby .organization view {
@@ -233,4 +152,9 @@
   background: #F2F2F2;
   height: 5rpx;
   width: 100%;
+}
+
+.grey-block {
+  background-color: #F2F2F2;
+  height: 7px;
 }
