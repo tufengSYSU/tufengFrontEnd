@@ -1,0 +1,15 @@
+
+.tabBar-container {
+  padding: 10px;
+  background-color: white;
+}
+
+.outline {
+  font-size: 18px;
+  color: #259B24;
+}
+
+.confirm-button, .cancel-button {
+  font-size: 15;
+  color: #259b24;
+}
