@@ -17,19 +17,40 @@ Page({
     voteIcon: "../../assets/myprofile_icon/vote.png",
     commentIcon: "../../assets/myprofile_icon/comment.png",
     heartIcon: "../../assets/myprofile_icon/heart.png",
-    arrowIcon: "../../assets/myprofile_icon/organization/arrow.png"
+    arrowIcon: "../../assets/myprofile_icon/organization/arrow.png",
   },
   onLoad: function() {
+    this.getScreenData();
     this.getHotSample();
     this.getIcon();
     this.getMoments();
     this.getConcerns();
     this.getMyOrganizaion();
     this.getNearbyOrganization();
+    const previousMargin = (this.data.windowSize.width - 220)/2 - 10;
+    const nextMargin = previousMargin;
+    this.setData({
+      previousMargin,
+      nextMargin
+    })
   },
   switchTab: function() {
     wx.switchTab({
       url: "/pages/myprofile/index"
+    })
+  },
+  getScreenData: function() {
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        const windowSize = {
+          width: res.windowWidth,
+          height: res.windowHeight
+        }
+        that.setData({
+          windowSize
+        })
+      }
     })
   },
   getHotSample: function() {
@@ -68,10 +89,9 @@ Page({
     ]
   },
   getMoments: function() {
-    let user = this.data.user;
-    user.moments = MOMENTS_SAMPLE;
+    let moments = MOMENTS_SAMPLE;
     this.setData({
-      user
+      moments
     })
   },
   getConcerns: function() {
@@ -93,6 +113,24 @@ Page({
     user.nearbyOrganization = NEARBY_ORGANIZAION_SAMPLE;
     this.setData({
       user
+    })
+  },
+  clicktab: function(e) {
+    let tabIndex = (e.currentTarget.dataset.index === this.data.tabIndex ? this.data.tabIndex : e.currentTarget.dataset.index);
+    this.setData({
+      tabIndex
+    })
+  },
+  changePage: function(e) {
+    let text = e.currentTarget.dataset.text;
+    console.log(e)
+    wx.navigateTo({
+      url: "settings/index"
+    })
+  },
+  rollToHomepageOfOthers: function() {
+    wx.navigateTo({
+      url: "../homepage_of_others/index"
     })
   }
 })
