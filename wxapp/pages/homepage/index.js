@@ -20,7 +20,7 @@ Page({
   data:{
     user: null,
     tabs: ["消息", "动态", "活动", "相册", "个性化" ],
-    tabIndex: 0,
+    tabIndex: 3,
     actTabIndex: 0,
     reachTop: false,
     actTabs: [

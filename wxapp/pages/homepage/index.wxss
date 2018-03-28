@@ -168,7 +168,21 @@
 .album {
   height: 200%;
   padding: 10px;
+  margin-top: 10px;
   background-color: white;
+}
+
+.photo-picker {
+  text-align: center;
+}
+
+.photo-picker .photo-icon {
+  height: 32px;
+  width: 32px;
+}
+
+.weui-cells, .weui-cell {
+  border: none;
 }
 
 /*** album end */

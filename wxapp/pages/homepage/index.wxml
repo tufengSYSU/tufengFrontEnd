@@ -63,8 +63,8 @@
 
       <!-- 相册 -->
       <view class="album" wx:if="{{tabIndex === 3}}">
-        <view class="" bindtap="chooseImage">
-          <image class="weui-uploader__img" src="{{photoIcon}}" mode="aspectFill" />
+        <view class="photo-picker" bindtap="chooseImage">
+          <image class="photo-icon" src="{{photoIcon}}" mode="aspectFill" />
           选择图片
         </view>
         <view class="weui-cells">
