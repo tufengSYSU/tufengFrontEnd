@@ -136,6 +136,11 @@ Page({
     this.setData({
       visited: this.data.visited
     })
+  },
+  navigateToActivityDetail: function() {
+    wx.navigateTo({
+      url: 'activity_detail/index?data='+JSON.stringify(this.data) // will be some other data
+    })
   }
 })
 

@@ -47,7 +47,7 @@
           </view>
           <view class="" wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
             <view class="article-container">
-              <image class="article-coverimage" src="{{content[i].article[0].imgUrl}}" />
+              <image class="article-coverimage" src="{{content[i].article[0].imgUrl}}" bindtap="navigateToActivityDetail"/>
               <view class="mark-container">
                 <image src="../../assets/icon/mark/aixin.png"/>
                 <image src="../../assets/icon/mark/ball.png"/>
