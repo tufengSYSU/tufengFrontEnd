@@ -6,7 +6,7 @@
 const tools = require('./tools.js')
 const lunar = require('./lunar.js')
 const festival = require('./festival.js')
-const WEEKDAY_IN_CH = ['日','一','二','三','四','五','六']
+const WEEKDAY_IN_CH = ['周日','周一','周二','周三','周四','周五','周六']
 
 Page({
   data: {

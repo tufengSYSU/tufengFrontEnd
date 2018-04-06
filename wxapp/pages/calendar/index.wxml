@@ -6,25 +6,19 @@
         <view class="month">{{title.month}}</view>
         <view class="year">{{title.year}}</view>
       </view>
-      <view class="weekday">
-        <view wx:for="{{weekdayInCH}}" wx:key="{{index}}">{{item}}</view>
-      </view>
     </view>
-    {{getone()}}
     <view class="calender-body">
       <!-- use the default values mostly -->
       <swiper current="{{activeIndex}}" circular="true" bindchange="swiperChange">
         <block wx:for="{{calenders}}" wx:for-item="calender" wx:key="unique">
+          <!-- one month -->
           <swiper-item>
             <view class="week" wx:for="{{calender}}" wx:for-item="dailyDataInOneWeek" wx:key="unique">
-              <view class="day" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay" bindtap="slideOut" data-day="{{oneDay}}">
-                <view wx:if="{{oneDay !== null}}">
-                  <view class="day-head {{oneDay.hasmore ? 'hasmore':''}} {{oneDay.istoday ? 'istoday':''}}">
-                    <view class="uppon-line"></view>
-                    <view class="more-point"></view>
-                    <view class="today-bg"></view>
-                    <view class="date">{{oneDay.dateObj.date}}</view>
-                  </view>
+              <view class="day" wx:if="{{oneDay !== null}}" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay" bindtap="slideOut" data-day="{{oneDay}}">
+                <view class="day-head {{oneDay.istoday ? 'istoday':''}}">
+                  <view class="date">{{oneDay.dateObj.date}}</view>
+                </view>
+                <view class="day-body">
                   <view class="events">
                     <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}">
                       {{event.name}}
