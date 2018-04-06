@@ -1,0 +1,67 @@
+<!-- 消息 -->
+<template name="messages">
+  <view class="Message">
+    <view class="message" wx:for="{{messages}}" wx:for-item="message" wx:key="{{*index}}">
+      <!-- 用户 -->
+      <view class="user" wx:if="{{message.author}}">
+        <view class="avatar">
+          <image src="{{message.author.avatar}}"></image>
+        </view>
+        <view class="message-info">
+          <view class="author-name">
+            {{message.author.name}}
+          </view>
+          <view class="attention" wx:if="{{message.unread}}">
+          </view>
+          <view class="remark">
+            {{message.remark}}
+          </view>
+        
+        </view>
+        <view class="time">
+          {{message.time}}
+        </view>
+      </view>
+
+      <!-- 社团 -->
+      <view class="organization" wx:if="{{message.organization}}">
+        <view class="avatar">
+          <image src="{{message.organization.avatar}}"></image>
+        </view>
+        <view class="message-info">
+          <view class="author-name">
+            {{message.organization.name}}
+          </view>
+          <view class="attention" wx:if="{{message.unread}}">
+          </view>
+          <view class="remark">
+            {{message.remark}}
+          </view>
+        </view>
+        <view class="time">
+          {{message.time}}
+        </view>
+      </view>
+
+      <!-- 通讯录 -->
+      <view class="addressList" wx:if="{{message.addressList}}">
+        <view class="avatar">
+          <image src="{{addressListIcon}}"></image>
+        </view>
+        <view class="message-info">
+          <view class="author-name">
+            {{message.addressList}}
+          </view>
+          <view class="attention" wx:if="{{message.unread}}">
+          </view>
+          <view class="remark">
+            {{message.remark}}
+          </view>
+
+        </view>
+    
+      </view>
+
+    </view>
+  </view>
+</template>

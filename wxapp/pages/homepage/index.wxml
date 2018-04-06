@@ -2,27 +2,96 @@
 
 <!-- import templates -->
 <import src="../../resources/templates/moments/moments.wxml" />
+<import src="../../resources/templates/messages/messages.wxml" />
+<import src="../../resources/templates/personalizations/personalization.wxml" />
 
 <scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
   <view class="background">
     <image src="{{user.background_image}}" mode="widthFix"></image>
   </view>
   <view class="background-window">
-  </view>
-  <view class="tabs">
-    <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
-      {{tab}}
+    <view class="profile">
+      <view class="avatar">
+        <image src="{{user.avatar}}"></image>
+      </view>
     </view>
   </view>
-  <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-
-    <!-- 动态 -->
-    <template is="moments" data="{{moments}}" wx:if="{{tabIndex === 0}}" />
-
-    <!-- 社团 -->
-    <view class="organizations" wx:if="{{tabIndex === 1}}">
-      Nothing yet.
+  <view class="main-body">
+    <view class="tabs" style="background-image: url('../../assets/homepage/tabs_background.png')">
+      <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
+        {{tab}}
+      </view>
     </view>
-    
+    <view class="tabpage {{reachTop ? 'scroll' : ''}}">
+      <!-- 消息 -->
+      <template is="messages" data="{{messages, addressListIcon}}" wx:if="{{tabIndex === 0}}" />
+      <!-- 动态 -->
+      <template is="moments" data="{{moments, voteIcon, commentIcon, heartIcon}}" wx:if="{{tabIndex === 1}}" />
+
+      <!-- 活动 -->
+      <view class="activities" wx:if="{{tabIndex === 2}}">
+
+        <view class="activites-tabbar">
+          <view class="my-activites">
+            <view>我的活动</view>
+            <view>我关注的活动 ></view>
+          </view>
+          <view class="hr"></view>
+            <view style="background-image: url('../../assets/homepage/tabs_background.png')"></view>
+          <view class="tabs-container">
+            <view class="act-tab {{actTabIndex === index ? 'active' : ''}}" wx:for="{{actTabs}}" wx:for-item="actTab" wx:key="actTab.name" bindtap="clickActTab" data-index="{{index}}">
+              <view class="icon-area">
+                <view class="act-tab-icon" style="background-image: url('{{actTab.icon}}')"></view>
+              </view>
+              <view>{{actTab.name}}</view>
+            </view>
+          </view>
+        </view>
+
+        <block>
+          <view class="activity">
+            <view class="activity-image">
+            </view>
+            <view class="activity-detail">
+              <view class="title">
+              </view>
+            </view>
+          </view>
+        </block>
+
+      </view>
+
+      <!-- 相册 -->
+      <view class="album" wx:if="{{tabIndex === 3}}">
+        <view class="" bindtap="chooseImage">
+          <image class="weui-uploader__img" src="{{photoIcon}}" mode="aspectFill" />
+          选择图片
+        </view>
+        <view class="weui-cells">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                  <view class="weui-uploader__title">一周内</view>
+                </view>
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files">
+                    <block wx:for="{{images}}" wx:key="*this" wx:for-item="image">
+                      <view class="weui-uploader__file" bindtap="previewImage" id="{{image}}" style="{{imageStyles[index]}}">
+                        <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        </view>
+
+      <!-- 个性化 -->
+      <template is="personalizations" data="{{personalizations}}" wx:if="{{tabIndex === 4}}" />
+
+    </view>
   </view>
 </scroll-view>

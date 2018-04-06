@@ -3,21 +3,42 @@
  * @author isanbel(theisanbel@gmail.com)
  */
 
+const ASSETS = "../../assets"
+
+// 动态图标
+const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
+const COMMENT_ICON = ASSETS + "/homepage_of_others_icon/comment.png"
+const HEART_ICON = ASSETS + "/homepage_of_others_icon/heart.png"
+const ADDRESSLIST_ICON = ASSETS + "/homepage_of_others_icon/person.png"
+
+// 活动图标
+const SIGNED_ICON = ASSETS + "/homepage/signed.png"
+const PROCESSING_ICON = ASSETS + "/homepage/processing.png"
+const FINISHED_ICON = ASSETS + "/homepage/finished.png"
+
 Page({
   data:{
     user: null,
-    tabs: ["消息", "动态", "活动", "相册", "个性化"],
+    tabs: ["消息", "动态", "活动", "相册", "个性化" ],
     tabIndex: 0,
+    actTabIndex: 0,
     reachTop: false,
-    item: {
-      index: 0,
-      msg: 'this is a template',
-      time: '2016-09-15'
-    }
+    actTabs: [
+      { icon: SIGNED_ICON, name: "已报名" },
+      { icon: PROCESSING_ICON, name: "进行中" },
+      { icon: FINISHED_ICON, name: "已完成" },
+    ],
+    photoIcon: ASSETS + "/homepage/photo.png",
+    images: [
+      "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
+    ],
   },
   onLoad: function() {
     this.getMyProfile()
     this.getMoments()
+    this.getMessages()
+    this.getPersonalizations()
+    this.getIcons()
     this.getScreenData()
   },
   getMyProfile: function() {
@@ -38,10 +59,45 @@ Page({
       moments
     })
   },
+
+  getMessages: function() {
+    var messages = MESSAGES_SAMPLE
+    messages = messages.map(message => {
+      return message
+    })
+    this.setData({
+      messages
+    })
+  },
+
+  getPersonalizations: function () {
+    var personalizations = PERSONALIZATIONS_SAMPLE
+    personalizations = personalizations.map(personalization => {
+      return personalization
+    })
+    this.setData({
+      personalizations
+    })
+  },
+
+  getIcons: function() {
+    this.setData({
+      voteIcon: VOTE_ICON,
+      commentIcon: COMMENT_ICON,
+      heartIcon: HEART_ICON,
+      addressListIcon: ADDRESSLIST_ICON
+    })
+  },
   clickTab: function(e) {
     const index = e.currentTarget.dataset.index
     this.setData({
       tabIndex: index
+    })
+  },
+  clickActTab: function(e) {
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      actTabIndex: index
     })
   },
   tabpageScroll: function(e) {
@@ -78,6 +134,30 @@ Page({
       }
     })
   },
+  // 相册相关
+  chooseImage: function() { // 添加商品图片
+    var that = this;
+    wx.chooseImage({
+      // count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var images = that.data.images;
+        images = images.concat(res.tempFilePaths);
+        that.setData({
+          images
+        })
+      }
+    })
+  },
+  previewImage: function(e) {
+    var that = this;
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: that.data.images // 需要预览的图片http链接列表
+    })
+  },
 })
 
 
@@ -96,6 +176,59 @@ const USER_SAMPLE = {
     hobbies: ["摄影", "演唱", "足球"],
   },
   organizations: ["中珠广播台", "足协"]
+}
+
+const USER_SAMPLE_OTHER = {
+  id: "1234",
+  background_image: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
+  avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+  name: "张四",
+  gender: "male",
+  description: "半透明的影子，是流动的风",
+  info: {
+    personal_info: "广东 广州 双子座",
+    school: "中山大学 2017级 传播与设计学院",
+    contact: "QQ/WeChat/eMail",
+    hobbies: ["摄影", "演唱", "足球"],
+  },
+  organizations: ["中珠广播台", "足协"]
+}
+
+const USER_SAMPLE_PERSONALIZATION = {
+  id: "12345",
+  background_image: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
+  avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+  name: "张三",
+  gender: "男",
+  description: "半透明的影子，是流动的风",
+  info: {
+    personal_info: "广东 广州 双子座",
+    school: "中山大学 2015级 传播与设计学院",
+    contact: "QQ/WeChat/eMail",
+    hobbies: ["足球", "吉他", "DotA"],
+  },
+  organizations: ["中珠广播台", "足协"]
+}
+
+const ORGANIZATION_SAMPLE = {
+  id: "123",
+  background: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
+  avatar: "https://i.loli.net/2018/03/14/5aa7f867768fa.jpg",
+  name: "中珠广播台",
+  information: [
+    {
+      id: "location",
+      text: "中山大学 珠海校区"
+    },
+    {
+      id: "apartment",
+      text: "有声部 咨讯部 策划部"
+    },
+    {
+      id: "honor",
+      text: "中山大学十佳社团"
+    }
+  ]
 }
 
 const MOMENTS_SAMPLE = [
@@ -215,4 +348,48 @@ const MOMENTS_SAMPLE = [
       }
     ]
   }
+]
+
+const MESSAGES_SAMPLE = [
+  {
+    id: "1",
+    addressList: "通讯录",
+    remark: "[刘雨欣]关注了你",
+    unread: true
+  },
+  {
+    id: "2",
+    author: USER_SAMPLE,
+    remark: "传设院NMSL",
+    time: "17:55",
+    unread: true
+  },
+  {
+    id: "3",
+    author: USER_SAMPLE_OTHER,
+    remark: "传设院NMSL",
+    time: "16:17",
+    unread: false
+  },
+  {
+    id: "4",
+    organization: ORGANIZATION_SAMPLE,
+    remark: "你发布的动态[追寻ENCORE]获得16个赞/2评论",
+    time: "13:08",
+    unread: false
+  }
+]
+
+const PERSONALIZATIONS_SAMPLE = [
+  {
+    id: "1",
+    person: USER_SAMPLE_PERSONALIZATION,
+    birthday: "1997-6-4",
+    QQ: "12345678",
+    WeChat: "Ubiquitous_Max",
+    phoneNumber: "18820188888",
+    major: "网络与新媒体",
+    hometown: "江苏-苏州"
+  }
+
 ]

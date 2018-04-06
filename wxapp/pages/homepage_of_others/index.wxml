@@ -62,7 +62,7 @@
       <view class="tabpage {{reachTop ? 'scroll' : ''}}">
 
         <!-- 动态 -->
-        <template is="moments" data="{{moments}}" wx:if="{{tabIndex === 0}}" />
+        <template is="moments" data="{{moments, voteIcon, commentIcon, heartIcon}}" wx:if="{{tabIndex === 0}}" />
 
         <!-- 社团 -->
         <view class="organizations" wx:if="{{tabIndex === 1}}">
