@@ -95,7 +95,7 @@ Page({
       date.setDate(date.getDate() + 1)
       // add color to every event
       events = events.map(event => {
-        event.color = tools.getRandomColor()
+        event.color = tools.getPrettyRandomColor()
         return event
       })
       return {
@@ -104,6 +104,7 @@ Page({
           year: date.getFullYear(),
           month: date.getMonth() + 1,
           date: date.getDate(),
+          weekday: WEEKDAY_IN_CH[new Date(date).getDay()]
         },
         events,
         istoday: tools.isToday(date),

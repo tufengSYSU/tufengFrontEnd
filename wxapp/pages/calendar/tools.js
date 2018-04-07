@@ -119,10 +119,39 @@ const getRandomColor = () => {
   return color;
 }
 
+/**
+ * getPrettyRandomColor
+ * recently only get color with high S
+ *
+ * @return {String} color
+ */
+const getPrettyRandomColor = () => {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  do {
+    color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+  } while (!colorHasHighS(color))
+  return color;
+}
+
+const colorHasHighS = (colorInHex) => {
+  let R = parseInt(colorInHex.substr(1, 2), 16);
+  let G = parseInt(colorInHex.substr(3, 2), 16);
+  let B = parseInt(colorInHex.substr(5, 2), 16);
+  let max = Math.max(R, G, B);
+  let min = Math.min(R, G, B);
+  var S = ((max - min) / max);
+  return (S > 0.7) ? true : false;
+}
+
 module.exports = {
   getCurrentYearAndMonthTitle: getCurrentYearAndMonthTitle,
   getWeeksOfCurrentMonth: getWeeksOfCurrentMonth,
   getDailyDataInWeeks: getDailyDataInWeeks,
   isToday: isToday,
   getRandomColor: getRandomColor,
+  getPrettyRandomColor: getPrettyRandomColor,
 }

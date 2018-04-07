@@ -22,7 +22,7 @@ swiper-item {
 /** calender header  */
 
 .calender-header {
-  height: 32px;
+  height: 35px;
   padding: 0 20px;
   background-color: white;
 }
@@ -62,11 +62,11 @@ swiper-item {
 /** calender body */
 
 .calender-body {
-  height: calc(100% - 32px);
+  height: calc(100% - 35px);
 }
 
 .week {
-  padding: 0 12px;
+  padding: 0 10px;
   overflow: hidden;
   background-color: white;
 }
@@ -75,23 +75,29 @@ swiper-item {
 
 .day {
   display: table;
+  position: relative;
   width: 100%;
-  border: 1px solid red;
+  min-height: 60px;
+  border-top: 1px solid #efefef;
+}
+
+.day::after {
+  padding: 0;
+  margin: 0;
+  content: "";
+  width: 40px;
+  height: 1px;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: -1px;
 }
 
 /**** is today */
 
-.day-head.istoday {
-  position: relative;
-}
-
-.day-head.istoday .date {
-  position: relative;
+.day-head.istoday .date, .day-head.istoday .weekday {
+  color: #f8af3b;
   z-index: 10;
-}
-
-.day-head.istoday .date {
-  color: white;
 }
 
 /**** is today end */
@@ -100,15 +106,25 @@ swiper-item {
 
 .day-head {
   display: table-cell;
-  width: 23%;
-  background-color: orange;
+  border-right: 1px solid #efefef;
+  width: 25%;
 }
 
 .day-head .date {
-  width: 14px;
+  display: inline-block;
+  width: 35px;
+  padding-right: 5px;
+  text-align: right;
+  font-size: 28px;
+  line-height: 28px;
+  color: #4D4D4DCC;
+}
+
+.day-head .weekday {
+  display: inline-block;
   text-align: center;
-  font-size: 12px;
-  color: #969696;
+  font-size: 16px;
+  color: #4D4D4DD6;
 }
 
 /**** day head end */
@@ -117,7 +133,7 @@ swiper-item {
 
 .day-body {
   display: table-cell;
-  width: 77%;
+  width: 75%;
   vertical-align: top;
   text-align: left;
 }

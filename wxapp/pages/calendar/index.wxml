@@ -17,6 +17,7 @@
               <view class="day" wx:if="{{oneDay !== null}}" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay" bindtap="slideOut" data-day="{{oneDay}}">
                 <view class="day-head {{oneDay.istoday ? 'istoday':''}}">
                   <view class="date">{{oneDay.dateObj.date}}</view>
+                  <view class="weekday">{{oneDay.dateObj.weekday}}</view>
                 </view>
                 <view class="day-body">
                   <view class="events">
