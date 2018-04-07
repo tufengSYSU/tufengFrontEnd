@@ -93,6 +93,11 @@ Page({
     const eventsInOneMonth = dailyEventsIn201802
     const data = eventsInOneMonth.map(events => {
       date.setDate(date.getDate() + 1)
+      // add color to every event
+      events = events.map(event => {
+        event.color = tools.getRandomColor()
+        return event
+      })
       return {
         date: new Date(date),
         dateObj: {
@@ -102,7 +107,6 @@ Page({
         },
         events,
         istoday: tools.isToday(date),
-        hasmore: events.length > 4 ? true:false
       }
     })
     return tools.getDailyDataInWeeks(oneDay, data)
@@ -116,7 +120,6 @@ Page({
     })
   },
   slideOut: function(e) {
-
     // 确定滑出页的数据
     const day = e.currentTarget.dataset.day
     this.setSlideOutData(day)
@@ -148,13 +151,9 @@ Page({
     })
   },
   setSlideOutData: function(dailyData) {
-    const colors = dailyData.events.map(event => {
-      return tools.getRandomColor()
-    })
     this.setData({
       slideOutData: {
         dailyData,
-        colors,
         lDate: lunar.getLunarDateStr(new Date(dailyData.date)),
         festival: festival.getFesitval(new Date(dailyData.date)),
       }

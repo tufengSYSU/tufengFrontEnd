@@ -130,7 +130,6 @@ swiper-item {
   display: inline-block;
   font-size: 13px;
   color: white;
-  background-color: green;
   padding: 1px 7px;
   margin: 5px 0 5px 5px;
   border-radius: 100px;
