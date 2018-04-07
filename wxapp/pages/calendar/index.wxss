@@ -57,6 +57,17 @@ swiper-item {
   color: #929292;
 }
 
+.go-to-today-btn {
+  float: right;
+  font-size: 0;
+}
+
+.go-to-today-icon {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+}
+
 /** calender header end */
 
 /** calender body */

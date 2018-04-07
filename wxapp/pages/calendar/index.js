@@ -6,7 +6,7 @@
 const ASSETS = "../../assets"
 
 // 动态图标
-const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
+const LOCATION_ARROW = ASSETS + "/icon/location-arrow.png"
 
 const tools = require('./tools.js')
 const lunar = require('./lunar.js')
@@ -16,7 +16,8 @@ const WEEKDAY_IN_CH = ['周日','周一','周二','周三','周四','周五','�
 Page({
   data: {
     weekdayInCH: WEEKDAY_IN_CH,
-    goToTodayIcon: VOTE_ICON,
+    goToTodayIcon: LOCATION_ARROW,
+    toView: "lastDay",
     todayInThatMonth: null,
     // activeIndex actually only works with the frist render
     activeIndex: 1,
@@ -169,6 +170,16 @@ Page({
         lDate: lunar.getLunarDateStr(new Date(dailyData.date)),
         festival: festival.getFesitval(new Date(dailyData.date)),
       }
+    })
+  },
+  reload: function() {
+    this.onLoad()
+    this.setData({
+      activeIndex: 1,
+      toView: ""
+    })
+    this.setData({
+      toView: "lastDay"
     })
   }
 })
