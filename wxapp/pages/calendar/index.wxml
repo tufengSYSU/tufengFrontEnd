@@ -14,8 +14,8 @@
           <!-- one month -->
           <swiper-item>
             <view class="week" wx:for="{{calender}}" wx:for-item="dailyDataInOneWeek" wx:key="unique">
-              <view class="day" wx:if="{{oneDay !== null}}" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay" bindtap="slideOut" data-day="{{oneDay}}">
-                <view class="day-head {{oneDay.istoday ? 'istoday':''}}">
+              <view class="day" wx:if="{{oneDay !== null}}" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay">
+                <view class="day-head {{oneDay.istoday ? 'istoday':''}}" bindtap="slideOut" data-day="{{oneDay}}">
                   <view class="date">{{oneDay.dateObj.date}}</view>
                   <view class="weekday">{{oneDay.dateObj.weekday}}</view>
                   <view class="festival">{{oneDay.dateObj.festival}}</view>
