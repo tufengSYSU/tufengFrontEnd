@@ -20,7 +20,7 @@ Page({
     toView: "lastDay",
     todayInThatMonth: null,
     // activeIndex actually only works with the frist render
-    activeIndexTheLast: null,
+    activeIndexTheLast: 0,
     activeIndex: 1,
     // Array of weeksWithEvents(in one month)
     calenders: []
@@ -31,6 +31,8 @@ Page({
     const curDayInNextMonth = this.getTheSameDayInThatMonthWithOffset(curDay, 1)
     this.setData({
       todayInThatMonth: curDay,
+      activeIndexTheLast: 0,
+      activeIndex: 1,
       calenders: [
         this.getData(curDayInPrevMonth),
         this.getData(curDay),
@@ -180,11 +182,7 @@ Page({
   },
   reload: function() {
     this.onLoad()
-    var activeIndexTheLast = this.data.activeIndex
-    var activeIndex = 1
     this.setData({
-      activeIndexTheLast,
-      activeIndex,
       toView: ""
     })
     this.setData({
