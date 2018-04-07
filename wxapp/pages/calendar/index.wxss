@@ -157,7 +157,7 @@ swiper-item {
   padding: 0 7px 1px 7px;
   margin: 5px 0 5px 5px;
   border-radius: 100px;
-  box-shadow: 0px 1px 5px 1px #ccc;
+  box-shadow: 0px 1px 3px 0px #ccc;
 }
 
 /**** day body end */
