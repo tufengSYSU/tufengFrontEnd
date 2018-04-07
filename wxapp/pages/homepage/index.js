@@ -19,27 +19,22 @@ const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 Page({
   data:{
     user: null,
-    tabs: ["消息", "动态", "活动", "相册", "个性化" ],
+    tabs: ["我的关注", "我的报名"],
     tabIndex: 0,
-    actTabIndex: 0,
     reachTop: false,
-    actTabs: [
-      { icon: SIGNED_ICON, name: "已报名" },
-      { icon: PROCESSING_ICON, name: "进行中" },
-      { icon: FINISHED_ICON, name: "已完成" },
-    ],
     photoIcon: ASSETS + "/homepage/photo.png",
     images: [
       "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
     ],
+    attentionTabIndex: 0
   },
   onLoad: function() {
     this.getMyProfile()
-    this.getMoments()
-    this.getMessages()
-    this.getPersonalizations()
     this.getIcons()
     this.getScreenData()
+    this.getOrganizations()
+    this.getActivities()
+    this.getRegistrations()
   },
   getMyProfile: function() {
     // TODO: get data via api
@@ -48,44 +43,28 @@ Page({
       user
     })
   },
-  getMoments: function() {
-    var moments = MOMENTS_SAMPLE
-    moments = moments.map(moment => {
-      // TODO: parseDate
-      // moment.date = tools.parseDate(moment.date)
-      return moment
-    })
-    this.setData({
-      moments
-    })
-  },
-
-  getMessages: function() {
-    var messages = MESSAGES_SAMPLE
-    messages = messages.map(message => {
-      return message
-    })
-    this.setData({
-      messages
-    })
-  },
-
-  getPersonalizations: function () {
-    var personalizations = PERSONALIZATIONS_SAMPLE
-    personalizations = personalizations.map(personalization => {
-      return personalization
-    })
-    this.setData({
-      personalizations
-    })
-  },
-
   getIcons: function() {
     this.setData({
       voteIcon: VOTE_ICON,
       commentIcon: COMMENT_ICON,
       heartIcon: HEART_ICON,
-      addressListIcon: ADDRESSLIST_ICON
+      addressListIcon: ADDRESSLIST_ICON,
+      signedIcon: SIGNED_ICON
+    })
+  },
+  getOrganizations: function() {
+    this.setData({
+      organizations: ORGANIZATION_SAMPLE
+    })
+  },
+  getActivities: function() {
+    this.setData({
+      activities: ACTIVITY_SAMPLE
+    })
+  },
+  getRegistrations: function() {
+    this.setData({
+      registrations: REGISTRATION_SAMPLE
     })
   },
   clickTab: function(e) {
@@ -94,22 +73,36 @@ Page({
       tabIndex: index
     })
   },
-  clickActTab: function(e) {
-    const index = e.currentTarget.dataset.index
+  clickActivity: function(e) {
+    let activityid = 1;
+    let url = `../activities/activity_detail/index?activityid=${activityid}`;
+    wx.navigateTo({
+      url: url
+    })
+  },
+  clickAttentionTab: function(e) {
     this.setData({
-      actTabIndex: index
+      attentionTabIndex: (this.data.attentionTabIndex === 0 ? 1 : 0)
+    })
+  },
+  clickOrganizationTab: function(e) {
+    let organizationid = 1;
+    let url = "../homepage_of_others/organization/index?organizationid=${organizationid}"
+    wx.navigateTo({
+      url: url
     })
   },
   tabpageScroll: function(e) {
     const windowSize = this.data.windowSize
     const reachTop = this.data.reachTop
     // it's hard to equal
-    if (reachTop === false && e.detail.scrollHeight - e.detail.scrollTop === windowSize.height) {
+    console.log(e.detail.scrollTop)
+    if (reachTop === false && e.detail.scrollTop === 114) {
       this.setData({
         reachTop: true
       })
     }
-    if (reachTop === true && e.detail.scrollHeight - e.detail.scrollTop >= windowSize.height + 60) {
+    else if (reachTop === true && e.detail.scrollHeight - e.detail.scrollTop >= windowSize.height + 60) {
       this.setData({
         reachTop: false
       })
@@ -133,31 +126,7 @@ Page({
         })
       }
     })
-  },
-  // 相册相关
-  chooseImage: function() { // 添加商品图片
-    var that = this;
-    wx.chooseImage({
-      // count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var images = that.data.images;
-        images = images.concat(res.tempFilePaths);
-        that.setData({
-          images
-        })
-      }
-    })
-  },
-  previewImage: function(e) {
-    var that = this;
-    wx.previewImage({
-      current: e.currentTarget.id, // 当前显示图片的http链接
-      urls: that.data.images // 需要预览的图片http链接列表
-    })
-  },
+  }
 })
 
 
@@ -178,218 +147,119 @@ const USER_SAMPLE = {
   organizations: ["中珠广播台", "足协"]
 }
 
-const USER_SAMPLE_OTHER = {
-  id: "1234",
-  background_image: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
-  avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
-  name: "张四",
-  gender: "male",
-  description: "半透明的影子，是流动的风",
-  info: {
-    personal_info: "广东 广州 双子座",
-    school: "中山大学 2017级 传播与设计学院",
-    contact: "QQ/WeChat/eMail",
-    hobbies: ["摄影", "演唱", "足球"],
-  },
-  organizations: ["中珠广播台", "足协"]
-}
-
-const USER_SAMPLE_PERSONALIZATION = {
-  id: "12345",
-  background_image: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
-  avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
-  name: "张三",
-  gender: "男",
-  description: "半透明的影子，是流动的风",
-  info: {
-    personal_info: "广东 广州 双子座",
-    school: "中山大学 2015级 传播与设计学院",
-    contact: "QQ/WeChat/eMail",
-    hobbies: ["足球", "吉他", "DotA"],
-  },
-  organizations: ["中珠广播台", "足协"]
-}
-
-const ORGANIZATION_SAMPLE = {
-  id: "123",
-  background: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
-  avatar: "https://i.loli.net/2018/03/14/5aa7f867768fa.jpg",
-  name: "中珠广播台",
-  information: [
-    {
-      id: "location",
-      text: "中山大学 珠海校区"
-    },
-    {
-      id: "apartment",
-      text: "有声部 咨讯部 策划部"
-    },
-    {
-      id: "honor",
-      text: "中山大学十佳社团"
-    }
-  ]
-}
-
-const MOMENTS_SAMPLE = [
+const ORGANIZATION_SAMPLE = [
   {
-    id: "1",
-    author: USER_SAMPLE,
-    date: new Date(2018, 1, 2),
-    content: "乘着旧日的叮叮电车 寻觅温暖旧情怀 Encore维纳斯歌友会 逆时而上 再现那些声音的传奇",
-    images: ["https://i.loli.net/2018/02/28/5a960c61ee6b5.png"],
-    forward: null,
-    likers: [
+    id: "123",
+    background: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
+    avatar: "https://i.loli.net/2018/03/14/5aa7f867768fa.jpg",
+    name: "中珠广播台",
+    information: [
       {
-        id: "",
-        name: "张三"
+        id: "location",
+        text: "中山大学 珠海校区"
       },
       {
-        id: "",
-        name: "李四"
+        id: "apartment",
+        text: "有声部 咨讯部 策划部"
       },
       {
-        id: "",
-        name: "雪MM"
-      },
-    ],
-    comments: [
-      {
-        author: {
-          id: "",
-          name: "卢本伟"
-        },
-        reply_to: null,
-        content: "救我啊马飞"
-      },
-      {
-        author: {
-          id: "",
-          name: "蛇哥"
-        },
-        reply_to: null,
-        content: "兄弟，借我一个亿"
-      },
-      {
-        author: {
-          id: "",
-          name: "李三"
-        },
-        reply_to: {
-          id: "",
-          name: "卢本伟"
-        },
-        content: "牛逼"
+        id: "honor",
+        text: "中山大学十佳社团"
       }
     ]
   },
   {
-    id: "2",
-    author: USER_SAMPLE,
-    date: new Date(2018, 1, 2),
-    content: "转发了",
-    forward: {
-      author: {
-        id: "",
-        name: "中珠广播台"
-      },
-      content: "是兄弟就来砍我",
-      images: ["https://i.loli.net/2018/02/28/5a960c61ee6b5.png"],
-    },
-    likers: [
+    id: "123",
+    background: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
+    avatar: "https://i.loli.net/2018/03/14/5aa7f867768fa.jpg",
+    name: "中珠广播台",
+    information: [
       {
-        id: "",
-        name: "张三"
+        id: "location",
+        text: "中山大学 珠海校区"
       },
       {
-        id: "",
-        name: "李四"
+        id: "apartment",
+        text: "有声部 咨讯部 策划部"
       },
       {
-        id: "",
-        name: "雪MM"
-      },
-    ],
-    comments: [
+        id: "honor",
+        text: "中山大学十佳社团"
+      }
+    ]
+  },
+  {
+    id: "123",
+    background: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
+    avatar: "https://i.loli.net/2018/03/14/5aa7f867768fa.jpg",
+    name: "中珠广播台",
+    information: [
       {
-        author: {
-          id: "",
-          name: "isanbel"
-        },
-        reply_to: null,
-        content: "我也不知道该说什么，就和前面的一样吧"
-      },
-      {
-        author: {
-          id: "",
-          name: "卢本伟"
-        },
-        reply_to: null,
-        content: "救我啊马飞"
+        id: "location",
+        text: "中山大学 珠海校区"
       },
       {
-        author: {
-          id: "",
-          name: "蛇哥"
-        },
-        reply_to: null,
-        content: "兄弟，借我一个亿"
+        id: "apartment",
+        text: "有声部 咨讯部 策划部"
       },
       {
-        author: {
-          id: "",
-          name: "李三"
-        },
-        reply_to: {
-          id: "",
-          name: "卢本伟"
-        },
-        content: "牛逼"
+        id: "honor",
+        text: "中山大学十佳社团"
       }
     ]
   }
 ]
 
-const MESSAGES_SAMPLE = [
+const ACTIVITY_SAMPLE = [
   {
-    id: "1",
-    addressList: "通讯录",
-    remark: "[刘雨欣]关注了你",
-    unread: true
+    id: "",
+    name: "第三十一届维纳斯歌手大赛",
+    image: "https://s1.ax1x.com/2018/03/19/9og0fK.jpg",
+    progress: true
   },
   {
-    id: "2",
-    author: USER_SAMPLE,
-    remark: "传设院NMSL",
-    time: "17:55",
-    unread: true
+    id: "",
+    name: "2016维纳斯歌友会",
+    image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+    progress: false
   },
   {
-    id: "3",
-    author: USER_SAMPLE_OTHER,
-    remark: "传设院NMSL",
-    time: "16:17",
-    unread: false
+    id: "",
+    name: "张剑见面会",
+    image: "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
+    progress: false
   },
   {
-    id: "4",
-    organization: ORGANIZATION_SAMPLE,
-    remark: "你发布的动态[追寻ENCORE]获得16个赞/2评论",
-    time: "13:08",
-    unread: false
+    id: "",
+    name: "唱飞自我 最帅张园园",
+    image: "https://i.loli.net/2018/03/18/5aae364416df4.jpg",
+    progress: true
+  },
+  {
+    id: "",
+    name: "图蜂最牛逼 楼上说得对",
+    image: "https://i.loli.net/2018/03/18/5aae364514aef.jpg ",
+    progress: true
   }
 ]
 
-const PERSONALIZATIONS_SAMPLE = [
+const REGISTRATION_SAMPLE = [
   {
-    id: "1",
-    person: USER_SAMPLE_PERSONALIZATION,
-    birthday: "1997-6-4",
-    QQ: "12345678",
-    WeChat: "Ubiquitous_Max",
-    phoneNumber: "18820188888",
-    major: "网络与新媒体",
-    hometown: "江苏-苏州"
+    id: "",
+    name: "维纳斯歌手大赛",
+    image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+    status: "审核中"
+  },
+  {
+    id: "",
+    name: "维纳斯歌手大赛",
+    image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+    status: "报名成功"
+  },
+  {
+    id: "",
+    name: "维纳斯歌手大赛",
+    image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+    status: "审核中"
   }
-
 ]

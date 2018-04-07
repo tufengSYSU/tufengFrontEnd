@@ -2,8 +2,6 @@
 
 <!-- import templates -->
 <import src="../../resources/templates/moments/moments.wxml" />
-<import src="../../resources/templates/messages/messages.wxml" />
-<import src="../../resources/templates/personalizations/personalization.wxml" />
 
 <scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
   <view class="background">
@@ -23,74 +21,60 @@
       </view>
     </view>
     <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-      <!-- 消息 -->
-      <template is="messages" data="{{messages, addressListIcon}}" wx:if="{{tabIndex === 0}}" />
-      <!-- 动态 -->
-      <template is="moments" data="{{moments, voteIcon, commentIcon, heartIcon}}" wx:if="{{tabIndex === 1}}" />
-
-      <!-- 活动 -->
-      <view class="activities" wx:if="{{tabIndex === 2}}">
-
-        <view class="activites-tabbar">
-          <view class="my-activites">
-            <view>我的活动</view>
-            <view>我关注的活动 ></view>
-          </view>
-          <view class="hr"></view>
-            <view style="background-image: url('../../assets/homepage/tabs_background.png')"></view>
-          <view class="tabs-container">
-            <view class="act-tab {{actTabIndex === index ? 'active' : ''}}" wx:for="{{actTabs}}" wx:for-item="actTab" wx:key="actTab.name" bindtap="clickActTab" data-index="{{index}}">
-              <view class="icon-area">
-                <view class="act-tab-icon" style="background-image: url('{{actTab.icon}}')"></view>
-              </view>
-              <view>{{actTab.name}}</view>
-            </view>
+      <!-- 我的关注 -->
+      <view class="my-attention" wx:if="{{tabIndex === 0}}">
+        <view class="attention-tabbar">
+          <view class="sub-tab">
+            <view class="{{attentionTabIndex === 0 ? 'active' : ''}}" bindtap="clickAttentionTab">社团</view>
+            <view class="{{attentionTabIndex === 1 ? 'active' : ''}}" bindtap="clickAttentionTab">活动</view>
           </view>
         </view>
 
-        <block>
-          <view class="activity">
-            <view class="activity-image">
-            </view>
-            <view class="activity-detail">
-              <view class="title">
-              </view>
-            </view>
+        <!-- 社团  -->
+        <view class="organizations-container" wx:if="{{attentionTabIndex === 0}}">
+          <view class="organization" wx:for="{{organizations}}" wx:key="{{*index}}" wx:for-item="org" bindtap="clickOrganizationTab">
+            <image class="avatar" src="{{org.avatar}}" />
+            <view>{{org.name}}</view>
           </view>
-        </block>
-
+        </view>
+        <!-- 活动 可跳到活动详细信息页面 -->
+        <view class="activities-container" wx:if="{{attentionTabIndex === 1}}">
+          <view class="activity" wx:for="{{activities}}" wx:key="{{*index}}" bindtap="clickActivity">
+            <image class="activity-cover-image" lazy-load="{{true}}" mode="aspectFill" src="{{item.image}}"/>
+            <view class="progress" wx:if="{{item.progress}}">进行中</view>
+            <view class="activity-name">{{item.name}}</view>
+          </view>
+        </view>
       </view>
 
-      <!-- 相册 -->
-      <view class="album" wx:if="{{tabIndex === 3}}">
-        <view class="" bindtap="chooseImage">
-          <image class="weui-uploader__img" src="{{photoIcon}}" mode="aspectFill" />
-          选择图片
-        </view>
-        <view class="weui-cells">
-          <view class="weui-cell">
-            <view class="weui-cell__bd">
-              <view class="weui-uploader">
-                <view class="weui-uploader__hd">
-                  <view class="weui-uploader__title">一周内</view>
-                </view>
-                <view class="weui-uploader__bd">
-                  <view class="weui-uploader__files">
-                    <block wx:for="{{images}}" wx:key="*this" wx:for-item="image">
-                      <view class="weui-uploader__file" bindtap="previewImage" id="{{image}}" style="{{imageStyles[index]}}">
-                        <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
-                      </view>
-                    </block>
-                  </view>
-                </view>
+      <!-- 我的报名 -->
+      <view class="my-registrations" wx:if="{{tabIndex === 1}}">
+        <!-- 活动 -->
+        <view class="registration" wx:for="{{registrations}}" wx:for-item="regis" wx:key="{{*index}}">
+          <image src="{{regis.image}}" bindtap="clickActivity"/>
+          <view class="regis-info">
+            <view class="name">{{regis.name}}</view>
+            <view class="regis-stamp">{{regis.status}}</view>
+            <view class="start-time"> {{"4月15号 开始"}}</view>
+            <view class="icon-group">
+              <view>
+                <image src="{{signedIcon}}" />
+                <view> 1111 </view>
+              </view>
+              <view>
+                <image src="{{heartIcon}}" />
+                <text> 2222 </text>
               </view>
             </view>
+            <view style="clear: both"></view>
+          </view>
+          <view class="footer">
+            <image src="{{organizations[0].avatar}}" bindtap="clickOrganizationTab"/>
+            <view>{{organizations[0].name}}</view>
           </view>
         </view>
-        </view>
 
-      <!-- 个性化 -->
-      <template is="personalizations" data="{{personalizations}}" wx:if="{{tabIndex === 4}}" />
+      </view>
 
     </view>
   </view>

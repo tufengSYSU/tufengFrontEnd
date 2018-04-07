@@ -1,9 +1,12 @@
 {
   "pages":[
+    "pages/homepage/index",
     "pages/activities/index",
+    "pages/activities/activity_detail/index",
     "pages/calendar/index",
     "pages/square/index",
-    "pages/homepage/index"
+    "pages/homepage_of_others/index",
+    "pages/homepage_of_others/organization/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
