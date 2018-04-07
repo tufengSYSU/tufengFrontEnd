@@ -104,7 +104,8 @@ Page({
           year: date.getFullYear(),
           month: date.getMonth() + 1,
           date: date.getDate(),
-          weekday: WEEKDAY_IN_CH[new Date(date).getDay()]
+          weekday: WEEKDAY_IN_CH[new Date(date).getDay()],
+          festival: festival.getFesitval(new Date(date)),
         },
         events,
         istoday: tools.isToday(date),

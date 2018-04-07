@@ -18,6 +18,7 @@
                 <view class="day-head {{oneDay.istoday ? 'istoday':''}}">
                   <view class="date">{{oneDay.dateObj.date}}</view>
                   <view class="weekday">{{oneDay.dateObj.weekday}}</view>
+                  <view class="festival">{{oneDay.dateObj.festival}}</view>
                 </view>
                 <view class="day-body">
                   <view class="events">
