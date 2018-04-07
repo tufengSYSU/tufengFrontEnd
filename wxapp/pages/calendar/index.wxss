@@ -22,7 +22,7 @@ swiper-item {
 /** calender header  */
 
 .calender-header {
-  height: 35px;
+  height: 40px;
   padding: 0 20px;
   background-color: white;
 }
@@ -62,7 +62,7 @@ swiper-item {
 /** calender body */
 
 .calender-body {
-  height: calc(100% - 35px);
+  height: calc(100% - 40px);
 }
 
 .week {
@@ -72,6 +72,10 @@ swiper-item {
 }
 
 /*** day */
+
+.content {
+  height: 100%;
+}
 
 .day {
   display: table;

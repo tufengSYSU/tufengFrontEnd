@@ -6,6 +6,9 @@
         <view class="month">{{title.month}}</view>
         <view class="year">{{title.year}}</view>
       </view>
+      <view class="go-to-today-btn">
+        <view class="go-to-today-icon" style="background-image: url('{{goToTodayIcon}}')"></view>
+      </view>
     </view>
     <view class="calender-body">
       <!-- use the default values mostly -->
@@ -13,8 +16,8 @@
         <block wx:for="{{calenders}}" wx:for-item="calender" wx:key="unique">
           <!-- one month -->
           <swiper-item>
-            <view class="week" wx:for="{{calender}}" wx:for-item="dailyDataInOneWeek" wx:key="unique">
-              <view class="day" wx:if="{{oneDay !== null}}" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay">
+            <scroll-view class="content" scroll-y="true" scroll-into-view="lastDay" scroll-with-animation="true">
+              <view id="{{oneDay.isLastDay ? 'lastDay':''}}" class="day" wx:if="{{oneDay !== null}}" wx:for="{{calender}}" wx:key="{{index}}" wx:for-item="oneDay">
                 <view class="day-head {{oneDay.istoday ? 'istoday':''}}" bindtap="slideOut" data-day="{{oneDay}}">
                   <view class="date">{{oneDay.dateObj.date}}</view>
                   <view class="weekday">{{oneDay.dateObj.weekday}}</view>
@@ -28,7 +31,7 @@
                   </view>
                 </view>
               </view>
-            </view>
+            </scroll-view>
           </swiper-item>
         </block>
       </swiper>

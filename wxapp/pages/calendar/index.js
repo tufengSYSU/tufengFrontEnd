@@ -3,6 +3,11 @@
  * @author isanbel(theisanbel@gmail.com)
  */
 
+const ASSETS = "../../assets"
+
+// 动态图标
+const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
+
 const tools = require('./tools.js')
 const lunar = require('./lunar.js')
 const festival = require('./festival.js')
@@ -11,6 +16,7 @@ const WEEKDAY_IN_CH = ['周日','周一','周二','周三','周四','周五','�
 Page({
   data: {
     weekdayInCH: WEEKDAY_IN_CH,
+    goToTodayIcon: VOTE_ICON,
     todayInThatMonth: null,
     // activeIndex actually only works with the frist render
     activeIndex: 1,
@@ -24,9 +30,9 @@ Page({
     this.setData({
       todayInThatMonth: curDay,
       calenders: [
-        this.getDataInWeeks(curDayInPrevMonth),
-        this.getDataInWeeks(curDay),
-        this.getDataInWeeks(curDayInNextMonth),
+        this.getData(curDayInPrevMonth),
+        this.getData(curDay),
+        this.getData(curDayInNextMonth),
       ]
     })
     this.syncTitle()
@@ -45,12 +51,12 @@ Page({
     // swipe to right
     if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'right')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, 1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'right')] = this.getDataInWeeks(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
+      calenders[this.getCircularSiblingIndex(circularSize, index, 'right')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
     }
     // swipe to left
     else if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'left')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, -1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'left')] = this.getDataInWeeks(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+      calenders[this.getCircularSiblingIndex(circularSize, index, 'left')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
     }
     // error
     else {
@@ -86,7 +92,7 @@ Page({
     }
   },
   // 获得一个月的数据，输入值为当月的某一天
-  getDataInWeeks: function(oneDay) {
+  getData: function(oneDay) {
     // TODO: get data by http request
     let date = new Date(oneDay)
     date.setDate(0)
@@ -98,6 +104,9 @@ Page({
         event.color = tools.getPrettyRandomColor()
         return event
       })
+      // isLastDay
+      let nextDay = new Date(date)
+      nextDay.setDate(date.getDate() + 1)
       return {
         date: new Date(date),
         dateObj: {
@@ -108,10 +117,11 @@ Page({
           festival: festival.getFesitval(new Date(date)),
         },
         events,
+        isLastDay: tools.isToday(nextDay),
         istoday: tools.isToday(date),
       }
     })
-    return tools.getDailyDataInWeeks(oneDay, data)
+    return data
   },
   // 同步页面标题
   syncTitle: function() {
