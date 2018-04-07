@@ -20,6 +20,7 @@ Page({
     toView: "lastDay",
     todayInThatMonth: null,
     // activeIndex actually only works with the frist render
+    activeIndexTheLast: null,
     activeIndex: 1,
     // Array of weeksWithEvents(in one month)
     calenders: []
@@ -42,22 +43,26 @@ Page({
   // when the swiper changes
   swiperChange: function(e) {
     const circularSize = 3
-    const index = e.detail.current
-    const activeIndex = this.data.activeIndex
-    const lastToday = this.data.todayInThatMonth
-
+    const lastToday = (this.data.todayInThatMonth !== null) ? this.data.todayInThatMonth : new Date()
+    var activeIndexTheLast = this.data.activeIndex
+    var activeIndex = e.detail.current
     var todayInCurrentMonth = null
     var calenders = this.data.calenders
 
     // swipe to right
-    if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'right')) {
+    if (activeIndex === this.getCircularSiblingIndex(circularSize, activeIndexTheLast, 'right')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, 1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'right')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
+      calenders[this.getCircularSiblingIndex(circularSize, activeIndex, 'right')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
     }
     // swipe to left
-    else if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'left')) {
+    else if (activeIndex === this.getCircularSiblingIndex(circularSize, activeIndexTheLast, 'left')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, -1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'left')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+      calenders[this.getCircularSiblingIndex(circularSize, activeIndex, 'left')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+    }
+    // when swiper changed by changing the activeIndex programmatically
+    // the e.detail.current equals activeIndex
+    else if (activeIndex === activeIndexTheLast) {
+      todayInCurrentMonth = lastToday
     }
     // error
     else {
@@ -65,7 +70,8 @@ Page({
     }
 
     this.setData({
-      activeIndex: index,
+      activeIndex,
+      activeIndexTheLast,
       todayInThatMonth: todayInCurrentMonth,
       calenders: calenders
     })
@@ -174,8 +180,11 @@ Page({
   },
   reload: function() {
     this.onLoad()
+    var activeIndexTheLast = this.data.activeIndex
+    var activeIndex = 1
     this.setData({
-      activeIndex: 1,
+      activeIndexTheLast,
+      activeIndex,
       toView: ""
     })
     this.setData({
