@@ -38,14 +38,14 @@ swiper-item {
 .year-month-title .month {
   font-size: 22px;
   font-weight: 700;
-  color: #4D4D4DCD;
+  color: #767676;
 }
 
 .year-month-title .year {
   margin-left: 10px;
   font-size: 19px;
   font-weight: 400;
-  color: #4D4D4DCD;
+  color: #7d7d7d;
 }
 
 .currentYearAndMonth view {
@@ -86,12 +86,13 @@ swiper-item {
 
 .content {
   height: 100%;
+  padding: 0 10px;
 }
 
 .day {
   display: table;
   position: relative;
-  width: 100%;
+  width: calc(100% - 20px);
   min-height: 60px;
   border-top: 1px solid #efefef;
 }
@@ -133,14 +134,14 @@ swiper-item {
   font-size: 28px;
   font-weight: 300;
   line-height: 28px;
-  color: #4D4D4DCC;
+  color: #707070;
 }
 
 .day-head .weekday {
   display: inline-block;
   text-align: center;
   font-size: 16px;
-  color: #4D4D4DD6;
+  color: #7f7f7f;
 }
 
 .day-head .festival {
