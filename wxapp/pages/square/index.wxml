@@ -34,7 +34,7 @@
                     {{organization.occupation}}
                   </view>
                   <!-- 分割线 -->
-                  <view class="dashline"></view>
+                  <!-- <view class="dashline"></view> -->
                   <!-- 下部信息 icon等 -->
                   <!-- <view class="organization-controllers">
                     <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">

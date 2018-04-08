@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/homepage/index",
     "pages/activities/index",
+    "pages/homepage/index",
     "pages/activities/activity_detail/index",
     "pages/calendar/index",
     "pages/square/index",
