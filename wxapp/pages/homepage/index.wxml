@@ -47,6 +47,7 @@
         </view>
       </view>
 
+<<<<<<< HEAD
       <!-- 我的报名 -->
       <view class="my-registrations" wx:if="{{tabIndex === 1}}">
         <!-- 活动 -->
@@ -64,6 +65,30 @@
               <view>
                 <image src="{{heartIcon}}" />
                 <text> 2222 </text>
+=======
+      <!-- 相册 -->
+      <view class="album" wx:if="{{tabIndex === 3}}">
+        <view class="photo-picker" bindtap="chooseImage">
+          <image class="photo-icon" src="{{photoIcon}}" mode="aspectFill" />
+          选择图片
+        </view>
+        <view class="weui-cells">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                  <view class="weui-uploader__title">一周内</view>
+                </view>
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files">
+                    <block wx:for="{{images}}" wx:key="*this" wx:for-item="image">
+                      <view class="weui-uploader__file" bindtap="previewImage" id="{{image}}" style="{{imageStyles[index]}}">
+                        <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
+                      </view>
+                    </block>
+                  </view>
+                </view>
+>>>>>>> b10d9e217367c64c60055cc9f63a2b9e9b70dc98
               </view>
             </view>
             <view style="clear: both"></view>

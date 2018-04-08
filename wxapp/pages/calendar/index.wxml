@@ -5,34 +5,33 @@
       <view class="year-month-title">
         <view class="month">{{title.month}}</view>
         <view class="year">{{title.year}}</view>
-      </view>
-      <view class="weekday">
-        <view wx:for="{{weekdayInCH}}" wx:key="{{index}}">{{item}}</view>
+        <view class="go-to-today-btn" bindtap="reload">
+          <image class="go-to-today-icon" src="{{goToTodayIcon}}"></image>
+        </view>
       </view>
     </view>
-    {{getone()}}
     <view class="calender-body">
       <!-- use the default values mostly -->
       <swiper current="{{activeIndex}}" circular="true" bindchange="swiperChange">
         <block wx:for="{{calenders}}" wx:for-item="calender" wx:key="unique">
+          <!-- one month -->
           <swiper-item>
-            <view class="week" wx:for="{{calender}}" wx:for-item="dailyDataInOneWeek" wx:key="unique">
-              <view class="day" wx:for="{{dailyDataInOneWeek}}" wx:key="{{index}}" wx:for-item="oneDay" bindtap="slideOut" data-day="{{oneDay}}">
-                <view wx:if="{{oneDay !== null}}">
-                  <view class="day-head {{oneDay.hasmore ? 'hasmore':''}} {{oneDay.istoday ? 'istoday':''}}">
-                    <view class="uppon-line"></view>
-                    <view class="more-point"></view>
-                    <view class="today-bg"></view>
-                    <view class="date">{{oneDay.dateObj.date}}</view>
-                  </view>
+            <scroll-view class="content" scroll-y="true" scroll-into-view="{{toView}}" scroll-with-animation="true">
+              <view id="{{oneDay.isLastDay ? 'lastDay':''}}" class="day" wx:if="{{oneDay !== null}}" wx:for="{{calender}}" wx:key="{{index}}" wx:for-item="oneDay">
+                <view class="day-head {{oneDay.istoday ? 'istoday':''}}" bindtap="slideOut" data-day="{{oneDay}}">
+                  <view class="date">{{oneDay.dateObj.date}}</view>
+                  <view class="weekday">{{oneDay.dateObj.weekday}}</view>
+                  <view class="festival">{{oneDay.dateObj.festival}}</view>
+                </view>
+                <view class="day-body">
                   <view class="events">
-                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}">
+                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" style="background-color: {{event.color}}">
                       {{event.name}}
                     </view>
                   </view>
                 </view>
               </view>
-            </view>
+            </scroll-view>
           </swiper-item>
         </block>
       </swiper>
@@ -52,7 +51,7 @@
         <view class="heading">先锋情报</view>
         <view class="events-in-detail">
           <view class="event-in-detail" wx:for="{{slideOutData.dailyData.events}}" wx:for-item="event" wx:key="{{index}}">
-            <view class="event-name" style="color: {{slideOutData.colors[index]}}">{{event.name}}</view>
+            <view class="event-name" style="color: {{event.color}}">{{event.name}}</view>
             <view class="event-time-and-place">{{event.timeInterval}} {{event.place}}</view>
           </view>
         </view>

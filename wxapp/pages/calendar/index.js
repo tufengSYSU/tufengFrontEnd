@@ -3,16 +3,24 @@
  * @author isanbel(theisanbel@gmail.com)
  */
 
+const ASSETS = "../../assets"
+
+// 动态图标
+const LOCATION_ARROW = ASSETS + "/icon/scrollintotoday.png"
+
 const tools = require('./tools.js')
 const lunar = require('./lunar.js')
 const festival = require('./festival.js')
-const WEEKDAY_IN_CH = ['日','一','二','三','四','五','六']
+const WEEKDAY_IN_CH = ['周日','周一','周二','周三','周四','周五','周六']
 
 Page({
   data: {
     weekdayInCH: WEEKDAY_IN_CH,
+    goToTodayIcon: LOCATION_ARROW,
+    toView: "lastDay",
     todayInThatMonth: null,
     // activeIndex actually only works with the frist render
+    activeIndexTheLast: 0,
     activeIndex: 1,
     // Array of weeksWithEvents(in one month)
     calenders: []
@@ -23,10 +31,12 @@ Page({
     const curDayInNextMonth = this.getTheSameDayInThatMonthWithOffset(curDay, 1)
     this.setData({
       todayInThatMonth: curDay,
+      activeIndexTheLast: 0,
+      activeIndex: 1,
       calenders: [
-        this.getDataInWeeks(curDayInPrevMonth),
-        this.getDataInWeeks(curDay),
-        this.getDataInWeeks(curDayInNextMonth),
+        this.getData(curDayInPrevMonth),
+        this.getData(curDay),
+        this.getData(curDayInNextMonth),
       ]
     })
     this.syncTitle()
@@ -35,22 +45,26 @@ Page({
   // when the swiper changes
   swiperChange: function(e) {
     const circularSize = 3
-    const index = e.detail.current
-    const activeIndex = this.data.activeIndex
-    const lastToday = this.data.todayInThatMonth
-
+    const lastToday = (this.data.todayInThatMonth !== null) ? this.data.todayInThatMonth : new Date()
+    var activeIndexTheLast = this.data.activeIndex
+    var activeIndex = e.detail.current
     var todayInCurrentMonth = null
     var calenders = this.data.calenders
 
     // swipe to right
-    if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'right')) {
+    if (activeIndex === this.getCircularSiblingIndex(circularSize, activeIndexTheLast, 'right')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, 1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'right')] = this.getDataInWeeks(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
+      calenders[this.getCircularSiblingIndex(circularSize, activeIndex, 'right')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
     }
     // swipe to left
-    else if (index === this.getCircularSiblingIndex(circularSize, activeIndex, 'left')) {
+    else if (activeIndex === this.getCircularSiblingIndex(circularSize, activeIndexTheLast, 'left')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, -1)
-      calenders[this.getCircularSiblingIndex(circularSize, index, 'left')] = this.getDataInWeeks(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+      calenders[this.getCircularSiblingIndex(circularSize, activeIndex, 'left')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+    }
+    // when swiper changed by changing the activeIndex programmatically
+    // the e.detail.current equals activeIndex
+    else if (activeIndex === activeIndexTheLast) {
+      todayInCurrentMonth = lastToday
     }
     // error
     else {
@@ -58,7 +72,8 @@ Page({
     }
 
     this.setData({
-      activeIndex: index,
+      activeIndex,
+      activeIndexTheLast,
       todayInThatMonth: todayInCurrentMonth,
       calenders: calenders
     })
@@ -86,26 +101,36 @@ Page({
     }
   },
   // 获得一个月的数据，输入值为当月的某一天
-  getDataInWeeks: function(oneDay) {
+  getData: function(oneDay) {
     // TODO: get data by http request
     let date = new Date(oneDay)
     date.setDate(0)
     const eventsInOneMonth = dailyEventsIn201802
     const data = eventsInOneMonth.map(events => {
       date.setDate(date.getDate() + 1)
+      // add color to every event
+      events = events.map(event => {
+        event.color = tools.getPrettyRandomColor()
+        return event
+      })
+      // isLastDay
+      let nextDay = new Date(date)
+      nextDay.setDate(date.getDate() + 1)
       return {
         date: new Date(date),
         dateObj: {
           year: date.getFullYear(),
           month: date.getMonth() + 1,
           date: date.getDate(),
+          weekday: WEEKDAY_IN_CH[new Date(date).getDay()],
+          festival: festival.getFesitval(new Date(date)),
         },
         events,
+        isLastDay: tools.isToday(nextDay),
         istoday: tools.isToday(date),
-        hasmore: events.length > 4 ? true:false
       }
     })
-    return tools.getDailyDataInWeeks(oneDay, data)
+    return data
   },
   // 同步页面标题
   syncTitle: function() {
@@ -116,7 +141,6 @@ Page({
     })
   },
   slideOut: function(e) {
-
     // 确定滑出页的数据
     const day = e.currentTarget.dataset.day
     this.setSlideOutData(day)
@@ -148,16 +172,21 @@ Page({
     })
   },
   setSlideOutData: function(dailyData) {
-    const colors = dailyData.events.map(event => {
-      return tools.getRandomColor()
-    })
     this.setData({
       slideOutData: {
         dailyData,
-        colors,
         lDate: lunar.getLunarDateStr(new Date(dailyData.date)),
         festival: festival.getFesitval(new Date(dailyData.date)),
       }
+    })
+  },
+  reload: function() {
+    this.onLoad()
+    this.setData({
+      toView: ""
+    })
+    this.setData({
+      toView: "lastDay"
     })
   }
 })

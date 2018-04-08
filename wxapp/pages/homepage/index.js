@@ -19,8 +19,14 @@ const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 Page({
   data:{
     user: null,
+<<<<<<< HEAD
     tabs: ["我的关注", "我的报名"],
     tabIndex: 0,
+=======
+    tabs: ["消息", "动态", "活动", "相册", "个性化" ],
+    tabIndex: 3,
+    actTabIndex: 0,
+>>>>>>> b10d9e217367c64c60055cc9f63a2b9e9b70dc98
     reachTop: false,
     photoIcon: ASSETS + "/homepage/photo.png",
     images: [
