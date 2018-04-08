@@ -1,3 +1,151 @@
-<view class="container">
-  <button bindtap="navToAlbum">查看照片直播</button>
-</view>
+
+<scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
+  
+  <view class="background">
+    <image class="background-picture" src="{{user.background_image}}" mode="aspectFill"></image>
+  </view>  
+  <view class="photoLiveTitle">
+    <view class="photoLive">照片直播：中大图蜂</view>
+    <view class="intoLive">进入直播 > </view>
+  </view>
+  
+  <view class="poster">
+    <view class="picture">
+      <image src="{{activity.background_image}}"></image>
+    </view>
+    <view class="word">
+      <view class="title">
+        {{activity.name}}
+      </view>
+      <view class="time">
+        {{activity.startTime}}~{{activity.endTime}}
+      </view>
+      <view class="place">
+        {{activity.location}}
+      </view>
+      <view class="organizer">
+        {{activity.organization}}
+      </view>
+      <view class="likeCount">
+        <view class="heart_">
+          <image src="{{user.background_image}}"></image>
+        </view>
+        <view class="count">
+          {{activity.likers}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tabs">
+
+    <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
+      {{tab}}
+    </view>
+  </view>
+
+    <!-- 时间轴 -->
+    <view class="time-axis" wx:if="{{tabIndex === 0}}">
+      <view class="enroll-group">
+        <button class="enroll">报名</button>
+        <view class="remaining-time">2天23时34分</view>
+      </view>
+      <view class= "part-group">
+        <view class="part" wx:for="{{activity.parts}}" wx:for-item="part" wx:key="{{*index}}">
+          <view class = "partaxis">
+          </view>
+          <view class="axis" wx:if="{{index !== activity.parts.length-1}}">
+          </view>
+          <view class="partword" wx:if="{{index !== activity.parts.length-1}}">
+            <view class="partname">
+            {{part.partName}}
+            </view>
+            <view class="partStartTime">
+            {{part.partStartTime}}
+            </view>
+            <view class="partPlace">
+            {{part.partPlace}}
+            </view>
+          </view>
+          <view class="last-partword" wx:if="{{index === activity.parts.length-1}}">
+            <view class="partname">
+            {{part.partName}}
+            </view>
+            <view class="partStartTime">
+            {{part.partStartTime}}
+            </view>
+            <view class="partPlace">
+            {{part.partPlace}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 相册 -->
+    <view class="photo-album" wx:if="{{tabIndex === 1}}">
+        <view class="photo-choose" bindtap="chooseImage">
+          <image class="photoIcon" src="{{user.background_image}}"/>
+          <view class="upload">
+          上传照片
+          </view>
+        </view>
+        <view class="weui-cells">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                  
+                </view>
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files">
+                    <block wx:for="{{images}}" wx:key="*this" wx:for-item="image">
+                      <view class="weui-uploader__file" bindtap="previewImage" id="{{image}}" style="{{imageStyles[index]}}">
+                        <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    <!-- 简介 -->
+    <view class="brief-introduction" wx:if="{{tabIndex === 2}}">
+    {{activity.introduction}}
+    </view>
+    <!-- 留言板 -->
+    <view class="message-board" wx:if="{{tabIndex === 3}}">
+      <input class="message" placeholder="单行输入"/>
+      <view class="send">发送</view>
+      <view class="comment" wx:for="{{activity.comments}}" wx:for-item="comment">
+        <view class="comment-user">
+          <view class="comment-avatar">
+            <image src="{{comment.user.avatar}}"></image>
+          </view>
+          <view class="comment-info">
+            <view class="comment-username">
+              {{comment.user.name}}
+            </view>
+            <view class="comment-time">
+              {{comment.commentTime}}
+            </view>
+          </view>
+          <button class="close">X</button>
+        </view>
+
+        <text class="content">
+          {{comment.content}}
+        </text>
+      </view>
+    </view>
+
+
+
+  <view class="tabpage {{reachTop ? 'scroll' : ''}}">
+  </view>
+
+
+</scroll-view>
+  

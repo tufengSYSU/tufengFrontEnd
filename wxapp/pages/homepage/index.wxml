@@ -87,7 +87,7 @@
             </view>
           </view>
         </view>
-        </view>
+      </view>
 
       <!-- 个性化 -->
       <template is="personalizations" data="{{personalizations}}" wx:if="{{tabIndex === 4}}" />

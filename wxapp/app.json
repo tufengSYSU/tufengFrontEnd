@@ -24,7 +24,8 @@
         "selectedIconPath": "assets/icon_selected/activities.png"
       },
       {
-        "pagePath": "pages/calendar/index",
+      
+        "pagePath": "pages/activities/activity_detail/index",
         "text": "活动日历",
         "iconPath": "assets/icon/calendar.png",
         "selectedIconPath": "assets/icon_selected/calendar.png"

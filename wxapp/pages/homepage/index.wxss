@@ -164,7 +164,6 @@
 /*** activities end */
 
 /*** album */
-
 .album {
   height: 200%;
   padding: 10px;
