@@ -47,11 +47,7 @@
           </view>
           <view wx:for="{{articlesInOneMonth[articleIndex].article}}" wx:for-item="article" wx:key="{{*index}}">
             <view class="article-container">
-<<<<<<< HEAD
               <image class="article-coverimage" src="{{article.image}}" />
-=======
-              <image class="article-coverimage" src="{{content[i].article[0].imgUrl}}" bindtap="navigateToActivityDetail"/>
->>>>>>> b10d9e217367c64c60055cc9f63a2b9e9b70dc98
               <view class="mark-container">
                 <image src="../../assets/icon/mark/aixin.png"/>
                 <image src="../../assets/icon/mark/ball.png"/>
