@@ -115,6 +115,13 @@ Page({
       user
     })
   },
+  clickOrganizationTab: function() {
+    let organizationId = 1;
+    let url = `../homepage_of_others/organization/index?organizationId=${organizationId}`
+    wx.navigateTo({
+      url: url
+    })
+  },
   clicktab: function(e) {
     let tabIndex = (e.currentTarget.dataset.index === this.data.tabIndex ? this.data.tabIndex : e.currentTarget.dataset.index);
     this.setData({

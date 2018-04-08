@@ -7,11 +7,11 @@
       <!-- location -->
       <view class="location-container">
         <view class="address">{{location.address}}</view>
-        <image class="location-image" src="{{locationIconUrl}}"/>
+        <image class="location-image" src="{{locationIcon}}"/>
       </view>
       <!-- search bar -->
       <view class="search-bar-container">
-        <image class="search-icon" src="{{searchIconUrl}}"/>
+        <image class="search-icon" src="{{searchIcon}}"/>
         <input type="text" class="search-bar-input" focus="{{false}}" bindinput="getSearchInput" />
       </view>
     </view>
@@ -20,8 +20,8 @@
   <!-- article-calendar-container -->
   <view class="brief-description-container">
     <view class="brief-description-container">
-      <view class="brief-description {{background[idx]}}" wx:for="{{briefDescription}}" wx:for-index="idx" wx:key="*this">
-        {{briefDescription[idx]}}
+      <view class="brief-description" style="background-color:{{item.color}}" wx:for="{{briefIntroduction}}" wx:for-index="idx" wx:key="{{*index}}">
+        {{item.text}}
       </view>
     </view>
   </view>
@@ -29,8 +29,8 @@
   <!-- slide image -->
   <view class="slide-container">
     <!-- slide image core code -->
-    <swiper circular="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
-      <swiper-item wx:for-items="{{imgUrl}}" wx:key="*this">
+    <swiper circular="true" autoplay="true" interval="3000" duration="500" class="picture-swiper">
+      <swiper-item wx:for-items="{{slidePictures}}" wx:key="{{*index}}">
         <view class="imageContainer">
           <image mode="widthFix" src="{{item}}" class="slide-image" />
         </view>
@@ -39,22 +39,22 @@
   </view>
   <!-- article-calendar-container -->
   <view class="article-calendar-container">
-    <swiper autoplay="true" interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
+    <swiper interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
       <swiper-item wx:for-items="{{seq}}" wx:key="*this">
-        <view class="single-day-articles" wx:for="{{[3*item,3*item+1,3*item+2]}}" wx:if="{{i < content.length}}" wx:for-item="i" wx:key="*this">
+        <view class="single-day-articles" wx:for="{{[3*item,3*item+1,3*item+2]}}" wx:if="{{articleIndex < articlesInOneMonth.length}}" wx:for-item="articleIndex" wx:key="{{*index}}">
           <view class="article-date">
-            {{content[i].date}}
+            {{articlesInOneMonth[articleIndex].date}}
           </view>
-          <view class="" wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
+          <view wx:for="{{articlesInOneMonth[articleIndex].article}}" wx:for-item="article" wx:key="{{*index}}">
             <view class="article-container">
-              <image class="article-coverimage" src="{{content[i].article[0].imgUrl}}" bindtap="navigateToActivityDetail"/>
+              <image class="article-coverimage" src="{{article.image}}" />
               <view class="mark-container">
                 <image src="../../assets/icon/mark/aixin.png"/>
                 <image src="../../assets/icon/mark/ball.png"/>
                 <image src="../../assets/icon/mark/money.png"/>
               </view>
               <view class="article-description">
-                {{content[i].article[0].headLine}}
+                {{article.headLine}}
               </view>
             </view>
           </view>

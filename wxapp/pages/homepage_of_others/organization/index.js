@@ -1,4 +1,4 @@
-const ASSETS = "../../../assets/myprofile_icon";
+const ASSETS = "../../../assets/homepage_of_others_icon";
 const ATTENTION_ICON = ASSETS + "/organization/attention.png";
 const ADDRESS_ICON = ASSETS + "/organization/address.png";
 const HONOR_ICON = ASSETS + "/organization/honor.png";
@@ -70,6 +70,13 @@ Page({
     this.data.user.album = ALBUM_SAMPLE;
     this.setData({
       user: this.data.user
+    })
+  },
+  clickActivity: function() {
+    let activityid = 1;
+    let url = `../../activities/activity_detail/index?activityid=${activityid}`
+    wx.navigateTo({
+      url: url
     })
   },
   makeAttention: function() {

@@ -19,6 +19,7 @@ const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 const PHOTO_ICON = ASSETS + "/ homepage / photo.png"
 Page({
   data: {
+<<<<<<< HEAD
     user: null,
     activity: null,
     tabs: ["时间轴", "相册", "简介", "留言板"],
@@ -110,6 +111,14 @@ Page({
       this.setData({
         reachTop: true
       })
+=======
+    url: {
+      url: "http://www.pailixiang.com/m/album_ia54800121.html",
+      query: {
+        from: "singlemessage",
+        isappinstalled: 0
+      }
+>>>>>>> 5f3d4d5f6a79363a19553f18b49b08fb171a502e
     }
     if (reachTop === true && e.detail.scrollHeight - e.detail.scrollTop >= windowSize.height + 60)    {
       this.setData({

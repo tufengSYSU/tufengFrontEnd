@@ -1,12 +1,13 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/activities/index",
+    "pages/homepage/index",
     "pages/activities/activity_detail/index",
     "pages/activities/album_live/index",
     "pages/calendar/index",
     "pages/square/index",
-    "pages/homepage/index"
+    "pages/homepage_of_others/index",
+    "pages/homepage_of_others/organization/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -15,7 +16,8 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "selectedColor": "#ddb044",
+    "selectedColor": "#ff9701",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/activities/index",

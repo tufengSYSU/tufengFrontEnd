@@ -36,17 +36,17 @@
       </view>
 
       <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-        <view class="activities-container" wx:if="{{hover[0] === 1}}">
+        <view class="activities-container" wx:if="{{hover[1] === 1}}">
           <view class="hint">热门活动</view>
           <view class="activity" wx:for="{{user.activity}}" wx:key="unique">
-            <image class="activity-cover-image" lazy-load="{{true}}" mode="aspectFill" src="{{item.image}}"/>
+            <image class="activity-cover-image" lazy-load="{{true}}" mode="aspectFill" src="{{item.image}}" bindtap="clickActivity"/>
             <view class="progress" wx:if="{{item.progress}}">进行中</view>
             <view class="activity-name">{{item.name}}</view>
           </view>
         </view>
 
-        <view class="moments" wx:if="{{hover[1] === 1}}">
-          <view>最近动态</view>
+        <view class="moments" wx:if="{{hover[0] === 1}}">
+          <view class="outline">最近动态</view>
           <view class="block"></view>
           <view class="moment" wx:for="{{user.moments}}" wx:for-item="moment" wx:key="{{*index}}">
             <view class="userInfo">

@@ -34,68 +34,6 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    content: [
-      {
-        id: 0,
-        date: "2月7号",
-        article: [
-          {
-            id: 0,
-            logoUrl: "../../assets/icon/demo.png",
-            imgUrl: "https://i.loli.net/2018/02/28/5a95a4d037347.png",
-            headLine: "中山大学团委活动",
-            mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "1758舞蹈会",
-            height: 17
-          }
-        ]
-      },
-      {
-        id: 1,
-        date: "2月8号",
-        article: [
-          {
-            id: 1,
-            logoUrl: "../../assets/icon/demo.png",
-            imgUrl: "https://i.loli.net/2018/02/28/5a95a4d064f71.png",
-            headLine: "数据科学与计算机学院学长团",
-            mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "学长团",
-            height: 34
-          },
-        ]
-      },
-      {
-        id: 2,
-        date: "2月9号",
-        article: [
-          {
-            id: 2,
-            logoUrl: "../../assets/icon/demo.png",
-            imgUrl: "https://i.loli.net/2018/02/28/5a95a4d088fd3.png",
-            headLine: "维纳斯歌手大赛",
-            mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "维纳斯歌手比赛",
-            height: 17
-          },
-        ]
-      },
-      {
-        id: 3,
-        date: "2月10号",
-        article: [
-          {
-            id: 3,
-            logoUrl: "../../assets/icon/demo.png",
-            imgUrl: "https://i.loli.net/2018/02/28/5a95a4d09f6ec.png",
-            headLine: "暑假三下乡-把阳光撒到世界每一个角落",
-            mark: ["business", "price", "sport", "food", "chance"],
-            briefIntroduction: "三下乡义教",
-            height: 51
-          },
-        ]
-      }
-    ]
+    userInfo: null
   }
 })
