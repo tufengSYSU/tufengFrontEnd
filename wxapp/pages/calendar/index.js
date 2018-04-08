@@ -6,7 +6,7 @@
 const ASSETS = "../../assets"
 
 // 动态图标
-const LOCATION_ARROW = ASSETS + "/icon/location-arrow.png"
+const LOCATION_ARROW = ASSETS + "/icon/scrollintotoday.png"
 
 const tools = require('./tools.js')
 const lunar = require('./lunar.js')

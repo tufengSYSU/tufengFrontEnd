@@ -120,12 +120,11 @@ const getRandomColor = () => {
 }
 
 /**
- * getPrettyRandomColor
- * recently only get color with high S
+ * getHighSColor
  *
  * @return {String} color
  */
-const getPrettyRandomColor = () => {
+const getHighSColor = () => {
   var letters = '0123456789ABCDEF';
   var color = '#';
   do {
@@ -137,6 +136,11 @@ const getPrettyRandomColor = () => {
   return color;
 }
 
+/**
+ * colorHasHighS
+ *
+ * @return {Bool}
+ */
 const colorHasHighS = (colorInHex) => {
   let R = parseInt(colorInHex.substr(1, 2), 16);
   let G = parseInt(colorInHex.substr(3, 2), 16);
@@ -146,6 +150,22 @@ const colorHasHighS = (colorInHex) => {
   var S = ((max - min) / max);
   return (S > 0.7) ? true : false;
 }
+
+/**
+ * getPrettyRandomColor
+ *
+ * @return {String} color
+ */
+const getPrettyRandomColor = () => {
+  return prettyColor[Math.floor(Math.random() * prettyColor.length)];
+}
+const prettyColor = [
+  "#7B8BE3", "#854836", "#D05A6E", "#B19693", "#ED784A", "#E98B2A", "#B5CAA0",
+  "#91AD70", "#90B44B", "#91B493", "#808F7C", "#77969A", "#1E88A8", "#A5DEE4",
+  "#3A8FB7", "#58B2DC", "#51A8DD", "#2EA9DF", "#7B90D2", "#4E4F97", "#8A6BBE",
+  "#6A4C9C", "#986DB2", "#5E3D50", "#C1328E", "#E03C8A", "#828282", "#F596AA",
+  "#F8C3CD", "#66BAB7"
+]
 
 module.exports = {
   getCurrentYearAndMonthTitle: getCurrentYearAndMonthTitle,
