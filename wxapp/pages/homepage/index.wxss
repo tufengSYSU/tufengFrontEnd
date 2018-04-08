@@ -244,6 +244,10 @@
   height: 15rpx;
   width: 100%;
 }
+
+.fixed {
+  position: fixed;
+}
 /** tabpage end */
 
 /* main-body end */
