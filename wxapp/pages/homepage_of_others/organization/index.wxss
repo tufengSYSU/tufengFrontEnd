@@ -162,32 +162,17 @@
   text-align: center;
 }
 
-.vertical-cover-image {
-  width: 50%;
-  height: 80%;
-}
-
-.cross-cover-image {
-  height: 60%;
-  width: 80%;
-}
-
-.vertical-activity-introduction {
-  width: 40%;
-}
-
-.cross-activity-introduction {
-  margin-top: 20px;
-  width: 100%;
-  text-align: center;
-  order: -1;
-}
-
 .moments {
   background-color: white;
   padding-left: 10px;
   padding-right: 10px;
   overflow: hidden;
+}
+
+.moments .outline {
+  font-size: 16px;
+  color: #FF4081;
+  opacity: 0.61;
 }
 
 .userInfo {
