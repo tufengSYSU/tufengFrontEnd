@@ -1,5 +1,6 @@
-<scroll-view scroll-y class="container" bindscroll="pageScroll" bindscrolltolower="scrollToLower">
+<import src="../../../resources/templates/organizationMoments/moments.wxml" />
 
+<scroll-view scroll-y class="container" bindscroll="pageScroll" bindscrolltolower="scrollToLower">
   <view class="image-container">
     <image class="cover-image" mode="widthFix" src="{{user.background}}"/>
   </view>
@@ -36,60 +37,17 @@
       </view>
 
       <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-        <view class="activities-container" wx:if="{{hover[0] === 1}}">
+        <view class="activities-container" wx:if="{{hover[1] === 1}}">
           <view class="hint">热门活动</view>
           <view class="activity" wx:for="{{user.activity}}" wx:key="unique">
-            <image class="activity-cover-image" lazy-load="{{true}}" mode="aspectFill" src="{{item.image}}"/>
+            <image class="activity-cover-image" lazy-load="{{true}}" mode="aspectFill" src="{{item.image}}" bindtap="clickActivity"/>
             <view class="progress" wx:if="{{item.progress}}">进行中</view>
             <view class="activity-name">{{item.name}}</view>
           </view>
         </view>
 
-        <view class="moments" wx:if="{{hover[1] === 1}}">
-          <view>最近动态</view>
-          <view class="block"></view>
-          <view class="moment" wx:for="{{user.moments}}" wx:for-item="moment" wx:key="{{*index}}">
-            <view class="userInfo">
-              <image class="avatar" src="{{user.avatar}}"/>
-              <view class="username">{{moment.author}}</view>
-              <view class="time">{{moment.time}}</view>
-            </view>
+        <template is="moments" data="{{moments, voteIcon, commentIcon, heartIcon}}" wx:if="{{hover[0] === 1}}" />
 
-            <view class="block"></view>
-            <view class="content">
-              {{moment.content}}
-            </view>
-
-            <view class="block"></view>
-            <view class="images" mode="center" wx:if="{{moment.images.length > 0}}">
-              <image src="{{moment.images}}"/>
-            </view>
-
-            <view class="vote-bar">
-              <view class="outline">{{moment.likers.length}}人觉得很赞</view>
-              <view class="right-icons">
-                <image class="voteicon" src="{{user.icon.voteicon}}"/>
-                <image class="commenticon" src="{{user.icon.commenticon}}"/>
-              </view>
-            </view>
-
-            <view class="dashline"></view>
-
-            <view class="comments">
-              <view class="likers">
-                <image src="{{user.icon.hearticon}}"/>
-                <text wx:for="{{moment.likers}}" wx:key="{{*index}}">{{item.name}}{{index === moment.likers.length-1? '' : '、'}}</text>
-              </view>
-              <view class="comment" wx:for="{{moment.comments}}" wx:for-item="comment" wx:key="{{*index}}">
-                <text>{{comment.author.name}}</text>
-                <text style="font-weight:normal" wx:if="{{comment.reply_to}}"> 回复 </text>
-                <text>{{comment.reply_to ? comment.reply_to.name : ''}}</text>
-                <text style="font-weight:normal">: {{comment.content}}</text>
-              </view>
-            </view>
-          </view>
-
-        </view>
 
         <view class="album-container" wx:if="{{hover[2] === 1}}">
         <view class="hint">一周内</view>

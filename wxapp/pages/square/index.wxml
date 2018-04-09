@@ -1,27 +1,17 @@
-<import src="../../resources/templates/moments/moments.wxml" />
-
 <view class="container">
   <view class="main-body">
     <view class="bar">
-      <text class="{{tabIndex === index ? 'active' : ''}}" wx:for="{{bar}}" wx:key="{{*index}}" data-index="{{index}}" bindtap="clicktab">{{item}} </text>
+      <text class="active"> {{bar[1]}} </text>
     </view>
 
     <view class="white-block"></view>
 
     <view class="explore">
-      <!-- 蜂动态 -->
-      <view class="feng-moments" wx:if="{{tabIndex === 0}}">
-        <view class="recommend">
-          <image class="avatar" wx:for="{{user.recommend}}" src="{{item.avatar}}" wx:key="{{*index}}" bindtap="rollToHomepageOfOthers"/>
-        </view>
-        <view class="dashline"></view>
-        <template is="moments" data="{{moments}}"/>
-      </view>
       <!-- 社团墙 -->
-      <view class="organization-wall" wx:if="{{tabIndex === 1}}">
+      <view class="organization-wall">
         <view class="concerns">
           <view class="outline">我关注的</view>
-          <image wx:for="{{user.concerns}}" src="{{item.avatar}}" wx:key="{{*index}}" />
+          <image wx:for="{{user.concerns}}" src="{{item.avatar}}" wx:key="{{*index}}" bindtap="clickOrganizationTab"/>
         </view>
 
         <view class="grey-block"></view>
@@ -33,7 +23,7 @@
             <view wx:for="{{user.myOrganization}}" wx:for-item="organization" wx:key="{{*index}}">
               <!-- 顶部信息 -->
               <swiper-item>
-                <view class="organization-card">
+                <view class="organization-card" bindtap="clickOrganizationTab">
                   <view class="avatar">
                     <image src="{{organization.avatar}}" />
                   </view>
@@ -44,9 +34,9 @@
                     {{organization.occupation}}
                   </view>
                   <!-- 分割线 -->
-                  <view class="dashline"></view>
+                  <!-- <view class="dashline"></view> -->
                   <!-- 下部信息 icon等 -->
-                  <view class="organization-controllers">
+                  <!-- <view class="organization-controllers">
                     <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
                       <view class="icon">
                         <image src="{{menu.avatar}}" data-text="{{menu.text}}" bindtap="rollTo"/>
@@ -56,7 +46,7 @@
                       </view>
                     </view>
                   </view>
-                  <view style="clear:both"></view>
+                  <view style="clear:both"></view> -->
                 </view>
               </swiper-item>
             </view>
@@ -67,7 +57,7 @@
         <!-- 附近社团 -->
         <view class="nearby">
           <view class="outline">我附近的</view>
-          <view class="organization" wx:for="{{user.nearbyOrganization}}" wx:key="{{*index}}">
+          <view class="organization" wx:for="{{user.nearbyOrganization}}" wx:key="{{*index}}" bindtap="clickOrganizationTab">
             <image src="{{item.avatar}}" />
             <view>{{item.name}}</view>
           </view>

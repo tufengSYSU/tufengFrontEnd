@@ -1,9 +1,5 @@
 /* homepage index.wxss */
 
-@import "../../resources/templates/moments/moments.wxss";
-@import "../../resources/templates/messages/messages.wxss";
-@import "../../resources/templates/personalizations/personalization.wxss";
-
 .container {
   height: 100vh;
   margin: 0;
@@ -94,99 +90,170 @@
 
 /*** activities */
 
-.activites-tabbar {
+.attention-tabbar {
   background-color: white;
 }
 
-.my-activites {
-  margin-top: 10px;
+.sub-tab {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: white;
+}
+
+.sub-tab view {
+  margin-left: 10px;
+  opacity: 0.4;
+  display: inline;
+}
+
+.sub-tab .active{
+  opacity: 1;
+}
+
+.organizations-container {
+  background-color: white;
+}
+
+.organizations-container .organization image {
+  float: left;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding-right: 10px;
+}
+
+.organizations-container .organization {
   padding: 10px;
+  font-size: 18px;
 }
 
-.my-activites view:first-child {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 14px;
-  color: #919191;
+.organizations-container .organization view {
+  height: 34px;
+  padding-top: 8px;
 }
 
-.my-activites view:last-child {
-  float: right;
-  font-size: 12px;
-  color: #b4b4b4;
-}
-
-.hr {
-  border: 0;
-  border-bottom: 1px solid #e7e7e7;
-  background: #fff;
-}
-
-.activity {
-  margin-top: 10px;
+.activities-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   background-color: white;
 }
 
-.tabs-container {
+.hint {
+  width: 100%;
+  font-size: 16px;
+  margin-left: 10px;
+  color: #FF4081;
+  opacity: 0.61;
+}
+
+.activities-container .activity {
+  margin-top: 10px;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #FAFAFA;
+  border-radius: 5px;
+  color: rgba(0,0,0,0.78);
+  width: calc(50vw - 20px);
+  height: 200px;
+  padding-top: 30px;
+}
+
+.progress {
+  font-size: 12px;
+  opacity: 0.72;
+  color: #FF9800;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.activity-cover-image {
+  width: 100%;
+  max-height: 80%;
+}
+
+.activity-name {
+  opacity: 0.7;
+  font-size: 13px;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
   text-align: center;
 }
 
-.tabs-container .act-tab {
-  display: inline-block;
-  width: 33%;
-  padding: 10px 0 5px 0;
+.my-registrations {
+  margin-top: 10px;
+}
+
+.registration {
+  background-color: white;
+  width: calc(50vw - 15px);
+  margin-bottom: 10px;
+  margin-left: 10px;
+  float:left;
+}
+
+.registration .name {
+  font-size: 18px;
+}
+
+.regis-info {
   font-size: 12px;
-  color: #b3b3b3;
 }
 
-.icon-area {
-  width: 34px;
-  height: 34px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-  margin-bottom: 5px;
+.registration image {
+  width: 100%;
+  height: 150px;
 }
 
-.act-tab-icon {
-  background-size: contain;
-  width: 34px;
-  height: 34px;
+.regis-info {
+  padding: 10px;
 }
 
-.act-tab.active .act-tab-icon {
-  position: relative;
-  left: -34px;
-  -webkit-filter: drop-shadow(34px 0 #ffac32);
-  filter: drop-shadow(34px 0 #ffac32);
+.registration .icon-group {
+  vertical-align: middle;
+  font-size: 10px;
 }
 
-/*** activities end */
+.registration .icon-group view {
+  float: left;
+}
 
+<<<<<<< HEAD
 /*** album */
-
 .album {
   height: 200%;
+=======
+.registration .icon-group image {
+  width: 15px;
+  height: 15px;
+  float: left;
+}
+
+.registration .footer {
+>>>>>>> 5f3d4d5f6a79363a19553f18b49b08fb171a502e
   padding: 10px;
-  margin-top: 10px;
-  background-color: white;
 }
 
-.photo-picker {
-  text-align: center;
+.registration .footer image {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 10px;
 }
 
-.photo-picker .photo-icon {
-  height: 32px;
-  width: 32px;
+.dashline {
+  background-color: #E2E2E2;
+  height: 15rpx;
+  width: 100%;
 }
 
-.weui-cells, .weui-cell {
-  border: none;
+.fixed {
+  position: fixed;
 }
-
-/*** album end */
-
 /** tabpage end */
 
 /* main-body end */

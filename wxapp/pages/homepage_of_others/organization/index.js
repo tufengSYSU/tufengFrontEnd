@@ -1,4 +1,4 @@
-const ASSETS = "../../../assets/myprofile_icon";
+const ASSETS = "../../../assets/homepage_of_others_icon";
 const ATTENTION_ICON = ASSETS + "/organization/attention.png";
 const ADDRESS_ICON = ASSETS + "/organization/address.png";
 const HONOR_ICON = ASSETS + "/organization/honor.png";
@@ -46,18 +46,20 @@ Page({
       honoricon: HONOR_ICON,
       arrowicon: ARROW_ICON,
       attentionicon: ATTENTION_ICON,
-      voteicon: VOTE_ICON,
-      commenticon: COMMENT_ICON,
-      hearticon: HEART_ICON
+      voteIcon: VOTE_ICON,
+      commentIcon: COMMENT_ICON,
+      heartIcon: HEART_ICON
     }
     this.setData({
-      user: user
+      user: user,
+      voteIcon: VOTE_ICON,
+      commentIcon: COMMENT_ICON,
+      heartIcon: HEART_ICON
     })
   },
   getMoments: function() {
-    this.data.user.moments = MOMENTS_SAMPLE;
     this.setData({
-      user: this.data.user
+      moments: MOMENTS_SAMPLE
     })
   },
   getActivity: function() {
@@ -70,6 +72,13 @@ Page({
     this.data.user.album = ALBUM_SAMPLE;
     this.setData({
       user: this.data.user
+    })
+  },
+  clickActivity: function() {
+    let activityid = 1;
+    let url = `../../activities/activity_detail/index?activityid=${activityid}`
+    wx.navigateTo({
+      url: url
     })
   },
   makeAttention: function() {
@@ -118,8 +127,40 @@ Page({
       reachTop: true
     })
   },
-  judge: function(a, b, c) {
-    return Math.abs(a-b-c) < 5;
+  voteUp: function(e) {
+    const momentIndex = e.currentTarget.dataset.momentindex
+    console.log(momentIndex);
+    var moments = this.data.moments
+    var moment = moments[momentIndex]
+    var user = this.data.user
+
+    var momentLikersIds = moment.likers.map(liker => {return liker.id})
+    var indexOfUserId = momentLikersIds.indexOf(user.id)
+    if (indexOfUserId >= 0) {
+      // TODO: be real
+      moment.likers.splice(indexOfUserId, 1);
+      wx.showToast({
+        title: '赞-1',
+        icon: 'success',
+        duration: 500
+      })
+    }
+    else {
+      // TODO: be real
+      moment.likers.push({
+        id: user.id,
+        name: user.name
+      })
+      wx.showToast({
+        title: '赞+1',
+        icon: 'success',
+        duration: 500
+      })
+    }
+    moments[momentIndex] = moment
+    this.setData({
+      moments
+    })
   }
 })
 
@@ -147,10 +188,11 @@ const ORGANIZATION_SAMPLE = {
 const MOMENTS_SAMPLE = [
   {
     id: "1",
-    author: "卢本伟",
-    time: "今天 17:00",
+    author: ORGANIZATION_SAMPLE,
+    date: "今天 17:00",
+    events: "维纳斯演唱会",
     images: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
-    content: "张剑 @中东广播台 维纳斯活动发布啦",
+    content: "张大剑秀",
     likers: [
       {
         id: "",
@@ -197,10 +239,11 @@ const MOMENTS_SAMPLE = [
   },
   {
     id: "2",
-    author: "张小牛",
-    time: "昨天 18:00",
+    author: ORGANIZATION_SAMPLE,
+    date: "昨天 18:00",
     images: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
-    content: "张剑 @ 中东广播台 维纳斯歌手大赛发布啦",
+    events: "维纳斯演唱会",
+    content: "张剑秀",
     likers: [
       {
         id: "",

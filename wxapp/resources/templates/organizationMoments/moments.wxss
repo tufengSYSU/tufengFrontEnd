@@ -1,0 +1,111 @@
+/**** moment */
+
+.moment {
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+
+}
+
+.moment .title .avatar {
+  display: inline-block;
+}
+
+.moment .title .avatar image {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+}
+
+.moment .title .moment-info {
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px;
+}
+
+.moment .title .moment-info .date {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.moment .text {
+  line-height: 2em;
+  padding: 6px 0;
+}
+
+.moment .forward {
+  padding: 10px;
+  background-color: #F2F2F24C;
+}
+
+.moment .forward .text {
+  line-height: 2em;
+  padding: 0;
+}
+
+.vote-bar {
+  height: 46px;
+}
+
+.vote-bar .outline {
+  float: left;
+  font-size: 12px;
+  opacity: 0.4;
+  /* to center */
+  padding: 17px;
+  line-height: 12px;
+}
+
+.vote-bar .right-icons {
+  float: right;
+}
+
+.vote-bar .right-icons image {
+  height: 30px;
+  width: 30px;
+  padding: 8px;
+  text-align: right;
+}
+
+.hr.comments-divider {
+  border: 0;
+  border-bottom: 1px solid #F2F2F299;
+  background: white;
+}
+
+.comments {
+  font-size: 13px;
+  line-height: 1.6em;
+  padding-bottom: 10px;
+}
+
+.comments .liker-bar {
+  margin-top: 3px;
+}
+
+.comments .liker-bar .heart {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.comments .liker-bar .heart image {
+  height: 22px;
+  width: 22px;
+  padding-right: 5px;
+}
+
+.comments .liker-bar .likers, .comments .liker-bar .likers .liker {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.comments .liker-bar .likers{
+  opacity: 0.8;
+}
+
+.comments .comments-detail {
+  padding-left: 27px;
+  opacity: 0.8;
+}
+
+/**** moment end */

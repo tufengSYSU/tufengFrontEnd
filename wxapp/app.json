@@ -1,12 +1,13 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/activities/index",
+    "pages/homepage/index",
     "pages/activities/activity_detail/index",
     "pages/activities/album_live/index",
     "pages/calendar/index",
     "pages/square/index",
-    "pages/homepage/index"
+    "pages/homepage_of_others/index",
+    "pages/homepage_of_others/organization/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -25,7 +26,8 @@
         "selectedIconPath": "assets/icon_selected/activities.png"
       },
       {
-        "pagePath": "pages/calendar/index",
+      
+        "pagePath": "pages/activities/activity_detail/index",
         "text": "活动日历",
         "iconPath": "assets/icon/calendar.png",
         "selectedIconPath": "assets/icon_selected/calendar.png"
