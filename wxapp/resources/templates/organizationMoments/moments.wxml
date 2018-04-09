@@ -1,0 +1,73 @@
+<template name="moments">
+  <view class="moments">
+  <view class="moment" wx:for="{{moments}}" wx:for-item="moment" wx:key="{{*index}}">
+    <view class="title">
+      <view class="avatar">
+        <image src="{{moment.author.avatar}}"></image>
+      </view>
+      <view class="moment-info">
+        <view class="athor-name">
+          {{moment.author.name}}
+        </view>
+        <view class="date">
+          {{moment.date}}
+        </view>
+      </view>
+    </view>
+
+    <view class="outline">
+      <text>发布了活动：</text>
+      <text class="bold">{{moment.events}}</text>
+    </view>
+
+    <!-- 内容 -->
+    <view class="text">
+      {{moment.content}}
+    </view>
+
+    <!-- 图片 -->
+    <view class="images" wx:if="{{moment.images.length > 0}}">
+      <image src="{{moment.images[0]}}" mode="widthFix"></image>
+    </view>
+
+    <!-- vote-bar -->
+    <view class="vote-bar">
+      <view class="outline">
+        {{moment.likers.length}}人觉得很赞
+      </view>
+      <view class="right-icons">
+        <image src="{{voteIcon}}" bindtap="voteUp" data-momentindex="{{index}}"></image>
+        <image src="{{commentIcon}}"></image>
+      </view>
+    </view>
+
+    <view class="hr comments-divider"></view>
+    <!-- 评论 -->
+    <view class="comments">
+      <view class="liker-bar">
+        <view class="heart">
+          <image src="{{heartIcon}}"></image>
+        </view>
+        <view class="likers bold">
+          <view class="liker" wx:for="{{moment.likers}}" wx:for-item="liker" wx:key="{{*index}}">
+            {{liker.name}}{{moment.likers.length > index + 1 ? "、" : ""}}
+          </view>
+        </view>
+      </view>
+      <view class="comments-detail">
+        <view class="comment" wx:for="{{moment.comments}}" wx:for-item="comment" wx:key="{{*index}}">
+          <span class="bold">{{comment.author.name}}</span>
+          <span wx:if="{{!comment.reply_to}}">
+            <span class="bold">：</span>{{comment.content}}
+          </span>
+          <span wx:else="{{!comment.reply_to}}">
+            {{" 回复 "}}
+            <span class="bold">{{comment.reply_to.name}}</span>
+            <span class="bold">：</span>{{comment.content}}
+          </span>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</template>
