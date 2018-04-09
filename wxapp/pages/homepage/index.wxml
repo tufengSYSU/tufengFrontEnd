@@ -73,11 +73,6 @@
             <view>{{organizations[0].name}}</view>
           </view>
         </view>
-<<<<<<< HEAD
-      </view>
-=======
->>>>>>> 5f3d4d5f6a79363a19553f18b49b08fb171a502e
-
       </view>
 
     </view>
