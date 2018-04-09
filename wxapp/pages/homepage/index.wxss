@@ -222,6 +222,11 @@
   float: left;
 }
 
+/*** album */
+.album {
+  height: 200%;
+}
+
 .registration .icon-group image {
   width: 15px;
   height: 15px;
