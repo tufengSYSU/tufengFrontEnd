@@ -222,6 +222,11 @@
   float: left;
 }
 
+<<<<<<< HEAD
+/*** album */
+.album {
+  height: 200%;
+=======
 .registration .icon-group image {
   width: 15px;
   height: 15px;
@@ -229,6 +234,7 @@
 }
 
 .registration .footer {
+>>>>>>> 5f3d4d5f6a79363a19553f18b49b08fb171a502e
   padding: 10px;
 }
 
