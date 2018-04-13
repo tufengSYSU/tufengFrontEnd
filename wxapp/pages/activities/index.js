@@ -8,7 +8,7 @@ const tools = require('./tools.js')
 const ASSETS = "../../assets/"
 const LOCATION_ICON = ASSETS + "icon/location.png"
 const SEARCH_ICON = ASSETS + "icon/search.png"
-const SPORT_ICON = ASSETS + "icon/mark/aixin.png"
+const AIXIN_ICON = ASSETS + "icon/mark/aixin.png"
 const BALL_ICON = ASSETS + "icon/mark/ball.png"
 const MONEY_ICON = ASSETS + "icon/mark/money.png"
 
@@ -33,6 +33,7 @@ Page({
    * 初始化数据
    */
   onLoad: function() {
+    // 两个请求
     this.getLocation();
     this.getIcons();
     this.getWindowSize();
@@ -68,7 +69,7 @@ Page({
     this.setData({
       locationIcon: LOCATION_ICON,
       searchIcon: SEARCH_ICON,
-      sportIcon: SPORT_ICON,
+      aixinIcon: AIXIN_ICON,
       ballIcon: BALL_ICON,
       moneyIcon: MONEY_ICON
     })
@@ -96,8 +97,8 @@ Page({
         slidePictures.push(onedayArticles.article[0].image)
       onedayArticles.article.map(temp => {
         let item = {
-          text: temp.briefIntroduction,
-          color: tools.getRandomColor()
+          text: temp.name,
+          color: tools.getHighSColor()
         }
         briefIntroduction.push(item)
       })
@@ -145,7 +146,7 @@ Page({
    * 把对应的推送设为已浏览
    * @param {object} e 触发事件
    */
-  makeVisited: function(e) {
+  makeVisited: function (e) {
     var index = e.currentTarget.dataset.index
     this.data.visited[index] = 1
     console.log(index)
@@ -153,9 +154,34 @@ Page({
       visited: this.data.visited
     })
   },
-  navigateToActivityDetail: function() {
+  navigateToActivityDetail: function (e) {
+    console.log(e)
+    let articleIndex = e.currentTarget.dataset.articleindex
+    let subIndex = e.currentTarget.dataset.subindex
+    console.log(articleIndex + " " + subIndex)
+    let id = this.data.articlesInOneMonth[articleIndex].article[subIndex].id
+    console.log(id)
     wx.navigateTo({
-      url: 'activity_detail/index?data='+JSON.stringify(this.data) // will be some other data
+      url: 'activity_detail/index?id='+id // will be some other data
+    })
+  },
+  findPosetUrl: function (activity_id) {
+    for (key in activities) {
+      if (activities[key].id === activity_id) {
+        return activities[key].poster_url;
+      }
+      else {
+        // 设置默认图片
+        return defaultUrl;
+      }
+    }
+  },
+  getActivityStages: function () {
+    let activityStages = SAMPLE.map((index,dailyStages) => {
+      let date = "";
+      dailyStages.map(stage => {
+
+      })
     })
   }
 })
@@ -168,9 +194,11 @@ const ARTICLES_SAMPLE = [
       {
         id: 0,
         image: "https://i.loli.net/2018/02/28/5a95a4d037347.png",
-        headLine: "中山大学团委活动",
-        mark: ["money", "ball", "aixin"],
-        briefIntroduction: "1758舞蹈会"
+        name: "中山大学团委活动",
+        location: "假草操场",
+        mark: [1,1,0],
+        content: "1758舞蹈会",
+        activity_id: 12345
       }
     ]
   },
@@ -181,9 +209,11 @@ const ARTICLES_SAMPLE = [
       {
         id: 1,
         image: "https://i.loli.net/2018/02/28/5a95a4d064f71.png",
-        headLine: "数据科学与计算机学院学长团",
-        mark: ["money", "ball"],
-        briefIntroduction: "学长团"
+        name: "数据科学与计算机学院学长团",
+        location: "三饭小广场",
+        mark: [0, 1, 0],
+        content: "学长团",
+        activity_id: 12345
       },
     ]
   },
@@ -194,9 +224,11 @@ const ARTICLES_SAMPLE = [
       {
         id: 2,
         image: "https://i.loli.net/2018/02/28/5a95a4d088fd3.png",
-        headLine: "维纳斯歌手大赛",
-        mark: ["money", "aixin"],
-        briefIntroduction: "维纳斯歌手比赛"
+        name: "维纳斯歌手大赛",
+        location: "中大东校区",
+        mark: [0, 1, 1],
+        content: "维纳斯歌手比赛",
+        activity_id: 12345
       },
     ]
   },
@@ -207,9 +239,11 @@ const ARTICLES_SAMPLE = [
       {
         id: 3,
         image: "https://i.loli.net/2018/02/28/5a95a4d09f6ec.png",
-        headLine: "暑假三下乡-把阳光撒到世界每一个角落",
-        mark: ["money"],
-        briefIntroduction: "三下乡义教"
+        name: "暑假三下乡",
+        location: "广州",
+        mark: [0, 1],
+        content: "三下乡义教",
+        activity_id: 12345
       },
     ]
   }

@@ -28,7 +28,15 @@ Page({
     ],
     attentionTabIndex: 0
   },
-  onLoad: function() {
+  onLoad: function(data) {
+
+    // wx.request({
+    //   url: `https://ancestree.site/api/users/${data.id}`,
+    //   data: ,
+    //   success: function(res) {
+    //
+    //   }
+    // })
     this.getMyProfile()
     this.getIcons()
     this.getScreenData()

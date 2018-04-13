@@ -45,16 +45,16 @@
           <view class="article-date">
             {{articlesInOneMonth[articleIndex].date}}
           </view>
-          <view wx:for="{{articlesInOneMonth[articleIndex].article}}" wx:for-item="article" wx:key="{{*index}}">
+          <view wx:for="{{articlesInOneMonth[articleIndex].article}}" wx:for-item="article" wx:key="{{*index}}" data-articleIndex="{{articleIndex}}" data-subIndex="{{index}}" bindtap="navigateToActivityDetail">
             <view class="article-container">
               <image class="article-coverimage" src="{{article.image}}" />
               <view class="mark-container">
-                <image src="../../assets/icon/mark/aixin.png"/>
-                <image src="../../assets/icon/mark/ball.png"/>
-                <image src="../../assets/icon/mark/money.png"/>
+                <image src="{{aixinIcon}}" wx:if="{{article.mark[0]}}"/>
+                <image src="{{ballIcon}}" wx:if="{{article.mark[1]}}"/>
+                <image src="{{moneyIcon}}" wx:if="{{article.mark[2]}}"/>
               </view>
               <view class="article-description">
-                {{article.headLine}}
+                {{article.name}}
               </view>
             </view>
           </view>

@@ -42,12 +42,18 @@ Page({
       "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
     ],
   },
-  onLoad: function () {
+  onLoad: function (data) {
     this.getMyProfile()
     this.getIcons()
     this.getScreenData()
   },
   getMyProfile: function () {
+    // wx.request({
+    //   url: "https://ancestree.site/api/activities_stages/15-01-01",
+    //   methon: "GET",
+    //   success: function( {
+    //   },
+    // })
     // TODO: get data via api
     var user = USER_SAMPLE
     var activity = ACTIVITY_SAMPLE

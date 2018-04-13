@@ -20,6 +20,13 @@ Page({
     arrowIcon: "../../assets/myprofile_icon/organization/arrow.png",
   },
   onLoad: function() {
+    // wx.request({
+    //   url: `https://ancestree.site/api/users/${data.id}`,
+    //   data
+    //   success: function(res) {
+    //
+    //   }
+    // })
     this.getScreenData();
     this.getHotSample();
     this.getIcon();

@@ -17,7 +17,14 @@ Page({
     reachTop: false,
     TAB: ["动态", "活动", "相册"]
   },
-  onLoad: function() {
+  onLoad: function(data) {
+    // wx.request({
+    //   url: `https://ancestree.site/api/users/${data.id}`,
+    //   data
+    //   success: function(res) {
+    //
+    //   }
+    // })
     this.getWindowSize();
     this.getMyProfile();
     this.getMoments();
@@ -110,7 +117,7 @@ Page({
     const windowSize = this.data.windowSize;
     const reachTop = this.data.reachTop;
     console.log(reachTop);
-    if (reachTop === false && this.judge(e.detail.scrollHeight, e.detail.scrollTop, windowSize.height)) {
+    if (reachTop === false && e.detail.scrollHeight - e.detail.scrollTop == windowSize.height) {
       this.setData({
         reachTop: true
       })
