@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/calendar/index",
     "pages/activities/index",
     "pages/activities/activity_detail/index",
     "pages/activities/album_live/index",
