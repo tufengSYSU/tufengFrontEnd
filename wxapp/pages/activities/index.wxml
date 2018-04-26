@@ -20,8 +20,8 @@
   <!-- article-calendar-container -->
   <view class="brief-description-container">
     <view class="brief-description-container">
-      <view class="brief-description" style="background-color:{{item.color}}" wx:for="{{briefIntroduction}}" wx:for-index="idx" wx:key="{{*index}}">
-        {{item.text}}
+      <view class="brief-description" style="background-color:{{item.color}}" wx:for="{{shortIntroduction}}" wx:for-index="idx" wx:key="{{*index}}">
+        {{item.short_name}}
       </view>
     </view>
   </view>
@@ -30,15 +30,40 @@
   <view class="slide-container">
     <!-- slide image core code -->
     <swiper circular="true" autoplay="true" interval="3000" duration="500" class="picture-swiper">
-      <swiper-item wx:for-items="{{slidePictures}}" wx:key="{{*index}}">
+      <swiper-item wx:for-items="{{posters}}" wx:key="{{*index}}">
         <view class="imageContainer">
-          <image mode="widthFix" src="{{item}}" class="slide-image" />
+          <image mode="widthFix" src="{{item.image}}" class="slide-image" />
         </view>
       </swiper-item>
     </swiper>
   </view>
   <!-- article-calendar-container -->
   <view class="article-calendar-container">
+    <swiper current="{{currentTab}}" bindchange="swiperChange" interval="{{interval}}" display-multiple-items="3" duration="{{duration}}" class="picture-swiper">
+      <swiper-item wx:for="{{stages}}" wx:for-item="stagesInOneDay" wx:key="{{*index}}">
+        <view>
+          <view class="article-date">
+            {{stagesInOneDay.date}}
+          </view>
+          <view class="single-day-articles" bindtap="navigateToActivityDetail" wx:for="{{stagesInOneDay.stagesInOneDay}}" wx:for-item="stage" wx:key="{{*index}}">
+              <view class="article-container">
+                <image class="article-coverimage" src="{{stage.image}}" />
+                <!-- <view class="mark-container">
+                  <image src="{{aixinIcon}}" wx:if="{{article.mark[0]}}"/>
+                  <image src="{{ballIcon}}" wx:if="{{article.mark[1]}}"/>
+                  <image src="{{moneyIcon}}" wx:if="{{article.mark[2]}}"/>
+                </view> -->
+                <view class="article-description">
+                  {{stage.title}}
+                </view>
+              </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- <view class="article-calendar-container">
     <swiper interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
       <swiper-item wx:for-items="{{seq}}" wx:key="*this">
         <view class="single-day-articles" wx:for="{{[3*item,3*item+1,3*item+2]}}" wx:if="{{articleIndex < articlesInOneMonth.length}}" wx:for-item="articleIndex" wx:key="{{*index}}">
@@ -61,6 +86,6 @@
         </view>
       </swiper-item>
     </swiper>
-  </view>
+  </view> -->
 
 </view>

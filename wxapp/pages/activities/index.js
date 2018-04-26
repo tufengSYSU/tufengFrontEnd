@@ -20,14 +20,8 @@ Page({
     // 轮播图片的路径 使用每天的第一篇推送来做
     // 每篇推送是否已阅览
     visited: [],
-    background: [
-      "red-background",
-      "blue-background",
-      "yellow-background",
-      "green-background",
-      "grey-background"
-    ],
-    seq: []
+    seq: [],
+    currentTab: 2
   },
   /**
    * 初始化数据
@@ -37,11 +31,186 @@ Page({
     this.getLocation();
     this.getIcons();
     this.getWindowSize();
+    this.setDateFormat();
     this.getArticlesInOneMonth();
+    this.getFunction();
+  },
+  swiperChange: function(e) {
+    console.log(e.detail.current)
+  },
+  getFunction: function() {
+    this.formatUrl = tools.formatUrl;
+    this.parseHTML = tools.parseHTML;
+  },
+  getIcons: function() {
     this.setData({
-      seq: Array.from(new Array(Math.ceil(this.data.articlesInOneMonth.length/3)), (val,index)=>index)
+      locationIcon: LOCATION_ICON,
+      searchIcon: SEARCH_ICON,
+      aixinIcon: AIXIN_ICON,
+      ballIcon: BALL_ICON,
+      moneyIcon: MONEY_ICON
     })
-    console.log(this.data.seq)
+    this.setData({
+      defaultTitle: "中大图峰",
+      defaultImage: "https://i.loli.net/2018/04/17/5ad5f1e0c85cc.png"
+    })
+  },
+  getWindowSize: function() {
+    var that = this
+    wx.getSystemInfo({
+      success: function(res) {
+        let windowSize = {
+          width: res.windowWidth,
+          height: res.windowHeight
+        }
+        that.setData({
+          windowSize
+        })
+      }
+    })
+  },
+  getArticlesInOneMonth: function() {
+    let date = new Date().format();
+    var that = this;
+    //console.log(date)
+    wx.request({
+      url: "https://ancestree.site/api/activity_stages",
+      data: {
+        one_day_in_that_month: date
+      },
+      success: function(res) {
+        let stages = res.data.data
+        that.setData({
+          stages
+        })
+        that.getPhoto();
+      }
+    })
+  },
+  getPhoto: function() {
+    var that = this;
+    var stages = this.data.stages;
+    console.log(stages)
+    var count = 0;
+    var article = stages.map((stagesInOneDay, index) => {
+      var articlesInOneDay = stagesInOneDay.map((stage, index) => {
+        //console.log(count)
+        let url = that.formatUrl(stage.activity.wechat_url);
+        //console.log(stage.id + " " + stage.activity.wechat_url + " " + url)
+        wx.request({
+          url: url,
+          success: function(res) {
+            let data = res.data
+            stage.title = that.parseHTML(data, "msg_title");
+            stage.image = that.parseHTML(data, "msg_cdn_url");
+            if (stage.title === that.data.defaultTitle) {
+              console.log(stage.id + " ")
+            }
+            that.setData({
+              stages
+            })
+          },
+          fail: function(res) {
+            stage.title = that.data.defaultTitle
+            stage.image = that.data.defaultImage
+            that.setData({
+              stages
+            })
+          },
+          complete: function() {
+            count++;
+            //console.log(count)
+            if (count === 42) {
+              that.setDateToActivities();
+              that.setData({
+                stages: that.data.stages.reverse()
+              })
+              that.getPostUrl();
+              that.getBriefInformation();
+              that.getCurrentTab();
+            }
+            //console.log(that.data.stages)
+          }
+        })
+        return stage;
+      })
+      return articlesInOneDay;
+    })
+  },
+  // 跳转到活动主页
+  getPostUrl: function() {
+    let stages = this.data.stages;
+    let posters =[]
+    for (let i in stages) {
+      let stagesItem = stages[i]
+      if (stagesItem.stagesInOneDay.length > 0) {
+        let item = {
+          activity_id: stagesItem.stagesInOneDay[0].activity.id,
+          image: stagesItem.stagesInOneDay[0].image
+        }
+        posters.push(item)
+      }
+    }
+    this.setData({
+      posters
+    })
+    console.log(posters);
+  },
+  // 跳转到活动主页
+  getBriefInformation: function() {
+    let stages = this.data.stages;
+    let shortIntroduction = []
+    for (let i in stages) {
+      let stagesItem = stages[i];
+      if (stagesItem.stagesInOneDay.length > 0) {
+        let item = {
+          short_name: stagesItem.stagesInOneDay[0].activity.short_name,
+          activity_id: stagesItem.stagesInOneDay[0].activity.id,
+          color: tools.getHighSColor()
+        }
+        shortIntroduction.push(item)
+      }
+    }
+    this.setData({
+      shortIntroduction
+    })
+    //console.log(shortIntroduction);
+  },
+  setDateToActivities: function() {
+    let stages = this.data.stages;
+    //console.log(stages)
+    let month = (new Date()).getMonth()+1;
+    var activityInOneMonth = stages.map((activities, index) => {
+      let newObject = {}
+      newObject.stagesInOneDay = activities.map((activity) => {
+        return activity;
+      });
+      newObject.date = month+"月"+(index+1)+"日";
+      return newObject;
+    })
+    this.setData({
+      stages: activityInOneMonth
+    })
+    //console.log(this.data.stages)
+  },
+  setDateFormat: function() {
+    Date.prototype.format = function() {
+      let year = this.getFullYear();
+      let month = this.getMonth()+1;
+      let day = this.getDate();
+      month = (month>=10) ? month.toString() : "0" + month
+      day = (day>= 10) ? day.toString() : "0" + day
+      let str = year + "-" + month + "-" + day;
+      return str.substr(2);
+    }
+  },
+  getCurrentTab: function() {
+    let stages = this.data.stages;
+    let day = (new Date()).getDate();
+    let index = stages.length - day-3;
+    this.setData({
+      currentTab: index
+    })
   },
   /**
    * 获取当前位置
@@ -63,51 +232,6 @@ Page({
         locationString = res.latitude + "," + res.longitude
         that.requestAddress(locationString)
       }
-    })
-  },
-  getIcons: function() {
-    this.setData({
-      locationIcon: LOCATION_ICON,
-      searchIcon: SEARCH_ICON,
-      aixinIcon: AIXIN_ICON,
-      ballIcon: BALL_ICON,
-      moneyIcon: MONEY_ICON
-    })
-  },
-  getWindowSize: function() {
-    var that = this
-    wx.getSystemInfo({
-      success: function(res) {
-        let windowSize = {
-          width: res.windowWidth,
-          height: res.windowHeight
-        }
-        that.setData({
-          windowSize
-        })
-      }
-    })
-  },
-  getArticlesInOneMonth: function() {
-    let articlesInOneMonth = ARTICLES_SAMPLE
-    let briefIntroduction = []
-    let slidePictures = []
-    articlesInOneMonth = articlesInOneMonth.map(onedayArticles => {
-      if (onedayArticles.article[0])
-        slidePictures.push(onedayArticles.article[0].image)
-      onedayArticles.article.map(temp => {
-        let item = {
-          text: temp.name,
-          color: tools.getHighSColor()
-        }
-        briefIntroduction.push(item)
-      })
-      return onedayArticles;
-    })
-    this.setData({
-      articlesInOneMonth,
-      briefIntroduction,
-      slidePictures
     })
   },
   /**
@@ -155,33 +279,8 @@ Page({
     })
   },
   navigateToActivityDetail: function (e) {
-    console.log(e)
-    let articleIndex = e.currentTarget.dataset.articleindex
-    let subIndex = e.currentTarget.dataset.subindex
-    console.log(articleIndex + " " + subIndex)
-    let id = this.data.articlesInOneMonth[articleIndex].article[subIndex].id
-    console.log(id)
     wx.navigateTo({
-      url: 'activity_detail/index?id='+id // will be some other data
-    })
-  },
-  findPosetUrl: function (activity_id) {
-    for (key in activities) {
-      if (activities[key].id === activity_id) {
-        return activities[key].poster_url;
-      }
-      else {
-        // 设置默认图片
-        return defaultUrl;
-      }
-    }
-  },
-  getActivityStages: function () {
-    let activityStages = SAMPLE.map((index,dailyStages) => {
-      let date = "";
-      dailyStages.map(stage => {
-
-      })
+      url: 'articles_webview/index' // will be some other data
     })
   }
 })

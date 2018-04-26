@@ -3,6 +3,7 @@
     "pages/activities/index",
     "pages/activities/activity_detail/index",
     "pages/activities/album_live/index",
+    "pages/activities/articles_webview/index",
     "pages/calendar/index",
     "pages/square/index",
     "pages/homepage/index",
