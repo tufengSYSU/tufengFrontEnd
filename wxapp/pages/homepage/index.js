@@ -19,8 +19,10 @@ const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 Page({
   data:{
     user: null,
-    tabs: ["我的关注", "我的报名"],
+    tabs: ["消息", "活动", "名片"],
+    activityTabs: ["已关注", "已报名", "已完成"],
     tabIndex: 0,
+    activityTabIndex: 0,
     reachTop: false,
     photoIcon: ASSETS + "/homepage/photo.png",
     images: [
@@ -43,6 +45,7 @@ Page({
     this.getOrganizations()
     this.getActivities()
     this.getRegistrations()
+    this.getMessages()
   },
   getMyProfile: function() {
     // TODO: get data via api
@@ -75,10 +78,21 @@ Page({
       registrations: REGISTRATION_SAMPLE
     })
   },
+  getMessages: function () {
+    this.setData({
+      messages: MESSAGES_SAMPLE
+    })
+  },
   clickTab: function(e) {
     const index = e.currentTarget.dataset.index
     this.setData({
       tabIndex: index
+    })
+  },
+  clickActivityTab: function(e) {
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      activityTabIndex: index
     })
   },
   clickActivity: function(e) {
@@ -152,7 +166,8 @@ const USER_SAMPLE = {
     contact: "QQ/WeChat/eMail",
     hobbies: ["摄影", "演唱", "足球"],
   },
-  organizations: ["中珠广播台", "足协"]
+  organizations: ["中珠广播台", "足协"],
+  hasSignedUp: REGISTRATION_SAMPLE,
 }
 
 const ORGANIZATION_SAMPLE = [
@@ -256,18 +271,71 @@ const REGISTRATION_SAMPLE = [
     id: "",
     name: "维纳斯歌手大赛",
     image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
-    status: "审核中"
+    status: 0,
+    startTime: "4月15日",
+    endTime: "5月30日",
+    location: "梁銶琚堂",
+    hosts: [
+      {
+        id: "location",
+        name: "中大GBT",
+      },
+      {
+        id: "apartment",
+        name: "中山大学团委"
+      },
+    ]
   },
   {
     id: "",
     name: "维纳斯歌手大赛",
     image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
-    status: "报名成功"
+    status: 1,
+    startTime: "4月15日",
+    endTime: "5月30日",
+    location: "梁銶琚堂",
+    hosts: [
+      {
+        id: "location",
+        name: "中大GBT11111",
+      },
+      {
+        id: "apartment",
+        name: "中山大学团委"
+      },
+    ]
   },
   {
     id: "",
     name: "维纳斯歌手大赛",
     image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
-    status: "审核中"
-  }
+    status: 2,
+    startTime: "4月15日",
+    endTime: "5月30日",
+    location: "梁銶琚堂",
+    hosts: [
+      {
+        id: "location",
+        name: "中大GBT22",
+      },
+      {
+        id: "apartment",
+        name: "中山大学团委"
+      },
+    ]
+  },
+]
+
+const MESSAGES_SAMPLE = [
+  {
+    id: "",
+    author: USER_SAMPLE,
+    remark: "222",
+    avatar: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",
+    time: "17:02",
+    unread: false,
+
+  },
+
+  
 ]

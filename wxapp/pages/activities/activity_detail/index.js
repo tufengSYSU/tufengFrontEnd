@@ -17,6 +17,8 @@ const PROCESSING_ICON = ASSETS + "/homepage/processing.png"
 const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 
 const PHOTO_ICON = ASSETS + "/ homepage / photo.png"
+
+
 Page({
   data: {
     url: {
@@ -27,7 +29,7 @@ Page({
       }
     },
     user: null,
-    activity: null,
+    //activity: null,
     tabs: ["时间轴", "相册", "简介", "留言板"],
     tabIndex: 0,
     actTabIndex: 0,
@@ -41,7 +43,10 @@ Page({
     images: [
       "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
     ],
+    Comment:""
+
   },
+  
   onLoad: function (data) {
     this.getMyProfile()
     this.getIcons()
@@ -55,11 +60,21 @@ Page({
     //   },
     // })
     // TODO: get data via api
-    var user = USER_SAMPLE
+    var user = USER_SAMPLE;
+    var D = new Date();
+    var init = new Date("2018/4/20/13:30");
+    var days = init.getTime() - D.getTime();
+    var leaveDay = parseInt(days / (1000 * 60 * 60 * 24));
+    var leaveHour = parseInt(days / (1000 * 60 * 60)) - leaveDay * 24;
+    var leaveMin = parseInt(days / (1000 * 60)) - leaveDay * 1440 - leaveHour * 60;
+
+    ACTIVITY_SAMPLE.leave_Day = leaveDay;
+    ACTIVITY_SAMPLE.leave_Hour = leaveHour;
+    ACTIVITY_SAMPLE.leave_Min = leaveMin;
     var activity = ACTIVITY_SAMPLE
     this.setData({
       user,
-      activity
+      activity,
     })
   },
   getMoments: function () {
@@ -135,6 +150,12 @@ Page({
       reachTop: true
     })
   },
+  commentInput:function(e) {
+    this.setData({
+      Comment: e.detail.value
+    })
+  },
+
   getScreenData: function () {
     var that = this
     wx.getSystemInfo({
@@ -173,6 +194,18 @@ Page({
       urls: that.data.images // 需要预览的图片http链接列表
     })
   },
+
+  getLeaveHour() {
+    var D = new Date();
+    var init = new Date("2018/4/20");
+    var days = init.getTime() - D.getTime();
+    var leaveDay = parseInt(days / (1000 * 60 * 60 * 24));
+    var leaveHour = parseInt(days / (1000 * 60 * 60)) - leaveDay * 24;
+    var leaveMin = parseInt(days / (1000 * 60)) - leaveDay * 1440 - leaveHour * 60;
+    this.setData({
+      leaveHour
+    })
+  },
 })
 
 
@@ -203,6 +236,10 @@ const ACTIVITY_SAMPLE = {
   organization: "中山大学广播台",
   likers: "7854",
   introduction: "报道称，自停止使用以来，该空间站的高度一直在稳步下降",
+
+  leave_Day: 0,
+  leave_Hour: 0,
+  leave_Min: 0,
   parts: [
     {
       partName: "开启报名",
@@ -220,6 +257,7 @@ const ACTIVITY_SAMPLE = {
       partPlace: " "
     },
   ],
+  
   comments: [
     {
       user: USER_SAMPLE,

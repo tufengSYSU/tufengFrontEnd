@@ -80,7 +80,7 @@ function e2c(){
     }
 }
 
-function GetcDateString(){
+function GetcDateString() {
     var tmp="";
     // 显示农历年：（ 如：甲午(马)年 ）
     tmp+=tgString.charAt((cYear-4)%10);

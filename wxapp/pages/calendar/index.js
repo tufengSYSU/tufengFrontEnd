@@ -105,7 +105,7 @@ Page({
     let date = new Date(oneDay)
     let that = this
     date.setDate(0) // the last day before this month
-    wx.request({
+    /*wx.request({
       url: app.globalData.apiPrefix + "/activity_stages?one_day_in_that_month=" + util.formatTimeToYYMMDD(new Date(oneDay)),
       method: "GET",
       header: {
@@ -168,7 +168,7 @@ Page({
           })
         }
       }
-    })
+    })*/
   },
   // 同步页面标题
   syncTitle: function() {
