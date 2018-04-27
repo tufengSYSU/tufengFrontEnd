@@ -20,7 +20,7 @@ Page({
     // 轮播图片的路径 使用每天的第一篇推送来做
     // 每篇推送是否已阅览
     visited: [],
-    seq: [],
+    subTab: ["推送+", "我看过", "公益", "文娱"],
     currentTab: 2
   },
   /**
@@ -249,7 +249,7 @@ Page({
       methon: "GET",
       success: function(res) {
         let location = that.data.location
-        location.address = res.data.result.address
+        location.address = res.data.result.address_component.city
         that.setData({
           location
         })

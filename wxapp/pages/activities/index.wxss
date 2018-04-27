@@ -1,4 +1,20 @@
-.container {
+
+.subTabContainer {
+  margin-left: 30px;
+  color: #707070;
+  font-size: 14px;
+  border-bottom: #707070;
+}
+
+.subTabContainer view {
+  float: left;
+  padding-right: 7vw;
+}
+
+.gap {
+  clear: both;
+  height: 5px;
+  border-bottom: 1px solid #A0A0A0;
 }
 
 /* location and search bar */
@@ -14,22 +30,24 @@
 .location-container {
   color: #707070;
   position: absolute;
-  right: 5px;
-  top: 2px;
+  right: 20px;
+  top: 10px;
   z-index: 99;
 }
 
 .address {
   width: 40px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #707070;
   white-space: nowrap;
   float: left;
+  margin-right: 10px;
+  margin-top: -2px;
 }
 
 .location-image {
-  width: 12px;
-  height: 12px;
+  margin-top: 0px;
+  width: 15px;
+  height: 15px;
 }
 
 /*** search bar */
@@ -40,38 +58,16 @@
 .search-icon {
   width: 15px;
   height: 15px;
+  top: 8px;
+  right: 20vw;
   position: absolute;
-  left: 5px;
-  top: 4px;
   z-index: 99;
 }
 
 .search-bar-container input {
   height:30px;
-  background-color:#FAFAFA;
+  background-color: red; /*#FAFAFA*/
   border-radius:20px;
-  padding-left:30px;
-}
-
-.brief-description-container {
-  white-space: nowrap;
-  overflow: hidden;
-  overflow-x: scroll;
-}
-
-.brief-description-container {
-  font-size: 18px;
-  color: white;
-}
-
-.brief-description {
-  border-radius: 4px;
-  padding-right: 15px;
-  padding-left: 15px;
-  line-height: 30px;
-  box-shadow: 0 0 3px 3px #FAFAFA;
-  margin-right: 10px;
-  display: inline-block;
 }
 
 /*** location end */
