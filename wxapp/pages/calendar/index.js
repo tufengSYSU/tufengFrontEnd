@@ -3,15 +3,15 @@
  * @author isanbel(theisanbel@gmail.com)
  */
 
-const ASSETS = "../../assets"
-
-// 动态图标
-const LOCATION_ARROW = ASSETS + "/icon/scrollintotoday.png"
-
+const app = getApp()
+const util = require('../../utils/util.js')
 const tools = require('./tools.js')
 const lunar = require('./lunar.js')
 const festival = require('./festival.js')
+
+const ASSETS = "../../assets"
 const WEEKDAY_IN_CH = ['周日','周一','周二','周三','周四','周五','周六']
+const LOCATION_ARROW = ASSETS + "/icon/scrollintotoday.png" // 动态图标
 
 Page({
   data: {
@@ -23,7 +23,7 @@ Page({
     activeIndexTheLast: 0,
     activeIndex: 1,
     // Array of weeksWithEvents(in one month)
-    calenders: []
+    calenders: [[], [], []]
   },
   onLoad: function() {
     const curDay = new Date()
@@ -32,13 +32,13 @@ Page({
     this.setData({
       todayInThatMonth: curDay,
       activeIndexTheLast: 0,
-      activeIndex: 1,
-      calenders: [
-        this.getData(curDayInPrevMonth),
-        this.getData(curDay),
-        this.getData(curDayInNextMonth),
-      ]
+      activeIndex: 1
     })
+    // get data in 3 months
+    this.getDataInOneMonth(curDayInPrevMonth, 0)
+    this.getDataInOneMonth(curDay, 1)
+    this.getDataInOneMonth(curDayInNextMonth, 2)
+
     this.syncTitle()
     this.getScreenWidth()
   },
@@ -54,12 +54,12 @@ Page({
     // swipe to right
     if (activeIndex === this.getCircularSiblingIndex(circularSize, activeIndexTheLast, 'right')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, 1)
-      calenders[this.getCircularSiblingIndex(circularSize, activeIndex, 'right')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1))
+      this.getDataInOneMonth(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, 1), this.getCircularSiblingIndex(circularSize, activeIndex, 'right'))
     }
     // swipe to left
     else if (activeIndex === this.getCircularSiblingIndex(circularSize, activeIndexTheLast, 'left')) {
       todayInCurrentMonth = this.getTheSameDayInThatMonthWithOffset(lastToday, -1)
-      calenders[this.getCircularSiblingIndex(circularSize, activeIndex, 'left')] = this.getData(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1))
+      this.getDataInOneMonth(this.getTheSameDayInThatMonthWithOffset(todayInCurrentMonth, -1), this.getCircularSiblingIndex(circularSize, activeIndex, 'left'))
     }
     // when swiper changed by changing the activeIndex programmatically
     // the e.detail.current equals activeIndex
@@ -100,37 +100,75 @@ Page({
       }
     }
   },
-  // 获得一个月的数据，输入值为当月的某一天
-  getData: function(oneDay) {
-    // TODO: get data by http request
+  // 获得一个月的数据，输入值为当月的某一天和在日历里的索引
+  getDataInOneMonth: function(oneDay, calenderIndex) {
     let date = new Date(oneDay)
-    date.setDate(0)
-    const eventsInOneMonth = dailyEventsIn201802
-    const data = eventsInOneMonth.map(events => {
-      date.setDate(date.getDate() + 1)
-      // add color to every event
-      events = events.map(event => {
-        event.color = tools.getPrettyRandomColor()
-        return event
-      })
-      // isLastDay
-      let nextDay = new Date(date)
-      nextDay.setDate(date.getDate() + 1)
-      return {
-        date: new Date(date),
-        dateObj: {
-          year: date.getFullYear(),
-          month: date.getMonth() + 1,
-          date: date.getDate(),
-          weekday: WEEKDAY_IN_CH[new Date(date).getDay()],
-          festival: festival.getFesitval(new Date(date)),
-        },
-        events,
-        isLastDay: tools.isToday(nextDay),
-        istoday: tools.isToday(date),
+    let that = this
+    date.setDate(0) // the last day before this month
+    wx.request({
+      url: app.globalData.apiPrefix + "/activity_stages?one_day_in_that_month=" + util.formatTimeToYYMMDD(new Date(oneDay)),
+      method: "GET",
+      header: {
+          'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        console.log(app.globalData.apiPrefix + "/activity_stages?one_day_in_that_month=" + util.formatTimeToYYMMDD(new Date(oneDay)));
+        console.log(res.data)
+        // const eventsInOneMonth = dailyEventsIn201802
+        const eventsInOneMonth = res.data.data
+        const data = eventsInOneMonth.map(events => {
+          date.setDate(date.getDate() + 1)
+          events = events.map(event => {
+            // append name, timeInterval, place attributes for rendering
+            // event.name = event.activity.short_name
+            // 目前 name 外面包了一层字符串引号，不知为何，不应如此，遂先去其首尾
+            event.name = event.activity.short_name.slice(1, event.activity.short_name.length - 1)
+            event.timeInterval = util.formatTimeToMMDDHHMM(new Date(event.start_time)) + ' ~ ' + util.formatTimeToMMDDHHMM(new Date(event.end_time))
+            event.place = event.location
+            // add color to every event
+            event.color = tools.getPrettyRandomColor()
+            return event
+          })
+          // isLastDay
+          let nextDay = new Date(date)
+          nextDay.setDate(date.getDate() + 1)
+          return {
+            date: new Date(date),
+            dateObj: {
+              year: date.getFullYear(),
+              month: date.getMonth() + 1,
+              date: date.getDate(),
+              weekday: WEEKDAY_IN_CH[new Date(date).getDay()],
+              festival: festival.getFesitval(new Date(date)),
+            },
+            events,
+            isLastDay: tools.isToday(nextDay),
+            istoday: tools.isToday(date),
+          }
+        })
+
+        var calenders = that.data.calenders
+
+        // 判断calender是否为空数组
+        var calenderOfThisMonthWasEmpty = false
+        if (calenders[calenderIndex].length === 0) {
+          calenderOfThisMonthWasEmpty = true
+        }
+
+        calenders[calenderIndex] = data
+        that.setData({
+          calenders
+        })
+
+        // 滚动到目标view需要calender数据载入完成
+        // 因为是异步操作，在初次进入日历页面都时候，每次获取一个月数据都尝试滚动一次
+        if (calenderOfThisMonthWasEmpty) {
+          that.setData({
+            toView: "lastDay"
+          })
+        }
       }
     })
-    return data
   },
   // 同步页面标题
   syncTitle: function() {
@@ -138,6 +176,13 @@ Page({
     const dateTitle = tools.getCurrentYearAndMonthTitle(oneDay)
     this.setData({
       title: dateTitle
+    })
+  },
+  showDetailed: function(e) {
+    const event = e.currentTarget.dataset.event
+    const activity = {id: event.activity.id}
+    wx.navigateTo({
+      url: '../activities/activity_detail/index?data='+JSON.stringify(activity)
     })
   },
   slideOut: function(e) {
@@ -190,360 +235,3 @@ Page({
     })
   }
 })
-
-// TODO: 这只是一个简单的UI测试，后期需要变成对象的数组，以加入活动链接
-// TODO: 所有使用此值的地方，将来都会变成发起的数据请求
-const dailyEventsIn201802 = [
-  [],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '东校区荒野行动',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '定向越野',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '张剑见面会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '草地音乐会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '运动会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'event',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '届唱非自我',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '东校区荒野行动',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '定向越野',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'no',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'today',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '草地音乐会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '运动会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'event',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '东校区荒野行动',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '定向越野',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '张剑见面会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '草地音乐会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '运动会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'event',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '届唱非自我',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '东校区荒野行动',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '定向越野',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'no',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'today',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '草地音乐会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '运动会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'event',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '东校区荒野行动',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '定向越野',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '张剑见面会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '1758',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '届唱非自我',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '东校区荒野行动',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '定向越野',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'no',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'today',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '草地音乐会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '运动会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'event',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '届唱非自我',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '东校区荒野行动',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '定向越野',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'no',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'today',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-  [],
-  [
-    {
-      name: '草地音乐会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: '运动会',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    },
-    {
-      name: 'event',
-      timeInterval: '12:00~18:00',
-      place: '三饭小广场'
-    }
-  ],
-]

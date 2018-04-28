@@ -25,7 +25,7 @@
                 </view>
                 <view class="day-body">
                   <view class="events">
-                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" style="background-color: {{event.color}}">
+                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" style="background-color: {{event.color}}" bindtap="showDetailed" data-event="{{event}}">
                       {{event.name}}
                     </view>
                   </view>
@@ -40,7 +40,7 @@
 
   <!-- the left is mask, and the right is the info panel -->
   <view id="left" class="{{slideOut ? 'active':''}}" bindtap="slideAway"></view>
-  <view id="right" class="{{slideOut ? 'active':''}}">
+  <scroll-view scroll-y="true" id="right" class="{{slideOut ? 'active':''}}">
     <view class="right-panel">
       <view class="title">
         <view class="gregorian-date">{{slideOutData.dailyData.dateObj.month}}月{{slideOutData.dailyData.dateObj.date}}日</view>
@@ -51,7 +51,7 @@
         <view class="heading">先锋情报</view>
         <view class="events-in-detail">
           <view class="event-in-detail" wx:for="{{slideOutData.dailyData.events}}" wx:for-item="event" wx:key="{{index}}">
-            <view class="event-name" style="color: {{event.color}}">{{event.name}}</view>
+            <view class="event-name" style="color: {{event.color}}" bindtap="showDetailed" data-event="{{event}}">{{event.name}}</view>
             <view class="event-time-and-place">{{event.timeInterval}} {{event.place}}</view>
           </view>
         </view>
@@ -61,6 +61,5 @@
         <view></view>
       </view>
     </view>
-  </view>
-
+  </scroll-view>
 </view>
