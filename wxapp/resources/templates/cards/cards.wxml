@@ -1,0 +1,20 @@
+<!-- 动态 -->
+<template name="cards">
+  <view class="registration" wx:for="{{registrations}}" wx:for-item="regis" wx:key="{{*index}}">
+    <view class="regis-image">
+      <image src="{{regis.image}}" bindtap="clickActivity"/>
+    </view>
+
+    <view class="regis-info">
+      <view class="name">{{regis.name}}</view>
+            
+      <view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
+      <view class="location">{{regis.location}}</view>
+      <view class="hoster">
+        <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}">
+          {{host.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

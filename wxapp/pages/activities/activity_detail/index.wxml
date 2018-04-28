@@ -3,8 +3,10 @@
   
   <view class="background">
     <image class="background-picture" src="{{user.background_image}}" mode="aspectFill"></image>
-  </view>  
-  <view class="photoLiveTitle">
+  </view>
+  
+
+  <view class="photoLiveTitle" style="background-image: url('/../assets/homepage/tabs_background.png')">
     <view class="photoLive">照片直播：中大图蜂</view>
     <view class="intoLive">进入直播 > </view>
   </view>
@@ -48,7 +50,8 @@
     <view class="time-axis" wx:if="{{tabIndex === 0}}">
       <view class="enroll-group">
         <button class="enroll">报名</button>
-        <view class="remaining-time">2天23时34分</view>
+        <view class="remaining-time" wx:if="{{activity.leave_Day < 0 || activity.leave_Hour < 0 ||activity.leave_Min < 0}}">报名已结束</view>
+        <view class="remaining-time" wx:if="{{activity.leave_Day >= 0 && activity.leave_Hour >= 0 &&activity.leave_Min >= 0}}">{{activity.leave_Day}}天{{activity.leave_Hour}}时{{activity.leave_Min}}分</view>
       </view>
       <view class= "part-group">
         <view class="part" wx:for="{{activity.parts}}" wx:for-item="part" wx:key="{{*index}}">
@@ -117,7 +120,8 @@
     </view>
     <!-- 留言板 -->
     <view class="message-board" wx:if="{{tabIndex === 3}}">
-      <input class="message" placeholder="单行输入"/>
+      <input class="message" name = "Comment" placeholder="单行输入" 
+      bindinput="commentInput" />
       <view class="send">发送</view>
       <view class="comment" wx:for="{{activity.comments}}" wx:for-item="comment">
         <view class="comment-user">
