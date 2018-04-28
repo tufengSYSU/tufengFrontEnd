@@ -4,9 +4,11 @@
   color: #707070;
   font-size: 14px;
   border-bottom: #707070;
+  height: 30px;
 }
 
 .subTabContainer view {
+  margin-top: 8px;
   float: left;
   padding-right: 7vw;
 }
@@ -51,6 +53,12 @@
 }
 
 /*** search bar */
+
+.search-container {
+  position: absolute;
+  top: 0px;
+}
+
 .search-bar-container {
   position: relative;
 }
@@ -68,6 +76,7 @@
   height:30px;
   background-color: red; /*#FAFAFA*/
   border-radius:20px;
+  display: none;
 }
 
 /*** location end */

@@ -10,6 +10,7 @@
   
   <view class="gap"></view>
 
+
   <!-- search -->
   <view class="search-container">
     <view class="search-wrap">
@@ -20,7 +21,7 @@
       </view>
       <!-- search bar -->
       <view class="search-bar-container">
-        <image class="search-icon" src="{{searchIcon}}"/>
+        <image class="search-icon" src="{{searchIcon}}" bindtap="showSearchBar"/>
         <input type="text" class="search-bar-input" focus="{{false}}" bindinput="getSearchInput" />
       </view>
     </view>

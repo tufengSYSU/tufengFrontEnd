@@ -234,6 +234,9 @@ Page({
       }
     })
   },
+  showSearchBar: function(e) {
+    console.log(e)
+  },
   /**
    * 根据经度纬度获取当前位置的中文描述
    * @param {string} str 包含经度 纬度的字符串
