@@ -18,7 +18,7 @@ const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 
 Page({
   data:{
-    user: null,
+    user: USER_SAMPLE,
     tabs: ["消息", "活动", "名片"],
     activityTabs: ["已关注", "已报名", "已完成"],
     tabIndex: 0,
@@ -28,6 +28,7 @@ Page({
     images: [
       "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
     ],
+    
     attentionTabIndex: 0
   },
   onLoad: function(data) {
@@ -45,8 +46,26 @@ Page({
     this.getOrganizations()
     this.getActivities()
     this.getRegistrations()
-    this.getMessages()
+    this.getMessages()   
   },
+
+  /*getListData: function() {
+    var user = USER_SAMPLE
+    this.setData({
+      listData1: [
+        { "message": "生日", "content": user.hometown },
+        { "message": "家乡", "content": user.gender },
+      ],
+      listData2: [
+        { "message": "院校", "content": user.gender },
+        { "message": "专业", "content": user.hometown },
+      ],
+      listData3: [
+        { "message": "个性签名", "content": user.description },
+      ],
+    })
+  },*/
+
   getMyProfile: function() {
     // TODO: get data via api
     var user = USER_SAMPLE
@@ -93,6 +112,41 @@ Page({
     const index = e.currentTarget.dataset.index
     this.setData({
       activityTabIndex: index
+    })
+  },
+  homeTown: function(e) {
+    TEMP_USER_SAMPLE.hometown = e.detail.value;
+  },
+  birthday: function(e) {
+    TEMP_USER_SAMPLE.birthday = e.detail.value;
+  },
+  institution: function (e) {
+    TEMP_USER_SAMPLE.institution = e.detail.value;
+  },
+  major: function (e) {
+    TEMP_USER_SAMPLE.major = e.detail.value;
+  },
+  description: function (e) {
+    TEMP_USER_SAMPLE.description = e.detail.value;
+  },
+
+  confirmBtnClick: function (e) {
+    USER_SAMPLE.hometown = TEMP_USER_SAMPLE.hometown;
+    USER_SAMPLE.birthday = TEMP_USER_SAMPLE.birthday;
+    USER_SAMPLE.institution = TEMP_USER_SAMPLE.institution;
+    USER_SAMPLE.major = TEMP_USER_SAMPLE.major;
+    USER_SAMPLE.description = TEMP_USER_SAMPLE.description;
+    var user1 = USER_SAMPLE;
+    this.setData({
+      user: user1
+    })
+  
+  },
+  cancelBtnClick: function (e) {
+    
+    var user2 = USER_SAMPLE;
+    this.setData({
+      user: user2
     })
   },
   clickActivity: function(e) {
@@ -158,7 +212,7 @@ const USER_SAMPLE = {
   background_image: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
   avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
   name: "李三",
-  gender: "male",
+  gender: "男",
   description: "半透明的影子，是流动的风",
   info: {
     personal_info: "广东 广州 双子座",
@@ -167,9 +221,35 @@ const USER_SAMPLE = {
     hobbies: ["摄影", "演唱", "足球"],
   },
   organizations: ["中珠广播台", "足协"],
-  hasSignedUp: REGISTRATION_SAMPLE,
+  birthday: "1997-6-4",
+  hometown: "江苏-苏州",
+  institution: "传播与设计学院",
+  major: "2015级 网络与新媒体",
+  phone: "166****3587",
+  studentID: "15****59"
 }
 
+const TEMP_USER_SAMPLE = {
+  id: "123",
+  background_image: "https://i.loli.net/2018/02/28/5a95a34b851ea.png",
+  avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+  name: "李三",
+  gender: "男",
+  description: "半透明的影子，是流动的风",
+  info: {
+    personal_info: "广东 广州 双子座",
+    school: "中山大学 2017级 传播与设计学院",
+    contact: "QQ/WeChat/eMail",
+    hobbies: ["摄影", "演唱", "足球"],
+  },
+  organizations: ["中珠广播台", "足协"],
+  birthday: "1997-6-4",
+  hometown: "江苏-苏州",
+  institution: "传播与设计学院",
+  major: "2015级 网络与新媒体",
+  phone: "166****3587",
+  studentID: "15****59"
+}
 const ORGANIZATION_SAMPLE = [
   {
     id: "123",
@@ -288,12 +368,13 @@ const REGISTRATION_SAMPLE = [
   },
   {
     id: "",
-    name: "维纳斯歌手大赛",
+    name: "第三十一届维纳斯歌手大赛",
     image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
     status: 1,
     startTime: "4月15日",
     endTime: "5月30日",
-    location: "梁銶琚堂",
+    hostTime: "4月27日",
+    location: "东校区至善学生活动中心",
     hosts: [
       {
         id: "location",
@@ -303,7 +384,11 @@ const REGISTRATION_SAMPLE = [
         id: "apartment",
         name: "中山大学团委"
       },
-    ]
+    ],
+    signedUpUsername: "张剑",
+    signedUpUserAcademic: "传播与设计学院",
+    signedUpUserPhone: "166****3587",
+    signedUpStudentID: "15****59",
   },
   {
     id: "",

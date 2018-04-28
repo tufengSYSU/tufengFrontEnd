@@ -1,5 +1,6 @@
 @import "../../resources/templates/messages/messages.wxss";
 @import "../../resources/templates/cards/cards.wxss";
+@import "../../resources/templates/personalizations/personalization.wxss";
 /* homepage index.wxss */
 
 .container {
@@ -290,6 +291,152 @@
 .fixed {
   position: fixed;
 }
+
+.has-signedup {
+  height: 150px;
+  color: black;
+  background-color: white;
+  
+}
+.ticket {
+  height: 100%;
+  width: 100%;
+  
+}
+.ticket-image {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  opacity: 0.3;
+}
+.ticket-text {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  top: -100%;
+}
+.ticket-title {
+  text-align: center;
+  font-size: 18px;
+  color:deepskyblue;
+  font-weight: bold;
+}
+.hostTime {
+  display: inline-block;
+  margin-left: 23%;
+  width: 15%;
+  font-size: 13px;
+  color: deepskyblue
+}
+.hostLocation {
+  display: inline-block;
+  width: 50%;
+  font-size: 13px;
+  color: deepskyblue
+}
+.personalmessage{
+  margin-top: 5%; 
+}
+.signUpName {
+  display: inline-block;
+  margin-left: 5%; 
+  width: 40%;
+  font-size: 12px;
+}
+.academic {
+  display: inline-block;
+  margin-left: 5%; 
+  width: 40%;
+  font-size: 12px;
+}
+.signUpPhone{
+  display: inline-block;
+  margin-left: 5%; 
+  width: 40%;
+  font-size: 12px;
+}
+.signUpID{
+  display: inline-block;
+  margin-left: 5%; 
+  width: 40%;
+  font-size: 12px;
+}
 /** tabpage end */
 
 /* main-body end */
+
+.top-per {
+  background-color: white;
+  margin: 2%;
+}
+.gender {
+  display: inline-block;
+  margin-left: 5%; 
+  width: 40%;
+  font-size: 12px;
+}
+.table {
+  opacity: 0.9;
+  width: 100%;
+  margin-top: 15px; 
+}
+
+.tr {
+  display: flex;
+  width: 100%;
+  margin-top: 1px;
+  background-color: white;
+}
+
+.td {
+  display: flex;
+  width: 3%;
+  line-height: 2;
+}
+
+.td1 {
+  display: flex;
+  width: 22%;
+  color: #858585;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.td2 {
+  display: flex;
+  width: 70%;
+  color: #545354;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.td3 {
+  display: flex;
+  width: 75%;
+  color: #545354;
+  font-size: 14px;
+  line-height: 2;
+}
+.button-group{
+  margin-top: 5%;
+}
+.confirm {
+  display: inline-block;
+  margin-left: 13%;
+  width: 30%;
+  font-size: 12px;
+  text-align: center;
+}
+.cancel {
+  display: inline-block;
+  margin-left: 13%;
+  width: 30%;
+  font-size: 12px;
+  text-align: center;
+}
+.p-avatar image {
+  opacity: 0.4;
+  height: 25px;
+  width: 30px;
+  text-align: center;
+}
