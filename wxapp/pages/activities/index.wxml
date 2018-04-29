@@ -1,91 +1,101 @@
+<import src="../../resources/templates/articleCards/index.wxml" />
+
 <!--index.wxml-->
 <view class="container">
 
-  <!-- search -->
-  <view class="search-container">
-    <view class="search-wrap">
-      <!-- location -->
-      <view class="location-container">
-        <view class="address">{{location.address}}</view>
-        <image class="location-image" src="{{locationIcon}}"/>
-      </view>
-      <!-- search bar -->
-      <view class="search-bar-container">
-        <image class="search-icon" src="{{searchIcon}}"/>
-        <input type="text" class="search-bar-input" focus="{{false}}" bindinput="getSearchInput" />
-      </view>
-    </view>
-  </view>
-
-  <!-- article-calendar-container -->
-  <view class="brief-description-container">
-    <view class="brief-description-container">
-      <view class="brief-description" style="background-color:{{item.color}}" wx:for="{{shortIntroduction}}" wx:for-index="idx" wx:key="{{*index}}">
-        {{item.short_name}}
-      </view>
-    </view>
-  </view>
-
-  <!-- slide image -->
-  <view class="slide-container">
-    <!-- slide image core code -->
-    <swiper circular="true" autoplay="true" interval="3000" duration="500" class="picture-swiper">
-      <swiper-item wx:for-items="{{posters}}" wx:key="{{*index}}">
-        <view class="imageContainer">
-          <image mode="widthFix" src="{{item.image}}" class="slide-image" />
-        </view>
-      </swiper-item>
-    </swiper>
-  </view>
-  <!-- article-calendar-container -->
-  <view class="article-calendar-container">
-    <swiper current="{{currentTab}}" bindchange="swiperChange" interval="{{interval}}" display-multiple-items="3" duration="{{duration}}" class="picture-swiper">
-      <swiper-item wx:for="{{stages}}" wx:for-item="stagesInOneDay" wx:key="{{*index}}">
-        <view>
-          <view class="article-date">
-            {{stagesInOneDay.date}}
-          </view>
-          <view class="single-day-articles" bindtap="navigateToActivityDetail" wx:for="{{stagesInOneDay.stagesInOneDay}}" wx:for-item="stage" wx:key="{{*index}}">
-              <view class="article-container">
-                <image class="article-coverimage" src="{{stage.image}}" />
-                <!-- <view class="mark-container">
-                  <image src="{{aixinIcon}}" wx:if="{{article.mark[0]}}"/>
-                  <image src="{{ballIcon}}" wx:if="{{article.mark[1]}}"/>
-                  <image src="{{moneyIcon}}" wx:if="{{article.mark[2]}}"/>
-                </view> -->
-                <view class="article-description">
-                  {{stage.title}}
-                </view>
-              </view>
-          </view>
-        </view>
-      </swiper-item>
-    </swiper>
-  </view>
-
-  <!-- <view class="article-calendar-container">
-    <swiper interval="{{interval}}" duration="{{duration}}" class="picture-swiper">
-      <swiper-item wx:for-items="{{seq}}" wx:key="*this">
-        <view class="single-day-articles" wx:for="{{[3*item,3*item+1,3*item+2]}}" wx:if="{{articleIndex < articlesInOneMonth.length}}" wx:for-item="articleIndex" wx:key="{{*index}}">
-          <view class="article-date">
-            {{articlesInOneMonth[articleIndex].date}}
-          </view>
-          <view wx:for="{{articlesInOneMonth[articleIndex].article}}" wx:for-item="article" wx:key="{{*index}}" data-articleIndex="{{articleIndex}}" data-subIndex="{{index}}" bindtap="navigateToActivityDetail">
-            <view class="article-container">
-              <image class="article-coverimage" src="{{article.image}}" />
-              <view class="mark-container">
-                <image src="{{aixinIcon}}" wx:if="{{article.mark[0]}}"/>
-                <image src="{{ballIcon}}" wx:if="{{article.mark[1]}}"/>
-                <image src="{{moneyIcon}}" wx:if="{{article.mark[2]}}"/>
-              </view>
-              <view class="article-description">
-                {{article.name}}
-              </view>
+    <view class="topBar">
+        <!-- top tab -->
+        <view class="subTabContainer">
+            <view wx:for="{{subTab}}" class="{{currentTab === index ? 'yellowColor' : ''}}" wx:key="{{*index}}" data-index="{{index}}" bindtap="changeCurrentTap">
+                {{item}}
             </view>
-          </view>
         </view>
-      </swiper-item>
-    </swiper>
-  </view> -->
+
+        <view class="gap"></view>
+
+        <!-- location -->
+        <view class="location-container">
+            <view class="address">{{location.address}}</view>
+            <image class="location-image" src="{{locationIcon}}" />
+        </view>
+
+        <!-- TODO: search -->
+        <!-- search -->
+        <view class="search-container">
+            <view class="search-bar-container">
+                <image class="search-icon" src="{{searchIcon}}" bindtap="showSearchBar" />
+                <input type="text" class="search-bar-input" focus="{{false}}" bindinput="getSearchInput" />
+            </view>
+        </view>
+    </view>
+
+    <view class="block"></view>
+
+    <!-- slide image -->
+    <view class="slide-container">
+        <!-- slide image core code -->
+        <swiper circular="true" autoplay="true" interval="3000" duration="500" class="picture-swiper">
+            <swiper-item wx:for-items="{{posters}}" wx:key="{{*index}}">
+                <view class="imageContainer">
+                    <image src="{{item.image}}" class="slide-image" />
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+
+    <!-- article-calendar-container -->
+    <view class="articles-container" wx:if="{{currentTab === 0}}">
+        <view class="articles" wx:if="{{articlesItem.date <= currentDate}}" wx:for="{{articlesInOneMonth}}" wx:for-item="articlesItem" wx:key="{{*index}}">
+            <view class="date">
+                {{articlesItem.date}}
+            </view>
+
+            <view class="articlesInOneDay">
+                <view class="article" wx:for="{{articlesItem.articlesInOneDay}}" wx:for-item="article" wx:key="{{*index}}" bindtap="rollToWebview">
+                    <view class="picture">
+                        <image src="{{article.image}}"></image>
+                    </view>
+
+                    <view class="content">
+                        <view class="title {{windowSize.width < 400 ? 'oneLineText' : ''}}">
+                            {{article.title}}
+                        </view>
+
+                        <view class="time">
+                            {{article.publish_time}}
+                        </view>
+
+                        <view class="location" wx:if="{{article.title.length < 18 || article.location.length < 7}}">
+                            {{article.location}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view wx:if="{{currentTab === 1}}">
+        <view wx:for="{{articlesInOneMonth}}" wx:for-item="articlesItem" wx:key="{{(*index)}}">
+            <view class="registration" wx:for="{{articlesItem.articlesInOneDay}}" wx:for-item="article" wx:key="{{*index}}">
+                <view class="regis-image">
+                    <image src="{{article.image}}" bindtap="clickActivity" />
+                </view>
+
+                <view class="regis-info">
+                    <view class="name">{{article.content}}</view>
+
+                    <view class="start-time"> {{article.starttime}}~{{article.endtime}}</view>
+                    <view class="location">{{article.location}}</view>
+                    <!-- <view class="hoster">
+                        中大GBT
+                        <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}">
+                            {{host.name}}
+                        </view>
+                    </view> -->
+                </view>
+            </view>
+        </view>
+    </view>
+
 
 </view>

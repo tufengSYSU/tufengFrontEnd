@@ -1,0 +1,32 @@
+<!-- // 180 / 438 -->
+<!-- 动态 -->
+<template name="articleCards">
+  <view class="articles" wx:if="true" wx:for="{{articlesInOneMonth}}" wx:for-item="articlesItem" wx:key="{{*index}}">
+    <view class="date">
+      {{currentDate}}
+      {{articlesItem.date}}
+    </view>
+
+    <view class="articlesInOneDay">
+        <view class="article" wx:for="{{articlesItem.articlesInOneDay}}" wx:for-item="article" wx:key="{{*index}}" bindtap="rollToWebview">
+            <view class="picture">
+                <image src="{{article.image}}"></image>
+            </view>
+
+            <view class="content">
+                <view class="title">
+                    {{article.title}}
+                </view>
+
+                <view class="time">
+                    {{article.starttime}}~{{article.endtime}}
+                </view>
+
+                <view class="location" wx:if="{{article.title.length < 18 || article.location.length < 7}}">
+                    {{article.location}}
+                </view>
+            </view>
+        </view>
+    </view>
+  </view>
+</template>
