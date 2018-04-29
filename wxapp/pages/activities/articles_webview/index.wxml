@@ -1,5 +1,5 @@
 <view class="page-body">
-  <view class="page-section page-section-gap">
-    <web-view src="https://www.pailixiang.com/album_ia54921516.html"></web-view>
-  </view>
+    <view class="page-section page-section-gap">
+        <web-view src="https://ancestree.site/test.html"></web-view>
+    </view>
 </view>
