@@ -4,10 +4,11 @@
     background-color: #FAFAFA;
     position: fixed;
     z-index: 99;
+    font: normal 100% Helvetica, Arial, sans-serif;
 }
 
 .subTabContainer {
-    margin-left: 30px;
+    margin-left: 4vw;
     color: #707070;
     font-size: 14px;
     border-bottom: #707070;
@@ -35,7 +36,7 @@
 .location-container {
     color: #707070;
     position: absolute;
-    right: 20px;
+    right: 4vw;
     top: 10px;
     z-index: 99;
     font-size: 14px;
@@ -76,7 +77,7 @@
     width: 15px;
     height: 15px;
     top: 8px;
-    right: 20vw;
+    right: calc(4vw + 65px);
     position: absolute;
     z-index: 99;
 }
@@ -103,6 +104,7 @@
 
 .slide-container swiper {
     height: 180px;
+    overflow: hidden;
 }
 
 .slide-container swiper-item .imageContainer {
@@ -129,9 +131,10 @@
 /* activity cards */
 
 .registration {
-    background-color: white;
+    background-color: #F8F8F8;
     margin-bottom: 10px;
     margin-left: 10px;
+    margin-right: 10px;
     height: 100px;
     border-radius: 5px;
     overflow: hidden;
@@ -164,9 +167,14 @@
 }
 
 .regis-info .name {
-    margin-bottom: 10%;
+    margin-bottom: 5rpx;
     font-size: 15px;
-    color: deepskyblue;
+    color: #35A4DF;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
 }
 
 .regis-info .hoster {
@@ -182,13 +190,11 @@
 }
 
 .regis-info .start-time {
-    display: inline-block;
-    width: 60%;
+    float: left;
 }
 
 .regis-info .location {
-    display: inline-block;
-    width: 40%;
+    float: right;
 }
 
 .yellowColor {

@@ -19,6 +19,7 @@
             <image class="location-image" src="{{locationIcon}}" />
         </view>
 
+        <!-- TODO: search -->
         <!-- search -->
         <view class="search-container">
             <view class="search-bar-container">
@@ -56,7 +57,7 @@
                     </view>
 
                     <view class="content">
-                        <view class="title">
+                        <view class="title {{windowSize.width < 400 ? 'oneLineText' : ''}}">
                             {{article.title}}
                         </view>
 
@@ -85,12 +86,12 @@
 
                     <view class="start-time"> {{article.starttime}}~{{article.endtime}}</view>
                     <view class="location">{{article.location}}</view>
-                    <view class="hoster">
+                    <!-- <view class="hoster">
                         中大GBT
-                        <!-- <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}">
+                        <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}">
                             {{host.name}}
-                        </view> -->
-                    </view>
+                        </view>
+                    </view> -->
                 </view>
             </view>
         </view>

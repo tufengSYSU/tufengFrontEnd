@@ -4,6 +4,10 @@
  */
 
 //  TODO: 抓取推送日期并加到推送卡片上
+//  TODO: 自适应手机宽度 部分手机宽度不够内容直接溢出
+//  TODO: 请求社团名字加入活动卡片中
+//  TODO: 分类，
+//  TODO: swiper 无衔接切换
 const app = getApp()
 const tools = require('./tools.js')
 const ASSETS = "../../assets/"
@@ -22,7 +26,7 @@ Page({
         // 每篇推送是否已阅览
         visited: [],
         subTab: ["推送+", "我看过", "公益", "文娱"],
-        currentTab: 0,
+        currentTab: 1,
         currentDate: "4月29日"
     },
     /**
