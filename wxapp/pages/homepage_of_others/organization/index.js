@@ -15,7 +15,7 @@ Page({
     activityOrAlbum: true,
     attention: false,
     reachTop: false,
-    TAB: ["动态", "活动", "相册"]
+    TAB: ["活动", "相册", "成员"]
   },
   onLoad: function(data) {
     // wx.request({
@@ -30,6 +30,8 @@ Page({
     this.getMoments();
     this.getActivity();
     this.getAlbum();
+    this.getRegistrations();
+    this.getManagers();
   },
   getWindowSize: function() {
     const that = this;
@@ -81,9 +83,33 @@ Page({
       user: this.data.user
     })
   },
+  getRegistrations: function () {
+    //var temp = REGISTRATION_SAMPLE;
+    for (var index in REGISTRATION_SAMPLE) {
+      if (1 == 1) {
+        REGISTRATION_SAMPLE[index].past=true;
+      }
+    }
+    this.setData({
+      registrations: REGISTRATION_SAMPLE
+    })
+  },
+  getManagers: function () {
+    this.setData({
+      managers: MANAGERS_SAMPLE
+    })
+  },
   clickActivity: function() {
     let activityid = 1;
     let url = `../../activities/activity_detail/index?activityid=${activityid}`
+    wx.navigateTo({
+      url: url
+    })
+  },
+  albumClickActivity: function (e) {
+    var Name = e.currentTarget.dataset.value;
+    let albumid = 1;
+    let url = `../../homepage_of_others/organization_album/index?albumid=${albumid}&title=${Name}`
     wx.navigateTo({
       url: url
     })
@@ -297,7 +323,7 @@ const MOMENTS_SAMPLE = [
   }
 ]
 
-const ACTIVYTY_SAMPLE = [
+const ACTIVIYTY_SAMPLE = [
   {
     id: "",
     name: "第三十一届维纳斯歌手大赛",
@@ -332,35 +358,168 @@ const ACTIVYTY_SAMPLE = [
 
 const ALBUM_SAMPLE = [
   {
+    name: "默认相册",
+    photos: [
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png"
+    },
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/18/5aae36458587a.jpg"
+    },
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/18/5aae36459a31b.jpg"
+    },
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/18/5aae3646f3302.jpg"
+    },
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/18/5aae364700811.jpg"
+    },
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/18/5aae3646f3a4a.jpg"
+    },
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/18/5aae364701288.jpg"
+    },
+    {
+      id: "",
+      image: "https://i.loli.net/2018/03/18/5aae365e70369.jpg"
+    }
+    ],
+  },
+  {
+    name: "致青春定向越野",
+    photos: [
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png"
+      },
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/18/5aae36458587a.jpg"
+      },
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/18/5aae36459a31b.jpg"
+      },
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/18/5aae3646f3302.jpg"
+      },
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/18/5aae364700811.jpg"
+      },
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/18/5aae3646f3a4a.jpg"
+      },
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/18/5aae364701288.jpg"
+      },
+      {
+        id: "",
+        image: "https://i.loli.net/2018/03/18/5aae365e70369.jpg"
+      }
+    ],
+  },
+]
+
+const REGISTRATION_SAMPLE = [
+  {
     id: "",
-    image: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png"
+    name: "维纳斯歌手大赛",
+    image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+    status: 0,
+    startTime: "4月15日",
+    endTime: "5月30日",
+    location: "梁銶琚堂",
+    past: false,
+    hosts: [
+      {
+        id: "location",
+        name: "中大GBT",
+      },
+      {
+        id: "apartment",
+        name: "中山大学团委"
+      },
+    ]
   },
   {
     id: "",
-    image: "https://i.loli.net/2018/03/18/5aae36458587a.jpg"
+    name: "第三十一届维纳斯歌手大赛",
+    image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+    status: 1,
+    startTime: "4月15日",
+    endTime: "5月30日",
+    hostTime: "4月27日",
+    location: "东校区至善学生活动中心",
+    past: false,
+    hosts: [
+      {
+        id: "location",
+        name: "中大GBT11111",
+      },
+      {
+        id: "apartment",
+        name: "中山大学团委"
+      },
+    ],
+    signedUpUsername: "张剑",
+    signedUpUserAcademic: "传播与设计学院",
+    signedUpUserPhone: "166****3587",
+    signedUpStudentID: "15****59",
   },
   {
     id: "",
-    image: "https://i.loli.net/2018/03/18/5aae36459a31b.jpg"
+    name: "维纳斯歌手大赛",
+    image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+    status: 2,
+    startTime: "4月15日",
+    endTime: "4月16日",
+    location: "梁銶琚堂",
+    past:true,
+    hosts: [
+      {
+        id: "location",
+        name: "中大GBT22",
+      },
+      {
+        id: "apartment",
+        name: "中山大学团委"
+      },
+    ]
+  },
+]
+
+const MANAGERS_SAMPLE = [
+  {
+    id: "",
+    avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
   },
   {
     id: "",
-    image: "https://i.loli.net/2018/03/18/5aae3646f3302.jpg"
+    avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
   },
   {
     id: "",
-    image: "https://i.loli.net/2018/03/18/5aae364700811.jpg"
+    avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
   },
   {
     id: "",
-    image: "https://i.loli.net/2018/03/18/5aae3646f3a4a.jpg"
+    avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
   },
   {
     id: "",
-    image: "https://i.loli.net/2018/03/18/5aae364701288.jpg"
+    avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
   },
-  {
-    id: "",
-    image: "https://i.loli.net/2018/03/18/5aae365e70369.jpg"
-  }
 ]

@@ -1,0 +1,9 @@
+<view class="organization-album">
+  <view class="album-title">
+  {{name}}
+  </view>
+  <view class="upload" bindtap="chooseimage">上传照片</view>
+  <view class="upload-photo" wx:for="{{pictures}}" wx:for-item="pic">
+    <image src="{{pic}}" mode="aspecFill"/>
+  </view>
+</view>
