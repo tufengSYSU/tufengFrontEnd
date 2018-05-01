@@ -2,22 +2,20 @@
     margin-left: 10px;
     color: #ffba56;
     font-size: 20px;
-    margin-top: 20px;
 }
 
 .articles .articlesInOneDay {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    margin-left: 3.5%;
 }
 
-.article {
+.articles .article {
     width: 45vw;
     height: 45vw;
     border: 1px solid #ededef;
     border-radius: 5px;
-    margin-top: 20px;
     overflow: hidden;
+    display: inline-block;
+    margin-right: 2%;
 }
 
 .article .picture {
