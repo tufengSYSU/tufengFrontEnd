@@ -1,0 +1,27 @@
+
+  <view class="background">
+    <image src="{{person.background_image}}" mode="widthFix"></image>
+  </view>
+  <view class="background-window">
+    <view class="profile">
+      <view class="avatar">
+        <image src="{{person.avatar}}"></image>
+      </view>
+    </view>
+  </view>
+  <view class="information">
+    <view class="name">
+    {{person.name}}
+    </view>
+    <view class="description">
+    {{person.description}}
+    </view>
+    <view class="title-1">
+      <view class="personal-info">
+      {{person.info.personal_info}}
+      </view>
+      <view class="school">
+      {{person.info.school}}
+      </view>
+    </view>
+  </view>

@@ -1,6 +1,6 @@
 .album-title {
   font-size: 14px;
-  margin-left: 42%;
+  margin-left: 41%;
   font-weight: bold;
 }
 

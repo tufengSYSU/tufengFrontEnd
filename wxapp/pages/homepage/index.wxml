@@ -133,7 +133,7 @@
               学号：{{user.studentID}}
             </view>
             <view class="gender">
-              性别: {{user.gender}}
+              性别：{{user.gender}}
             </view>
           </view>
 
