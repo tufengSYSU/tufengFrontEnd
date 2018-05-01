@@ -1,51 +1,49 @@
 {
-  "pages":[
-    "pages/activities/index",
-    "pages/calendar/index",
-    "pages/activities/activity_detail/index",
-    "pages/activities/album_live/index",
-    "pages/activities/articles_webview/index",
-    "pages/square/index",
-    "pages/homepage/index",
-    "pages/homepage_of_others/index",
-    "pages/homepage_of_others/organization/index",
-    "pages/homepage_of_others/organization_album/index"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  },
-  "tabBar": {
-    "selectedColor": "#ff9701",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/activities/index",
-        "text": "推送+",
-        "iconPath": "assets/icon/activities.png",
-        "selectedIconPath": "assets/icon_selected/activities.png"
-      },
-      {
-
-        "pagePath": "pages/calendar/index",
-        "text": "活动日历",
-        "iconPath": "assets/icon/calendar.png",
-        "selectedIconPath": "assets/icon_selected/calendar.png"
-      },
-      {
-        "pagePath": "pages/square/index",
-        "text": "先蜂广场",
-        "iconPath": "assets/icon/square.png",
-        "selectedIconPath": "assets/icon_selected/square.png"
-      },
-      {
-        "pagePath": "pages/homepage/index",
-        "text": "我的",
-        "iconPath": "assets/icon/homepage.png",
-        "selectedIconPath": "assets/icon_selected/homepage.png"
-      }
-    ]
-  }
+    "pages": [
+        "pages/activities/index",
+        "pages/calendar/index",
+        "pages/activities/activity_detail/index",
+        "pages/activities/album_live/index",
+        "pages/activities/articles_webview/index",
+        "pages/square/index",
+        "pages/homepage/index",
+        "pages/homepage_of_others/index",
+        "pages/homepage_of_others/organization/index",
+        "pages/homepage_of_others/organization_album/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "selectedColor": "#ff9701",
+        "borderStyle": "white",
+        "list": [{
+                "pagePath": "pages/activities/index",
+                "text": "先蜂广场",
+                "iconPath": "assets/icon/activities.png",
+                "selectedIconPath": "assets/icon_selected/activities.png"
+            },
+            {
+                "pagePath": "pages/calendar/index",
+                "text": "活动日历",
+                "iconPath": "assets/icon/calendar.png",
+                "selectedIconPath": "assets/icon_selected/calendar.png"
+            },
+            {
+                "pagePath": "pages/square/index",
+                "text": "社团墙",
+                "iconPath": "assets/icon/square.png",
+                "selectedIconPath": "assets/icon_selected/square.png"
+            },
+            {
+                "pagePath": "pages/homepage/index",
+                "text": "我的",
+                "iconPath": "assets/icon/homepage.png",
+                "selectedIconPath": "assets/icon_selected/homepage.png"
+            }
+        ]
+    }
 }

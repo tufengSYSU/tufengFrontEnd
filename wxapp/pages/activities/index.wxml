@@ -45,7 +45,7 @@
 
     <!-- article-calendar-container -->
     <view class="articles-container" wx:if="{{currentTab === 0}}">
-        <view class="articles" wx:if="{{articlesItem.date <= currentDate}}" wx:for="{{articlesInOneMonth}}" wx:for-item="articlesItem" wx:key="{{*index}}">
+        <view class="articles" wx:if="{{articlesItem.articlesInOneDay.length>0}}" wx:for="{{articlesInOneMonth}}" wx:for-item="articlesItem" wx:key="{{*index}}">
             <view class="date">
                 {{articlesItem.date}}
             </view>

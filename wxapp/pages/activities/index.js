@@ -3,11 +3,13 @@
  * @author bravos
  */
 
-//  TODO: 抓取推送日期并加到推送卡片上
-//  TODO: 自适应手机宽度 部分手机宽度不够内容直接溢出
 //  TODO: 请求社团名字加入活动卡片中
-//  TODO: 分类，
-//  TODO: swiper 无衔接切换
+//  TODO: 分类，加标志位
+//  TODO: swiper 无缝切换
+//  TODO: 已阅读活动, 加标志位
+//  TODO: 函数解隅
+//  TODO: 顶部栏信息做成可向右滑动
+
 const app = getApp()
 const tools = require('./tools.js')
 const ASSETS = "../../assets/"
@@ -26,7 +28,7 @@ Page({
         // 每篇推送是否已阅览
         visited: [],
         subTab: ["推送+", "我看过", "公益", "文娱"],
-        currentTab: 1,
+        currentTab: 0,
         currentDate: "4月29日"
     },
     /**
@@ -97,8 +99,17 @@ Page({
         var that = this;
         var articlesInOneMonth = this.data.articlesInOneMonth;
         var count = 0;
-        var article = articlesInOneMonth.map((articlesInOneDay, index) => {
-            articlesInOneDay.map((article, index) => {
+        var articlesCounts = articlesInOneMonth.reduce(function(pre, cur, index, array) {
+            if (index === 0)
+                return pre.length + cur.length
+            else
+                return pre + cur.length;
+        }, []);
+        this.setData({
+            articlesCounts
+        })
+        var article = articlesInOneMonth.map((articlesInOneDay) => {
+            articlesInOneDay.map((article) => {
                 //console.log(count)
                 let url = that.formatUrl(article.activity.wechat_url);
                 //console.log(stage.id + " " + stage.activity.wechat_url + " " + url)
@@ -125,16 +136,15 @@ Page({
                     },
                     complete: function() {
                         count++;
-                        //console.log(count)
-                        if (count === 42) {
+                        if (count === that.data.articlesCounts) {
                             that.setDateToActivities();
                             that.setData({
                                 articlesInOneMonth: that.data.articlesInOneMonth.reverse()
                             })
                             that.getPostUrl();
                             that.formatDateForarticles();
+                            console.log(that.data.articlesInOneMonth)
                         }
-                        //console.log(that.data.stages)
                     }
                 })
             })
