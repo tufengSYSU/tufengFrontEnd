@@ -1,3 +1,5 @@
+@import "../../../resources/templates/cards/cards.wxss";
+
 .container {
   height: 100vh;
   margin: 0;
@@ -56,6 +58,20 @@
   color: deepskyblue;
   font-size: 18px;
   font-weight: bold;
+  display: inline-block;
+  margin-left: 45%;
+}
+
+.information .gender {
+  position: relative;
+  top: -112px;
+  display: inline-block;
+  margin-left: 2%; 
+}
+
+.information .gender image {
+  width: 15px;
+  height: 15px;
 }
 
 .information .description {
@@ -71,12 +87,106 @@
 }
 .information .personal-info{
   display: inline-block;
-  margin-left: 10%;
-  width: 35%;
+  position: relative;
+  top: -2px;
+  margin-left: 3%;
+  width: 30%;
   font-size: 13px;
 }
 .information .school {
   display: inline-block;
   font-size: 13px;
+  margin-left: 3%;
+  position: relative;
+  top: -3px;
+}
+
+.personal_info-img {
   margin-left: 10%; 
+  display: inline-block;
+}
+
+.personal_info-img image {
+  width: 15px;
+  height: 15px;
+}
+
+.school-img {
+  margin-left: 8%;
+  display: inline-block; 
+}
+
+.school-img image{
+  width: 18px;
+  height: 18px;
+}
+
+.hobby-img {
+  margin-left: 10%; 
+  display: inline-block;
+}
+
+.hobby-img image {
+  width: 17px;
+  height: 17px;
+}
+.information .title-2 {
+  position: relative;
+  top: -97px;
+}
+.information .hobby {
+  display: inline-block;
+  font-size: 13px;
+  margin-left: 2.5%; 
+  position: relative;
+  top: -3px;
+}
+
+.menu-container {
+  margin-top: 10px;
+  padding-left: 10px;
+  font-size: 21px;
+  font-weight: bolder;
+  color: black;
+}
+
+.non-hover-text {
+  opacity: 0.4;
+}
+
+.hover-text {
+  opacity: 0.8;
+}
+
+.eachOrganization {
+  display: inline-block;
+  margin-left: 3%;
+  width: 45%; 
+  background-color: whitesmoke;
+  height: 90px;
+}
+
+.organization-avatar image {
+  border-radius: 50%;
+  height: 70px;
+  width: 100%;
+}
+
+.organization-avatar {
+  display: inline-block;
+  width: 40%;
+  margin-top: 10px;
+  margin-left: 2%; 
+}
+
+.organization-info {
+  display: inline-block;
+  margin-left: 4%;
+}
+.organization-name {
+  font-size: 13px;
+  font-weight: bold;
+  color: deepskyblue;
+  position: relative;
+  top: -50px;
 }

@@ -1,3 +1,4 @@
+<import src="../../../resources/templates/cards/cards.wxml" />
 
   <view class="background">
     <image src="{{person.background_image}}" mode="widthFix"></image>
@@ -9,19 +10,69 @@
       </view>
     </view>
   </view>
+
   <view class="information">
     <view class="name">
     {{person.name}}
+    </view>
+    <view class="gender" wx:if="{{person.manFlag === true}}">
+      <image src="/assets/homepage_of_others_icon/male.png"></image>
+    </view>
+    <view class="gender" wx:if="{{person.manFlag === false}}">
+      <image src="/assets/homepage_of_others_icon/female.png"></image>
     </view>
     <view class="description">
     {{person.description}}
     </view>
     <view class="title-1">
+      <view class="personal_info-img">
+        <image src="/assets/homepage_of_others_icon/person.png"></image>
+      </view>
       <view class="personal-info">
       {{person.info.personal_info}}
+      </view>
+      <view class="school-img">
+        <image src="/assets/homepage_of_others_icon/school.png"></image>
       </view>
       <view class="school">
       {{person.info.school}}
       </view>
     </view>
+    <view class="title-2">
+      <view class="hobby-img">
+        <image src="/assets/homepage_of_others_icon/hobby.png"></image>
+      </view>
+      <view class="hobby">
+      {{person.info.hobbies}}
+      </view>
+    </view>
+
   </view>
+
+  <view class="explore">
+      <view class="menu-container">
+        <text wx:for="{{TAB}}" wx:key="{{*this}}" class="{{hover[index] == 1 ? 'hover-text' : 'non-hover-text'}}" data-index="{{index}}" bindtap="changeHoverClass">{{item}} </text>
+      </view>
+
+      <view class="activity" wx:if="{{hover[0] === 1}}">
+        <template is="cards" data="{{registrations}}" />
+      </view>
+
+      <view class="album-container" wx:if="{{hover[1] === 1}}">
+        <view class="eachOrganization" wx:for="{{organizations_}}" wx:for-item="organization" wx:key="{{*index}}">
+        <view class="organization-avatar">
+        <image src="{{organization.avatar}}" bindtap="clickOrganization"/>
+        </view>
+        <view class="organization-info">
+          <view class="organization-name">
+          {{organization.name}}
+          </view>
+          <view class="organization-time">
+          </view>
+        </view>
+        </view>
+      
+      </view>
+
+    </view>
+  
