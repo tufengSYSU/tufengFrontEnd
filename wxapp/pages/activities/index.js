@@ -4,7 +4,6 @@
  */
 
 //  TODO: 请求社团名字加入活动卡片中
-//  TODO: 分类，加标志位
 //  TODO: swiper 无缝切换
 //  TODO: 已阅读活动, 加标志位
 //  TODO: 函数解隅
@@ -18,6 +17,7 @@ const SEARCH_ICON = ASSETS + "icon/search.png"
 const AIXIN_ICON = ASSETS + "icon/mark/aixin.png"
 const BALL_ICON = ASSETS + "icon/mark/ball.png"
 const MONEY_ICON = ASSETS + "icon/mark/money.png"
+const IMAGE_URL_PREFIX = "https://ancestree.site/posts/assets/images"
 
 Page({
     data: {
@@ -91,28 +91,18 @@ Page({
                 that.setData({
                     articlesInOneMonth: stages
                 })
-                that.getPhoto();
+                that.getArticlesInfo();
             }
         })
     },
-    getPhoto: function() {
+    getArticlesInfo: function() {
         var that = this;
         var articlesInOneMonth = this.data.articlesInOneMonth;
         var count = 0;
-        var articlesCounts = articlesInOneMonth.reduce(function(pre, cur, index, array) {
-            if (index === 0)
-                return pre.length + cur.length
-            else
-                return pre + cur.length;
-        }, []);
-        this.setData({
-            articlesCounts
-        })
+        this.getArticlesCounts();
         var article = articlesInOneMonth.map((articlesInOneDay) => {
             articlesInOneDay.map((article) => {
-                //console.log(count)
                 let url = that.formatUrl(article.activity.wechat_url);
-                //console.log(stage.id + " " + stage.activity.wechat_url + " " + url)
                 wx.request({
                     url: url,
                     success: function(res) {
@@ -137,12 +127,10 @@ Page({
                     complete: function() {
                         count++;
                         if (count === that.data.articlesCounts) {
-                            that.setDateToActivities();
+                            that.setInfoToActivities();
                             that.setData({
                                 articlesInOneMonth: that.data.articlesInOneMonth.reverse()
                             })
-                            that.getPostUrl();
-                            that.formatDateForarticles();
                             console.log(that.data.articlesInOneMonth)
                         }
                     }
@@ -151,57 +139,79 @@ Page({
             return articlesInOneDay;
         })
     },
-    // 跳转到活动主页
-    getPostUrl: function() {
+    setInfoToActivities: function(article) {
+        var that = this;
         let articlesInOneMonth = this.data.articlesInOneMonth;
-        let posters = []
-        for (let i in articlesInOneMonth) {
-            let articlesInOneDay = articlesInOneMonth[i].articlesInOneDay
-            articlesInOneDay.forEach((article) => {
-                let item = {
-                    activity_id: article.activity.id,
-                    image: article.image
-                }
-                console.log(tools.findRelativePoster(posters, item))
-                if (tools.findRelativePoster(posters, item) == false) {
-                    //console.log("Push")
-                    posters.push(item)
-                }
-            })
-        }
-        this.setData({
-            posters
-        })
-        console.log(posters);
-    },
-    formatDateForarticles: function() {
-        let articlesInOneMonth = this.data.articlesInOneMonth;
-        articlesInOneMonth.map((articlesItem) => {
-            articlesItem.articlesInOneDay.map((article) => {
-                article.starttime = tools.formateDateToRegularForm(article.start_time)
-                article.endtime = tools.formateDateToRegularForm(article.end_time)
-            })
-        })
-        this.setData({
-            articlesInOneMonth
-        })
-    },
-    setDateToActivities: function() {
-        let articlesInOneMonth = this.data.articlesInOneMonth;
-        //console.log(stages)
         let month = (new Date()).getMonth() + 1;
+        var posters = []
+        var activities = {}
         var newArticles = articlesInOneMonth.map((articles, index) => {
             let newObject = {}
-            newObject.articlesInOneDay = articles.map((activity) => {
-                return activity;
+            newObject.articlesInOneDay = articles.map((article) => {
+                // format date
+                that.formatDateForArticles(article)
+                    // get Slide Poster
+                that.getPosterAndActivities(posters, activities, article)
+                return article;
             });
             newObject.date = month + "月" + (index + 1) + "日";
             return newObject;
         })
         this.setData({
-                articlesInOneMonth: newArticles
-            })
-            //console.log(this.data.stages)
+            articlesInOneMonth: newArticles,
+            posters,
+            activities
+        })
+    },
+    // 跳转到活动主页
+    getPosterAndActivities: function(posters, activities, article) {
+        let item = {
+            activity_id: article.activity.id,
+            image: article.image
+        }
+        let act = article.activity
+        act.image = article.image
+        act.location = article.location
+        act.short_name = tools.removeQuotation(act.short_name)
+        this.setTypeToActivity(act);
+        act.starttime = article.starttime
+        act.endtime = article.endtime
+        if (activities[(act.id)]) {
+            let originActivity = activities[(act.id).toString()]
+            act.starttime = (originActivity.starttime < act.starttime ? originActivity.starttime : act.starttime)
+            act.endtime = (originActivity.endtime > act.endtime ? originActivity.endtime : act.endtime)
+        }
+        activities[(act.id).toString()] = act;
+        if (tools.findRelativePoster(posters, item) === false) {
+            //console.log("Push")
+            posters.push(item)
+        }
+    },
+    setTypeToActivity: function(act) {
+        if (tools.removeQuotation(act.sports_medals) != "无")
+            act.type = 0;
+        else if (tools.removeQuotation(act.public_service_hours) != "无")
+            act.type = 1;
+        else if (tools.removeQuotation(act.prize) != "无")
+            act.type = 2;
+        else
+            act.type = 0;
+    },
+    getArticlesCounts: function() {
+        var articlesInOneMonth = this.data.articlesInOneMonth;
+        var articlesCounts = articlesInOneMonth.reduce(function(pre, cur, index, array) {
+            if (index === 0)
+                return pre.length + cur.length
+            else
+                return pre + cur.length;
+        }, []);
+        this.setData({
+            articlesCounts
+        })
+    },
+    formatDateForArticles: function(article) {
+        article.starttime = tools.formateDateToRegularForm(article.start_time)
+        article.endtime = tools.formateDateToRegularForm(article.end_time)
     },
     setDateFormat: function() {
         Date.prototype.format = function() {
@@ -214,6 +224,11 @@ Page({
             return str.substr(2);
         }
     },
+    rollToActivityDetails: function(e) {
+        wx.navigateTo({
+            url: './activity_detail/index',
+        })
+    },
     changeCurrentTap: function(e) {
         var index = e.currentTarget.dataset.index;
         this.setData({
@@ -225,6 +240,26 @@ Page({
         wx.navigateTo({
             url: './articles_webview/index',
         })
+    },
+    rollToSearchView: function(e) {
+        var data = this.data.activities;
+        for (var key in data) {
+            app.globalData.activitiesImages.push(data[key].image)
+            app.globalData.activitiesWechatUrl.push(data[key].wechat_url)
+            data[key].image = ""
+            data[key].wechat_url = ""
+        }
+        console.log(data)
+        wx.navigateTo({
+            url: './search_view/index?data=' + JSON.stringify(data),
+        })
+
+        var count = 0;
+        for (var key in data) {
+            data[key].image = app.globalData.activitiesImages[count]
+            data[key].wechat_url = app.globalData.activitiesWechatUrl[count]
+            count++;
+        }
     },
     /**
      * 获取当前位置
@@ -247,9 +282,6 @@ Page({
                 that.requestAddress(locationString)
             }
         })
-    },
-    showSearchBar: function(e) {
-        console.log(e)
     },
     /**
      * 根据经度纬度获取当前位置的中文描述
@@ -275,15 +307,6 @@ Page({
         })
     },
     /**
-     * 得到搜索框输入
-     * @param {object} e 触发事件
-     */
-    getSearchInput: function(e) {
-        this.setData({
-            searchKey: e.detail.value
-        })
-    },
-    /**
      * 把对应的推送设为已浏览
      * @param {object} e 触发事件
      */
@@ -294,66 +317,8 @@ Page({
         this.setData({
             visited: this.data.visited
         })
-    },
-    navigateToActivityDetail: function(e) {
-        wx.navigateTo({
-            url: 'articles_webview/index' // will be some other data
-        })
     }
 })
 
-const ARTICLES_SAMPLE = [{
-        id: 0,
-        date: "2月7号",
-        article: [{
-            id: 0,
-            image: "https://i.loli.net/2018/02/28/5a95a4d037347.png",
-            name: "中山大学团委活动",
-            location: "假草操场",
-            mark: [1, 1, 0],
-            content: "1758舞蹈会",
-            activity_id: 12345
-        }]
-    },
-    {
-        id: 1,
-        date: "2月8号",
-        article: [{
-            id: 1,
-            image: "https://i.loli.net/2018/02/28/5a95a4d064f71.png",
-            name: "数据科学与计算机学院学长团",
-            location: "三饭小广场",
-            mark: [0, 1, 0],
-            content: "学长团",
-            activity_id: 12345
-        }, ]
-    },
-    {
-        id: 2,
-        date: "2月9号",
-        article: [{
-            id: 2,
-            image: "https://i.loli.net/2018/02/28/5a95a4d088fd3.png",
-            name: "维纳斯歌手大赛",
-            location: "中大东校区",
-            mark: [0, 1, 1],
-            content: "维纳斯歌手比赛",
-            activity_id: 12345
-        }, ]
-    },
-    {
-        id: 3,
-        date: "2月10号",
-        article: [{
-            id: 3,
-            image: "https://i.loli.net/2018/02/28/5a95a4d09f6ec.png",
-            name: "暑假三下乡",
-            location: "广州",
-            mark: [0, 1],
-            content: "三下乡义教",
-            activity_id: 12345
-        }, ]
-    }
-]
 
 // wxcf38b0daff83a060

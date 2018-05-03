@@ -5,6 +5,7 @@
         "pages/activities/activity_detail/index",
         "pages/activities/album_live/index",
         "pages/activities/articles_webview/index",
+        "pages/activities/search_view/index",
         "pages/square/index",
         "pages/homepage/index",
         "pages/homepage_of_others/index",

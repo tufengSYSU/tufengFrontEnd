@@ -23,8 +23,7 @@
         <!-- search -->
         <view class="search-container">
             <view class="search-bar-container">
-                <image class="search-icon" src="{{searchIcon}}" bindtap="showSearchBar" />
-                <input type="text" class="search-bar-input" focus="{{false}}" bindinput="getSearchInput" />
+                <image class="search-icon" src="{{searchIcon}}" bindtap="rollToSearchView" />
             </view>
         </view>
     </view>
@@ -35,7 +34,7 @@
     <view class="slide-container">
         <!-- slide image core code -->
         <swiper circular="true" autoplay="true" interval="3000" duration="500" class="picture-swiper">
-            <swiper-item wx:for-items="{{posters}}" wx:key="{{*index}}">
+            <swiper-item wx:for-items="{{posters}}" wx:key="{{*index}}" bindtap="rollToActivityDetails">
                 <view class="imageContainer">
                     <image src="{{item.image}}" class="slide-image" />
                 </view>
@@ -45,7 +44,7 @@
 
     <!-- article-calendar-container -->
     <view class="articles-container" wx:if="{{currentTab === 0}}">
-        <view class="articles" wx:if="{{articlesItem.articlesInOneDay.length>0}}" wx:for="{{articlesInOneMonth}}" wx:for-item="articlesItem" wx:key="{{*index}}">
+        <view class="articles" wx:if="{{articlesItem.articlesInOneDay.length>0}}" wx:for="{{articlesInOneMonth}}" data-index="{{index}}" bindtap="makeVisited" wx:for-item="articlesItem" wx:key="{{*index}}">
             <view class="date">
                 {{articlesItem.date}}
             </view>
@@ -62,7 +61,7 @@
                         </view>
 
                         <view class="time">
-                            {{article.publish_time}}
+                            {{article.starttime+"~"+article.endtime}}
                         </view>
 
                         <view class="location" wx:if="{{article.title.length < 18 || article.location.length < 7}}">
@@ -74,18 +73,18 @@
         </view>
     </view>
 
-    <view wx:if="{{currentTab === 1}}">
-        <view wx:for="{{articlesInOneMonth}}" wx:for-item="articlesItem" wx:key="{{(*index)}}">
-            <view class="registration" wx:for="{{articlesItem.articlesInOneDay}}" wx:for-item="article" wx:key="{{*index}}">
+    <view wx:if="{{currentTab !== 0}}">
+        <view wx:for="{{activities}}" wx:if="{{(currentTab === 1 || (currentTab === 2 && activity.type === 1) || (currentTab === 3 && activity.type !== 1))}}" wx:for-item="activity" wx:key="{{(*index)}}">
+            <view class="registration" bindtap="rollToActivityDetails">
                 <view class="regis-image">
-                    <image src="{{article.image}}" bindtap="clickActivity" />
+                    <image src="{{activity.image}}" bindtap="clickActivity" />
                 </view>
 
                 <view class="regis-info">
-                    <view class="name">{{article.content}}</view>
+                    <view class="name">{{activity.short_name}}</view>
 
-                    <view class="start-time"> {{article.starttime}}~{{article.endtime}}</view>
-                    <view class="location">{{article.location}}</view>
+                    <view class="start-time"> {{activity.starttime}}~{{activity.endtime}}</view>
+                    <view class="location">{{activity.location}}</view>
                     <!-- <view class="hoster">
                         中大GBT
                         <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}">
