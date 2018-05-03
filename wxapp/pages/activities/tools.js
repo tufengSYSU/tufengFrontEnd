@@ -1,3 +1,5 @@
+const REPLACE_MARK = "&&"
+
 /**
  * getRandomColor https://stackoverflow.com/questions/1484506/random-color-generator
  *
@@ -116,11 +118,53 @@ const formateDateToRegularForm = (str) => {
     return (date.getMonth() + 1) + "月" + date.getDate() + "日"
 }
 
+const removeQuotation = (str) => {
+    if (str.length > 1 || str[0] === "\"") {
+        return str.slice(1, str.length - 1);
+    }
+    return str;
+}
+
+const Unicode = {
+    stringify: function(str) {
+        var res = [],
+            len = str.length;
+        for (var i = 0; i < len; ++i) {
+            res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+        }
+        return str ? "\\u" + res.join("\\u") : "";
+    },
+
+    parse: function(str) {
+        str = str.replace(/\\/g, "%");
+        return unescape(str);
+    }
+}
+
+const strReplace = {
+    encode: function(str) {
+        while (str.search("=") != -1) {
+            str = str.replace("=", REPLACE_MARK)
+        }
+        return str;
+    },
+
+    decode: function(str) {
+        while (str.search(REPLACE_MARK) != -1) {
+            str = str.replace(REPLACE_MARK, "=")
+        }
+        return str;
+    }
+}
+
 module.exports = {
     getRandomColor,
     getHighSColor,
     formatUrl,
     parseHTML,
     findRelativePoster,
-    formateDateToRegularForm
+    formateDateToRegularForm,
+    removeQuotation,
+    Unicode,
+    strReplace
 }

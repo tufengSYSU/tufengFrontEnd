@@ -35,6 +35,8 @@ App({
     },
     globalData: {
         userInfo: null,
-        apiPrefix: "https://ancestree.site/api"
+        apiPrefix: "https://ancestree.site/api",
+        activitiesImages: [],
+        activitiesWechatUrl: []
     }
 })

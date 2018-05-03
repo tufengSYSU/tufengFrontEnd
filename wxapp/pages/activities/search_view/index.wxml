@@ -1,0 +1,32 @@
+<view class="container">
+    <view class="search-container">
+        <view class="search-bar-container">
+            <image class="search-icon" src="{{searchIcon}}" bindtap="searchActivities" />
+            <input type="text" placeholder="搜索活动" class="search-bar-input" focus="{{false}}" bindinput="getSearchInput" bindconfirm="searchActivities" />
+        </view>
+    </view>
+
+
+    <view wx:if="{{currentTab !== 0}}">
+        <view wx:for="{{activities}}" wx:if="{{activity.show}}" bindtap="rollToActivityDetails" wx:for-item="activity" wx:key="{{(*index)}}">
+            <view class="registration" bindtap="rollToActivityDetails">
+                <view class="regis-image">
+                    <image src="{{activity.image}}" bindtap="clickActivity" />
+                </view>
+
+                <view class="regis-info">
+                    <view class="name">{{activity.short_name}}</view>
+
+                    <view class="start-time"> {{activity.starttime}}~{{activity.endtime}}</view>
+                    <view class="location">{{activity.location}}</view>
+                    <!-- <view class="hoster">
+                            中大GBT
+                            <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}">
+                                {{host.name}}
+                            </view>
+                        </view> -->
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
