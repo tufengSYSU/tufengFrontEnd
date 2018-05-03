@@ -2,14 +2,35 @@ var pics=[];
 Page({
   data:{
     pictures:[],
-    
+    originPictures:[],
   },
   onLoad:function(option) {
     this.setData({
-      name:option.title
+      name:option.title,
     })
+    var tempPhotos = [];
+    var str = "";
+    var count = 0;
+    for (var index in option.photos) {
+      if (option.photos[index] != '~' && option.photos[index] != ',') {
+        str = str + option.photos[index];
+      } else {
+        if (option.photos[index] == '~') {
+          tempPhotos.push(str);
+          str = "";
+          count++;
+        }
+      }
+    }
+    this.setData({
+      originPictures: tempPhotos,
+    })
+    for(var i in tempPhotos) {
+      console.log(tempPhotos[i]);
+    }
+    console.log(count)
   },
-
+  
   chooseimage: function () {
     var _this = this;
     wx.chooseImage({

@@ -5,7 +5,9 @@ Page({
     activityOrAlbum: true,
     attention: false,
     reachTop: false,
-    TAB: ["活动", "社团"]
+    TAB: ["活动", "社团"],
+    organizations_: [],
+    
   },
   onLoad: function (option) {
     var id = option.personid;
@@ -36,9 +38,28 @@ Page({
     this.setData({
       person: person_temp,
     })
-    this.getOrganizations();
+    var tempOrganizations = [];
+    for (var index in person_temp.organizations) {
+      for (var i in ORGANIZATIONS_SAMPLE) {
+        if (ORGANIZATIONS_SAMPLE[i].name == person_temp.organizations[index]) {
+          tempOrganizations.push(ORGANIZATIONS_SAMPLE[i]);
+          break;
+        }
+      }
+    }
+    this.setData({
+      organizations_: tempOrganizations
+    })
+
     this.getRegistrations();
    
+  },
+  clickOrganization: function(e) {
+    let organizationid = e.dataset;
+    let url = "../organization/index?organizationid=${organizationid}"
+    wx.navigateTo({
+      url: url
+    })
   },
   changeHoverClass: function (e) {
     let a = [0, 0, 0];
@@ -53,11 +74,6 @@ Page({
       registrations: REGISTRATION_SAMPLE
     })
   },
-  getOrganizations: function () {
-    this.setData({
-      organizations_: ORGANIZATIONS_SAMPLE
-    })
-  }
 
 })
 
