@@ -1,0 +1,192 @@
+@import "../../../resources/templates/cards/cards.wxss";
+
+.container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+/* background */
+
+.background {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 300px;
+  /* remove the empty distance */
+  font-size: 0;
+  z-index: -1;
+}
+
+.background image {
+  width: 100%;
+}
+
+/* background end */
+.background-window {
+  width: 100%;
+  height: 144px;
+}
+
+/** profile  */
+.profile .avatar {
+  padding-top: 115px;
+  padding-left: 10%;
+}
+
+.profile .avatar image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.information {
+  z-index: 0;
+  width: 100%;
+  background-color: white;
+  padding-top: 120px;
+  height: 100px;
+  border-bottom: dashed;
+  border-color: whitesmoke; 
+}
+
+.information .name {
+  text-align: center;
+  position: relative;
+  top: -108px;
+  color: deepskyblue;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 45%;
+}
+
+.information .gender {
+  position: relative;
+  top: -112px;
+  display: inline-block;
+  margin-left: 2%; 
+}
+
+.information .gender image {
+  width: 15px;
+  height: 15px;
+}
+
+.information .description {
+  position: relative;
+  top: -108px;
+  text-align: center;
+  font-size: 12px;
+  color: #FF4081;
+}
+.information .title-1 {
+  position: relative;
+  top: -95px;
+}
+.information .personal-info{
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  margin-left: 3%;
+  width: 30%;
+  font-size: 13px;
+}
+.information .school {
+  display: inline-block;
+  font-size: 13px;
+  margin-left: 3%;
+  position: relative;
+  top: -3px;
+}
+
+.personal_info-img {
+  margin-left: 10%; 
+  display: inline-block;
+}
+
+.personal_info-img image {
+  width: 15px;
+  height: 15px;
+}
+
+.school-img {
+  margin-left: 8%;
+  display: inline-block; 
+}
+
+.school-img image{
+  width: 18px;
+  height: 18px;
+}
+
+.hobby-img {
+  margin-left: 10%; 
+  display: inline-block;
+}
+
+.hobby-img image {
+  width: 17px;
+  height: 17px;
+}
+.information .title-2 {
+  position: relative;
+  top: -97px;
+}
+.information .hobby {
+  display: inline-block;
+  font-size: 13px;
+  margin-left: 2.5%; 
+  position: relative;
+  top: -3px;
+}
+
+.menu-container {
+  margin-top: 10px;
+  padding-left: 10px;
+  font-size: 21px;
+  font-weight: bolder;
+  color: black;
+}
+
+.non-hover-text {
+  opacity: 0.4;
+}
+
+.hover-text {
+  opacity: 0.8;
+}
+
+.eachOrganization {
+  display: inline-block;
+  margin-left: 3%;
+  width: 45%; 
+  background-color: whitesmoke;
+  height: 90px;
+}
+
+.organization-avatar image {
+  border-radius: 50%;
+  height: 70px;
+  width: 100%;
+}
+
+.organization-avatar {
+  display: inline-block;
+  width: 40%;
+  margin-top: 10px;
+  margin-left: 2%; 
+}
+
+.organization-info {
+  display: inline-block;
+  margin-left: 4%;
+}
+.organization-name {
+  font-size: 13px;
+  font-weight: bold;
+  color: deepskyblue;
+  position: relative;
+  top: -50px;
+}

@@ -10,7 +10,8 @@
         "pages/homepage/index",
         "pages/homepage_of_others/index",
         "pages/homepage_of_others/organization/index",
-        "pages/homepage_of_others/organization_album/index"
+        "pages/homepage_of_others/organization_album/index",
+        "pages/homepage_of_others/person/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

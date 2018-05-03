@@ -161,13 +161,23 @@ Page({
       attentionTabIndex: (this.data.attentionTabIndex === 0 ? 1 : 0)
     })
   },
+
   clickOrganizationTab: function(e) {
-    let organizationid = 1;
+    let organizationid = e.dataset;
     let url = "../homepage_of_others/organization/index?organizationid=${organizationid}"
     wx.navigateTo({
       url: url
     })
   },
+
+  clickPerson: function(e) {
+    let personid = e.currentTarget.dataset.value;
+    let url = `../homepage_of_others/person/index?personid=${personid}`;
+    wx.navigateTo({
+      url: url
+    })
+  },
+
   tabpageScroll: function(e) {
     const windowSize = this.data.windowSize
     const reachTop = this.data.reachTop
@@ -413,7 +423,7 @@ const REGISTRATION_SAMPLE = [
 
 const MESSAGES_SAMPLE = [
   {
-    id: "",
+    id: "1",
     author: USER_SAMPLE,
     remark: "222",
     avatar: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png",

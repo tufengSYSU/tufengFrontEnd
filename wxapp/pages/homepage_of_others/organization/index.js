@@ -85,11 +85,62 @@ Page({
   },
   getRegistrations: function () {
     //var temp = REGISTRATION_SAMPLE;
+    var i;
+    
     for (var index in REGISTRATION_SAMPLE) {
-      if (1 == 1) {
+      var str = REGISTRATION_SAMPLE[index].endTime;
+      var month;
+      var day;
+      for(var j in str) {
+        if (j == 0 && parseInt(str[j]) == 1) {
+          if (parseInt(str[1]) == 1 || parseInt(str[1]) == 2) {
+            month = parseInt(str[0]) * 10 + parseInt(str[1]);
+          } else {
+            month = 1;
+          }
+        }
+        if (j == 0 && parseInt(str[j]) != 1) {
+          month = parseInt(str[j]);
+        }
+        if (j == 2 && parseInt(str[j]) >= 1 && parseInt(str[j]) <= 9) {
+          if (parseInt(str[3]) >= 1 && parseInt(str[3]) <= 9) {
+            day = parseInt(str[2]) * 10 + parseInt(str[3]);
+          } else {
+            day = parseInt(str[2]);
+          }
+          break;
+        }
+        if (j == 3 && parseInt(str[j]) >= 1 && parseInt(str[j]) <= 9) {
+          if (parseInt(str[4]) >= 1 && parseInt(str[4]) <= 9) {
+            day = parseInt(str[3]) * 10 + parseInt(str[4]);
+          } else {
+            day = parseInt(str[3]);
+          }
+          break;
+        }       
+      }
+      var D = new Date();
+      var curMonth = D.getMonth() + 1;
+      var curDay = D.getDate();
+      if(curMonth > month) {
+        i = 1;
+      }
+      if(curMonth == month && curDay > day) {
+        i = 1;
+      }
+      if (curMonth == month && curDay <= day) {
+        i = 0;
+      }
+      if (curMonth < month) {
+        i = 0;
+      }
+      if (i == 1) {
         REGISTRATION_SAMPLE[index].past=true;
+      } else {
+        REGISTRATION_SAMPLE[index].past = false;
       }
     }
+
     this.setData({
       registrations: REGISTRATION_SAMPLE
     })
