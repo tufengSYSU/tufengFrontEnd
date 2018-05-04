@@ -1,345 +1,391 @@
+@import "../../../resources/templates/articleCards/index.wxss";
+.container {
+    height: 100vh;
+}
+
 .background-picture {
-  height: 130px;
-  /* remove the empty distance */
-  font-size: 0;
-  z-index: -1;
-  width: 100%;
+    height: 200px;
+    /* remove the empty distance */
+    font-size: 0;
+    z-index: -1;
+    width: 100%;
 }
 
 .photoLiveTitle {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1;
-  color: white;
-  width: 100%;
-  position: absolute;
-  top: 100px;
-  /* There's a bug and it's needed to be added in wxml instead */
-  /* background-image: url("../../assets/homepage/tabs_background.png"); */
-  background-size: contain;
-  background-repeat: repeat-x;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+    color: white;
+    width: 100%;
+    position: absolute;
+    top: 170px;
+    /* There's a bug and it's needed to be added in wxml instead */
+    /* background-image: url("../../assets/homepage/tabs_background.png"); */
+    background-size: contain;
+    background-repeat: repeat-x;
+    height: 30px;
 }
 
-
 .photoLive {
-  font-size: 16px;
-  position: relative;
-  width: 40%;
+    font-size: 16px;
+    position: relative;
 }
 
 .intoLive {
-  font-size: 18px;
-  position: relative;
-  left: 10%;
-  width: 30%;
+    font-size: 18px;
+    position: relative;
 }
 
-.picture {
-  display: inline-block;
-  width: 60%;
+.photoLive .picture {
+    display: inline-block;
+    width: 60%;
 }
 
-.picture image{
-  padding: 6px;
-  width: 72%;
-  height: 210px;
-  border: 2px solid #00CCFF;
-  border-radius: 5px;
-}
-.poster {
-  height: 230px;
-  margin-left: 1%;
-  margin-right: 3%;
-  z-index: 1;
-  background-color: #F5F5F5;
-  display: flex;
-  flex-direction: row;
-  font-size: 18px;
-  margin-top: 10px;
-  padding: 10px 10px 10px 5px;
+.photoLive .picture image {
+    padding: 6px;
+    width: 72%;
+    height: 210px;
+    border: 2px solid #00CCFF;
+    border-radius: 5px;
 }
 
 .word {
-  display: inline-block;
-  width: 40%;
-  margin-top: 10px;
-
-}
-
-.time {
-  padding-top: 12px; 
-  font-size: 15px;
-  color: #808080;
+    margin: 10px 0 0 10px;
 }
 
 .title {
-  font-weight: bold;
-  font-size: 18px;
-  color: #00CCFF;
-}
-
-.place{
-  padding-top: 10px; 
-  font-size: 15px;
-  color: #808080;
-}
-
-.organizer {
-  padding-top: 10px;
-  font-size: 15px;
-  color: #808080;
+    font-weight: bold;
+    font-size: 18px;
+    color: #00CCFF;
+    float: left;
 }
 
 .likeCount {
-  color: #808080;
-  padding-top: 10px; 
-  font-size: 15px;
-  width: 10px;
-  height: 5px;
-  display: flex;
-  flex-direction: row;
+    float: right;
+    margin-right: 10px;
+    color: #808080;
+    font-size: 16px;
+    height: 5px;
+    display: flex;
+    flex-direction: row;
 }
-.heart_ image{
-  width: 20px;
-  height: 20px;
+
+.heart_ image {
+    width: 22px;
+    height: 22px;
+    padding-top: 2px;
 }
-.count {
-  position: relative;
-  left: 100%;
+
+.time {
+    font-size: 15px;
+    display: inline-block;
+    color: #808080;
+}
+
+.place {
+    font-size: 15px;
+    padding-left: 10px;
+    display: inline-block;
+    color: #808080;
+}
+
+
+/* tabs pages */
+
+.tabs {
+    margin-top: 10px;
+    height: 36px;
+    /* There's a bug and it's needed to be added in wxml instead */
+    /* background-image: url("../../assets/homepage/tabs_background.png"); */
+    background-size: contain;
+    background-repeat: repeat-x;
+    font-size: 18px;
+    color: white;
 }
 
 .tabs {
-  height: 36px;
-  /* There's a bug and it's needed to be added in wxml instead */
-  /* background-image: url("../../assets/homepage/tabs_background.png"); */
-  background-size: contain;
-  background-repeat: repeat-x;
-  font-size: 18px;
-  color: white;
+    margin-left: 15%;
 }
 
-.tabs {
-  margin-left: 15%;
-}
 .tab {
-  display: inline-block;
-  color: black;
-  margin-right: 8%;
+    display: inline-block;
+    color: black;
+    margin-right: 8%;
 }
 
 .tab.active {
-  color: #ff9800;
+    color: #ff9800;
 }
 
 .tabpage {
-  height: calc(100vh - 36px);
-  /* default hidden, scroll when the tabs area reach the top of the page */
-  overflow: hidden;
+    height: calc(100vh - 36px);
+    /* default hidden, scroll when the tabs area reach the top of the page */
+    overflow: hidden;
 }
 
 .tabpage.scroll {
-  /* when the tabs area reach the top of the page */
-  overflow: scroll;
+    /* when the tabs area reach the top of the page */
+    overflow: scroll;
 }
+
 .message-board {
-  height: 20px;
+    height: 20px;
 }
+
 .message {
-  display: inline-block;
-  font-size: 15px;
-  margin-left: 3%;
-  margin-top: 10px;
-  width: 75%;
-  border: 1px solid gray;
-  border-radius: 5px;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 3%;
+    margin-top: 10px;
+    width: 75%;
+    border: 1px solid #808080;
+    border-radius: 5px;
 }
+
 .send {
-  margin-left: 3%;
-  position: relative;
-  bottom: 5px;
-  font-size: 16px;
-  display: inline-block;
-  color: gray;
+    margin-left: 3%;
+    position: relative;
+    bottom: 5px;
+    font-size: 16px;
+    font-weight: bolder;
+    display: inline-block;
+    color: gray;
 }
 
 enroll-group {
-  vertical-align: top;
+    vertical-align: top;
 }
+
 .enroll {
-  display: inline-block;
-  color: #ff9800;
-  font-weight: bold;
-  margin-top: 10px;
-  margin-left: 12%;
-  width: 25%;
-  height: 40px;
-  text-align: center;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 5px 4px #F5F5F5;
-  position: relative;
-  top: 10px;
+    display: inline-block;
+    color: #ff9800;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 12%;
+    width: 25%;
+    height: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 4px #F5F5F5;
+    position: relative;
+    top: 10px;
 }
+
 .remaining-time {
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 10%;
-  text-align: center;
-  color: #ff9800;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10%;
+    text-align: center;
+    color: #ff9800;
 }
 
 .part-group {
-  margin-top: 15px;
-  border-top: 7px solid #E8E8E8
+    margin-top: 15px;
+    border-top: 7px solid #E8E8E8
 }
+
 .part {
-  height: 80px;
-  margin-top: 20px;
-  margin-left: 12%;
+    height: 80px;
+    margin-top: 20px;
+    margin-left: 12%;
 }
 
 .partaxis {
-  height: 14px;
-  width: 14px;
-  border-radius: 50%;
-  background-color: #E8E8E8;
-  position: relative;
-  top: 24px;
-  left: 8px;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background-color: #E8E8E8;
+    position: relative;
+    top: 24px;
+    left: 8px;
 }
+
 .axis {
-  position: relative;
-  top: 20px;
-  left: 14px;
-  height: 100px;
-  width: 3px;
-  background-color: #E8E8E8;
+    position: relative;
+    top: 20px;
+    left: 14px;
+    height: 100px;
+    width: 3px;
+    background-color: #E8E8E8;
 }
 
 .partword {
-  position: relative;
-  top: -97px;
-  margin-left: 12%;
-  color: #878787;
+    position: relative;
+    top: -97px;
+    margin-left: 12%;
+    color: #878787;
 }
 
 .last-partword {
-  position: relative;
-  margin-left: 12%;
-  color: #878787;
+    position: relative;
+    margin-left: 12%;
+    color: #878787;
 }
+
 .partName {
-  font-size: 18px;
+    font-size: 18px;
 }
+
 .partStartTime {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .partPlace {
-  font-size: 16px;
-}
-
-.comment {
-  height: 150px;
-  border-top: 10px solid whitesmoke;
- 
-}
-
-.comment-user {
-  color: black;
-}
-.comment-avatar {
-  display: inline-block;
-  vertical-align: center;
-  width: 21%;
-  position: relative;
-  left: 2%;
-  top: 4px;
-}
-
-.comment-avatar image {
-  height: 44px;
-  width: 44px;
-  border-radius: 50%;
-  border:1px solid #E8E8E8;
-}
-
-.comment-info {
-  display: inline-block;
-  vertical-align: center;
-  width: 64%;
-}
-
-.close {
-  display: inline-block;
-  vertical-align: center;
-  width: 15%;
-  color: #878787;
-  font-size: 11px;
-  position: relative;
-  top:-15px;
-  background-color: white;
-}
-.close::after {
-  border: none;
-}
-
-.comment-time {
-  font-size: 13px;
-  color: #878787;
-}
-
-.comment-username {
-  font-size: 14px;
-  font-weight: bolder;
-}
-
-.content {
-  color: #878787;
-  text-align: center;
-}
-
-.photo-album {
-  height: 200%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: white;
-}
-
-.photo-choose {
-  text-align: center;
-  color: #ff9800;
-  position: relative;
-
-}
-
-.upload {
-  vertical-align: center;
-  display: inline-block;
-  position: relative;
-  top: -8px;
-  left: 12px;
-  font-size: 16px;
-}
-
-.photoIcon {
-  display: inline-block
-}
-.photo-choose .photoIcon {
-  height: 32px;
-  width: 32px;
-}
-
-.weui-cells, .weui-cell {
-  border: none;
+    font-size: 16px;
 }
 
 .brief-introduction {
-  margin-left:10%;
-  margin-right: 10%;
-  margin-top: 20px;
-  color: #878787;
-  font-size: 16px;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #848484;
+    font-size: 16px;
+}
+
+.brief-introduction .sponsor .outline {
+    color: #FF92B7;
+}
+
+.sponsor .organization {
+    display: flex;
+    margin-top: 5px;
+}
+
+.sponsor .organization .org-logo {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.sponsor .organization .org-logo image {
+    width: 100%;
+    height: 100%;
+}
+
+.sponsor .organization .org-name {
+    margin-top: 20px;
+}
+
+.brief-introduction .award {
+    margin-top: 10px;
+}
+
+.brief-introduction .award .outline {
+    color: #B8DA90;
+}
+
+.brief-introduction .introduction {
+    margin-top: 10px;
+}
+
+.brief-introduction .introduction .outline {
+    color: #87C9EC;
+}
+
+
+/* 留言区 */
+
+.comment {
+    height: auto;
+    border-top: 1px solid whitesmoke;
+    margin-bottom: 2px;
+}
+
+.comment-user {
+    color: black;
+}
+
+.comment-avatar {
+    display: inline-block;
+    vertical-align: center;
+    width: 21%;
+    position: relative;
+    left: 2%;
+    top: 4px;
+}
+
+.comment-avatar image {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+}
+
+.comment-info {
+    display: inline-block;
+    vertical-align: center;
+    width: 64%;
+}
+
+.close {
+    display: inline-block;
+    vertical-align: center;
+    width: 15%;
+    color: #878787;
+    font-size: 11px;
+    position: relative;
+    top: -15px;
+    background-color: white;
+}
+
+.close::after {
+    border: none;
+}
+
+.comment-time {
+    font-size: 13px;
+    color: #878787;
+}
+
+.comment-username {
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.content {
+    color: #878787;
+    text-align: center;
+}
+
+.photo-album {
+    height: 200%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: white;
+}
+
+.photo-choose {
+    text-align: center;
+    color: #ff9800;
+    position: relative;
+}
+
+.upload {
+    vertical-align: center;
+    display: inline-block;
+    position: relative;
+    top: -8px;
+    left: 12px;
+    font-size: 16px;
+}
+
+.photoIcon {
+    display: inline-block
+}
+
+.photo-choose .photoIcon {
+    height: 32px;
+    width: 32px;
+}
+
+.weui-cells,
+.weui-cell {
+    border: none;
+}
+
+.articles-container .outline {
+    margin-bottom: 10px;
+    color: #ff9800;
 }
