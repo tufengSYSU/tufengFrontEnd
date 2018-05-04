@@ -72,7 +72,7 @@ Page({
     })
   },
   getActivity: function() {
-    this.data.user.activity = ACTIVYTY_SAMPLE;
+    this.data.user.activity = ACTIVITY_SAMPLE;
     this.setData({
       user: this.data.user
     })
@@ -159,8 +159,13 @@ Page({
   },
   albumClickActivity: function (e) {
     var Name = e.currentTarget.dataset.value;
+    var photos = [];
+    for (var index in e.currentTarget.dataset.photos) {
+      photos.push(e.currentTarget.dataset.photos[index].image);
+      photos.push('~');
+    }
     let albumid = 1;
-    let url = `../../homepage_of_others/organization_album/index?albumid=${albumid}&title=${Name}`
+    let url = `../../homepage_of_others/organization_album/index?albumid=${albumid}&title=${Name}&photos=${photos}`
     wx.navigateTo({
       url: url
     })
@@ -374,7 +379,7 @@ const MOMENTS_SAMPLE = [
   }
 ]
 
-const ACTIVIYTY_SAMPLE = [
+const ACTIVITY_SAMPLE = [
   {
     id: "",
     name: "第三十一届维纳斯歌手大赛",

@@ -61,7 +61,7 @@
       <view class="album-container" wx:if="{{hover[1] === 1}}">
         <view class="eachOrganization" wx:for="{{organizations_}}" wx:for-item="organization" wx:key="{{*index}}">
         <view class="organization-avatar">
-        <image src="{{organization.avatar}}" bindtap="clickOrganization"/>
+        <image src="{{organization.avatar}}" bindtap="clickOrganization" data-value="{{organization.id}}"/>
         </view>
         <view class="organization-info">
           <view class="organization-name">
