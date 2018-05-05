@@ -1,155 +1,203 @@
+<scroll-view scroll-y="true" class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
 
-<scroll-view scroll-y class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
-  
-  <view class="background">
-    <image class="background-picture" src="{{user.background_image}}" mode="aspectFill"></image>
-  </view>
-  
-
-  <view class="photoLiveTitle" style="background-image: url('/../assets/homepage/tabs_background.png')">
-    <view class="photoLive">照片直播：中大图蜂</view>
-    <view class="intoLive">进入直播 > </view>
-  </view>
-  
-  <view class="poster">
-    <view class="picture">
-      <image src="{{activity.background_image}}"></image>
+    <view class="background">
+        <image class="background-picture" src="{{user.background_image}}" mode="aspectFill"></image>
     </view>
+
+
+    <view class="photoLiveTitle" style="background-image: url('/../assets/homepage/tabs_background.png')">
+        <view class="photoLive">照片直播：中大图蜂</view>
+        <view class="intoLive" bindtap="navigateToWebView">进入直播 > </view>
+    </view>
+
     <view class="word">
-      <view class="title">
-        {{activity.name}}
-      </view>
-      <view class="time">
-        {{activity.startTime}}~{{activity.endTime}}
-      </view>
-      <view class="place">
-        {{activity.location}}
-      </view>
-      <view class="organizer">
-        {{activity.organization}}
-      </view>
-      <view class="likeCount">
-        <view class="heart_">
-          <image src="{{user.background_image}}"></image>
+        <view class="title">
+            {{activity.name}}
         </view>
-        <view class="count">
-          {{activity.likers}}
+        <view class="likeCount">
+            <view class="heart_">
+                <image src="{{heartIcon}}"></image>
+            </view>
+            <view class="count">
+                {{activity.likers}}
+            </view>
         </view>
-      </view>
-    </view>
-  </view>
+        <view style="clear: both;">
 
-  <view class="tabs">
-
-    <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
-      {{tab}}
+        </view>
+        <view class="time">
+            {{activity.startTime}}~{{activity.endTime}}
+        </view>
+        <view class="place">
+            {{activity.location}}
+        </view>
     </view>
-  </view>
+
+    <view class="tabs">
+
+        <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
+            {{tab}}
+        </view>
+    </view>
 
     <!-- 时间轴 -->
     <view class="time-axis" wx:if="{{tabIndex === 0}}">
-      <view class="enroll-group">
-        <button class="enroll">报名</button>
-        <view class="remaining-time" wx:if="{{activity.leave_Day < 0 || activity.leave_Hour < 0 ||activity.leave_Min < 0}}">报名已结束</view>
-        <view class="remaining-time" wx:if="{{activity.leave_Day >= 0 && activity.leave_Hour >= 0 &&activity.leave_Min >= 0}}">{{activity.leave_Day}}天{{activity.leave_Hour}}时{{activity.leave_Min}}分</view>
-      </view>
-      <view class= "part-group">
-        <view class="part" wx:for="{{activity.parts}}" wx:for-item="part" wx:key="{{*index}}">
-          <view class = "partaxis">
-          </view>
-          <view class="axis" wx:if="{{index !== activity.parts.length-1}}">
-          </view>
-          <view class="partword" wx:if="{{index !== activity.parts.length-1}}">
-            <view class="partname">
-            {{part.partName}}
-            </view>
-            <view class="partStartTime">
-            {{part.partStartTime}}
-            </view>
-            <view class="partPlace">
-            {{part.partPlace}}
-            </view>
-          </view>
-          <view class="last-partword" wx:if="{{index === activity.parts.length-1}}">
-            <view class="partname">
-            {{part.partName}}
-            </view>
-            <view class="partStartTime">
-            {{part.partStartTime}}
-            </view>
-            <view class="partPlace">
-            {{part.partPlace}}
-            </view>
-          </view>
+        <view class="enroll-group">
+            <button class="enroll">报名</button>
+            <view class="remaining-time" wx:if="{{activity.leave_Day < 0 || activity.leave_Hour < 0 ||activity.leave_Min < 0}}">报名已结束</view>
+            <view class="remaining-time" wx:if="{{activity.leave_Day >= 0 && activity.leave_Hour >= 0 &&activity.leave_Min >= 0}}">{{activity.leave_Day}}天{{activity.leave_Hour}}时{{activity.leave_Min}}分</view>
         </view>
-      </view>
+        <view class="part-group">
+            <view class="part" wx:for="{{activity.parts}}" wx:for-item="part" wx:key="{{*index}}">
+                <view class="partaxis">
+                </view>
+                <view class="axis" wx:if="{{index !== activity.parts.length-1}}">
+                </view>
+                <view class="partword" wx:if="{{index !== activity.parts.length-1}}">
+                    <view class="partname">
+                        {{part.partName}}
+                    </view>
+                    <view class="partStartTime">
+                        {{part.partStartTime}}
+                    </view>
+                    <view class="partPlace">
+                        {{part.partPlace}}
+                    </view>
+                </view>
+                <view class="last-partword" wx:if="{{index === activity.parts.length-1}}">
+                    <view class="partname">
+                        {{part.partName}}
+                    </view>
+                    <view class="partStartTime">
+                        {{part.partStartTime}}
+                    </view>
+                    <view class="partPlace">
+                        {{part.partPlace}}
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 
     <!-- 相册 -->
     <view class="photo-album" wx:if="{{tabIndex === 1}}">
         <view class="photo-choose" bindtap="chooseImage">
-          <image class="photoIcon" src="{{user.background_image}}"/>
-          <view class="upload">
-          上传照片
-          </view>
+            <image class="photoIcon" src="{{photoIcon}}" />
+            <view class="upload">
+                上传照片
+            </view>
         </view>
         <view class="weui-cells">
-          <view class="weui-cell">
-            <view class="weui-cell__bd">
-              <view class="weui-uploader">
-                <view class="weui-uploader__hd">
-                  
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files">
+                                <block wx:for="{{images}}" wx:key="*this" wx:for-item="image">
+                                    <view class="weui-uploader__file" bindtap="previewImage" id="{{image}}" style="{{imageStyles[index]}}">
+                                        <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
                 </view>
-                <view class="weui-uploader__bd">
-                  <view class="weui-uploader__files">
-                    <block wx:for="{{images}}" wx:key="*this" wx:for-item="image">
-                      <view class="weui-uploader__file" bindtap="previewImage" id="{{image}}" style="{{imageStyles[index]}}">
-                        <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" />
-                      </view>
-                    </block>
-                  </view>
-                </view>
-              </view>
             </view>
-          </view>
         </view>
-      </view>
+    </view>
     <!-- 简介 -->
     <view class="brief-introduction" wx:if="{{tabIndex === 2}}">
-    {{activity.introduction}}
+        <!-- 主办方 -->
+        <view class="sponsor">
+            <view class="outline">
+                主办方
+            </view>
+
+            <view class="organization" wx:for="{{organization}}" wx:for-item="org" wx:key="{{*index}}">
+                <view class="org-logo">
+                    <image src="{{org.logo}}"></image>
+                </view>
+                <view class="org-name">{{ org.name }}</view>
+            </view>
+        </view>
+
+        <!-- 奖励类型 -->
+        <view class="award">
+            <view class="outline">
+                奖励类型
+            </view>
+            <view class="award-item" wx:if="{{item != '无'}}" wx:for="{{[activity.sports_medals, activity.public_service_hours, activity.prize, activity.other_prize]}}">
+                {{ item }}
+            </view>
+        </view>
+
+        <!-- 活动介绍 -->
+        <view class="introduction">
+            <view class="outline">
+                活动介绍
+            </view>
+            <view>
+                {{activity.introduction}}
+            </view>
+        </view>
     </view>
     <!-- 留言板 -->
     <view class="message-board" wx:if="{{tabIndex === 3}}">
-      <input class="message" name = "Comment" placeholder="单行输入" 
-      bindinput="commentInput" />
-      <view class="send">发送</view>
-      <view class="comment" wx:for="{{activity.comments}}" wx:for-item="comment">
-        <view class="comment-user">
-          <view class="comment-avatar">
-            <image src="{{comment.user.avatar}}"></image>
-          </view>
-          <view class="comment-info">
-            <view class="comment-username">
-              {{comment.user.name}}
+        <input class="message" type="text" name="Comment" placeholder="单行输入" bindinput="commentInput" />
+        <view class="send" bindtap="postComment">发送</view>
+        <view class="comment" wx:for="{{activity.comments}}" wx:for-item="comment">
+            <view class="comment-user">
+                <view class="comment-avatar">
+                    <image src="{{comment.user.avatar}}"></image>
+                </view>
+                <view class="comment-info">
+                    <view class="comment-username">
+                        {{comment.user.name}}
+                    </view>
+                    <view class="comment-time">
+                        {{comment.commentTime}}
+                    </view>
+                </view>
+                <button class="close">X</button>
             </view>
-            <view class="comment-time">
-              {{comment.commentTime}}
-            </view>
-          </view>
-          <button class="close">X</button>
-        </view>
 
-        <text class="content">
-          {{comment.content}}
-        </text>
-      </view>
+            <view class="content">
+                {{comment.content}}
+            </view>
+        </view>
     </view>
 
+    <!-- article-calendar-container -->
+    <view class="articles-container">
+        <view class="outline">
+            相关推送
+        </view>
+        <view class="articles">
+            <view class="articlesInOneDay">
+                <view class="article" wx:for="{{articles}}" wx:for-item="article" wx:key="{{*index}}" bindtap="rollToWebview">
+                    <view class="picture">
+                        <image src="{{article.image}}"></image>
+                    </view>
 
+                    <view class="content">
+                        <view class="title {{windowSize.width < 400 ? 'oneLineText' : ''}}">
+                            {{article.title}}
+                        </view>
 
-  <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-  </view>
+                        <view class="time">
+                            {{article.starttime+"~"+article.endtime}}
+                        </view>
 
+                        <view class="location" wx:if="{{article.title.length < 18 || article.location.length < 7}}">
+                            {{article.location}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 
 </scroll-view>
-  
