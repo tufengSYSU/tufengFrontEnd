@@ -1,0 +1,50 @@
+<view class="container">
+  <view class="tr">
+    <view class="td1">选择活动</view>
+    <view class="td2">
+    <picker bindchange="bindCasPickerChange" value="{{casIndex}}" range="{{organization.activities}}">
+    {{organization.activities[casIndex]}}
+    </picker>
+    </view>
+
+  </view>
+
+  <view class="tr">
+    <view class="td1">开始时间</view>
+    
+      <picker class="td5" mode="date" value="{{startDate}}" start="1999-01-01" end="2018-12-31" bindchange="startDatePickerSelected">
+        {{startDate}}
+      </picker>
+    
+    
+      <picker class="td6" mode="time" value="{{startTime}}" start="00:00" end="24:00" bindchange="startTimePickerSelected">
+        {{startTime}}
+      </picker>
+  </view>
+  
+
+  <view class="tr">
+    <view class="td1">结束时间</view>
+    <view class="td5">
+      <picker mode="date" value="{{endDate}}" start="1999-01-01" end="2018-12-31" bindchange="endDatePickerSelected">
+        {{endDate}}
+      </picker>
+    
+    </view>
+
+    <view class="td6">
+      <picker mode="date" value="{{endTime}}" start="00:00" end="24:00" bindchange="endTimePickerSelected">
+        {{endTime}}
+      </picker>
+    
+    </view>
+  </view>
+
+  <view class="tr">
+    <view class="td1">报名类型</view>
+    <input bindinput="inputType" placeholder="如“报名”“抢票”“组队”" class="td3"></input>
+    <view class="td4">
+    添加
+    </view>
+  </view>
+</view>

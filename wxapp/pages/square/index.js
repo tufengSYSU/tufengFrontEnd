@@ -166,6 +166,11 @@ Page({
         url: "../square/news/index"
       })
     }
+    if(t == "启动报名") {
+      wx.navigateTo({
+        url: "../square/enroll/index"
+      })
+    }
   }
 })
 
