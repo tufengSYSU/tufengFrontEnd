@@ -5,19 +5,28 @@
   </view>
   <view class="tr">
     <view class="td1">社团名称</view>
-    <input class="td2" />
+    <input bindinput="inputName" value="{{organization.name}}" class="td2" />
   </view>
   <view class="tr">
     <view class="td1">成立时间</view>
-    <input class="td2" />
+    <input bindinput="inputSetUpTime" value="{{organization.setupTime}}" class="td2" />
   </view>
   <view class="tr">
     <view class="td1">所获荣誉</view>
-    <input class="td2" />
+    <input bindinput="inputHonor" value="{{organization.honor}}" class="td2"></input>
   </view>
   <view class="tr">
     <view class="td1">添加部门</view>
-    <input class="td3" />
+    <input bindinput="inputValue" value="{{inputTxt}}" class="td3" />
     <view class="td4" bindtap="append">确定</view>
+  </view>
+  
+  <view class="department" wx:for="{{organization.departments}}" wx:for-item="eachone">
+    <view class="de">{{eachone}}</view>
+  </view>
+
+  <view class="finish">完成</view>
+  <view class="field">
+    <view class="instruction">—— 每学期仅可修改一次，请谨慎操作 ——</view>
   </view>
 </view>
