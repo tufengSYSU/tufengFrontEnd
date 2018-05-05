@@ -19,12 +19,12 @@
         <view class="participate-organization">
           <view class="outline">我加入的</view>
           <!-- 社团名片 -->
-          <swiper indicator-dots="true" previous-margin="{{previousMargin + 'px'}}" next-margin="{{nextMargin + 'px'}}">
+          <swiper indicator-dots="true" previous-margin="{{previousMargin + 'px'}}" next-margin="{{nextMargin + 'px'}}" style="height:300px">
             <view wx:for="{{user.myOrganization}}" wx:for-item="organization" wx:key="{{*index}}">
               <!-- 顶部信息 -->
               <swiper-item>
-                <view class="organization-card" bindtap="clickOrganizationTab">
-                  <view class="avatar">
+                <view class="organization-card">
+                  <view class="avatar" bindtap="clickOrganizationTab">
                     <image src="{{organization.avatar}}" />
                   </view>
                   <view class="organization-name">
@@ -34,9 +34,9 @@
                     {{organization.occupation}}
                   </view>
                   <!-- 分割线 -->
-                  <!-- <view class="dashline"></view> -->
+                  <view class="dashline"></view>
                   <!-- 下部信息 icon等 -->
-                  <!-- <view class="organization-controllers">
+                  <view class="organization-controllers" wx:if="{{user.privilige[index] == true}}">
                     <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
                       <view class="icon">
                         <image src="{{menu.avatar}}" data-text="{{menu.text}}" bindtap="rollTo"/>
@@ -46,7 +46,7 @@
                       </view>
                     </view>
                   </view>
-                  <view style="clear:both"></view> -->
+                  
                 </view>
               </swiper-item>
             </view>

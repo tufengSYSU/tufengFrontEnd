@@ -56,9 +56,12 @@
   color: #FF4081E5;
 }
 
+.participate-organization {
+  height: 400px;
+}
+
 .participate-organization .outline {
   padding: 10px;
-  color: #35A4DFE5;
 }
 
 .organization-card {
@@ -67,7 +70,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px #E6E6E6;
   width: 200px;
-  height: atuo;
+  height: 400px;
   padding: 10px;
   background-color: white;
 }
@@ -111,6 +114,11 @@
   float:left;
   padding-left: 15px;
   padding-bottom: 10px;
+}
+.menu .icon {
+  display: inline-block;
+  margin-left: 1%; 
+  width: 30%;
 }
 
 .menu .icon image {

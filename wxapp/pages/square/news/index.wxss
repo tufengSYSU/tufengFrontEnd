@@ -1,0 +1,38 @@
+.container .tr {
+  height: 45px;
+  border-width: 0; 
+  border-bottom-width: 1px;
+  border-bottom-color: gray;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+}
+
+.tr .td1 {
+  
+  width: 20%;
+  margin-left: 3%; 
+  font-size: 16px;
+  color: #ADADAD;
+}
+
+.tr .td2 {
+  justify-content: center;
+  width: 77%;
+  font-size: 14px;
+  color: #ADADAD;
+}
+
+.tr .td3 {
+  justify-content: center;
+  width: 65%;
+  font-size: 14px;
+  color: #ADADAD;
+}
+
+.tr .td4 {
+  justify-content: center;
+  width: 12%;
+  font-size: 13px;
+  color: #ff9800;
+}

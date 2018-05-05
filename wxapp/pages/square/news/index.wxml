@@ -1,3 +1,23 @@
 <view class="container">
-
+  <view class="tr">
+    <view class="td1">社团地址</view>
+    <input class="td2" />
+  </view>
+  <view class="tr">
+    <view class="td1">社团名称</view>
+    <input class="td2" />
+  </view>
+  <view class="tr">
+    <view class="td1">成立时间</view>
+    <input class="td2" />
+  </view>
+  <view class="tr">
+    <view class="td1">所获荣誉</view>
+    <input class="td2" />
+  </view>
+  <view class="tr">
+    <view class="td1">添加部门</view>
+    <input class="td3" />
+    <view class="td4" bindtap="append">确定</view>
+  </view>
 </view>

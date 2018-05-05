@@ -74,7 +74,7 @@ Page({
     user.photo = PHOTO_ICON;
     user.organizationIcon = [
       {
-        text: "消息通知",
+        text: "信息维护",
         avatar: MESSAGE_ICON
       },
       {
@@ -82,15 +82,15 @@ Page({
         avatar: PUSH_ICON
       },
       {
-        text: "发布动态",
+        text: "发布活动",
         avatar: MOMENTS_ICON
       },
       {
-        text: "相关设置",
+        text: "启动报名",
         avatar: SETTING_ICON
       },
       {
-        text: "社团黄页",
+        text: "相关设置",
         avatar: YELLOWPAGE_ICON
       }
     ]
@@ -111,6 +111,18 @@ Page({
   getMyOrganizaion: function() {
     let user = this.data.user;
     user.myOrganization = MY_ORGANIZATION_SAMPLE;
+    user.privilige = [];
+    //var privilige[];
+    for(var index in MY_ORGANIZATION_SAMPLE) {
+      var i = MY_ORGANIZATION_SAMPLE[index].occupation.indexOf(" ");
+      var temp = MY_ORGANIZATION_SAMPLE[index].occupation.substring(i+1);
+      if(temp != "干事") {
+        user.privilige.push(true);
+      } else {
+        user.privilige.push(false);
+      }
+    }
+  
     this.setData({
       user
     })
@@ -146,6 +158,14 @@ Page({
     wx.navigateTo({
       url: "../homepage_of_others/index"
     })
+  },
+  rollTo: function(e) {
+    var t =e.currentTarget.dataset.text;
+    if(t == "信息维护") {
+      wx.navigateTo({
+        url: "../square/news/index"
+      })
+    }
   }
 })
 
@@ -314,7 +334,7 @@ const MY_ORGANIZATION_SAMPLE = [
   {
     id: "",
     name: "中东广播台",
-    occupation: "资讯部 干事",
+    occupation: "资讯部 部长",
     avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
     numberOfMessages: 7
   }

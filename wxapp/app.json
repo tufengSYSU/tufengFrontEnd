@@ -11,7 +11,8 @@
         "pages/homepage_of_others/index",
         "pages/homepage_of_others/organization/index",
         "pages/homepage_of_others/organization_album/index",
-        "pages/homepage_of_others/person/index"
+        "pages/homepage_of_others/person/index",
+        "pages/square/news/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
