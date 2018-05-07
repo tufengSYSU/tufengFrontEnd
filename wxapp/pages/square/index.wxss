@@ -161,3 +161,33 @@
   background-color: #F2F2F2;
   height: 7px;
 }
+
+.nearby .searchLine {
+  display: flex;
+  align-items: center;
+}
+
+.searchLine .searchIcon {
+  /*display: inline-block;*/
+  width: 7%;
+  margin-left: 1%; 
+}
+
+.searchLine .serchWord {
+  /*display: inline-block;*/
+  width: 12%;
+}
+
+.searchLine .search {
+  border-radius: 5px;
+  border-style: solid;
+  border-width: thin;
+  width: 70%; 
+  margin-left: 5%;
+  /*display: inline-block;*/
+}
+
+.searchLine .searchIcon image {
+  width: 30px;
+  height: 28px;
+}
