@@ -57,9 +57,19 @@
         <!-- 附近社团 -->
         <view class="nearby">
           <view class="outline">我附近的</view>
-          <view class="organization" wx:for="{{user.nearbyOrganization}}" wx:key="{{*index}}" bindtap="clickOrganizationTab">
-            <image src="{{item.avatar}}" />
-            <view>{{item.name}}</view>
+          <view class="searchLine">
+            <input class="search" bindinput="searchInput" value="{{searchValue}}" />
+            <view class="searchIcon" bindtap="clickSearchTab">
+              <image src="{{searchIcon}}"/>
+            </view>
+            <view class="searchWord" bindtap="clickSearchTab">
+              搜索
+            </view>
+          </view>
+          <view class="organization" wx:for="{{user.nearbyOrganization}}" wx:for-item="eachOrganization"
+          wx:if="{{eachOrganization.searchFlag}}"wx:key="{{*index}}" bindtap="clickOrganizationTab">
+            <image src="{{eachOrganization.avatar}}" />
+            <view>{{eachOrganization.name}}</view>
           </view>
         </view>
       </view>

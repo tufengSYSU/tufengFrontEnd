@@ -9,15 +9,18 @@ const SETTING_ICON = ASSETS + "/setting.png";
 const PHOTO_ICON = ASSETS + "/photo.png";
 const YELLOWPAGE_ICON = ASSETS + "/yellowpage.png";
 
+
 Page({
   data: {
     user: null,
     bar: ["蜂动态", "社团墙"],
     tabIndex: 0,
+    searchValue: '',
     voteIcon: "../../assets/myprofile_icon/vote.png",
     commentIcon: "../../assets/myprofile_icon/comment.png",
     heartIcon: "../../assets/myprofile_icon/heart.png",
     arrowIcon: "../../assets/myprofile_icon/organization/arrow.png",
+    searchIcon: "../../assets/icon/search.png",
   },
   onLoad: function() {
     // wx.request({
@@ -127,6 +130,7 @@ Page({
       user
     })
   },
+
   getNearbyOrganization: function() {
     let user = this.data.user;
     user.nearbyOrganization = NEARBY_ORGANIZAION_SAMPLE;
@@ -134,6 +138,35 @@ Page({
       user
     })
   },
+
+  
+  clickSearchTab: function() {
+    var reg = new RegExp(this.data.searchValue)
+    var keys = KEYS
+    let user = this.data.user;
+    user.nearbyOrganization = NEARBY_ORGANIZAION_SAMPLE;
+    keys.forEach(k => {
+        for (var actKey in user.nearbyOrganization) {
+            console.log(user.nearbyOrganization[actKey][k])
+            if (user.nearbyOrganization[actKey][k] && user.nearbyOrganization[actKey][k].toString().match(reg)) {
+              user.nearbyOrganization[actKey].searchFlag = true
+            } else {
+              user.nearbyOrganization[actKey].searchFlag = false
+            }
+        }
+    });
+    this.setData({
+        user
+    })
+  },
+
+  searchInput: function(e) {
+    var value = e.detail.value;
+    this.setData({
+      searchValue: value
+    })
+  },
+
   clickOrganizationTab: function() {
     let organizationId = 1;
     let url = `../homepage_of_others/organization/index?organizationId=${organizationId}`
@@ -141,12 +174,14 @@ Page({
       url: url
     })
   },
+
   clicktab: function(e) {
     let tabIndex = (e.currentTarget.dataset.index === this.data.tabIndex ? this.data.tabIndex : e.currentTarget.dataset.index);
     this.setData({
       tabIndex
     })
   },
+
   changePage: function(e) {
     let text = e.currentTarget.dataset.text;
     console.log(e)
@@ -154,6 +189,7 @@ Page({
       url: "settings/index"
     })
   },
+
   rollToHomepageOfOthers: function() {
     wx.navigateTo({
       url: "../homepage_of_others/index"
@@ -164,6 +200,11 @@ Page({
     if(t == "信息维护") {
       wx.navigateTo({
         url: "../square/news/index"
+      })
+    }
+    if(t == "启动报名") {
+      wx.navigateTo({
+        url: "../square/enroll/index"
       })
     }
   }
@@ -344,16 +385,29 @@ const NEARBY_ORGANIZAION_SAMPLE = [
   {
     id: "",
     name: "中东广播台",
-    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+    searchFlag: true,
   },
   {
     id: "",
-    name: "中东广播台",
-    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
+    name: "中东足协",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+    searchFlag: true,
   },
   {
     id: "",
-    name: "中东广播台",
-    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
-  }
+    name: "张剑粉丝团",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+    searchFlag: true,
+  },
+  {
+    id: "",
+    name: "diss张剑团",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+    searchFlag: true,
+  },
+]
+
+var KEYS = [
+  "name",
 ]
