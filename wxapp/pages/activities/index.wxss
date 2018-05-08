@@ -10,16 +10,20 @@
 .subTabContainer {
     margin-left: 4vw;
     color: #707070;
-    font-size: 14px;
+    font-size: 18px;
     border-bottom: #707070;
-    height: 22px;
+    height: 27px;
     border-top: #FAFAFA;
 }
 
 .subTabContainer view {
     margin-top: 0px;
     float: left;
-    padding-right: 7vw;
+    padding-right: 5vw;
+}
+
+.subTabContainer .small-padding {
+    padding-right: 3vw;
 }
 
 .gap {
@@ -32,7 +36,7 @@
     color: #707070;
     position: absolute;
     right: 4vw;
-    top: 0px;
+    top: 4px;
     z-index: 99;
     font-size: 14px;
 }
@@ -61,7 +65,7 @@
     font-size: 12px;
     padding: 0 10px;
     position: absolute;
-    top: 0px;
+    top: 4px;
 }
 
 .search-bar-container {
@@ -88,7 +92,7 @@
 }
 
 .block {
-    height: 23px;
+    height: 27px;
 }
 
 
@@ -104,7 +108,7 @@
 /* slide-image */
 
 .slide-container swiper {
-    height: 110px;
+    height: 37vw;
     overflow: hidden;
 }
 

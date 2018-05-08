@@ -6,7 +6,7 @@
     <view class="topBar">
         <!-- top tab -->
         <view class="subTabContainer">
-            <view wx:for="{{subTab}}" class="{{currentTab === index ? 'yellowColor' : ''}}" wx:key="{{*index}}" data-index="{{index}}" bindtap="changeCurrentTap">
+            <view wx:for="{{subTab}}" class="{{currentTab === index ? 'yellowColor' : ''}}" wx:key="{{*index}}" data-index="{{index}}" bindtap="changeCurrentTap" class="{{windowSize.width < 350 ? 'small-padding' : ' '}}">
                 {{item}}
             </view>
         </view>
@@ -56,7 +56,7 @@
                     </view>
 
                     <view class="content">
-                        <view class="title {{windowSize.width < 400 ? 'oneLineText' : ''}}">
+                        <view class="title {{windowSize.width < 350 ? 'oneLineText' : ''}}">
                             {{article.title}}
                         </view>
 
