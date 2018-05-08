@@ -275,6 +275,11 @@ const ACTIVITY_SAMPLE = {
             partStartTime: " ",
             partPlace: " "
         },
+        {
+            partName: "结束报名",
+            partStartTime: "4月25号 13:30",
+            partPlace: "梁球锯堂"
+        }
     ],
 
     comments: [{

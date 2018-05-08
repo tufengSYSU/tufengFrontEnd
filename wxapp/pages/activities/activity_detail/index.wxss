@@ -12,17 +12,24 @@
 }
 
 .photoLiveTitle {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     z-index: 1;
     color: white;
     width: 100%;
     position: absolute;
     top: 170px;
-    /* There's a bug and it's needed to be added in wxml instead */
-    /* background-image: url("../../assets/homepage/tabs_background.png"); */
+    background-image: url("../../assets/homepage/tabs_background.png");
     background-size: contain;
     background-repeat: repeat-x;
     height: 30px;
@@ -68,7 +75,12 @@
     color: #808080;
     font-size: 16px;
     height: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
 }
 
@@ -97,10 +109,10 @@
 .tabs {
     margin-top: 10px;
     height: 36px;
-    /* There's a bug and it's needed to be added in wxml instead */
-    /* background-image: url("../../assets/homepage/tabs_background.png"); */
     background-size: contain;
     background-repeat: repeat-x;
+    -webkit-background-size: contain;
+    -webkit-background-repeat: repeat-x;
     font-size: 18px;
     color: white;
 }
@@ -128,10 +140,6 @@
 .tabpage.scroll {
     /* when the tabs area reach the top of the page */
     overflow: scroll;
-}
-
-.message-board {
-    height: 20px;
 }
 
 .message {
@@ -169,6 +177,7 @@ enroll-group {
     text-align: center;
     background-color: white;
     border-radius: 8px;
+    -webkit-box-shadow: 0 0 5px 4px #F5F5F5;
     box-shadow: 0 0 5px 4px #F5F5F5;
     position: relative;
     top: 10px;
@@ -184,7 +193,6 @@ enroll-group {
 
 .part-group {
     margin-top: 15px;
-    border-top: 7px solid #E8E8E8
 }
 
 .part {
@@ -249,6 +257,8 @@ enroll-group {
 }
 
 .sponsor .organization {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-top: 5px;
 }
@@ -386,6 +396,6 @@ enroll-group {
 }
 
 .articles-container .outline {
-    margin-bottom: 10px;
+    margin: 10px 0 10px 10px;
     color: #ff9800;
 }

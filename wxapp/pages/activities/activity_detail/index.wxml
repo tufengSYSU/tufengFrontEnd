@@ -42,11 +42,6 @@
 
     <!-- 时间轴 -->
     <view class="time-axis" wx:if="{{tabIndex === 0}}">
-        <view class="enroll-group">
-            <button class="enroll">报名</button>
-            <view class="remaining-time" wx:if="{{activity.leave_Day < 0 || activity.leave_Hour < 0 ||activity.leave_Min < 0}}">报名已结束</view>
-            <view class="remaining-time" wx:if="{{activity.leave_Day >= 0 && activity.leave_Hour >= 0 &&activity.leave_Min >= 0}}">{{activity.leave_Day}}天{{activity.leave_Hour}}时{{activity.leave_Min}}分</view>
-        </view>
         <view class="part-group">
             <view class="part" wx:for="{{activity.parts}}" wx:for-item="part" wx:key="{{*index}}">
                 <view class="partaxis">
