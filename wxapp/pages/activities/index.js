@@ -4,10 +4,8 @@
  */
 
 //  TODO: 请求社团名字加入活动卡片中
-//  TODO: swiper 无缝切换
 //  TODO: 已阅读活动, 加标志位
-//  TODO: 函数解隅
-//  TODO: 顶部栏信息做成可向右滑动
+//  TODO：整个页面可左右滑动
 
 const app = getApp()
 const tools = require('./tools.js')
@@ -45,37 +43,6 @@ Page({
     },
     swiperChange: function(e) {
         console.log(e.detail.current)
-    },
-    getFunction: function() {
-        this.formatUrl = tools.formatUrl;
-        this.parseHTML = tools.parseHTML;
-    },
-    getIcons: function() {
-        this.setData({
-            locationIcon: LOCATION_ICON,
-            searchIcon: SEARCH_ICON,
-            aixinIcon: AIXIN_ICON,
-            ballIcon: BALL_ICON,
-            moneyIcon: MONEY_ICON
-        })
-        this.setData({
-            defaultTitle: "中大图峰",
-            defaultImage: "https://i.loli.net/2018/04/17/5ad5f1e0c85cc.png"
-        })
-    },
-    getWindowSize: function() {
-        var that = this
-        wx.getSystemInfo({
-            success: function(res) {
-                let windowSize = {
-                    width: res.windowWidth,
-                    height: res.windowHeight
-                }
-                that.setData({
-                    windowSize
-                })
-            }
-        })
     },
     getArticlesInOneMonth: function() {
         let date = new Date().format();
@@ -260,6 +227,37 @@ Page({
             data[key].wechat_url = app.globalData.activitiesWechatUrl[count]
             count++;
         }
+    },
+    getFunction: function() {
+        this.formatUrl = tools.formatUrl;
+        this.parseHTML = tools.parseHTML;
+    },
+    getIcons: function() {
+        this.setData({
+            locationIcon: LOCATION_ICON,
+            searchIcon: SEARCH_ICON,
+            aixinIcon: AIXIN_ICON,
+            ballIcon: BALL_ICON,
+            moneyIcon: MONEY_ICON
+        })
+        this.setData({
+            defaultTitle: "中大图峰",
+            defaultImage: "https://i.loli.net/2018/04/17/5ad5f1e0c85cc.png"
+        })
+    },
+    getWindowSize: function() {
+        var that = this
+        wx.getSystemInfo({
+            success: function(res) {
+                let windowSize = {
+                    width: res.windowWidth,
+                    height: res.windowHeight
+                }
+                that.setData({
+                    windowSize
+                })
+            }
+        })
     },
     /**
      * 获取当前位置
