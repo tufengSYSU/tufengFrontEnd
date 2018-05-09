@@ -118,7 +118,7 @@
 }
 
 .tabs {
-    margin-left: 15%;
+    margin-left: 10%;
 }
 
 .tab {
@@ -398,4 +398,10 @@ enroll-group {
 .articles-container .outline {
     margin: 10px 0 10px 10px;
     color: #ff9800;
+}
+
+.gray-border {
+    transform: rotate(90deg);
+    width: 100px;
+    border-top: 1px red solid;
 }

@@ -33,6 +33,10 @@
         </view>
     </view>
 
+    <view class="gray-border">
+
+    </view>
+
     <view class="tabs">
 
         <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">

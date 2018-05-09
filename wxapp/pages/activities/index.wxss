@@ -16,6 +16,10 @@
     border-top: #FAFAFA;
 }
 
+.yellowColor {
+    color: #ffba56;
+}
+
 .subTabContainer view {
     margin-top: 0px;
     float: left;
@@ -24,6 +28,13 @@
 
 .subTabContainer .small-padding {
     padding-right: 3vw;
+}
+
+.subTabContainer .bottom-line {
+    border-bottom: 3px #ffba56 solid;
+    position: absolute;
+    top: 25px;
+    transition: all 0.5s ease-out;
 }
 
 .gap {
@@ -95,18 +106,6 @@
     height: 27px;
 }
 
-
-/*** location end */
-
-
-/*** search bar end */
-
-
-/* location and search bar end */
-
-
-/* slide-image */
-
 .slide-container swiper {
     height: 37vw;
     overflow: hidden;
@@ -124,16 +123,7 @@
     height: 100%;
 }
 
-
-/** slide-image style end */
-
-
-/* slide-image end */
-
-
-/* activity cards */
-
-.registration {
+.activity {
     background-color: #F8F8F8;
     margin-left: 10px;
     margin-right: 10px;
@@ -143,33 +133,33 @@
     margin-top: 5px;
 }
 
-.registration .name {
+.activity .activity-image {
     font-size: 18px;
 }
 
-.regis-info {
+.activity .activity-info {
     font-size: 12px;
 }
 
-.registration image {
-    width: 100%;
-    height: 100%;
-}
-
-.regis-image {
+.activity .avtivity-image {
     width: 41%;
     height: 100%;
     display: inline-block;
     vertical-align: top;
 }
 
-.regis-info {
+.activity-image image {
+    width: 100%;
+    height: 100%;
+}
+
+.activity .activity-info {
     padding-left: 5%;
     display: inline-block;
     width: 50%;
 }
 
-.regis-info .name {
+.activity .activity-info .name {
     margin-bottom: 5rpx;
     font-size: 15px;
     color: #35A4DF;
@@ -180,11 +170,11 @@
     -webkit-line-clamp: 2;
 }
 
-.regis-info .hoster {
+.activity .activity-info .hoster {
     color: black
 }
 
-.regis-info .host {
+.activity .activity-info .host {
     color: black;
     display: inline-block;
     width: 40%;
@@ -192,14 +182,10 @@
     margin-top: 2%;
 }
 
-.regis-info .start-time {
+.activity .activity-info .start-time {
     float: left;
 }
 
-.regis-info .location {
+.activity .activity-info .location {
     float: right;
-}
-
-.yellowColor {
-    color: #ffba56;
 }

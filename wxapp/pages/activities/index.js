@@ -27,7 +27,10 @@ Page({
         visited: [],
         subTab: ["推送+", "我看过", "公益", "文娱"],
         currentTab: 0,
-        currentDate: "4月29日"
+        currentDate: "4月29日",
+        // bottom line css
+        bottomLineLeftDistance: 14,
+        bottomLineWidth: 28
     },
     /**
      * 初始化数据
@@ -40,9 +43,6 @@ Page({
         this.setDateFormat();
         this.getArticlesInOneMonth();
         this.getFunction();
-    },
-    swiperChange: function(e) {
-        console.log(e.detail.current)
     },
     getArticlesInOneMonth: function() {
         let date = new Date().format();
@@ -143,6 +143,7 @@ Page({
         this.setTypeToActivity(act);
         act.starttime = article.starttime
         act.endtime = article.endtime
+        act.visited = 0
         if (activities[(act.id)]) {
             let originActivity = activities[(act.id).toString()]
             act.starttime = (originActivity.starttime < act.starttime ? originActivity.starttime : act.starttime)
@@ -202,11 +203,11 @@ Page({
             currentTab: index
         })
     },
-    rollToWebview: function() {
-        console.log("roll")
+    rollToWebview: function(e) {
         wx.navigateTo({
             url: './articles_webview/index',
         })
+        makeVisited(e.currentTarget.dataset.id)
     },
     rollToSearchView: function(e) {
         var data = this.data.activities;
@@ -304,19 +305,29 @@ Page({
             },
         })
     },
-    /**
-     * 把对应的推送设为已浏览
-     * @param {object} e 触发事件
-     */
-    makeVisited: function(e) {
-        var index = e.currentTarget.dataset.index
-        this.data.visited[index] = 1
-        console.log(index)
+    makeVisited: function(id) {
+        console.log(id)
+        var activities = this.data.activities
+        activities[id].visited = 1
         this.setData({
-            visited: this.data.visited
+            activities
+        })
+    },
+    swipeLeft: function(e) {
+        console.log(e)
+    },
+    swiping: function(e) {
+        console.log(e)
+    },
+    swipeEnd: function(e) {
+        console.log(e)
+    },
+    changeSwiperPage: function(e) {
+        this.setData({
+            currentTab: e.detail.current
         })
     }
 })
 
 
-// wxcf38b0daff83a060
+// wxcf38b0daff83a06
