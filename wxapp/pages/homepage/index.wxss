@@ -71,14 +71,18 @@
 
   display: inline-block;
   line-height: 18px;
-  padding: 9px 0 9px 65px;
+  padding: 9px 0 9px;
+  margin-left: 17%; 
+  width: 12%;
 }
 
 .activity-tab {
 
   display: inline-block;
   line-height: 18px;
-  padding: 9px 0 9px 65px;
+  padding: 9px 0 9px;
+  margin-left: 17%; 
+  width: 12%;
   font-size: 12px;
   color: #E2E2E2
 }
@@ -210,6 +214,7 @@
   margin-bottom: 10px;
   margin-left: 10px;
   height: 100px;
+  margin-top: 40px;
 }
 
 .registration .name {
@@ -296,6 +301,7 @@
   height: 150px;
   color: black;
   background-color: white;
+  margin-top: 40px;
   
 }
 .ticket {
@@ -443,4 +449,31 @@
   height: 25px;
   width: 30px;
   text-align: center;
+}
+
+.signedIcon {
+  margin-bottom: 5px; 
+}
+
+.processingIcon {
+  margin-bottom: 5px; 
+}
+
+.finishedIcon {
+  margin-bottom: 5px; 
+}
+
+.signedIcon image{
+  height: 35px;
+  width: 35px;
+}
+
+.processingIcon image {
+  height: 35px;
+  width: 35px;
+}
+
+.finishedIcon image {
+  height: 35px;
+  width: 35px;
 }

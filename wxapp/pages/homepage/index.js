@@ -79,7 +79,9 @@ Page({
       commentIcon: COMMENT_ICON,
       heartIcon: HEART_ICON,
       addressListIcon: ADDRESSLIST_ICON,
-      signedIcon: SIGNED_ICON
+      signedIcon: SIGNED_ICON,
+      processingIcon: PROCESSING_ICON,
+      finishedIcon: FINISHED_ICON,
     })
   },
   getOrganizations: function() {

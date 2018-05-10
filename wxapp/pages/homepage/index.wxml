@@ -36,12 +36,21 @@
         <!-- 活动 -->
         <view class="tabs">
           <view class="activity-tab {{activityTabIndex === index ? 'active' : ''}}" wx:for="{{activityTabs}}" wx:for-item="activityTab" wx:key="{{index}}" bindtap="clickActivityTab" data-index="{{index}}">
+            <view class="signedIcon" wx:if="{{index === 0}}">
+              <image src="{{signedIcon}}" />
+            </view>
+            <view class="processingIcon" wx:if="{{index === 1}}">
+              <image src="{{processingIcon}}" />
+            </view>
+            <view class="finishedIcon" wx:if="{{index === 2}}">
+              <image src="{{finishedIcon}}" />
+            </view>
             {{activityTab}}
           </view>
         </view>
 
         <view class="registration" wx:if="{{activityTabIndex === 0 && regis.status === 0}}" wx:for="{{registrations}}" wx:for-item="regis" wx:key="{{*index}}">
-
+        
           <view class="regis-image">
            <image src="{{regis.image}}" bindtap="clickActivity"/>
           </view>
