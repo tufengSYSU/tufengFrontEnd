@@ -33,10 +33,6 @@
         </view>
     </view>
 
-    <view class="gray-border">
-
-    </view>
-
     <view class="tabs">
 
         <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
@@ -47,45 +43,52 @@
     <!-- 时间轴 -->
     <view class="time-axis" wx:if="{{tabIndex === 0}}">
         <view class="part-group">
-            <view class="part" wx:for="{{activity.parts}}" wx:for-item="part" wx:key="{{*index}}">
+            <view class="part" wx:for="{{parts}}" wx:for-item="part" wx:key="{{*index}}">
                 <view class="partaxis">
                 </view>
-                <view class="axis" wx:if="{{index !== activity.parts.length-1}}">
+                <view class="axis" wx:if="{{index !== parts.length-1}}">
                 </view>
-                <view class="partword" wx:if="{{index !== activity.parts.length-1}}">
+                <view class="partword" style="{{part.mark ? 'color:#FF9800' : ''}}" wx:if="{{index !== parts.length-1}}">
                     <view class="partname">
-                        {{part.partName}}
+                        {{part.name}}
                     </view>
-                    <view class="partStartTime">
-                        {{part.partStartTime}}
+                    <view class="partstartTime">
+                        {{part.normalTime}}
                     </view>
                     <view class="partPlace">
-                        {{part.partPlace}}
+                        {{part.location}}
                     </view>
                 </view>
-                <view class="last-partword" wx:if="{{index === activity.parts.length-1}}">
+                <view class="last-partword" style="{{part.mark ? 'color:#FF9800' : ''}}" wx:if="{{index === parts.length-1}}">
                     <view class="partname">
-                        {{part.partName}}
+                        {{part.name}}
                     </view>
-                    <view class="partStartTime">
-                        {{part.partStartTime}}
+                    <view class="stagestartTime">
+                        {{part.normalTime}}
                     </view>
                     <view class="partPlace">
-                        {{part.partPlace}}
+                        {{part.location}}
                     </view>
                 </view>
+            </view>
+        </view>
+        <view class="leftSideContainer">
+            <view class="leftBox" wx:for="{{leftSideBox}}" wx:key="{{*index}}">
+                <view class="applyBox" style="top:{{item.top}}px;">报名</view>
+                <view class="line1" style="top:{{item.top+15}}px;left:{{item.left}}px;width:{{item.width}}px;transform:rotate({{item.deg1}}deg)"></view>
+                <view class="line2" style="top:{{item.top+15}}px;left:{{item.left}}px;width:{{item.width}}px;transform:rotate({{item.deg2}}deg)"></view>
             </view>
         </view>
     </view>
 
     <!-- 相册 -->
     <view class="photo-album" wx:if="{{tabIndex === 1}}">
-        <view class="photo-choose" bindtap="chooseImage">
+        <!-- <view class="photo-choose" bindtap="chooseImage">
             <image class="photoIcon" src="{{photoIcon}}" />
             <view class="upload">
                 上传照片
             </view>
-        </view>
+        </view> -->
         <view class="weui-cells">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
@@ -117,7 +120,7 @@
 
             <view class="organization" wx:for="{{organization}}" wx:for-item="org" wx:key="{{*index}}">
                 <view class="org-logo">
-                    <image src="{{org.logo}}"></image>
+                    <image src="{{org.logo_url}}"></image>
                 </view>
                 <view class="org-name">{{ org.name }}</view>
             </view>
@@ -139,14 +142,14 @@
                 活动介绍
             </view>
             <view>
-                {{activity.introduction}}
+                {{activity.description}}
             </view>
         </view>
     </view>
     <!-- 留言板 -->
     <view class="message-board" wx:if="{{tabIndex === 3}}">
-        <input class="message" type="text" name="Comment" placeholder="单行输入" bindinput="commentInput" />
-        <view class="send" bindtap="postComment">发送</view>
+        <!-- <input class="message" type="text" name="Comment" placeholder="单行输入" bindinput="commentInput" /> -->
+        <!-- <view class="send" bindtap="postComment">发送</view> -->
         <view class="comment" wx:for="{{activity.comments}}" wx:for-item="comment">
             <view class="comment-user">
                 <view class="comment-avatar">
