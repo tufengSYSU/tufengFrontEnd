@@ -130,6 +130,10 @@ Page({
             activities
         })
     },
+    formatDateForArticles: function(article) {
+        article.starttime = tools.formateDateToRegularForm(article.start_time)
+        article.endtime = tools.formateDateToRegularForm(article.end_time)
+    },
     // 跳转到活动主页
     getPosterAndActivities: function(posters, activities, article) {
         let item = {
@@ -177,10 +181,6 @@ Page({
             articlesCounts
         })
     },
-    formatDateForArticles: function(article) {
-        article.starttime = tools.formateDateToRegularForm(article.start_time)
-        article.endtime = tools.formateDateToRegularForm(article.end_time)
-    },
     setDateFormat: function() {
         Date.prototype.format = function() {
             let year = this.getFullYear();
@@ -193,9 +193,13 @@ Page({
         }
     },
     rollToActivityDetails: function(e) {
+        var id = e.currentTarget.dataset.id
+        var activity = { id: id }
+        console.log(id)
         wx.navigateTo({
-            url: './activity_detail/index',
+            url: './activity_detail/index?data=' + JSON.stringify(activity),
         })
+        this.makeVisited(id)
     },
     changeCurrentTap: function(e) {
         var index = e.currentTarget.dataset.index;
@@ -204,10 +208,14 @@ Page({
         })
     },
     rollToWebview: function(e) {
+        var apipri = app.apiPrefix
+        var parseUrl = e.currentTarget.dataset.url.split("/")
+        console.log(parseUrl)
+        var url = "https://ancestree.site/posts/" + parseUrl[parseUrl.length - 1] + ".html";
         wx.navigateTo({
-            url: './articles_webview/index',
+            url: `./articles_webview/index?url=${url}`,
         })
-        makeVisited(e.currentTarget.dataset.id)
+        this.makeVisited(e.currentTarget.dataset.id)
     },
     rollToSearchView: function(e) {
         var data = this.data.activities;

@@ -1,7 +1,7 @@
 <import src="../../resources/templates/articleCards/index.wxml" />
 
 <!--index.wxml-->
-<view class="container" bindtouchstart="swipeLeft" bindtouchend="swipeEnd">
+<view class="container">
 
     <view class="topBar">
         <!-- top tab -->
@@ -33,14 +33,13 @@
 
     <view class="block"></view>
 
-    <swiper bindchange="changeSwiperPage" current="{{currentTab}}">
+    <swiper bindchange="changeSwiperPage" class="tabPage" current="{{currentTab}}">
         <!-- slide image -->
         <swiper-item class="tabPage1">
-            tabpage1
             <view class="slide-container">
                 <!-- slide image core code -->
                 <swiper circular="true" autoplay="true" interval="3000" duration="500" class="picture-swiper">
-                    <swiper-item wx:for-items="{{posters}}" wx:key="{{*index}}" bindtap="rollToActivityDetails">
+                    <swiper-item wx:for-items="{{posters}}" data-id="{{item.activity_id}}" wx:key="{{*index}}" bindtap="rollToActivityDetails">
                         <view class="imageContainer">
                             <image src="{{item.image}}" class="slide-image" />
                         </view>
@@ -56,7 +55,7 @@
                     </view>
 
                     <view class="articlesInOneDay">
-                        <view class="article" data-id="{{article.activity.id}}" wx:for="{{articlesItem.articlesInOneDay}}" wx:for-item="article" wx:key="{{*index}}" bindtap="rollToWebview">
+                        <view class="article" data-id="{{article.activity.id}}" data-url="{{article.wechat_url}}" wx:for="{{articlesItem.articlesInOneDay}}" wx:for-item="article" wx:key="{{*index}}" bindtap="rollToWebview">
                             <view class="picture">
                                 <image src="{{article.image}}"></image>
                             </view>
@@ -81,15 +80,14 @@
         </swiper-item>
 
         <swiper-item class="tabPage2">
-            tabPage2
             <view wx:for="{{activities}}" wx:for-item="activity" wx:key="{{(*index)}}">
-                <view class="activity" bindtap="rollToActivityDetails">
+                <view class="activity" data-id="{{activity.id}}" wx:if="{{activity.visited}}" data-id="{{item.activity_id}}" bindtap="rollToActivityDetails">
                     <view class="activity-image">
                         <image src="{{activity.image}}" bindtap="clickActivity" />
                     </view>
 
                     <view class="activity-info">
-                        <view class="name">{{activity.short_name}}</view>
+                        <view class="name">{{activity.name}}</view>
 
                         <view class="start-time"> {{activity.starttime}}~{{activity.endtime}}</view>
                         <view class="location">{{activity.location}}</view>
@@ -99,15 +97,14 @@
         </swiper-item>
 
         <swiper-item>
-            tabpage3
             <view wx:for="{{activities}}" wx:if="{{activity.type === 1}}" wx:for-item="activity" wx:key="{{(*index)}}">
-                <view class="activity" bindtap="rollToActivityDetails">
+                <view class="activity" data-id="{{activity.id}}" bindtap="rollToActivityDetails">
                     <view class="activity-image">
                         <image src="{{activity.image}}" bindtap="clickActivity" />
                     </view>
 
                     <view class="activity-info">
-                        <view class="name">{{activity.short_name}}</view>
+                        <view class="name">{{activity.name}}</view>
 
                         <view class="start-time"> {{activity.starttime}}~{{activity.endtime}}</view>
                         <view class="location">{{activity.location}}</view>
@@ -117,15 +114,14 @@
         </swiper-item>
 
         <swiper-item>
-            tabpage4
             <view wx:for="{{activities}}" wx:if="{{activity.type != 1}}" wx:for-item="activity" wx:key="{{(*index)}}">
-                <view class="activity" bindtap="rollToActivityDetails">
+                <view class="activity" data-id="{{activity.id}}" bindtap="rollToActivityDetails">
                     <view class="activity-image">
                         <image src="{{activity.image}}" bindtap="clickActivity" />
                     </view>
 
                     <view class="activity-info">
-                        <view class="name">{{activity.short_name}}</view>
+                        <view class="name">{{activity.name}}</view>
 
                         <view class="start-time"> {{activity.starttime}}~{{activity.endtime}}</view>
                         <view class="location">{{activity.location}}</view>

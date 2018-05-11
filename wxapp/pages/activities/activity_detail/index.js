@@ -4,6 +4,7 @@
  */
 
 const ASSETS = "../../../assets"
+const data = require('./defaultData.js')
 
 // 动态图标
 const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
@@ -18,99 +19,194 @@ const FINISHED_ICON = ASSETS + "/homepage/finished.png"
 
 const PHOTO_ICON = ASSETS + "/homepage/photo.png"
 
+// TODO: 如果是传值进来的
 
 Page({
     data: {
-        url: {
-            url: "https://www.pailixiang.com/m/album_ia54800121.html",
-            query: {
-                from: "singlemessage",
-                isappinstalled: 0
-            }
-        },
         user: null,
-        //activity: null,
         tabs: ["时间轴", "相册", "简介", "留言板"],
         tabIndex: 0,
-        actTabIndex: 0,
         reachTop: false,
-        actTabs: [
-            { icon: SIGNED_ICON, name: "已报名" },
-            { icon: PROCESSING_ICON, name: "进行中" },
-            { icon: FINISHED_ICON, name: "已完成" },
-        ],
-
         images: [
             "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
         ],
         Comment: ""
-
     },
-
-    onLoad: function(data) {
+    onLoad: function(option) {
+        if (option.data) {
+            var activity = JSON.parse(option.data)
+            console.log(activity)
+            this.setData({
+                activityid: activity.id
+            })
+        } else {
+            this.setData({
+                activity: data.activity
+            })
+        }
         this.getMyProfile()
         this.getIcons()
         this.getScreenData()
     },
     getMyProfile: function() {
-        // wx.request({
-        //   url: "https://ancestree.site/api/activities_stages/15-01-01",
-        //   methon: "GET",
-        //   success: function( {
-        //   },
-        // })
-        // TODO: get data via api
+        var id = this.data.activityid;
+        if (!this.data.activity && id) {
+            var that = this
+            wx.request({
+                url: `http://ancestree.site/api/activities?actid=${id}`,
+                methon: "GET",
+                success: function(res) {
+                    let data = res.data.data
+                    console.log(data)
+                    let activity = data.activity
+                    activity.comments = []
+                    activity.stages = data.activity_stages
+                    that.setData({
+                        activity
+                    })
+                    that.getOrganization();
+                    that.setDateForActivity();
+                    that.setActivityParts();
+                },
+                fail: function(res) {
+                    that.setData({
+                        activity: data.activity
+                    })
+                }
+            })
+        }
         var user = USER_SAMPLE;
-        var D = new Date();
-        var init = new Date("2018/4/20/13:30");
-        var days = init.getTime() - D.getTime();
-        var leaveDay = parseInt(days / (1000 * 60 * 60 * 24));
-        var leaveHour = parseInt(days / (1000 * 60 * 60)) - leaveDay * 24;
-        var leaveMin = parseInt(days / (1000 * 60)) - leaveDay * 1440 - leaveHour * 60;
-
-        ACTIVITY_SAMPLE.leave_Day = leaveDay;
-        ACTIVITY_SAMPLE.leave_Hour = leaveHour;
-        ACTIVITY_SAMPLE.leave_Min = leaveMin;
-        var activity = ACTIVITY_SAMPLE
         this.setData({
             user,
-            activity,
-            organization: ORGANIZATION_SAMPLE,
             articles: ARTICLE_SAMPLE
         })
     },
-    getMoments: function() {
-        var moments = MOMENTS_SAMPLE
-        moments = moments.map(moment => {
-            // TODO: parseDate
-            // moment.date = tools.parseDate(moment.date)
-            return moment
-        })
-        this.setData({
-            moments
-        })
-    },
-
-    getMessages: function() {
-        var messages = MESSAGES_SAMPLE
-        messages = messages.map(message => {
-            return message
-        })
-        this.setData({
-            messages
-        })
-    },
-
-    getPersonalizations: function() {
-        var personalizations = PERSONALIZATIONS_SAMPLE
-        personalizations = personalizations.map(personalization => {
-            return personalization
-        })
-        this.setData({
-            personalizations
+    getOrganization: function() {
+        var that = this
+        wx.request({
+            url: 'https://ancestree.site/api/organizations',
+            method: 'GET',
+            success: function(res) {
+                let organizations = res.data.data
+                let activity = that.data.activity
+                let id = activity.organization_id
+                var org = []
+                for (var i in organizations) {
+                    if (organizations[i].id === id) {
+                        organizations[i].logo_url = "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
+                        org.push(organizations[i])
+                        break
+                    }
+                }
+                that.setData({
+                    organization: org
+                })
+            }
         })
     },
+    setDateForActivity: function() {
+        let activity = this.data.activity
+        activity.stages.map((stage) => {
+            if (!activity.starttime) {
+                activity.start_time = stage.start_time
+                activity.end_time = stage.end_time
+            } else {
+                activity.start_time = activity.start_time > stage.start_time ? stage.start_time : activity.start_time
+                activity.end_time = activity.end_time > stage.end_time ? activity.end_time : stage.end_time
+            }
+        })
+        let s = new Date(activity.start_time)
+        let e = new Date(activity.end_time)
+        activity.startTime = (s.getMonth() + 1) + "月" + (s.getDate() + "日") + (s.getHours() + "点")
+        activity.endTime = (e.getMonth() + 1) + "月" + (e.getDate() + "日") + (e.getHours() + "点")
+        this.setData({
+            activity
+        })
+    },
+    setActivityParts: function() {
+        let activity = this.data.activity
+        let parts = []
+        let leftSideBox = []
+        var that = this
+        activity.stages.forEach((stage) => {
+            let item1 = {
+                name: stage.content,
+                location: stage.location.slice(0, 8),
+                time: stage.start_time,
+                normalTime: that.getNormalTime(new Date(stage.start_time)),
+                id: stage.id
+            }
+            let item2 = {
+                name: stage.content + "结束",
+                location: stage.location.slice(0, 8),
+                time: stage.end_time,
+                normalTime: that.getNormalTime(new Date(stage.end_time)),
+                id: stage.id
+            }
+            if (stage.content.search("报名") != -1) {
+                leftSideBox.push(that.buildLeftSideBox(stage))
+                item1.mark = 1
+            }
+            parts.push(item1)
+            parts.push(item2)
+        })
+        parts.sort(this.sortParts)
+        this.setData({
+            parts
+        })
+        this.setDataForLeftSideBox(leftSideBox);
+    },
+    getNormalTime: function(date) {
+        return (date.getMonth() + 1) + "月" + (date.getDate() + "日") + (date.getHours() + "点")
+    },
+    sortParts: function(a, b) {
+        return a.time > b.time
+    },
+    buildLeftSideBox: function(stage) {
+        let item = {
+            id: stage.id,
+            name: "报名",
+            count: 0,
+            index1: -1,
+            index2: -1,
+            top: 0, // 距离报名开始节点的高度
+            left: 90,
+            width: 0,
+            deg1: 0,
+            deg2: 0,
+        }
+        console.log(item)
 
+        return item;
+    },
+    setDataForLeftSideBox: function(leftSideBox) {
+        var that = this
+        leftSideBox.forEach((box) => {
+            let indexs = that.findIndexOfPart(box.id)
+            box.index1 = indexs[0]
+            box.index2 = indexs[1]
+            box.count = box.index2 - box.index1
+            box.top = box.index1 * 100 + box.count * 50 + 10
+            box.left = 90
+            box.width = Math.round(Math.sqrt(box.count * 50 * box.count * 50 + 1936))
+            box.deg1 = (-1) * Math.round(Math.atan(box.count * 50 / 44) * 180 / Math.PI)
+            box.deg2 = (-1) * box.deg1
+        })
+
+        this.setData({
+            leftSideBox
+        })
+    },
+    findIndexOfPart: function(id) {
+        let parts = this.data.parts
+        let indexs = []
+        parts.forEach((part, index) => {
+            if (part.id === id) {
+                indexs.push(index)
+            }
+        })
+        return indexs
+    },
     getIcons: function() {
         this.setData({
             voteIcon: VOTE_ICON,
@@ -157,7 +253,6 @@ Page({
             Comment: e.detail.value
         })
     },
-
     getScreenData: function() {
         var that = this
         wx.getSystemInfo({
@@ -194,18 +289,6 @@ Page({
         wx.previewImage({
             current: e.currentTarget.id, // 当前显示图片的http链接
             urls: that.data.images // 需要预览的图片http链接列表
-        })
-    },
-
-    getLeaveHour() {
-        var D = new Date();
-        var init = new Date("2018/4/20");
-        var days = init.getTime() - D.getTime();
-        var leaveDay = parseInt(days / (1000 * 60 * 60 * 24));
-        var leaveHour = parseInt(days / (1000 * 60 * 60)) - leaveDay * 24;
-        var leaveMin = parseInt(days / (1000 * 60)) - leaveDay * 1440 - leaveHour * 60;
-        this.setData({
-            leaveHour
         })
     },
     navigateToWebView: function() {
@@ -245,67 +328,6 @@ const USER_SAMPLE = {
     },
     organizations: ["中珠广播台", "足协"]
 }
-
-const ACTIVITY_SAMPLE = {
-    id: "1234",
-    background_image: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
-    name: "第三十一届维纳斯歌手大赛",
-    startTime: "4月15日",
-    endTime: "5月30日",
-    location: "梁銶琚堂",
-    organization: "中山大学广播台",
-    likers: "7854",
-    introduction: "报道称，自停止使用以来，该空间站的高度一直在稳步下降",
-
-    leave_Day: 0,
-    leave_Hour: 0,
-    leave_Min: 0,
-    parts: [{
-            partName: "开启报名",
-            partStartTime: "4月15日 00:30",
-            partPlace: " "
-        },
-        {
-            partName: "初赛",
-            partStartTime: "4月20日 13:30",
-            partPlace: "四饭小广场"
-        },
-        {
-            partName: "LiveShow",
-            partStartTime: " ",
-            partPlace: " "
-        },
-        {
-            partName: "结束报名",
-            partStartTime: "4月25号 13:30",
-            partPlace: "梁球锯堂"
-        }
-    ],
-
-    comments: [{
-            user: USER_SAMPLE,
-            commentTime: "今天 17:00",
-            content: "张剑NMSL"
-        },
-
-    ],
-    sports_medals: "无",
-    public_service_hours: "2+8n",
-    prize: "无",
-    other_prize: "每次有交通补贴十元"
-}
-
-const ORGANIZATION_SAMPLE = [{
-        id: "",
-        name: "中山大学团委",
-        logo: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
-    },
-    {
-        id: "",
-        name: "中山大学广播台",
-        logo: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png"
-    }
-]
 
 const ARTICLE_SAMPLE = [{
         image: "http://mmbiz.qpic.cn/mmbiz_jpg/bXxPI5a0rKGjCepumu03QyxicicUaCiacy3iap3dbcsTNCsrR8LX6aTuo8usvvIbBTp8eIeXicfwhqYKMDiceUgH9Iog/0?wx_fmt=jpeg",

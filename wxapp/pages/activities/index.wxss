@@ -123,6 +123,14 @@
     height: 100%;
 }
 
+.tabPage {
+    height: 100vh;
+}
+
+.tabPage swiper-item {
+    overflow-y: scroll;
+}
+
 .activity {
     background-color: #F8F8F8;
     margin-left: 10px;
@@ -141,7 +149,7 @@
     font-size: 12px;
 }
 
-.activity .avtivity-image {
+.activity .activity-image {
     width: 41%;
     height: 100%;
     display: inline-block;

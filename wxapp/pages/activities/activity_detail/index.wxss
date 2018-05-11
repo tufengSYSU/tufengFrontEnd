@@ -191,14 +191,10 @@ enroll-group {
     color: #ff9800;
 }
 
-.part-group {
-    margin-top: 15px;
-}
-
 .part {
     height: 80px;
     margin-top: 20px;
-    margin-left: 12%;
+    margin-left: 120px;
 }
 
 .partaxis {
@@ -396,12 +392,37 @@ enroll-group {
 }
 
 .articles-container .outline {
-    margin: 10px 0 10px 10px;
+    margin: 20px 0 10px 10px;
     color: #ff9800;
 }
 
-.gray-border {
-    transform: rotate(90deg);
-    width: 100px;
-    border-top: 1px red solid;
+.time-axis {
+    position: relative;
+}
+
+.applyBox {
+    width: 70px;
+    padding: 5px 0 5px 0;
+    left: 20px;
+    text-align: center;
+    color: #FF9800;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #D0D0D0;
+    position: absolute;
+    font-weight: bolder;
+}
+
+.line1 {
+    position: absolute;
+    transform-origin: 0% 0%;
+    border-top: 1px gray dashed;
+    z-index: -1;
+}
+
+.line2 {
+    position: absolute;
+    transform-origin: 0% 0%;
+    border-top: 1px gray dashed;
+    z-index: -1;
 }
