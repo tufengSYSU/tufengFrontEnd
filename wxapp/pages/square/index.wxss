@@ -1,193 +1,192 @@
-
 @import "../../resources/templates/moments/moments.wxss";
-
 .bar {
-  background-color: white;
-  position: fixed;
-  font-size: 20px;
-  width: 100%;
-  height: 30px;
-  padding: 10px;
-  font-weight: bold;
-  z-index: 99;
+    background-color: white;
+    position: fixed;
+    font-size: 20px;
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    font-weight: bold;
+    z-index: 99;
 }
 
 .bar text {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 .bar .active {
-  opacity: 1;
+    opacity: 1;
 }
 
 .active {
-  opacity: 1;
+    opacity: 1;
 }
 
 .white-block {
-  height: 35px;
+    height: 35px;
 }
 
 .recommend {
-  padding: 36px 10px 10px 10px;
+    padding: 36px 10px 10px 10px;
 }
 
 .recommend .avatar {
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
 }
 
 .organization-wall .outline {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .concerns {
-  padding: 10px;
+    padding: 10px;
 }
 
 .concerns image {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
 }
 
 .concerns .outline {
-  color: #FF4081E5;
+    color: #FF4081E5;
 }
 
 .participate-organization {
-  height: 400px;
+    height: 400px;
 }
 
 .participate-organization .outline {
-  padding: 10px;
+    padding: 10px;
 }
 
 .organization-card {
-  margin-top: 10px;
-  margin-left: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #E6E6E6;
-  width: 200px;
-  height: 400px;
-  padding: 10px;
-  background-color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #E6E6E6;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
 }
 
 .organization-card .avatar {
-  float: left;
+    float: left;
 }
 
 .organization-card .avatar image {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
 }
 
 .organization-card .organization-name {
-  font-size: 18px;
-  padding-top: 15px;
-  color: #101010;
-  width: 200px;
-  text-align: center;
+    font-size: 18px;
+    padding-top: 15px;
+    color: #101010;
+    width: 200px;
+    text-align: center;
 }
 
 .organization-card .occupation {
-  font-size: 14px;
-  padding-bottom: 20px;
-  width: 200px;
-  text-align: center;
-  color: #35A4DF;
+    font-size: 14px;
+    padding-bottom: 20px;
+    width: 200px;
+    text-align: center;
+    color: #35A4DF;
 }
 
 .organization-controllers {
-  padding-top: 5px;
-  font-size: 11px;
-  color: #A6A2A5;
+    padding-top: 5px;
+    font-size: 11px;
+    color: #A6A2A5;
 }
 
 .organization-controllers .menu {
-  display: inline;
-  position: relative;
-  height: 50px;
-  float:left;
-  padding-left: 15px;
-  padding-bottom: 10px;
+    display: inline;
+    position: relative;
+    height: 50px;
+    float: left;
+    padding-left: 15px;
+    padding-bottom: 10px;
 }
+
 .menu .icon {
-  display: inline-block;
-  margin-left: 1%; 
-  width: 30%;
+    display: inline-block;
+    margin-left: 1%;
+    width: 30%;
 }
 
 .menu .icon image {
-  height: 48px;
-  width: 48px;
+    height: 48px;
+    width: 48px;
 }
 
 .menu .text {
-  margin-top: -10px;
+    margin-top: -10px;
 }
 
 .nearby .outline {
-  padding: 10px;
-  color: #FF9800E5;
+    padding: 10px;
+    color: #FF9800E5;
 }
 
 .nearby image {
-  float: left;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+    float: left;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
 }
 
 .nearby .organization {
-  padding: 10px;
+    padding: 10px;
 }
 
 .nearby .organization view {
-  height: 34px;
-  padding-top: 14px;
+    height: 34px;
+    padding-top: 14px;
 }
 
 .dashline {
-  background: #F2F2F2;
-  height: 5rpx;
-  width: 100%;
+    background: #F2F2F2;
+    height: 5rpx;
+    width: 100%;
 }
 
 .grey-block {
-  background-color: #F2F2F2;
-  height: 7px;
+    background-color: #F2F2F2;
+    height: 7px;
 }
 
 .nearby .searchLine {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .searchLine .searchIcon {
-  /*display: inline-block;*/
-  width: 7%;
-  margin-left: 1%; 
+    /*display: inline-block;*/
+    width: 7%;
+    margin-left: 1%;
 }
 
 .searchLine .serchWord {
-  /*display: inline-block;*/
-  width: 12%;
+    /*display: inline-block;*/
+    width: 12%;
 }
 
 .searchLine .search {
-  border-radius: 5px;
-  border-style: solid;
-  border-width: thin;
-  width: 70%; 
-  margin-left: 5%;
-  /*display: inline-block;*/
+    border-radius: 5px;
+    border-style: solid;
+    border-width: thin;
+    width: 70%;
+    margin-left: 5%;
+    /*display: inline-block;*/
 }
 
 .searchLine .searchIcon image {
-  width: 30px;
-  height: 28px;
+    width: 30px;
+    height: 28px;
 }

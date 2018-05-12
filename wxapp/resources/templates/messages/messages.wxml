@@ -3,7 +3,7 @@
   <view class="Message">
     <view class="message" wx:for="{{messages}}" wx:for-item="message" wx:key="{{*index}}">
       <!-- 用户 -->
-      <view class="user" wx:if="{{message.author}}" data-value= "{{message.author.id}}" bindtap="clickPerson">
+      <view class="user" wx:if="{{message.author}}" data-value= "{{message.author.id}}">
         <view class="avatar">
           <image src="{{message.author.avatar}}"></image>
         </view>

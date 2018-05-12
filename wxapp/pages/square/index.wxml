@@ -1,79 +1,76 @@
 <view class="container">
-  <view class="main-body">
-    <view class="bar">
-      <text class="active"> {{bar[1]}} </text>
-    </view>
+    <view class="main-body">
 
-    <view class="white-block"></view>
-
-    <view class="explore">
-      <!-- 社团墙 -->
-      <view class="organization-wall">
-        <view class="concerns">
-          <view class="outline">我关注的</view>
-          <image wx:for="{{user.concerns}}" src="{{item.avatar}}" wx:key="{{*index}}" bindtap="clickOrganizationTab"/>
-        </view>
-
-        <view class="grey-block"></view>
-
-        <view class="participate-organization">
-          <view class="outline">我加入的</view>
-          <!-- 社团名片 -->
-          <swiper indicator-dots="true" previous-margin="{{previousMargin + 'px'}}" next-margin="{{nextMargin + 'px'}}" style="height:300px">
-            <view wx:for="{{user.myOrganization}}" wx:for-item="organization" wx:key="{{*index}}">
-              <!-- 顶部信息 -->
-              <swiper-item>
-                <view class="organization-card">
-                  <view class="avatar" bindtap="clickOrganizationTab">
-                    <image src="{{organization.avatar}}" />
-                  </view>
-                  <view class="organization-name">
-                    {{organization.name}}
-                  </view>
-                  <view class="occupation">
-                    {{organization.occupation}}
-                  </view>
-                  <!-- 分割线 -->
-                  <view class="dashline"></view>
-                  <!-- 下部信息 icon等 -->
-                  <view class="organization-controllers" wx:if="{{user.privilige[index] == true}}">
-                    <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
-                      <view class="icon">
-                        <image src="{{menu.avatar}}" data-text="{{menu.text}}" bindtap="rollTo"/>
-                      </view>
-                      <view class="text">
-                        {{menu.text}}
-                      </view>
-                    </view>
-                  </view>
-                  
+        <view class="explore">
+            <!-- 社团墙 -->
+            <view class="organization-wall">
+                <view class="concerns">
+                    <view class="outline">我关注的</view>
+                    <image wx:for="{{user.concerns}}" src="{{item.avatar}}" wx:key="{{*index}}" bindtap="clickOrganizationTab" />
                 </view>
-              </swiper-item>
-            </view>
-          </swiper>
-        </view>
 
-        <view class="grey-block"></view>
-        <!-- 附近社团 -->
-        <view class="nearby">
-          <view class="outline">我附近的</view>
-          <view class="searchLine">
-            <input class="search" bindinput="searchInput" value="{{searchValue}}" />
-            <view class="searchIcon" bindtap="clickSearchTab">
-              <image src="{{searchIcon}}"/>
+                <view class="grey-block"></view>
+
+                <view class="participate-organization">
+                    <view class="outline">我加入的</view>
+                    <!-- 社团名片 -->
+                    <swiper indicator-dots="true" previous-margin="{{previousMargin + 'px'}}" next-margin="{{nextMargin + 'px'}}" style="height:300px">
+                        <view wx:for="{{user.myOrganization}}" wx:for-item="organization" wx:key="{{*index}}">
+                            <!-- 顶部信息 -->
+                            <swiper-item>
+                                <view class="organization-card">
+                                    <view class="avatar" bindtap="clickOrganizationTab">
+                                        <image src="{{organization.avatar}}" />
+                                    </view>
+                                    <view class="organization-name">
+                                        {{organization.name}}
+                                    </view>
+                                    <view class="occupation">
+                                        {{organization.occupation}}
+                                    </view>
+                                    <!-- 分割线 -->
+                                    <view class="dashline"></view>
+                                    <!-- 下部信息 icon等 -->
+                                    <view class="organization-controllers" wx:if="{{user.privilige[index] == true}}">
+                                        <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
+                                            <view class="icon">
+                                                <image src="{{menu.avatar}}" data-text="{{menu.text}}" bindtap="rollTo" />
+                                            </view>
+                                            <view class="text">
+                                                {{menu.text}}
+                                            </view>
+                                        </view>
+                                        <view style="clear:both"></view>
+                                    </view>
+                                    <view wx:if="{{user.privilige[index] == false}}">
+                                        <view>想了解更多社团？请看下面我附近的</view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                        </view>
+                    </swiper>
+                </view>
+
+                <view class="grey-block"></view>
+                <!-- 附近社团 -->
+                <view class="nearby">
+                    <view class="outline">我附近的</view>
+                    <view class="searchLine">
+                        <input class="search" bindinput="searchInput" value="{{searchValue}}" />
+                        <view class="searchIcon" bindtap="clickSearchTab">
+                            <image src="{{searchIcon}}" />
+                        </view>
+                        <view class="searchWord" bindtap="clickSearchTab">
+                            搜索
+                        </view>
+                    </view>
+                    <view class="organization" wx:for="{{nearbyOrganization}}" wx:for-item="eachOrganization" wx:if="{{eachOrganization.searchFlag}}" wx:key="{{*index}}" bindtap="clickOrganizationTab">
+                        <image src="{{eachOrganization.logo_url}}" />
+                        <view>{{eachOrganization.name}}</view>
+                    </view>
+                </view>
             </view>
-            <view class="searchWord" bindtap="clickSearchTab">
-              搜索
-            </view>
-          </view>
-          <view class="organization" wx:for="{{user.nearbyOrganization}}" wx:for-item="eachOrganization"
-          wx:if="{{eachOrganization.searchFlag}}"wx:key="{{*index}}" bindtap="clickOrganizationTab">
-            <image src="{{eachOrganization.avatar}}" />
-            <view>{{eachOrganization.name}}</view>
-          </view>
         </view>
-      </view>
     </view>
-  </view>
 
 </view>

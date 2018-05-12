@@ -2,121 +2,130 @@
 <import src="../../../resources/templates/cards/cards.wxml" />
 
 <scroll-view scroll-y class="container" bindscroll="pageScroll" bindscrolltolower="scrollToLower">
-  <view class="image-container">
-    <image class="cover-image" mode="widthFix" src="{{user.background}}"/>
-  </view>
-
-  <view class="background-window">
-  </view>
-
-  <image class="logo" src="{{user.avatar}}"/>
-
-  <view class="attention-container">
-    <image class="attention-icon" src="{{user.icon.attentionicon}}" bindtap="makeAttention" />
-    <view class="text">
-      关注
-    </view>
-  </view>
-
-  <view class="main-body">
-    <view class="organization-information-container">
-      <view class="organization-name">{{user.name}}</view>
-      <view class="brief-introduction">
-        <view class="header">社团简介<image src="{{user.icon.arrowicon}}"/></view>
-        <ul class="information-sider">
-          <li wx:for="{{user.information}}" wx:key="{{*this}}"><image src="{{user.icon[item.id+'icon']}}"/>{{item.text}}</li>
-        </ul>
-      </view>
+    <view class="image-container">
+        <image class="cover-image" mode="widthFix" src="{{user.background}}" />
     </view>
 
-    <view class="dashline">
+    <view class="background-window">
     </view>
 
-    <view class="explore">
-      <view class="menu-container">
-        <text wx:for="{{TAB}}" wx:key="{{*this}}" class="{{hover[index] == 1 ? 'hover-text' : 'non-hover-text'}}" data-index="{{index}}" bindtap="changeHoverClass">{{item}} </text>
-      </view>
+    <image class="logo" src="{{user.logo_url}}" />
 
-      <view class="tabpage {{reachTop ? 'scroll' : ''}}">
-        <view class="activities-container" wx:if="{{hover[1] === 1}}">
-          <view class="activity-album" wx:for="{{user.album}}" wx:for-item="album" data-value="{{album.name}}" data-photos="{{album.photos}}" bindtap="albumClickActivity">
-            <view class="album-pic">
-            </view>
-            <view class="album-name">
-            {{album.name}}
-            </view>
-            <view class="album-num">
-            {{album.photos.length}}张
-            </view>
-          </view>
+    <view class="attention-container">
+        <image class="attention-icon" src="{{attentionIcon}}" bindtap="makeAttention" />
+        <view class="text">
+            关注
         </view>
-
-        <view class="activity" wx:if="{{hover[0] === 1}}">
-          <view class="hot-title">
-          热门活动
-          </view>
-          <view class="hot" wx:for="{{registrations}}" wx:if="{{regis.past === false}}" wx:for-item="regis">
-          
-            <view class="regis-image">
-             <image src="{{regis.image}}" bindtap="clickActivity"/>
-            </view>
-
-            <view class="regis-info">
-            <view class="name">{{regis.name}}</view>
-            
-            <view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
-            <view class="location">{{regis.location}}</view>
-            <view class="hoster">
-              <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}">
-                {{host.name}}
-              </view>
-            </view>
-          </view>
-      
-        </view>
-
-
-          <view class="past-title">
-          往期活动
-          </view>
-
-          <view class="past" wx:for="{{registrations}}" wx:if="{{regis.past === true}}" wx:for-item="regis">
-            <view class="regis-image">
-             <image src="{{regis.image}}" bindtap="clickActivity"/>
-            </view>
-
-            <view class="regis-info">
-            <view class="name">{{regis.name}}</view>
-            
-            <view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
-            <view class="location">{{regis.location}}</view>
-            <view class="hoster">
-              <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}" bindtap="clickOrganizationTab" >
-                {{host.name}}
-              </view>
-            </view>
-            </view>
-          </view>
-    
-
-        </view>
-
-
-      <view class="album-container" wx:if="{{hover[2] === 1}}">
-        <view class="manager">
-        管理员
-        </view>
-        <view class="eachmanager" wx:for="{{managers}}" wx:for-item="each-manager">
-         
-          <image src="{{each-manager.avatar}}" bindtap="clickActivity"/>
-        
-        </view>
-        <view class="member">
-        成员
-        </view>
-      </view>
-
     </view>
+
+    <view class="main-body">
+        <view class="organization-information-container">
+            <view class="organization-name">{{user.name}}</view>
+            <view class="brief-introduction">
+                <view class="header">社团简介
+                    <image src="{{arrowIcon}}" />
+                </view>
+                <ul class="information-sider">
+                    <li>
+                        <image src="{{locationIcon}}" /> {{user.college}} {{user.college_district}}
+                    </li>
+                    <li>
+                        <image src="{{honorIcon}}" /> {{user.honor}}
+                    </li>
+                    <li>
+                        <image src="{{apartmentIcon}}" /> 该社团还未录入部门信息哦~可以到图蜂社团管理后台操作
+                    </li>
+                </ul>
+            </view>
+        </view>
+
+        <view class="dashline">
+        </view>
+
+        <view class="explore">
+            <view class="menu-container">
+                <text wx:for="{{TAB}}" wx:key="{{*this}}" class="{{hover[index] == 1 ? 'hover-text' : 'non-hover-text'}}" data-index="{{index}}" bindtap="changeHoverClass">{{item}} </text>
+            </view>
+
+            <view class="tabpage {{reachTop ? 'scroll' : ''}}">
+                <view class="activities-container" wx:if="{{hover[1] === 1}}">
+                    <view class="activity-album" wx:for="{{user.album}}" wx:key="{{*index}}" wx:for-item="album" data-value="{{album.name}}" data-photos="{{album.photos}}" bindtap="albumClickActivity">
+                        <view class="album-pic">
+                        </view>
+                        <view class="album-name">
+                            {{album.name}}
+                        </view>
+                        <view class="album-num">
+                            {{album.photos.length}}张
+                        </view>
+                    </view>
+                </view>
+
+                <view class="activity" wx:if="{{hover[0] === 1}}">
+                    <view class="hot-title">
+                        热门活动
+                    </view>
+                    <view class="hot" wx:for="{{registrations}}" wx:key="{{(*index)}}" wx:if="{{regis.past === false}}" wx:for-item="regis">
+
+                        <view class="regis-image">
+                            <image src="{{regis.image}}" bindtap="clickActivity" />
+                        </view>
+
+                        <view class="regis-info">
+                            <view class="name">{{regis.name}}</view>
+
+                            <view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
+                            <view class="location">{{regis.location}}</view>
+                            <view class="hoster">
+                                <view class="host" wx:for="{{regis.hosts}}" wx:key="{{*index}}" wx:for-item="host" wx:key="{{*index}}">
+                                    {{host.name}}
+                                </view>
+                            </view>
+                        </view>
+
+                    </view>
+
+
+                    <!-- <view class="past-title">
+                        往期活动
+                    </view> -->
+
+                    <view class="past" wx:for="{{registrations}}" wx:key="{{*index}}" wx:if="{{regis.past === true}}" wx:for-item="regis">
+                        <view class="regis-image">
+                            <image src="{{regis.image}}" bindtap="clickActivity" />
+                        </view>
+
+                        <view class="regis-info">
+                            <view class="name">{{regis.name}}</view>
+
+                            <view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
+                            <view class="location">{{regis.location}}</view>
+                            <view class="hoster">
+                                <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}" bindtap="clickOrganizationTab">
+                                    {{host.name}}
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+
+
+                </view>
+
+
+                <view class="album-container" wx:if="{{hover[2] === 1}}">
+                    <span style="margin-left:10px; font-size: 16px; color: #FF9800">成员示例，社团信息可到后台录入</span>
+                    <view class="manager">
+                        管理员
+                    </view>
+                    <view class="eachmanager" wx:for="{{managers}}" wx:for-item="eachManager" wx:key="{{*index}}">
+                        <image src="{{eachManager.avatar}}" bindtap="clickActivity" />
+                    </view>
+                    <view class="member">
+                        成员
+                    </view>
+                </view>
+
+            </view>
+        </view>
     </view>
-  </view>
 </scroll-view>

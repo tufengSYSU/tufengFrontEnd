@@ -24,7 +24,7 @@ const PHOTO_ICON = ASSETS + "/homepage/photo.png"
 Page({
     data: {
         user: null,
-        tabs: ["时间轴", "相册", "简介", "留言板"],
+        tabs: ["时间轴", "相册", "简介", "大家问"],
         tabIndex: 0,
         reachTop: false,
         images: [
