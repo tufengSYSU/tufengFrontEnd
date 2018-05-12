@@ -1,7 +1,13 @@
 Page({
-    data: {},
+    data: {
+        url: ""
+    },
     onLoad: function(option) {
-        var url = option.url
-        console.log(url)
+        let url = option.url
+        if (url === "https://ancestree.site/html/posts/DHE8jJNt50Kp5ZrJ29oWUA.html")
+            url = "https://ancestree.site/html/posts/A.html"
+        this.setData({
+            url
+        })
     }
 })

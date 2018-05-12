@@ -1,5 +1,5 @@
 <view class="page-body">
     <view class="page-section page-section-gap">
-        <web-view src="https://ancestree.site/posts/test.html"></web-view>
+        <web-view src="{{url}}"></web-view>
     </view>
 </view>

@@ -4,8 +4,7 @@
  */
 
 //  TODO: 请求社团名字加入活动卡片中
-//  TODO: 已阅读活动, 加标志位
-//  TODO：整个页面可左右滑动
+//  TODO: 推文模块基本完成，但存在一些问题
 
 const app = getApp()
 const tools = require('./tools.js')
@@ -208,12 +207,12 @@ Page({
         })
     },
     rollToWebview: function(e) {
-        var apipri = app.apiPrefix
         var parseUrl = e.currentTarget.dataset.url.split("/")
         console.log(parseUrl)
-        var url = "https://ancestree.site/posts/" + parseUrl[parseUrl.length - 1] + ".html";
+        var url = "https://ancestree.site/html/posts/" + parseUrl[parseUrl.length - 1] + ".html";
+        console.log(url)
         wx.navigateTo({
-            url: `./articles_webview/index?url=${url}`,
+            url: `./articles_webview/index?url=${url}&test=` + parseUrl[parseUrl.length - 1],
         })
         this.makeVisited(e.currentTarget.dataset.id)
     },
