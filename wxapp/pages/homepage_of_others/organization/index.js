@@ -329,35 +329,35 @@ const ALBUM_SAMPLE = [{
         name: "默认相册",
         photos: [{
                 id: "",
-                image: "https://i.loli.net/2018/03/13/5aa7c6477fcdd.png"
+                image: app.globalData.defaultPhotos[0]
             },
             {
                 id: "",
-                image: "https://i.loli.net/2018/03/18/5aae36458587a.jpg"
+                image: app.globalData.defaultPhotos[1]
             },
             {
                 id: "",
-                image: "https://i.loli.net/2018/03/18/5aae36459a31b.jpg"
+                image: app.globalData.defaultPhotos[2]
             },
             {
                 id: "",
-                image: "https://i.loli.net/2018/03/18/5aae3646f3302.jpg"
+                image: app.globalData.defaultPhotos[3]
             },
             {
                 id: "",
-                image: "https://i.loli.net/2018/03/18/5aae364700811.jpg"
+                image: app.globalData.defaultPhotos[4]
             },
             {
                 id: "",
-                image: "https://i.loli.net/2018/03/18/5aae3646f3a4a.jpg"
+                image: app.globalData.defaultPhotos[5]
             },
             {
                 id: "",
-                image: "https://i.loli.net/2018/03/18/5aae364701288.jpg"
+                image: app.globalData.defaultPhotos[6]
             },
             {
                 id: "",
-                image: "https://i.loli.net/2018/03/18/5aae365e70369.jpg"
+                image: app.globalData.defaultPhotos[7]
             }
         ],
     },

@@ -44,6 +44,7 @@ Page({
                 activity: data.activity
             })
         }
+        console.log(this.data.activityid)
         this.getMyProfile()
         this.getIcons()
         this.getScreenData()
@@ -53,7 +54,7 @@ Page({
         if (!this.data.activity && id) {
             var that = this
             wx.request({
-                url: `http://ancestree.site/api/activities?actid=${id}`,
+                url: `https://ancestree.site/api/activities?actid=${id}`,
                 methon: "GET",
                 success: function(res) {
                     let data = res.data.data
