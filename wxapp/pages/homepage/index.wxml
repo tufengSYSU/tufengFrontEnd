@@ -187,10 +187,10 @@
             </view>
           </view>
 
-          <view class="button-group">
+          <!--view class="button-group">
             <button class="confirm" bindtap="confirmBtnClick">确认修改</button>
             <button class="cancel" bindtap="cancelBtnClick">取消修改</button>
-          </view>
+          </view-->
     
       </view>
 

@@ -28,6 +28,7 @@ Page({
         this.getMyProfile();
         this.getRegistrations();
         this.getManagers();
+        this.getMembers();
     },
     getWindowSize: function() {
         const that = this;
@@ -74,6 +75,9 @@ Page({
                 console.log(that.data.user)
             }
         })
+        const app = getApp();
+        let Avatar = app.globalData.defaultAvatar;
+
         this.setData({
             voteIcon: VOTE_ICON,
             commentIcon: COMMENT_ICON,
@@ -85,7 +89,9 @@ Page({
             attentionIcon: ATTENTION_ICON,
             voteIcon: VOTE_ICON,
             commentIcon: COMMENT_ICON,
-            heartIcon: HEART_ICON
+            heartIcon: HEART_ICON,
+            avatar: Avatar
+
         })
     },
     getActivity: function() {
@@ -165,6 +171,11 @@ Page({
     getManagers: function() {
         this.setData({
             managers: MANAGERS_SAMPLE
+        })
+    },
+    getMembers: function() {
+        this.setData({
+            members: MEMBERS_SAMPLE
         })
     },
     clickActivity: function() {
@@ -350,7 +361,7 @@ const ALBUM_SAMPLE = [{
             }
         ],
     },
-    {
+    /*{
         name: "致青春定向越野",
         photos: [{
                 id: "",
@@ -385,7 +396,7 @@ const ALBUM_SAMPLE = [{
                 image: "https://i.loli.net/2018/03/18/5aae365e70369.jpg"
             }
         ],
-    },
+    },*/
 ]
 
 const REGISTRATION_SAMPLE = [{
@@ -452,24 +463,33 @@ const REGISTRATION_SAMPLE = [{
     },
 ]
 
+const defaultAvatar = app.globalData.defaultAvatar;
 const MANAGERS_SAMPLE = [{
         id: "",
-        avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+        avatar: defaultAvatar,
+    },
+   
+]
+
+const MEMBERS_SAMPLE = [
+    {
+        id: "",
+        avatar: defaultAvatar,
     },
     {
         id: "",
-        avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+        avatar: defaultAvatar,
     },
     {
         id: "",
-        avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+        avatar: defaultAvatar,
     },
     {
         id: "",
-        avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+        avatar: defaultAvatar,
     },
     {
         id: "",
-        avatar: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+        avatar: defaultAvatar,
     },
 ]

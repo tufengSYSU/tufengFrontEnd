@@ -65,6 +65,7 @@
                     <view class="hot-title">
                         热门活动
                     </view>
+                    <view class="hot-title">请注意，以下仅为示例</view>
                     <view class="hot" wx:for="{{registrations}}" wx:key="{{(*index)}}" wx:if="{{regis.past === false}}" wx:for-item="regis">
 
                         <view class="regis-image">
@@ -122,6 +123,9 @@
                     </view>
                     <view class="member">
                         成员
+                    </view>
+                    <view class="eachmanager" wx:for="{{members}}" wx:for-item="eachMember" wx:key="{{*index}}">
+                        <image src="{{eachMember.avatar}}" bindtap="clickActivity" />
                     </view>
                 </view>
 
