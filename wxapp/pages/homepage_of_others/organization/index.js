@@ -9,6 +9,7 @@ const ARROW_ICON = ASSETS + "/organization/arrow.png";
 const HEART_ICON = ASSETS + "/heart.png";
 const VOTE_ICON = ASSETS + "/vote.png";
 const COMMENT_ICON = ASSETS + "/comment.png";
+var SERVER_PATH = "https://ancestree.site";
 
 Page({
     data: {
@@ -17,18 +18,47 @@ Page({
         activityOrAlbum: true,
         attention: false,
         reachTop: false,
-        TAB: ["活动", "相册", "成员"]
+        TAB: ["活动", "相册", "成员"],
+        list: null,
     },
     onLoad: function(option) {
-        option.id = (option.id ? option.id : 100021)
+        option.id = (option.id ? option.id : 100021);
+        //console.log(option.id)
         this.setData({
-            organizationID: option.id
+            organizationID: option.id,
+            oBackground: defaultBackground,
         })
         this.getWindowSize();
         this.getMyProfile();
         this.getRegistrations();
         this.getManagers();
         this.getMembers();
+        this.sendRequest();
+        //this.send();
+        
+    },
+    
+    sendRequest: function() {
+        var that = this;
+        wx.request({
+            url: "http://ancestree.site/api/activities",
+            data: {
+               oid: this.data.organizationID,
+            },
+            header: {
+                'content-type': 'application/json' // 默认值，返回的数据设置为json数组格式
+            },
+            success: function (res) {
+                var data=res.data.data;
+                //console.log(data)
+                
+                that.setData({
+                    list: data
+                })
+               
+            },
+        })
+        
     },
     getWindowSize: function() {
         const that = this;
@@ -54,7 +84,7 @@ Page({
                 let data = res.data.data
                 let id = that.data.organizationID
                 let org = undefined
-                console.log(data)
+                //console.log(data)
                 data.forEach(ele => {
                     if (ele.id === id) {
                         org = ele
@@ -72,7 +102,7 @@ Page({
                 })
                 that.getActivity();
                 that.getAlbum();
-                console.log(that.data.user)
+                //console.log(that.data.user)
             }
         })
         const app = getApp();
@@ -90,7 +120,7 @@ Page({
             voteIcon: VOTE_ICON,
             commentIcon: COMMENT_ICON,
             heartIcon: HEART_ICON,
-            avatar: Avatar
+            //avatar: Avatar
 
         })
     },
@@ -464,6 +494,7 @@ const REGISTRATION_SAMPLE = [{
 ]
 
 const defaultAvatar = app.globalData.defaultAvatar;
+const defaultBackground = app.globalData.defaultBackground;
 const MANAGERS_SAMPLE = [{
         id: "",
         avatar: defaultAvatar,

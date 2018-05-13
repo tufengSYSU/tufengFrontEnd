@@ -62,7 +62,7 @@
                 </view>
 
                 <view class="activity" wx:if="{{hover[0] === 1}}">
-                    <view class="hot-title">
+                    <!--view class="hot-title">
                         热门活动
                     </view>
                     <view class="hot-title">请注意，以下仅为示例</view>
@@ -75,37 +75,39 @@
                         <view class="regis-info">
                             <view class="name">{{regis.name}}</view>
 
-                            <view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
+                            < view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
                             <view class="location">{{regis.location}}</view>
                             <view class="hoster">
                                 <view class="host" wx:for="{{regis.hosts}}" wx:key="{{*index}}" wx:for-item="host" wx:key="{{*index}}">
                                     {{host.name}}
                                 </view>
                             </view>
+                        
                         </view>
 
-                    </view>
+                    </view-->
 
 
                     <!-- <view class="past-title">
                         往期活动
                     </view> -->
 
-                    <view class="past" wx:for="{{registrations}}" wx:key="{{*index}}" wx:if="{{regis.past === true}}" wx:for-item="regis">
+                    <view class="past" wx:for="{{list}}" wx:key="{{*index}}" wx:for-item="regis">
                         <view class="regis-image">
-                            <image src="{{regis.image}}" bindtap="clickActivity" />
+                            <image src="{{oBackground}}" bindtap="clickActivity" />
                         </view>
 
                         <view class="regis-info">
-                            <view class="name">{{regis.name}}</view>
+                            <view class="name">{{regis.activity.name}}</view>
 
-                            <view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
+                            <!--view class="start-time"> {{regis.startTime}}~{{regis.endTime}}</view>
                             <view class="location">{{regis.location}}</view>
                             <view class="hoster">
                                 <view class="host" wx:for="{{regis.hosts}}" wx:for-item="host" wx:key="{{*index}}" bindtap="clickOrganizationTab">
                                     {{host.name}}
                                 </view>
-                            </view>
+                            </view-->
+                            <view>奖励：{{regis.activity.prize}}</view>
                         </view>
                     </view>
 
