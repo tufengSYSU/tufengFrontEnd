@@ -58,6 +58,18 @@ App({
         activitiesWechatUrl: [],
         defaultAvatar: "https://ancestree.site/images/default/defaultAvatar.png",
         defaultBackground: "https://ancestree.site/images/default/defaultBackground.jpg",
-        defaultLogo: "https://ancestree.site/images/default/defaultLogo.png"
+        defaultLogo: "https://ancestree.site/images/default/defaultLogo.png",
+        defaultPhotos: [
+            "https://ancestree.site/images/defaultPhotos/1.jpg",
+            "https://ancestree.site/images/defaultPhotos/2.jpg",
+            "https://ancestree.site/images/defaultPhotos/3.jpg",
+            "https://ancestree.site/images/defaultPhotos/4.jpg",
+            "https://ancestree.site/images/defaultPhotos/5.jpg",
+            "https://ancestree.site/images/defaultPhotos/6.jpg",
+            "https://ancestree.site/images/defaultPhotos/7.jpg",
+            "https://ancestree.site/images/defaultPhotos/8.jpg",
+            "https://ancestree.site/images/defaultPhotos/9.jpg",
+            "https://ancestree.site/images/defaultPhotos/10.jpg"
+        ]
     }
 })

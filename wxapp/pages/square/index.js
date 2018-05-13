@@ -205,7 +205,6 @@ Page({
             url: "settings/index"
         })
     },
-
     rollToHomepageOfOthers: function() {
         wx.navigateTo({
             url: "../homepage_of_others/index"
