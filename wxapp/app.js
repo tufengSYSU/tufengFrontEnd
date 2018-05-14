@@ -15,11 +15,13 @@ App({
                     if (res.code) {
                         // 获取 OPenID，HACK：这个请求本应该在后端完成，为了信息安全，但是先这样做啦
                         wx.request({
-                            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxe394906b703e6f6d&secret=4265e01cb21d28e15e54957dc06ceaa2&js_code=' + res.code + '&grant_type=authorization_code',
+                            url: that.globalData.apiPrefix + "/openid?code=" + res.code,
                             success: function(res) {
                                 if (res.data) {
-                                    that.globalData.userInfo.openid = res.data.openid
-                                    console.log(that.globalData.userInfo);
+                                    var data = JSON.parse(res.data.data)
+                                    that.globalData.userInfo.openid = data.openid
+                                    console.log("=> userInfo:");
+                                    console.log(that.globalData.userInfo)
                                 } else {
                                     console.log('获取OpenID失败！' + res.errMsg)
                                 }
