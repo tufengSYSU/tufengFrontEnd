@@ -183,9 +183,10 @@ Page({
         })
     },
 
-    clickOrganizationTab: function() {
-        let organizationId = 1;
-        let url = `../homepage_of_others/organization/index?organizationId=${organizationId}`
+    clickOrganizationTab: function(e) {
+        let organizationId = e.currentTarget.dataset.id;
+        console.log(organizationId)
+        let url = `../homepage_of_others/organization/index?id=${organizationId}`
         wx.navigateTo({
             url: url
         })
@@ -366,27 +367,12 @@ const CONCERN_SAMPLE = [{
 ]
 
 const MY_ORGANIZATION_SAMPLE = [{
-        id: "",
-        name: "中东广播台",
-        occupation: "资讯部 干事",
-        avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
-        numberOfMessages: 7
-    },
-    {
-        id: "",
-        name: "中东广播台",
-        occupation: "资讯部 干事",
-        avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
-        numberOfMessages: 7
-    },
-    {
-        id: "",
-        name: "中东广播台",
-        occupation: "资讯部 部长",
-        avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
-        numberOfMessages: 7
-    }
-]
+    id: "",
+    name: "中东广播台",
+    occupation: "资讯部 部长",
+    avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",
+    numberOfMessages: 7
+}]
 
 const NEARBY_ORGANIZAION_SAMPLE = [{
         id: "",

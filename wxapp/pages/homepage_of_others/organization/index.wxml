@@ -121,13 +121,13 @@
                         管理员
                     </view>
                     <view class="eachmanager" wx:for="{{managers}}" wx:for-item="eachManager" wx:key="{{*index}}">
-                        <image src="{{eachManager.avatar}}" bindtap="clickActivity" />
+                        <image src="{{eachManager.avatar}}" />
                     </view>
                     <view class="member">
                         成员
                     </view>
                     <view class="eachmanager" wx:for="{{members}}" wx:for-item="eachMember" wx:key="{{*index}}">
-                        <image src="{{eachMember.avatar}}" bindtap="clickActivity" />
+                        <image src="{{eachMember.avatar}}" />
                     </view>
                 </view>
 

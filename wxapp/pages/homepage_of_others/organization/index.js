@@ -22,8 +22,10 @@ Page({
         list: null,
     },
     onLoad: function(option) {
-        option.id = (option.id ? option.id : 100021);
-        //console.log(option.id)
+        console.log(option)
+        option.id = (option.id != undefined ? option.id : 100021);
+        console.log(option)
+            //console.log(option.id)
         this.setData({
             organizationID: option.id,
             oBackground: defaultBackground,
@@ -35,30 +37,30 @@ Page({
         this.getMembers();
         this.sendRequest();
         //this.send();
-        
+
     },
-    
+
     sendRequest: function() {
         var that = this;
         wx.request({
-            url: "http://ancestree.site/api/activities",
+            url: "https://ancestree.site/api/activities",
             data: {
-               oid: this.data.organizationID,
+                oid: this.data.organizationID,
             },
             header: {
                 'content-type': 'application/json' // 默认值，返回的数据设置为json数组格式
             },
-            success: function (res) {
-                var data=res.data.data;
+            success: function(res) {
+                var data = res.data.data;
                 //console.log(data)
-                
+
                 that.setData({
                     list: data
                 })
-               
+
             },
         })
-        
+
     },
     getWindowSize: function() {
         const that = this;
@@ -84,18 +86,21 @@ Page({
                 let data = res.data.data
                 let id = that.data.organizationID
                 let org = undefined
-                //console.log(data)
+                    //console.log(data)
                 data.forEach(ele => {
-                    if (ele.id === id) {
+                    console.log(ele)
+                    if (ele.id == id.toString()) {
                         org = ele
                         org.honor = "中山大学优秀社团"
                         org.logo_url = app.globalData.defaultAvatar
                         org.background = app.globalData.defaultBackground
                     }
                 });
-                if (!org) {
+                if (org === undefined) {
+                    console.log(org)
                     org = ORGANIZATION_SAMPLE
                 }
+                console.log(org)
                 let user = org
                 that.setData({
                     user
@@ -499,11 +504,10 @@ const MANAGERS_SAMPLE = [{
         id: "",
         avatar: defaultAvatar,
     },
-   
+
 ]
 
-const MEMBERS_SAMPLE = [
-    {
+const MEMBERS_SAMPLE = [{
         id: "",
         avatar: defaultAvatar,
     },

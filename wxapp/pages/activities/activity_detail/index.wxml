@@ -179,7 +179,7 @@
         </view>
         <view class="articles">
             <view class="articlesInOneDay">
-                <view class="article" wx:for="{{articles}}" wx:for-item="article" wx:key="{{*index}}" bindtap="rollToWebview">
+                <view class="article" wx:for="{{articles}}" data-url="{{article.wechat_url}}" wx:for-item="article" wx:key="{{*index}}" bindtap="rollToWebview">
                     <view class="picture">
                         <image src="{{article.image}}"></image>
                     </view>

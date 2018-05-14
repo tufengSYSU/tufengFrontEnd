@@ -48,28 +48,18 @@ Page({
         this.getActivities()
         this.getRegistrations()
         this.getMessages()
+        this.setData({
+            defaultAvatar: app.globalData.defaultAvatar,
+            defaultLogo: app.globalData.defaultLogo
+        })
     },
-
-    /*getListData: function() {
-      var user = USER_SAMPLE
-      this.setData({
-        listData1: [
-          { "message": "生日", "content": user.hometown },
-          { "message": "家乡", "content": user.gender },
-        ],
-        listData2: [
-          { "message": "院校", "content": user.gender },
-          { "message": "专业", "content": user.hometown },
-        ],
-        listData3: [
-          { "message": "个性签名", "content": user.description },
-        ],
-      })
-    },*/
-
     getMyProfile: function() {
         // TODO: get data via api
         var user = USER_SAMPLE
+        let userInfo = app.globalData.userInfo
+        user.avatar = userInfo.avatarUrl
+        user.name = userInfo.nickName
+        user.gender = (userInfo.gender === 1 ? "男" : "女")
         this.setData({
             user
         })
@@ -222,23 +212,23 @@ Page({
 const USER_SAMPLE = {
     id: "123",
     background_image: app.globalData.defaultBackground,
-    avatar: app.globalData.defaultAvatar,
-    name: "李三",
+    avatar: app.globalData.userInfo.avatarUrl,
+    name: app.globalData.userInfo.nickName,
     gender: "男",
-    description: "半透明的影子，是流动的风",
+    description: "",
     info: {
-        personal_info: "广东 广州 双子座",
-        school: "中山大学 2017级 传播与设计学院",
-        contact: "QQ/WeChat/eMail",
-        hobbies: ["摄影", "演唱", "足球"],
+        personal_info: "",
+        school: "",
+        contact: "",
+        hobbies: [],
     },
-    organizations: ["中珠广播台", "足协"],
-    birthday: "1997-6-4",
-    hometown: "江苏-苏州",
-    institution: "传播与设计学院",
-    major: "2015级 网络与新媒体",
-    phone: "166****3587",
-    studentID: "15****59"
+    organizations: [],
+    birthday: "",
+    hometown: "",
+    institution: "",
+    major: "",
+    phone: "",
+    studentID: ""
 }
 
 const TEMP_USER_SAMPLE = {
@@ -404,7 +394,7 @@ const REGISTRATION_SAMPLE = [{
         location: "梁銶琚堂",
         hosts: [{
                 id: "location",
-                name: "中大GBT22",
+                name: "中大GBT",
             },
             {
                 id: "apartment",

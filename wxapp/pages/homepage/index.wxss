@@ -1,479 +1,518 @@
 @import "../../resources/templates/messages/messages.wxss";
 @import "../../resources/templates/cards/cards.wxss";
 @import "../../resources/templates/personalizations/personalization.wxss";
+
 /* homepage index.wxss */
 
 .container {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
 }
+
 
 /* background */
 
 .background {
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 200px;
-  /* remove the empty distance */
-  font-size: 0;
-  z-index: -1;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 200px;
+    /* remove the empty distance */
+    font-size: 0;
+    z-index: -1;
 }
 
 .background image {
-  width: 100%;
+    width: 100%;
 }
+
 
 /* background end */
 
 .background-window {
-  width: 100%;
-  height: 114px;
+    width: 100%;
+    height: 114px;
 }
+
 
 /** profile  */
 
 .profile {
-  text-align: center;
+    text-align: center;
 }
 
 .profile .avatar {
-  padding-top: 35px;
+    padding-top: 35px;
 }
 
 .profile .avatar image {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 
+
 /** profile end */
+
 
 /* main-body */
 
 .main-body {
-  position: relative;
+    position: relative;
 }
 
 .tabs {
-  height: 36px;
-  /* There's a bug and it's needed to be added in wxml instead */
-  /* background-image: url("../../assets/homepage/tabs_background.png"); */
-  background-size: contain;
-  background-repeat: repeat-x;
-  font-size: 18px;
-  color: white;
+    height: 36px;
+    /* There's a bug and it's needed to be added in wxml instead */
+    /* background-image: url("../../assets/homepage/tabs_background.png"); */
+    background-size: contain;
+    background-repeat: repeat-x;
+    font-size: 18px;
+    color: white;
 }
 
 .tab {
-
-  display: inline-block;
-  line-height: 18px;
-  padding: 9px 0 9px;
-  margin-left: 17%; 
-  width: 12%;
+    display: inline-block;
+    line-height: 18px;
+    padding: 9px 0 9px;
+    margin-left: 17%;
+    width: 12%;
 }
 
 .activity-tab {
-
-  display: inline-block;
-  line-height: 18px;
-  padding: 9px 0 9px;
-  margin-left: 17%; 
-  width: 12%;
-  font-size: 12px;
-  color: #505050
+    display: inline-block;
+    line-height: 18px;
+    padding: 9px 0 9px;
+    margin-left: 17%;
+    width: 12%;
+    font-size: 12px;
+    color: #505050
 }
 
 .activity-tab.active {
-  color: #ff9800;
+    color: #ff9800;
 }
 
 .tab.active {
-  color: #ff9800;
+    color: #ff9800;
 }
+
 
 /** tabpage */
 
 .tabpage {
-  height: calc(100vh - 36px);
-  background-color: #f4f4f4;
-  /* default hidden, scroll when the tabs area reach the top of the page */
-  overflow: hidden;
+    height: calc(100vh - 36px);
+    background-color: #f4f4f4;
+    /* default hidden, scroll when the tabs area reach the top of the page */
+    overflow: hidden;
 }
 
 .tabpage.scroll {
-  /* when the tabs area reach the top of the page */
-  overflow: scroll;
+    /* when the tabs area reach the top of the page */
+    overflow: scroll;
 }
+
 
 /*** activities */
 
 .attention-tabbar {
-  background-color: white;
+    background-color: white;
 }
 
 .sub-tab {
-  font-size: 24px;
-  font-weight: bold;
-  background-color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: white;
 }
 
 .sub-tab view {
-  margin-left: 10px;
-  opacity: 0.4;
-  display: inline;
+    margin-left: 10px;
+    opacity: 0.4;
+    display: inline;
 }
 
-.sub-tab .active{
-  opacity: 1;
+.sub-tab .active {
+    opacity: 1;
 }
 
 .organizations-container {
-  background-color: white;
+    background-color: white;
 }
 
 .organizations-container .organization image {
-  float: left;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  padding-right: 10px;
+    float: left;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    padding-right: 10px;
 }
 
 .organizations-container .organization {
-  padding: 10px;
-  font-size: 18px;
+    padding: 10px;
+    font-size: 18px;
 }
 
 .organizations-container .organization view {
-  height: 34px;
-  padding-top: 8px;
+    height: 34px;
+    padding-top: 8px;
 }
 
 .activities-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: white;
 }
 
 .hint {
-  width: 100%;
-  font-size: 16px;
-  margin-left: 10px;
-  color: #FF4081;
-  opacity: 0.61;
+    width: 100%;
+    font-size: 16px;
+    margin-left: 10px;
+    color: #FF4081;
+    opacity: 0.61;
 }
 
 .activities-container .activity {
-  margin-top: 10px;
-  display: flex;
-  position: relative;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: #FAFAFA;
-  border-radius: 5px;
-  color: rgba(0,0,0,0.78);
-  width: calc(50vw - 20px);
-  height: 200px;
-  padding-top: 30px;
+    margin-top: 10px;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.78);
+    width: calc(50vw - 20px);
+    height: 200px;
+    padding-top: 30px;
 }
 
 .progress {
-  font-size: 12px;
-  opacity: 0.72;
-  color: #FF9800;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+    font-size: 12px;
+    opacity: 0.72;
+    color: #FF9800;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .activity-cover-image {
-  width: 100%;
-  max-height: 80%;
+    width: 100%;
+    max-height: 80%;
 }
 
 .activity-name {
-  opacity: 0.7;
-  font-size: 13px;
-  font-weight: bolder;
-  letter-spacing: 0.1em;
-  text-align: center;
+    opacity: 0.7;
+    font-size: 13px;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+    text-align: center;
 }
 
 .my-registrations {
-  margin-top: 10px;
+    margin-top: 10px;
+}
+
+.example {
+    margin-top: 30px;
+    margin-left: 10px;
+    color: #FF9800;
+    font-size: 16px;
 }
 
 .registration {
-  background-color: white;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  height: 100px;
-  margin-top: 40px;
+    background-color: white;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    height: 100px;
+    margin-top: 40px;
 }
 
 .registration .name {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .regis-info {
-  font-size: 12px;
+    font-size: 12px;
 }
+
 .registration image {
-  width: 100%;
-  height: 100px;
+    width: 100%;
+    height: 100px;
 }
+
 .regis-image {
-  width: 45%;
-  height: 100px;
-  display: inline-block;
-  vertical-align: top;
+    width: 45%;
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .regis-info {
-  padding-left: 5%;
-  display: inline-block;
-  width: 50%;
-
+    padding-left: 5%;
+    display: inline-block;
+    width: 50%;
 }
 
 .regis-info .name {
-  margin-bottom: 10%;
-  font-size: 15px;
-  color:deepskyblue;
+    margin-bottom: 10%;
+    font-size: 15px;
+    color: deepskyblue;
 }
+
 .regis-info .hoster {
-  color: black
+    color: black
 }
-.regis-info .host{
-  color: black;
-  display: inline-block;
-  width: 40%;
-  font-weight: bold;
-  margin-top: 2%;
+
+.regis-info .host {
+    color: black;
+    display: inline-block;
+    width: 40%;
+    font-weight: bold;
+    margin-top: 2%;
 }
+
 .regis-info .start-time {
-  display: inline-block;
-  width: 60%;
+    display: inline-block;
+    width: 60%;
 }
+
 .regis-info .location {
-  display: inline-block;
-  width: 40%;
+    display: inline-block;
+    width: 40%;
 }
+
+
 /*** album */
+
 .album {
-  height: 200%;
+    height: 200%;
 }
 
 .registration .icon-group image {
-  width: 15px;
-  height: 15px;
-  float: left;
+    width: 15px;
+    height: 15px;
+    float: left;
 }
 
 .registration .footer {
-  padding: 10px;
+    padding: 10px;
 }
 
 .registration .footer image {
-  width: 20px;
-  height: 20px;
-  float: left;
-  margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 10px;
 }
 
 .dashline {
-  background-color: #E2E2E2;
-  height: 15rpx;
-  width: 100%;
+    background-color: #E2E2E2;
+    height: 15rpx;
+    width: 100%;
 }
 
 .fixed {
-  position: fixed;
+    position: fixed;
 }
 
 .has-signedup {
-  height: 150px;
-  color: black;
-  background-color: white;
-  margin-top: 40px;
-  
+    height: 150px;
+    color: black;
+    background-color: white;
+    margin-top: 40px;
 }
+
 .ticket {
-  height: 100%;
-  width: 100%;
-  
+    height: 100%;
+    width: 100%;
 }
+
 .ticket-image {
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    opacity: 0.3;
 }
+
 .ticket-text {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  top: -100%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: -100%;
 }
+
 .ticket-title {
-  text-align: center;
-  font-size: 18px;
-  color:deepskyblue;
-  font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    color: deepskyblue;
+    font-weight: bold;
 }
+
 .hostTime {
-  display: inline-block;
-  margin-left: 23%;
-  width: 15%;
-  font-size: 13px;
-  color: deepskyblue
+    display: inline-block;
+    margin-left: 23%;
+    width: 15%;
+    font-size: 13px;
+    color: deepskyblue
 }
+
 .hostLocation {
-  display: inline-block;
-  width: 50%;
-  font-size: 13px;
-  color: deepskyblue
+    display: inline-block;
+    width: 50%;
+    font-size: 13px;
+    color: deepskyblue
 }
-.personalmessage{
-  margin-top: 5%; 
+
+.personalmessage {
+    margin-top: 5%;
 }
+
 .signUpName {
-  display: inline-block;
-  margin-left: 5%; 
-  width: 40%;
-  font-size: 12px;
+    display: inline-block;
+    margin-left: 5%;
+    width: 40%;
+    font-size: 12px;
 }
+
 .academic {
-  display: inline-block;
-  margin-left: 5%; 
-  width: 40%;
-  font-size: 12px;
+    display: inline-block;
+    margin-left: 5%;
+    width: 40%;
+    font-size: 12px;
 }
-.signUpPhone{
-  display: inline-block;
-  margin-left: 5%; 
-  width: 40%;
-  font-size: 12px;
+
+.signUpPhone {
+    display: inline-block;
+    margin-left: 5%;
+    width: 40%;
+    font-size: 12px;
 }
-.signUpID{
-  display: inline-block;
-  margin-left: 5%; 
-  width: 40%;
-  font-size: 12px;
+
+.signUpID {
+    display: inline-block;
+    margin-left: 5%;
+    width: 40%;
+    font-size: 12px;
 }
+
+
 /** tabpage end */
+
 
 /* main-body end */
 
 .top-per {
-  background-color: white;
-  margin: 2%;
+    background-color: white;
+    margin: 2%;
 }
+
 .gender {
-  display: inline-block;
-  margin-left: 5%; 
-  width: 40%;
-  font-size: 12px;
+    display: inline-block;
+    margin-left: 5%;
+    width: 40%;
+    font-size: 12px;
 }
+
 .table {
-  opacity: 0.9;
-  width: 100%;
-  margin-top: 15px; 
+    opacity: 0.9;
+    width: 100%;
+    margin-top: 15px;
 }
 
 .tr {
-  display: flex;
-  width: 100%;
-  margin-top: 1px;
-  background-color: white;
+    display: flex;
+    width: 100%;
+    margin-top: 1px;
+    background-color: white;
 }
 
 .td {
-  display: flex;
-  width: 3%;
-  line-height: 2;
+    display: flex;
+    width: 3%;
+    line-height: 2;
 }
 
 .td1 {
-  display: flex;
-  width: 22%;
-  color: #858585;
-  font-size: 14px;
-  line-height: 2;
+    display: flex;
+    width: 22%;
+    color: #858585;
+    font-size: 14px;
+    line-height: 2;
 }
 
 .td2 {
-  display: flex;
-  width: 70%;
-  color: #545354;
-  font-size: 14px;
-  line-height: 2;
-  position: relative;
-  top:-1px;
+    display: flex;
+    width: 70%;
+    color: #545354;
+    font-size: 14px;
+    line-height: 2;
+    position: relative;
+    top: -1px;
 }
 
 .td3 {
-  display: flex;
-  width: 75%;
-  color: #545354;
-  font-size: 14px;
-  line-height: 2;
-  position: relative;
-  top: -1px;
+    display: flex;
+    width: 75%;
+    color: #545354;
+    font-size: 14px;
+    line-height: 2;
+    position: relative;
+    top: -1px;
 }
-.button-group{
-  margin-top: 5%;
+
+.button-group {
+    margin-top: 5%;
 }
+
 .confirm {
-  display: inline-block;
-  margin-left: 13%;
-  width: 30%;
-  font-size: 12px;
-  text-align: center;
+    display: inline-block;
+    margin-left: 13%;
+    width: 30%;
+    font-size: 12px;
+    text-align: center;
 }
+
 .cancel {
-  display: inline-block;
-  margin-left: 13%;
-  width: 30%;
-  font-size: 12px;
-  text-align: center;
+    display: inline-block;
+    margin-left: 13%;
+    width: 30%;
+    font-size: 12px;
+    text-align: center;
 }
+
 .p-avatar image {
-  opacity: 0.4;
-  height: 25px;
-  width: 30px;
-  text-align: center;
+    opacity: 0.4;
+    height: 25px;
+    width: 30px;
+    text-align: center;
 }
 
 .signedIcon {
-  margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
 .processingIcon {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .finishedIcon {
-  margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
-.signedIcon image{
-  height: 35px;
-  width: 35px;
+.signedIcon image {
+    height: 35px;
+    width: 35px;
 }
 
 .processingIcon image {
-  height: 35px;
-  width: 35px;
+    height: 35px;
+    width: 35px;
 }
 
 .finishedIcon image {
-  height: 35px;
-  width: 35px;
+    height: 35px;
+    width: 35px;
 }

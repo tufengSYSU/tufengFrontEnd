@@ -33,7 +33,7 @@
                                     <view class="dashline"></view>
                                     <!-- 下部信息 icon等 -->
                                     <view class="organization-controllers" wx:if="{{user.privilige[index] == true}}">
-                                    <view>以下功能正在内测，下个版本即将开放，敬请期待。</view>
+                                        <view>以下功能正在内测，下个版本即将开放，敬请期待。</view>
                                         <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
                                             <view class="icon">
                                                 <image src="{{menu.avatar}}" data-text="{{menu.text}}" bindtap="rollTo" />
@@ -66,7 +66,7 @@
                             搜索
                         </view>
                     </view>
-                    <view class="organization" wx:for="{{nearbyOrganization}}" wx:for-item="eachOrganization" wx:if="{{eachOrganization.searchFlag}}" wx:key="{{*index}}" bindtap="clickOrganizationTab">
+                    <view class="organization" wx:for="{{nearbyOrganization}}" data-id="{{eachOrganization.id}}" wx:for-item="eachOrganization" wx:if="{{eachOrganization.searchFlag}}" wx:key="{{*index}}" bindtap="clickOrganizationTab">
                         <image src="{{eachOrganization.logo_url}}" />
                         <view>{{eachOrganization.name}}</view>
                     </view>

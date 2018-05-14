@@ -5,6 +5,7 @@
 
 const ASSETS = "../../../assets"
 const data = require('./defaultData.js')
+const tools = require('../tools.js')
 
 // 动态图标
 const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
@@ -68,6 +69,7 @@ Page({
                     that.getOrganization();
                     that.setDateForActivity();
                     that.setActivityParts();
+                    that.getArticles();
                 },
                 fail: function(res) {
                     that.setData({
@@ -78,8 +80,7 @@ Page({
         }
         var user = USER_SAMPLE;
         this.setData({
-            user,
-            articles: ARTICLE_SAMPLE
+            user
         })
     },
     getOrganization: function() {
@@ -157,6 +158,34 @@ Page({
         })
         this.setDataForLeftSideBox(leftSideBox);
     },
+    getArticles: function() {
+        let activity = this.data.activity
+        let articles = []
+        var that = this
+        if (activity.wechat_url != "") {
+            wx.request({
+                url: tools.formatUrl(activity.wechat_url),
+                success: function(res) {
+                    let data = res.data
+                    let article = {}
+                    article.title = tools.parseHTML(data, "msg_title");
+                    article.image = tools.parseHTML(data, "msg_cdn_url");
+                    article.starttime = activity.startTime
+                    article.endtime = activity.endTime
+                    article.wechat_url = activity.wechat_url
+                    article.publish_time = tools.parseHTML(data, "publish_time").slice(0, 10);
+                    console.log(article)
+                    articles.push(article)
+                    that.setData({
+                        articles
+                    })
+                },
+                fail: function(res) {
+                    console.log(res)
+                }
+            })
+        }
+    },
     getNormalTime: function(date) {
         return (date.getMonth() + 1) + "月" + (date.getDate() + "日") + (date.getHours() + "点")
     },
@@ -227,6 +256,15 @@ Page({
         const index = e.currentTarget.dataset.index
         this.setData({
             actTabIndex: index
+        })
+    },
+    rollToWebview: function(e) {
+        var parseUrl = e.currentTarget.dataset.url.split("/")
+        console.log(parseUrl)
+        var url = "https://ancestree.site/html/posts/" + parseUrl[parseUrl.length - 1] + ".html";
+        console.log(url)
+        wx.navigateTo({
+            url: `../articles_webview/index?url=${url}&test=` + parseUrl[parseUrl.length - 1],
         })
     },
     tabpageScroll: function(e) {

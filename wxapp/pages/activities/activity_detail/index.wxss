@@ -62,7 +62,7 @@
     margin: 10px 0 0 10px;
 }
 
-.title {
+.word .title {
     font-weight: bold;
     font-size: 18px;
     color: #00CCFF;
@@ -350,7 +350,7 @@ enroll-group {
     font-weight: bolder;
 }
 
-.content {
+.comment .content {
     color: #878787;
     text-align: center;
 }
