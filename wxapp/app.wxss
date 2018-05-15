@@ -15,7 +15,7 @@
 */
 
 .container {
-    font-family: Heiti;
+    font-family: -apple-system-font, Helvetica Neue, sans-serif;
     /* font-family: Heiti, "Microsoft YaHei","SimHei", 微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu; */
 }
 

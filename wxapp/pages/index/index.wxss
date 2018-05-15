@@ -1,21 +1,26 @@
-
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}
-
-.headimg {
-  width: 81px;
-  height: 81px;
-  border-radius: 100%;
-  margin: 20px;
-}
-
-text {
-  margin: 10px;
-}
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 200rpx 0;
+        box-sizing: border-box;
+    }
+    
+    .picker .outline {
+        text-align: center;
+        color: #FF9800;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .picker span {
+        border-bottom: 1px solid #A0A0A0;
+        font-size: 20px;
+    }
+    
+    .picker .confirm-button {
+        margin-top: 20px;
+        width: 100px;
+    }

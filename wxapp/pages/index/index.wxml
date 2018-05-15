@@ -1,7 +1,16 @@
 <!--index.wxml-->
 <view class="container">
-  <text class="signin">登录页面</text>
-  <image src="{{userInfo.avatarUrl}}" class="headimg" />
-  <text>{{userInfo.nickName}}，你好！</text>
-  <button class="signinButton" type="primary" bindtap="entry">登录</button>
+
+    <view class="picker">
+        <view class="outline">选择校区</view>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+                <span>{{multiArray[0][multiIndex[0]]}}</span> - <span>{{multiArray[1][multiIndex[1]]}}</span>
+            </view>
+        </picker>
+
+        <button class="confirm-button" bindtap="confirmCollege">
+          确定
+        </button>
+    </view>
 </view>

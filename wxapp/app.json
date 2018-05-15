@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/index/index",
         "pages/activities/index",
         "pages/calendar/index",
         "pages/square/index",

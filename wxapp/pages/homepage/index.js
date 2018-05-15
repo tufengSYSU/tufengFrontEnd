@@ -346,7 +346,7 @@ const ACTIVITY_SAMPLE = [{
 const REGISTRATION_SAMPLE = [{
         id: "",
         name: "维纳斯歌手大赛",
-        image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+        image: app.globalData.VANSposter,
         status: 0,
         startTime: "4月15日",
         endTime: "5月30日",
@@ -387,7 +387,7 @@ const REGISTRATION_SAMPLE = [{
     {
         id: "",
         name: "维纳斯歌手大赛",
-        image: "https://i.loli.net/2018/03/13/5aa7c647839fc.png",
+        image: app.globalData.VANSposter,
         status: 2,
         startTime: "4月15日",
         endTime: "5月30日",

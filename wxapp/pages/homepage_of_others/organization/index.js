@@ -20,6 +20,7 @@ Page({
         reachTop: false,
         TAB: ["活动", "相册", "成员"],
         list: null,
+        coverPhoto: app.globalData.defaultPhotos[0]
     },
     onLoad: function(option) {
         console.log(option)

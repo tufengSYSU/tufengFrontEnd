@@ -126,7 +126,7 @@ Page({
                             // append name, timeInterval, place attributes for rendering
                             // event.name = event.activity.short_name
                             // 目前 name 外面包了一层字符串引号，不知为何，不应如此，遂先去其首尾
-                            event.name = event.activity.short_name.slice(1, event.activity.short_name.length - 1)
+                            event.name = event.activity.short_name
                             event.timeInterval = util.formatTimeToMMDDHHMM(new Date(event.start_time)) + ' ~ ' + util.formatTimeToMMDDHHMM(new Date(event.end_time))
                             event.place = event.location
                                 // add color to every event

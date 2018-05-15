@@ -132,7 +132,7 @@
                 奖励类型
             </view>
             <view class="award-item" wx:if="{{item != '无'}}" wx:for="{{[activity.sports_medals, activity.public_service_hours, activity.prize, activity.other_prize]}}">
-                {{ item }}
+                {{ nameMap[index] + "：" + item }}
             </view>
         </view>
 

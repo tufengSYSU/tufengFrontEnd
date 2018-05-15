@@ -50,7 +50,7 @@
             <view class="tabpage {{reachTop ? 'scroll' : ''}}">
                 <view class="activities-container" wx:if="{{hover[1] === 1}}">
                     <view class="activity-album" wx:for="{{user.album}}" wx:key="{{*index}}" wx:for-item="album" data-value="{{album.name}}" data-photos="{{album.photos}}" bindtap="albumClickActivity">
-                        <view class="album-pic">
+                        <view class="album-pic" style="background: url({{coverPhoto}});background-position:center">
                         </view>
                         <view class="album-name">
                             {{album.name}}

@@ -6,6 +6,7 @@
 const ASSETS = "../../../assets"
 const data = require('./defaultData.js')
 const tools = require('../tools.js')
+var app = getApp()
 
 // 动态图标
 const VOTE_ICON = ASSETS + "/homepage_of_others_icon/vote.png"
@@ -31,7 +32,10 @@ Page({
         images: [
             "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
         ],
-        Comment: ""
+        Comment: "",
+        defaultTitle: "尚未录入推送信息",
+        defaultImage: app.globalData.defaultPhotos[0],
+        nameMap: ["体育", "公益（一般为公益时）", "奖金", "其他奖励"]
     },
     onLoad: function(option) {
         if (option.data) {
@@ -163,22 +167,27 @@ Page({
         let articles = []
         var that = this
         if (activity.wechat_url != "") {
+            console.log(activity.wechat_url)
             wx.request({
                 url: tools.formatUrl(activity.wechat_url),
                 success: function(res) {
-                    let data = res.data
-                    let article = {}
-                    article.title = tools.parseHTML(data, "msg_title");
-                    article.image = tools.parseHTML(data, "msg_cdn_url");
-                    article.starttime = activity.startTime
-                    article.endtime = activity.endTime
-                    article.wechat_url = activity.wechat_url
-                    article.publish_time = tools.parseHTML(data, "publish_time").slice(0, 10);
-                    console.log(article)
-                    articles.push(article)
-                    that.setData({
-                        articles
-                    })
+                    try {
+                        let data = res.data
+                        let article = {}
+                        article.title = tools.parseHTML(data, "msg_title");
+                        article.image = tools.parseHTML(data, "msg_cdn_url");
+                        article.starttime = activity.startTime
+                        article.endtime = activity.endTime
+                        article.wechat_url = activity.wechat_url
+                        article.publish_time = tools.parseHTML(data, "publish_time").slice(0, 10);
+                        console.log(article)
+                        articles.push(article)
+                        that.setData({
+                            articles
+                        })
+                    } catch (e) {
+                        console.log(e)
+                    }
                 },
                 fail: function(res) {
                     console.log(res)

@@ -1,3 +1,6 @@
+//const base64 = require('base64')
+//const md5 = require('md5')
+
 //app.js
 App({
     onLaunch: function() {
@@ -20,11 +23,12 @@ App({
                                 if (res.data) {
                                     var data = JSON.parse(res.data.data)
                                     that.globalData.userInfo.openid = data.openid
-                                    console.log("=> userInfo:");
-                                    console.log(that.globalData.userInfo)
+                                        // console.log("=> userInfo:");
+                                        // console.log(that.globalData.userInfo)
                                 } else {
                                     console.log('获取OpenID失败！' + res.errMsg)
                                 }
+                                that.getToken();
                             }
                         })
                     } else {
@@ -39,8 +43,7 @@ App({
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
                     wx.getUserInfo({
                         success: res => {
-                            console.log(res)
-                                // 可以将 res 发送给后台解码出 unionId
+                            // 可以将 res 发送给后台解码出 unionId
                             that.globalData.userInfo = res.userInfo
                                 // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                                 // 所以此处加入 callback 以防止这种情况
@@ -53,14 +56,102 @@ App({
             }
         })
     },
+    getToken: function() {
+        let userInfo = this.globalData.userInfo
+        console.log("Get Token: ")
+        console.log(userInfo.openid)
+        var that = this
+        wx.request({
+            url: 'https://ancestree.site/api/auth',
+            data: {
+                openid: userInfo.openid,
+                password: "PASSWORD",
+                type: 1
+            },
+            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            // header: {}, // 设置请求的 header
+            success: function(res) {
+                if (res.data.status === "OK") {
+                    let token = res.data.data.token
+                    let obj = JSON.parse(atob(token.split('.')[1]))
+                    that.globalData.userInfo.aud = obj.aud
+                    that.getUser()
+                } else {
+                    console.log(res)
+                }
+            },
+            fail: function(res) {
+                console.log(res)
+            },
+            complete: function(res) {
+                that.globalData.finishGetToken = true;
+            }
+        })
+    },
+    getUser: function() {
+        var that = this
+        let id = this.globalData.userInfo.aud
+        wx.request({
+            url: 'https://ancestree.site/api/users/' + id.toString(),
+            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            // header: {}, // 设置请求的 header
+            success: function(res) {
+                let user = res.data.data
+                that.globalData.user = user
+                console.log(user)
+            }
+        })
+    },
+    createUser: function() {
+        var userInfo = this.globalData.userInfo
+        var that = this
+        var user = {
+            "id": null,
+            "openid": userInfo.openid,
+            "phone": null,
+            "password": "PASSWORD",
+            "username": userInfo.nickName,
+            "nickname": userInfo.nickName,
+            "email": null,
+            "avatar_url": userInfo.avatarUrl,
+            "city_id": 1,
+            "vip": 0,
+            "camera": "",
+            "description": null,
+            "college": "中山大学",
+            "college_district": this.globalData.college_district,
+            "enroll_time": null,
+            "institute": null,
+            "astrology": null,
+            "qq": null,
+            "background_url": null
+        }
+        console.log("Create User: ")
+        console.log(user)
+        wx.request({
+            url: 'https://ancestree.site/api/users',
+            data: user,
+            method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            // header: {}, // 设置请求的 header
+            success: function(res) {
+                console.log(res)
+                that.globalData.user = res.data.data
+                console.log("Regis success: " + that.globalData.user)
+            }
+        })
+    },
     globalData: {
         userInfo: {},
+        college_district: "",
+        finishGetToken: false,
+        finishGetCollege: false,
         apiPrefix: "https://ancestree.site/api",
         activitiesImages: [],
         activitiesWechatUrl: [],
         defaultAvatar: "https://ancestree.site/images/default/defaultAvatar.png",
         defaultBackground: "https://ancestree.site/images/default/defaultBackground.jpg",
         defaultLogo: "https://ancestree.site/images/default/defaultLogo.png",
+        VANSposter: "https://ancestree.site/images/default/VANSposter.png",
         defaultPhotos: [
             "https://ancestree.site/images/defaultPhotos/1.jpg",
             "https://ancestree.site/images/defaultPhotos/2.jpg",
