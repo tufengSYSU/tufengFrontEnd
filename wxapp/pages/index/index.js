@@ -3,18 +3,23 @@ var watcher
 Page({
     data: {
         userInfo: {},
-        multiIndex: [0, 0]
+        multiIndex: [0, 0],
+        show: false
     },
     onLoad: function() {
-        watcher = setInterval(function() {
+        var that = this
+        watcher = setTimeout(function() {
             console.log("index page " + app.globalData.user)
             if (app.globalData.user != undefined) {
-                clearInterval(watcher)
                 wx.switchTab({
                     url: '../activities/index',
                 })
+            } else {
+                thiat.setData({
+                    show: true
+                })
             }
-        }, 300)
+        }, 500)
         var that = this
         let multiArray = MULTIARRAY
         this.setData({

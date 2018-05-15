@@ -1,6 +1,9 @@
 //const base64 = require('base64')
 //const md5 = require('md5')
 
+const base64 = require('./utils/base64.min.js').Base64
+console.log(base64)
+
 //app.js
 App({
     onLaunch: function() {
@@ -11,7 +14,13 @@ App({
 
         var that = this
 
-        // 登录
+        // 登录态维护
+        wx.checkSession({
+                success: function(res) {
+                    console.log(res)
+                }
+            })
+            // 登录
         wx.login({
                 success: res => {
                     // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -73,7 +82,7 @@ App({
             success: function(res) {
                 if (res.data.status === "OK") {
                     let token = res.data.data.token
-                    let obj = JSON.parse(atob(token.split('.')[1]))
+                    let obj = JSON.parse(base64.atob(token.split('.')[1]))
                     that.globalData.userInfo.aud = obj.aud
                     that.getUser()
                 } else {
