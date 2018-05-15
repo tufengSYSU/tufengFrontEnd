@@ -66,7 +66,7 @@ Page({
         var articlesInOneMonth = this.data.articlesInOneMonth;
         var count = 0;
         this.getArticlesCounts();
-        var article = articlesInOneMonth.map((articlesInOneDay) => {
+        articlesInOneMonth.map((articlesInOneDay) => {
             articlesInOneDay.map((article) => {
                 let url = that.formatUrl(article.activity.wechat_url);
                 wx.request({
@@ -77,6 +77,7 @@ Page({
                         article.image = that.parseHTML(data, "msg_cdn_url");
                         article.publish_time = that.parseHTML(data, "publish_time").slice(0, 10);
                         if (article.title === that.data.defaultTitle) {
+                            article.title = article.activity.name
                             console.log(article.id + " ")
                         }
                         that.setData({
@@ -153,7 +154,7 @@ Page({
             act.endtime = (originActivity.endtime > act.endtime ? originActivity.endtime : act.endtime)
         }
         activities[(act.id).toString()] = act;
-        if (tools.findRelativePoster(posters, item) === false) {
+        if (tools.findRelativePoster(posters, item) === false || article.activity.wechat_url != "") {
             //console.log("Push")
             posters.push(item)
         }

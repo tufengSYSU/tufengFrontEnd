@@ -5,7 +5,7 @@
     </view>
 
 
-    <view class="photoLiveTitle" style="background-image: url('/../assets/homepage/tabs_background.png')">
+    <view class="photoLiveTitle" style="background-image: url({{tabsBackground}})">
         <view class="photoLive">照片直播：中大图蜂</view>
         <view class="intoLive" bindtap="navigateToWebView">进入直播 > </view>
     </view>

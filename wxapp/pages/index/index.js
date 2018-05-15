@@ -15,11 +15,11 @@ Page({
                     url: '../activities/index',
                 })
             } else {
-                thiat.setData({
+                that.setData({
                     show: true
                 })
             }
-        }, 500)
+        }, 1000)
         var that = this
         let multiArray = MULTIARRAY
         this.setData({

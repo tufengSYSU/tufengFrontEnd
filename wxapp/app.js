@@ -160,6 +160,7 @@ App({
         defaultAvatar: "https://ancestree.site/images/default/defaultAvatar.png",
         defaultBackground: "https://ancestree.site/images/default/defaultBackground.jpg",
         defaultLogo: "https://ancestree.site/images/default/defaultLogo.png",
+        tabsBackground: "https://ancestree.site/images/tabs_background.png",
         VANSposter: "https://ancestree.site/images/default/VANSposter.png",
         defaultPhotos: [
             "https://ancestree.site/images/defaultPhotos/1.jpg",

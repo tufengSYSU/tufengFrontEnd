@@ -35,7 +35,8 @@ Page({
         Comment: "",
         defaultTitle: "尚未录入推送信息",
         defaultImage: app.globalData.defaultPhotos[0],
-        nameMap: ["体育", "公益（一般为公益时）", "奖金", "其他奖励"]
+        nameMap: ["体育", "公益（一般为公益时）", "奖金", "其他奖励"],
+        tabsBackground: app.globalData.tabsBackground
     },
     onLoad: function(option) {
         if (option.data) {
