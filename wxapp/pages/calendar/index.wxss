@@ -23,7 +23,7 @@ swiper-item {
 
 .calender-header {
   height: 40px;
-  padding: 0 20px;
+  padding: 0 0 0 20px;
   background-color: white;
 }
 
@@ -65,7 +65,7 @@ swiper-item {
 .go-to-today-icon {
   width: 24px;
   height: 24px;
-  padding: 6px;
+  padding: 6px 20px;
 }
 
 /** calender header end */

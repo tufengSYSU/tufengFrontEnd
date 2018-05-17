@@ -17,15 +17,15 @@
           <!-- one month -->
           <swiper-item>
             <scroll-view class="content" scroll-y="true" scroll-into-view="{{toView}}" scroll-with-animation="true">
-              <view id="{{oneDay.isLastDay ? 'lastDay':''}}" class="day" wx:if="{{oneDay !== null}}" wx:for="{{calender}}" wx:key="{{index}}" wx:for-item="oneDay">
-                <view class="day-head {{oneDay.istoday ? 'istoday':''}}" bindtap="slideOut" data-day="{{oneDay}}">
+              <view id="{{oneDay.isLastDay ? 'lastDay':''}}" class="day" wx:if="{{oneDay !== null}}" wx:for="{{calender}}" wx:key="{{index}}" wx:for-item="oneDay" bindtap="slideOut" data-day="{{oneDay}}">
+                <view class="day-head {{oneDay.istoday ? 'istoday':''}}">
                   <view class="date">{{oneDay.dateObj.date}}</view>
                   <view class="weekday">{{oneDay.dateObj.weekday}}</view>
                   <view class="festival">{{oneDay.dateObj.festival}}</view>
                 </view>
                 <view class="day-body">
                   <view class="events">
-                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" style="background-color: {{event.color}}" bindtap="showDetailed" data-event="{{event}}">
+                    <view class="event" wx:for="{{oneDay.events}}" wx:for-item="event" wx:key="{{index}}" style="background-color: {{event.color}}" catchtap="showDetailed" data-event="{{event}}">
                       {{event.name}}
                     </view>
                   </view>
@@ -51,8 +51,8 @@
         <view class="heading">先锋情报</view>
         <view class="events-in-detail">
           <view class="event-in-detail" wx:for="{{slideOutData.dailyData.events}}" wx:for-item="event" wx:key="{{index}}">
-            <view class="event-name" style="color: {{event.color}}" bindtap="showDetailed" data-event="{{event}}">{{event.name}}</view>
-            <view class="event-time-and-place">{{event.timeInterval}} {{event.place}}</view>
+            <view class="event-name" style="color: {{event.color}}" bindtap="showDetailed" data-event="{{event}}">{{event.name}}·{{event.content}}</view>
+            <view class="event-time-and-place">{{event.timeInterval}}<br/>{{event.place}}</view>
           </view>
         </view>
         <view  wx:if="{{slideOutData.dailyData.events.length === 0}}" class="message">
