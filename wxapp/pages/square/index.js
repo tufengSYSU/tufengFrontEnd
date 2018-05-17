@@ -235,8 +235,9 @@ Page({
             })
         }
         if (t == "启动报名") {
+            let url = `../square/enroll/index?organizationid=${this.data.organizationID}`
             wx.navigateTo({
-                url: "../square/enroll/index"
+                url: url
             })
         }
         if (t == "发布活动") {
