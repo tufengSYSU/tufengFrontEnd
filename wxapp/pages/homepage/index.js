@@ -52,6 +52,7 @@ Page({
             defaultAvatar: app.globalData.defaultAvatar,
             defaultLogo: app.globalData.defaultLogo
         })
+        console.log(this.data.finishedIcon)
     },
     getMyProfile: function() {
         // TODO: get data via api
