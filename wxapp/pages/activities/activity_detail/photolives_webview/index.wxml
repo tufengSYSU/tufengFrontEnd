@@ -1,5 +1,5 @@
 <view class="page-body">
     <view class="page-section page-section-gap">
-        <web-view src="https://www.pailixiang.com/m/album_ia54800121.html"></web-view>
+        <web-view src="{{url}}"></web-view>
     </view>
 </view>

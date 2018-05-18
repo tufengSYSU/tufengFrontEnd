@@ -44,6 +44,16 @@ Page({
             nextMargin
         })
     },
+    onShareAppMessage: function(res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '快来看看中大社团的主页吧！',
+            path: '/pages/square/index'
+        }
+    },
     switchTab: function() {
         wx.switchTab({
             url: "/pages/myprofile/index"

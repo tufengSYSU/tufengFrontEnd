@@ -1,7 +1,30 @@
+const sitePreFix = "https://www.pailixiang.com"
+
 Page({
     data: {},
     onLoad: function(options) {
-        // 生命周期函数--监听页面加载
+        let url
+        let parseUrl
+        let newUrl
+        if (options.url.search(sitePreFix) === -1) {
+            console.log(options.url)
+            url = options.url
+            parseUrl = url.split("/")
+            parseUrl = parseUrl.slice(3)
+            newUrl = sitePreFix
+            for (var i in parseUrl) {
+                newUrl = newUrl + "/" + parseUrl[i]
+            }
+            console.log(newUrl)
+        } else {
+            newUrl = options.url
+        }
+        console.log(options)
+        console.log(newUrl)
+        this.setData({
+                url: newUrl
+            })
+            // 生命周期函数--监听页面加载
     },
     onReady: function() {
         // 生命周期函数--监听页面初次渲染完成

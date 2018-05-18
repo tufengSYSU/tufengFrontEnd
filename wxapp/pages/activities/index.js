@@ -8,6 +8,8 @@
 
 const app = getApp()
 const tools = require('./tools.js')
+const md5 = require('../../utils/md5.js')
+
 const ASSETS = "../../assets/"
 const LOCATION_ICON = ASSETS + "icon/location.png"
 const SEARCH_ICON = ASSETS + "icon/search.png"
@@ -207,14 +209,19 @@ Page({
             currentTab: index
         })
     },
+    renameFilePath: function(path) {
+        return md5.hex_md5(path)
+    },
     rollToWebview: function(e) {
-        var parseUrl = e.currentTarget.dataset.url.split("/")
-        console.log(parseUrl)
-        var url = "https://ancestree.site/html/posts/" + parseUrl[parseUrl.length - 1] + ".html";
-        console.log(url)
-        wx.navigateTo({
-            url: `./articles_webview/index?url=${url}&test=` + parseUrl[parseUrl.length - 1],
-        })
+        if (e.currentTarget.dataset.url != "") {
+            var parseUrl = e.currentTarget.dataset.url.split("/")
+            console.log(parseUrl)
+            var url = "https://ancestree.site/html/posts/" + this.renameFilePath(parseUrl[parseUrl.length - 1]) + ".html";
+            console.log(url)
+            wx.navigateTo({
+                url: `./articles_webview/index?url=${url}&test=` + parseUrl[parseUrl.length - 1],
+            })
+        }
         this.makeVisited(e.currentTarget.dataset.id)
     },
     rollToSearchView: function(e) {
@@ -289,6 +296,16 @@ Page({
                 that.requestAddress(locationString)
             }
         })
+    },
+    onShareAppMessage: function(res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '快来看看校园活动的主页吧！',
+            path: '/pages/activities/index'
+        }
     },
     /**
      * 根据经度纬度获取当前位置的中文描述

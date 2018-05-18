@@ -46,6 +46,16 @@ Page({
         this.syncTitle()
         this.getScreenWidth()
     },
+    onShareAppMessage: function(res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '快来看看校园活动日历吧！',
+            path: '/pages/calendar/index'
+        }
+    },
     // when the swiper changes
     swiperChange: function(e) {
         const circularSize = 3

@@ -45,6 +45,12 @@ Page({
             this.setData({
                 activityid: activity.id
             })
+            if (activity.roll === true) {
+                this.setData({
+                    roll: true
+                })
+            }
+            console.log(option)
         } else {
             this.setData({
                 activity: data.activity
@@ -75,6 +81,8 @@ Page({
                     that.setDateForActivity();
                     that.setActivityParts();
                     that.getArticles();
+                    if (that.data.roll === true)
+                        that.navigateToWebView();
                 },
                 fail: function(res) {
                     that.setData({
@@ -268,14 +276,20 @@ Page({
             actTabIndex: index
         })
     },
+    renameFilePath: function(path) {
+        path = path.replace(/\?/g, "abcd")
+        return path
+    },
     rollToWebview: function(e) {
-        var parseUrl = e.currentTarget.dataset.url.split("/")
-        console.log(parseUrl)
-        var url = "https://ancestree.site/html/posts/" + parseUrl[parseUrl.length - 1] + ".html";
-        console.log(url)
-        wx.navigateTo({
-            url: `../articles_webview/index?url=${url}&test=` + parseUrl[parseUrl.length - 1],
-        })
+        if (e.currentTarget.dataset.url != "") {
+            var parseUrl = e.currentTarget.dataset.url.split("/")
+            console.log(parseUrl)
+            var url = "https://ancestree.site/html/posts/" + this.renameFilePath(parseUrl[parseUrl.length - 1]) + ".html";
+            console.log(url)
+            wx.navigateTo({
+                url: `../articles_webview/index?url=${url}&test=` + parseUrl[parseUrl.length - 1],
+            })
+        }
     },
     tabpageScroll: function(e) {
         const windowSize = this.data.windowSize
@@ -333,6 +347,18 @@ Page({
             }
         })
     },
+    onShareAppMessage: function(res) {
+        let activity = { id: this.data.activityid, roll: true }
+        let str = JSON.stringify(activity)
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '快来看看校园活动的主页吧！',
+            path: '/pages/activities/activity_detail/index?data=' + str
+        }
+    },
     previewImage: function(e) {
         var that = this;
         wx.previewImage({
@@ -341,8 +367,9 @@ Page({
         })
     },
     navigateToWebView: function() {
+        let url = this.data.activity.live_url
         wx.navigateTo({
-            url: './photolives_webview/index',
+            url: './photolives_webview/index?url=' + url,
         })
     },
     postComment: function() {

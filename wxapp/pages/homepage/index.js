@@ -29,7 +29,7 @@ Page({
         images: [
             "https://i.loli.net/2018/02/28/5a960c61ee6b5.png",
         ],
-
+        tabsBackground: app.globalData.tabsBackground,
         attentionTabIndex: 0
     },
     onLoad: function(data) {
@@ -52,6 +52,16 @@ Page({
             defaultAvatar: app.globalData.defaultAvatar,
             defaultLogo: app.globalData.defaultLogo
         })
+    },
+    onShareAppMessage: function(res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '快来看看个人的主页吧！',
+            path: '/pages/homepage/index'
+        }
     },
     getMyProfile: function() {
         // TODO: get data via api

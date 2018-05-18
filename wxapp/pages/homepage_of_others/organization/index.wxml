@@ -94,7 +94,7 @@
 
                     <view class="past" wx:for="{{list}}" wx:key="{{*index}}" wx:for-item="regis">
                         <view class="regis-image">
-                            <image src="{{oBackground}}" bindtap="clickActivity" />
+                            <image src="{{regis.activity.image}}" bindtap="clickActivity" />
                         </view>
 
                         <view class="regis-info">

@@ -18,7 +18,7 @@
         </view>
     </view>
     <view class="main-body">
-        <view class="tabs" style="background-image: url('../../assets/homepage/tabs_background.png')">
+        <view class="tabs" style="background-image: url({{tabsBackground}})">
             <view class="tab {{tabIndex === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:for-item="tab" wx:key="{{index}}" bindtap="clickTab" data-index="{{index}}">
                 {{tab}}
             </view>

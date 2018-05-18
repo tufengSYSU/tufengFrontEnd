@@ -1,4 +1,5 @@
 var app = getApp()
+const tools = require('./tools.js')
 
 const ASSETS = "../../../assets/homepage_of_others_icon";
 const ATTENTION_ICON = ASSETS + "/organization/attention.png";
@@ -54,14 +55,45 @@ Page({
             success: function(res) {
                 var data = res.data.data;
                 //console.log(data)
-
                 that.setData({
                     list: data
                 })
-
+                that.getCoverImage();
             },
         })
-
+    },
+    onShareAppMessage: function(res) {
+        let id = this.data.organizationID
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '快来看看中大社团的主页吧！',
+            path: '/pages/homepage_of_others/organization/index?id=' + id
+        }
+    },
+    getCoverImage: function() {
+        let list = this.data.list
+        var that = this
+        list.forEach(event => {
+            let url = tools.formatUrl(event.activity.wechat_url)
+            if (url != null) {
+                wx.request({
+                    url: url,
+                    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                    // header: {}, // 设置请求的 header
+                    success: function(res) {
+                        let html = res.data
+                        event.activity.image = tools.parseHTML(html, "msg_cdn_url")
+                        console.log(event)
+                        that.setData({
+                            list
+                        })
+                    }
+                })
+            }
+        })
     },
     getWindowSize: function() {
         const that = this;
@@ -89,7 +121,7 @@ Page({
                 let org = undefined
                     //console.log(data)
                 data.forEach(ele => {
-                    console.log(ele)
+                    //console.log(ele)
                     if (ele.id == id.toString()) {
                         org = ele
                         org.honor = "中山大学优秀社团"
