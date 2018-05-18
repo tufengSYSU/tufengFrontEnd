@@ -15,9 +15,8 @@
                 <view class="participate-organization">
                     <view class="outline">我加入的</view>
                     <!-- 社团名片 -->
-                    <swiper indicator-dots="true" previous-margin="{{previousMargin + 'px'}}" next-margin="{{nextMargin + 'px'}}" 
-                    bindtap="getOrganizationID" style="height:300px" current="{{currentPage}}">
-                        <view wx:for="{{user.myOrganization}}" wx:for-item="organization"  wx:key="{{index}}"> 
+                    <swiper indicator-dots="true" previous-margin="{{previousMargin + 'px'}}" next-margin="{{nextMargin + 'px'}}" bindtap="getOrganizationID" style="height:300px" current="{{currentPage}}">
+                        <view wx:for="{{user.myOrganization}}" wx:for-item="organization" wx:key="{{index}}">
                             <!-- 顶部信息 -->
                             <swiper-item>
                                 <view class="organization-card">
@@ -34,8 +33,7 @@
                                     <view class="dashline"></view>
                                     <!-- 下部信息 icon等 -->
                                     <view class="organization-controllers" wx:if="{{user.privilige[index] == true}}">
-                                        <view>以下功能正在内测，下个版本即将开放，敬请期待。</view>
-                                        <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu" >
+                                        <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
                                             <view class="icon">
                                                 <image src="{{menu.avatar}}" data-text="{{menu.text}}" bindtap="rollTo" />
                                             </view>

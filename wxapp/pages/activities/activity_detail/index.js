@@ -185,6 +185,14 @@ Page({
                         let article = {}
                         article.title = tools.parseHTML(data, "msg_title");
                         article.image = tools.parseHTML(data, "msg_cdn_url");
+                        if (article.image != null && article.image != "") {
+                            that.data.activity.image = article.image
+                        } else {
+                            that.data.activity.image = defaultImage
+                        }
+                        that.setData({
+                            activity: that.data.activity
+                        })
                         article.starttime = activity.startTime
                         article.endtime = activity.endTime
                         article.wechat_url = activity.wechat_url

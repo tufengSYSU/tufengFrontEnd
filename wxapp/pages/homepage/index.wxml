@@ -125,7 +125,10 @@
 
             </view>
 
-            <view class="my-attention" wx:if="{{tabIndex === 2}}">
+            <view wx:if="{{tabIndex === 2}}" style="margin-top: 20px; text-align: center; font-size: 30px">
+                敬请期待
+            </view>
+            <view class="my-attention" wx:if="{{false}}">
 
                 <view class="top-per">
                     <view class="signUpName">

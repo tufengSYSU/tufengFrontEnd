@@ -1,9 +1,8 @@
 <scroll-view scroll-y="true" class="container" bindscroll="tabpageScroll" bindscrolltolower="scrollToLower">
 
     <view class="background">
-        <image class="background-picture" src="{{user.background_image}}" mode="aspectFill"></image>
+        <image class="background-picture" src="{{activity.image}}" mode="aspectFill"></image>
     </view>
-
 
     <view class="photoLiveTitle" style="background-image: url({{tabsBackground}})">
         <view class="photoLive">照片直播：中大图蜂</view>

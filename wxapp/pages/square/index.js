@@ -214,7 +214,7 @@ Page({
         this.setData({
             organizationID
         })
-    
+
     },
 
     clicktab: function(e) {
@@ -237,27 +237,27 @@ Page({
         })
     },
     rollTo: function(e) {
-    
+
         var t = e.currentTarget.dataset.text;
         if (t == "信息维护") {
             wx.navigateTo({
-                url: "../square/news/index"
+                url: "./news/index"
             })
         }
         if (t == "启动报名") {
-            let url = `../square/enroll/index?organizationid=${this.data.organizationID}`
+            let url = `./enroll/index?organizationid=${this.data.organizationID}`
             wx.navigateTo({
                 url: url
             })
         }
         if (t == "发布活动") {
             //console.log(this.data.organizationID)
-            let url = `../square/push/index?organizationid=${this.data.organizationID}`
+            let url = `./push/index?organizationid=${this.data.organizationID}`
             wx.navigateTo({
                 url: url
             })
         }
-    
+
     }
 })
 

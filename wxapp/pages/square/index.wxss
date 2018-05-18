@@ -1,9 +1,7 @@
 @import "../../resources/templates/moments/moments.wxss";
-
 .concerns .example {
     color: #FF9800;
     font-size: 16px;
-
 }
 
 .bar {
@@ -92,7 +90,7 @@
 
 .organization-card .organization-name {
     font-size: 18px;
-    padding-top: 15px;
+    padding-top: 30px;
     color: #101010;
     width: 200px;
     text-align: center;
@@ -160,6 +158,7 @@
 .dashline {
     background: #F2F2F2;
     height: 5rpx;
+    margin-top: 30px;
     width: 100%;
 }
 
