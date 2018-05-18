@@ -2,8 +2,8 @@
     <view class="tr">
         <view class="td1">选择活动</view>
         <view class="td2">
-            <picker bindchange="bindCasPickerChange" value="{{casIndex}}" range="{{organization.activities}}">
-                {{organization.activities[casIndex]}}
+            <picker bindchange="bindCasPickerChange" value="{{casIndex}}" range="{{list}}">
+                {{list[casIndex]}}
             </picker>
         </view>
 

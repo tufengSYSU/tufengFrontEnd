@@ -6,17 +6,40 @@ Page({
         endTime: '00:00',
         startDate: '2018-01-01',
         endDate: '2018-01-01',
-        organization: ORGANIZATION_SAMPLE,
+
     },
 
-    getOrganization() {
+    onLoad: function(option) {
+        var organizationID = parseInt(option.organizationid)
         this.setData({
-            organization: ORGANIZATION_SAMPLE
+            organizationID
         })
+        console.log(this.data.organizationID)
+        this.getActivities();
     },
-
-    onLoad: function() {
-        this.getOrganization();
+    getActivities: function() {
+        var that = this
+        wx.request({
+            url: "https://ancestree.site/api/activities",
+            header: {
+              "content-Type": "application/json"
+            },
+            data: {
+                oid: this.data.organizationID,
+            },
+            success: function(res) {
+                var data = res.data.data;
+                console.log(data)
+                var list = [];
+                for(var i in data) {
+                    list.push(data[i].activity.name)
+                }
+                that.setData({
+                    list
+                })
+            },
+           
+        })
     },
     startDatePickerSelected: function(e) {
         this.setData({

@@ -21,6 +21,7 @@ Page({
         heartIcon: "../../assets/myprofile_icon/heart.png",
         arrowIcon: "../../assets/myprofile_icon/organization/arrow.png",
         searchIcon: "../../assets/icon/search.png",
+        currentPage: 0,
     },
     onLoad: function() {
         // wx.request({
@@ -195,11 +196,25 @@ Page({
 
     clickOrganizationTab: function(e) {
         let organizationId = e.currentTarget.dataset.id;
-        console.log(organizationId)
         let url = `../homepage_of_others/organization/index?id=${organizationId}`
         wx.navigateTo({
             url: url
         })
+    },
+    getIDValue: function(e) {
+        count = e.currentTarget.dataset.count
+        this.setData({
+            count
+        })
+    },
+
+    getOrganizationID: function(e) {
+        var organizationID = this.data.user.myOrganization[this.data.currentPage].id;
+        //console.log(organizationID)
+        this.setData({
+            organizationID
+        })
+    
     },
 
     clicktab: function(e) {
@@ -222,6 +237,7 @@ Page({
         })
     },
     rollTo: function(e) {
+    
         var t = e.currentTarget.dataset.text;
         if (t == "信息维护") {
             wx.navigateTo({
@@ -229,10 +245,19 @@ Page({
             })
         }
         if (t == "启动报名") {
+            let url = `../square/enroll/index?organizationid=${this.data.organizationID}`
             wx.navigateTo({
-                url: "../square/enroll/index"
+                url: url
             })
         }
+        if (t == "发布活动") {
+            //console.log(this.data.organizationID)
+            let url = `../square/push/index?organizationid=${this.data.organizationID}`
+            wx.navigateTo({
+                url: url
+            })
+        }
+    
     }
 })
 
@@ -377,7 +402,7 @@ const CONCERN_SAMPLE = [{
 ]
 
 const MY_ORGANIZATION_SAMPLE = [{
-    id: "",
+    id: 100066,
     name: "中东广播台",
     occupation: "资讯部 部长",
     avatar: "https://i.loli.net/2018/02/28/5a95a3730ee1a.png",

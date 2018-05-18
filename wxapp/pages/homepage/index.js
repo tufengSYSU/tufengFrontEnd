@@ -52,6 +52,7 @@ Page({
             defaultAvatar: app.globalData.defaultAvatar,
             defaultLogo: app.globalData.defaultLogo
         })
+        console.log(this.data.finishedIcon)
     },
     onShareAppMessage: function(res) {
         if (res.from === 'button') {

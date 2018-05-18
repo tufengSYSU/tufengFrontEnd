@@ -47,15 +47,30 @@ Page({
                         data.multiArray[2] = [];
                         break;
                     case 1:
-                        data.multiArray[1] = [];
-                        data.multiArray[2] = [];
+                        data.multiArray[1] = ['本部'];
+                        //data.multiArray[2] = [];
                         break;
                 }
-                data.multiIndex[1] = 0;
+                data.multiIndex[1] = 1;
                 data.multiIndex[2] = 0;
                 break;
             case 1:
-                switch (data.multiIndex[0]) {
+                switch (data.multiIndex[1]) {
+                    case 0:
+                        data.multiArray[1] = ['南校园', '东校园', '北校园', '珠海校区', '深圳校区'];
+                        break;
+                    case 1:
+                        data.multiArray[1] = ['南校园', '东校园', '北校园', '珠海校区', '深圳校区'];
+                        break;
+                    case 2:
+                        data.multiArray[1] = ['南校园', '东校园', '北校园', '珠海校区', '深圳校区'];
+                        break;
+                    case 3:
+                        data.multiArray[1] = ['南校园', '东校园', '北校园', '珠海校区', '深圳校区'];
+                        break;
+                    case 4:
+                        data.multiArray[1] = ['南校园', '东校园', '北校园', '珠海校区', '深圳校区'];
+                        break;
                     // case 0:
                     //     switch (data.multiIndex[1]) {
                     //         case 0:
@@ -108,6 +123,7 @@ Page({
 })
 
 const MULTIARRAY = [
-    ['中山大学'],
-    ['南校园', '东校园', '北校园', '珠海校区', '深圳校区']
+    ['中山大学', '华南农业大学'],
+    ['南校园', '东校园', '北校园', '珠海校区', '深圳校区'],
+
 ]
