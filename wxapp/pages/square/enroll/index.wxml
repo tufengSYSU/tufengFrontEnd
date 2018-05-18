@@ -41,10 +41,25 @@
     </view>
 
     <view class="tr">
+        <view class="td1">报名地点</view>
+
+        <input bindinput="inputLocal" placeholder="线上报名" value="{{Location}}" class="td3" />
+    </view>
+
+    <view class="tr">
         <view class="td1">报名类型</view>
-        <input bindinput="inputType" placeholder="如“报名”“抢票”“组队”" class="td3"></input>
-        <view class="td4">
+        <input bindinput="inputType" placeholder="如“报名”“抢票”“组队”" value="{{Type}}" class="td3" />
+        <view class="td4" bindtap="addStage">
             添加
         </view>
+    </view>
+
+    <view class="segment" wx:key="{{index}}" wx:for="{{stages}}" wx:for-item="eachStage">
+      <view class="segmentButton">
+          <view class="file">{{eachStage.content}}</view>
+          <view class="delete" bindtap="deleteStage" data-value="{{eachStage.content}}">x</view>
+      </view>
+      <view class="segmentTime">{{eachStage.start_time}}-{{eachStage.end_time}}</view>
+      <view class="segmentEdit">编辑问卷信息</view>
     </view>
 </view>

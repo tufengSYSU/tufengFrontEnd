@@ -41,7 +41,6 @@
     justify-content: center;
     width: 65%;
     font-size: 12px;
-
   }
   
   .tr .td4 {
@@ -49,4 +48,47 @@
     width: 12%;
     font-size: 16px;
     color: #ff9800;
+  }
+
+  .segment {
+    display: flex;
+    align-items: center;
+    margin-top: 15px; 
+  }
+
+  .segmentButton {
+    margin-left: 3%;
+    width: 22%;
+    color: #ff9800;
+    display: inline-block;
+    font-size: 14px;
+    height: 40px;
+    background-color: whitesmoke;
+    border-radius: 8px; 
+  }
+
+  .segmentTime {
+    margin-left: 5%; 
+    width: 37%;
+    font-size: 15px;
+    color: #ff9800;
+  }
+
+  .segmentEdit {
+    width: 32%;
+    font-size: 14px;
+    color: #ADADAD;
+  }
+
+  .segmentButton .delete {
+    position: relative;
+    bottom: 70%;
+    left: 80%;
+    font-size: 14px;
+  }
+
+  .segmentButton .file {
+    text-align: center;
+    position: relative;
+    top: 24%;
   }

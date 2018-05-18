@@ -13,7 +13,7 @@
     <view class="td1">辐射范围</view>
     <input bindinput="activityRange" placeholder="6个字以内，例如：全中大or南校区 北校区等" value="{{range}}" class="td2" />
   </view>
-  <view class="tr">
+  <!-- view class="tr">
         <view class="td1">开始时间</view>
 
         <picker class="td5" mode="date" value="{{startDate}}" start="1999-01-01" end="2018-12-31" bindchange="startDatePickerSelected">
@@ -23,8 +23,8 @@
         <picker class="td6" mode="time" value="{{startTime}}" start="00:00" end="24:00" bindchange="startTimePickerSelected">
             {{startTime}}
         </picker>
-        <!--input placeholder="选择开始时间" class="td7"></input-->
-  </view>
+        <input placeholder="选择开始时间" class="td7"></input>
+  </view-->
   <view class="tr">
     <view class="td1">活动奖励</view>
     <input bindinput="inputHonor" placeholder="请输入活动奖励" value="{{prize}}" class="td2"></input>
@@ -50,6 +50,7 @@
   </view>
   
   <button class = "release" bindtap="releaseActivity">
-  发布活动
+      发布活动
   </button>
+
 </view>
