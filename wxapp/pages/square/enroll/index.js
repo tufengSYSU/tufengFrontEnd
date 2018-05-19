@@ -118,7 +118,7 @@ Page({
         tempStage.content = this.data.Type;
         //console.log(tempStage)
 
-        if(tempStage.location == undefined) {
+        if(tempStage.location == undefined || tempStage == "") {
             flag = false;
             console.log(flag)
             wx.showToast({
@@ -129,7 +129,7 @@ Page({
             })
             return;
         }
-        if(tempStage.content == undefined) {
+        if(tempStage.content == undefined || tempStage == "") {
             flag = false;
             wx.showToast({
               title: '请输入报名类型',
