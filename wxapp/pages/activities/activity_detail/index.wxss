@@ -36,12 +36,12 @@
 }
 
 .photoLive {
-    font-size: 16px;
+    font-size: 20px;
     position: relative;
 }
 
 .intoLive {
-    font-size: 18px;
+    font-size: 20px;
     position: relative;
 }
 

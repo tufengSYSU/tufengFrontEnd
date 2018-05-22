@@ -31,21 +31,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "百歌活动主页",
-					"pathName": "pages/activities/index",
-					"query": "1111"
-				},
-				{
-					"id": -1,
-					"name": "百歌活动主页",
-					"pathName": "pages/activities_detail/index",
-					"query": "baige百歌活动",
-					"scene": "1011"
-				}
-			]
+			"list": []
 		}
 	}
 }

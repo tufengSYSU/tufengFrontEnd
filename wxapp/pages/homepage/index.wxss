@@ -370,34 +370,6 @@
     margin-top: 5%;
 }
 
-.signUpName {
-    display: inline-block;
-    margin-left: 5%;
-    width: 40%;
-    font-size: 12px;
-}
-
-.academic {
-    display: inline-block;
-    margin-left: 5%;
-    width: 40%;
-    font-size: 12px;
-}
-
-.signUpPhone {
-    display: inline-block;
-    margin-left: 5%;
-    width: 40%;
-    font-size: 12px;
-}
-
-.signUpID {
-    display: inline-block;
-    margin-left: 5%;
-    width: 40%;
-    font-size: 12px;
-}
-
 
 /** tabpage end */
 
@@ -406,14 +378,39 @@
 
 .top-per {
     background-color: white;
-    margin: 2%;
+}
+
+.top-per>view {
+    padding: 10px;
+    margin-left: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid #D0D0D0;
+    height: 30px;
+}
+
+.signUpName {
+    float: left;
+}
+
+.academic {
+    float: left;
+}
+
+.signUpPhone {
+    float: left;
+}
+
+.signUpID {
+    float: left;
 }
 
 .gender {
-    display: inline-block;
-    margin-left: 5%;
-    width: 40%;
-    font-size: 12px;
+    float: left;
+}
+
+.rightHint {
+    float: right;
+    color: #6E9EBB;
 }
 
 .table {
