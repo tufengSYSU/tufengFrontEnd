@@ -39,6 +39,7 @@ Page({
         tabsBackground: app.globalData.tabsBackground
     },
     onLoad: function(option) {
+        console.log(option)
         if (option.data) {
             var activity = JSON.parse(option.data)
             console.log(activity)
@@ -159,7 +160,9 @@ Page({
                 id: stage.id
             }
             if (stage.content.search("报名") != -1) {
-                leftSideBox.push(that.buildLeftSideBox(stage))
+                let box = that.buildLeftSideBox(stage)
+                box.signup_url = stage.signup_url
+                leftSideBox.push(box)
                 item1.mark = 1
             }
             parts.push(item1)

@@ -22,7 +22,7 @@ Page({
         user: USER_SAMPLE,
         tabs: ["消息", "活动", "名片"],
         activityTabs: ["已关注", "已报名", "已完成"],
-        tabIndex: 0,
+        tabIndex: 2,
         activityTabIndex: 0,
         reachTop: false,
         photoIcon: ASSETS + "/homepage/photo.png",
@@ -181,7 +181,26 @@ Page({
             url: url
         })
     },
-
+    modifyGender: function(e) {
+        var that = this
+        wx.showActionSheet({
+            itemList: ['男', '女'],
+            success: function(res) {
+                console.log(res.tapIndex)
+                if (res.tabIndex === 0) {
+                    that.data.user.gender = "男"
+                } else {
+                    that.data.user.gender = "女"
+                }
+                that.setData({
+                    user: that.data.user
+                })
+            },
+            fail: function(res) {
+                console.log(res.errMsg)
+            }
+        })
+    },
     tabpageScroll: function(e) {
         const windowSize = this.data.windowSize
         const reachTop = this.data.reachTop

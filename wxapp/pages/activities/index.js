@@ -56,8 +56,18 @@ Page({
             },
             success: function(res) {
                 let stages = res.data.data
+                let school = app.globalData.user.college
+                let articlesInOneMonth = stages.map((stageInOneDay => {
+                    let events = []
+                    stageInOneDay.forEach(stage => {
+                        if (stage.activity.school === school)
+                            events.push(stage)
+                    })
+                    return events
+                }))
+                console.log(articlesInOneMonth)
                 that.setData({
-                    articlesInOneMonth: stages
+                    articlesInOneMonth
                 })
                 that.getArticlesInfo();
             }
