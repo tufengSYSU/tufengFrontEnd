@@ -1,89 +1,86 @@
 .container .tr {
     height: 45px;
-    border-width: 0; 
+    border-width: 0;
     border-bottom-width: 1px;
-    border-bottom-color: gray;
+    border-bottom-color: #F0F0F0;
     border-style: solid;
     display: flex;
     align-items: center;
     width: 120%;
-  }
-  
-  .tr .td1 {
-    
+}
+
+.tr .td1 {
     width: 20%;
-    margin-left: 3%; 
+    margin-left: 3%;
     font-size: 16px;
     color: #ADADAD;
-  }
-  
-  .tr .td2 {
+}
+
+.tr .td2 {
     justify-content: center;
     width: 77%;
     font-size: 14px;
     color: #ADADAD;
-  }
-  
-  .tr .td3 {
+}
+
+.tr .td3 {
     justify-content: center;
     width: 65%;
     font-size: 14px;
     color: #ADADAD;
-  }
-  
-  .tr .td4 {
+}
+
+.tr .td4 {
     justify-content: center;
     width: 12%;
     font-size: 13px;
     color: #ff9800;
-  }
+}
 
-  .tr .td5 {
+.tr .td5 {
     justify-content: center;
     width: 25%;
     font-size: 14px;
     color: #ADADAD;
-  }
+}
 
-  .tr .td6 {
+.tr .td6 {
     justify-content: center;
     width: 15%;
     font-size: 14px;
     color: #ADADAD;
-  }
+}
 
-  .tr .td7 {
+.tr .td7 {
     justify-content: center;
-    
     font-size: 14px;
     color: #ADADAD;
-  }
+}
 
-
-  .department {
-    margin-top: 10px; 
+.department {
+    margin-top: 10px;
     display: inline-block;
     margin-left: 4%;
     width: 20%;
     height: 30px;
-    padding-top: 7px; 
+    padding-top: 7px;
     background-color: whitesmoke;
     text-align: center;
-  }
-  
-  .department .de{
+}
+
+.department .de {
     color: #ff9800;
     font-size: 14px;
-  }
-  
-  .finish {
-    margin-top: 40px; 
+}
+
+.finish {
+    margin-top: 40px;
     font-size: 15px;
     color: #ff9800;
     text-align: center;
-  }
-  
-  .field {
+}
+
+.field {
     background-color: whitesmoke;
     width: 100%;
     height: 150px;
@@ -91,41 +88,61 @@
     margin-top: 10px;
     font-size: 14px;
     color: #ff9800;
-    padding-top: 60px; 
-  }
+    padding-top: 60px;
+}
 
-  .poster {
-      margin-top: 15px; 
-      display: flex;
-      align-items: center;
-  }
+.poster {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
 
-  .poster .title {
-      font-size: 16px;
-      color: #ADADAD;
-      margin-left: 3%;
-      width: 20%; 
-  }
+.poster .title {
+    font-size: 16px;
+    color: #ADADAD;
+    margin-left: 3%;
+    width: 20%;
+}
 
-  .poster .pButton {
-      font-size: 13px;
-      width: 20%;
-      background-color: white;
-      color: #ff9800;
-  }
+.poster .pButton {
+    font-size: 13px;
+    width: 25%;
+    background-color: white;
+    color: #ff9800;
+}
 
-  .poster .instruction {
-      margin-left: 3%; 
-      font-size: 14px;
-      width: 47%;
-      color: #ADADAD;
-  }
-  
-  .release {
-    margin-top: 20px;
-    margin-left: 35%;
+.poster .instruction {
+    margin-left: 3%;
+    font-size: 14px;
     width: 30%;
+    color: #ADADAD;
+}
+
+.release {
+    margin: 20px auto;
+    width: 30%;
+    border-right: solid 1px #F0F0F0;
     color: #ff9800;
     font-size: 16px;
-    background-color: white; 
-  }
+    background-color: white;
+}
+
+.postStages .title {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.activity-selector .outline {
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.activity-selector picker {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-left: 10px;
+    border: 1px solid #ff9800;
+    border-radius: 5px;
+}

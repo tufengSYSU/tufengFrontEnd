@@ -21,7 +21,7 @@
                             <swiper-item>
                                 <view class="organization-card">
                                     <view class="avatar" bindtap="clickOrganizationTab">
-                                        <image src="{{organization.avatar}}" />
+                                        <image src="{{organization.logo_url}}" />
                                     </view>
                                     <view class="organization-name">
                                         {{organization.name}}
@@ -32,7 +32,7 @@
                                     <!-- 分割线 -->
                                     <view class="dashline"></view>
                                     <!-- 下部信息 icon等 -->
-                                    <view class="organization-controllers" wx:if="{{user.privilige[index] == true}}">
+                                    <view class="organization-controllers" wx:if="{{organization.privilege > 1}}">
                                         <view class="menu" wx:for="{{user.organizationIcon}}" wx:key="{{*index}}" wx:for-item="menu">
                                             <view class="icon">
                                                 <image src="{{menu.avatar}}" data-text="{{menu.text}}" bindtap="rollTo" />

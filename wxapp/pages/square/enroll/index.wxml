@@ -29,14 +29,12 @@
             <picker mode="date" value="{{endDate}}" start="1999-01-01" end="2018-12-31" bindchange="endDatePickerSelected">
                 {{endDate}}
             </picker>
-
         </view>
 
         <view class="td6">
             <picker mode="time" value="{{endTime}}" start="00:00" end="24:00" bindchange="endTimePickerSelected">
                 {{endTime}}
             </picker>
-
         </view>
     </view>
 

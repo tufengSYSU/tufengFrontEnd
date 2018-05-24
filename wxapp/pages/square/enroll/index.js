@@ -1,12 +1,11 @@
 Page({
-    data:{
+    data: {
         //casArray: ['双眼皮', 'TBM', '隆胸', '减肥', 'qita'],
         casIndex: 0,
         startTime: '00:00',
         endTime: '00:00',
-        startDate: '2018-01-01',
-        endDate: '2018-01-01',
-
+        startDate: (new Date()).toLocaleDateString,
+        endDate: (new Date()).toLocaleDateString
     },
 
     onLoad: function(option) {
@@ -22,7 +21,7 @@ Page({
         wx.request({
             url: "https://ancestree.site/api/activities",
             header: {
-              "content-Type": "application/json"
+                "content-Type": "application/json"
             },
             data: {
                 oid: this.data.organizationID,
@@ -31,14 +30,14 @@ Page({
                 var data = res.data.data;
                 console.log(data)
                 var list = [];
-                for(var i in data) {
+                for (var i in data) {
                     list.push(data[i].activity.name)
                 }
                 that.setData({
                     list
                 })
             },
-           
+
         })
     },
     startDatePickerSelected: function(e) {
@@ -65,14 +64,14 @@ Page({
         })
     },
 
-    bindCasPickerChange: function (e) {
+    bindCasPickerChange: function(e) {
         //console.log(this.data.casArray);
         //console.log('下拉选择的是', this.data.casArray[e.detail.value])
         this.setData({
-          casIndex: e.detail.value
+            casIndex: e.detail.value
         })
     },
-    
+
 
 })
 const ORGANIZATION_SAMPLE = {
@@ -81,8 +80,8 @@ const ORGANIZATION_SAMPLE = {
     avatar: "https://i.loli.net/2018/03/14/5aa7f867768fa.jpg",
     name: "中珠广播台",
     departments: ["11", "222"],
-    honor:"",
+    honor: "",
     location: "",
-    setupTime:"",
-    activities:['维纳斯歌手大赛', '致青春定向越野', '张剑粉丝见面会'],
+    setupTime: "",
+    activities: ['维纳斯歌手大赛', '致青春定向越野', '张剑粉丝见面会'],
 }
