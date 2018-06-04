@@ -14,7 +14,13 @@ App({
 
         var that = this
 
-        // 登录态维护
+        wx.showToast({
+                title: '爱你',
+                icon: 'loading', // loading
+                duration: 10000,
+                mask: true
+            })
+            // 登录态维护  
         wx.checkSession({
                 success: function(res) {
                     console.log(res)
@@ -22,45 +28,46 @@ App({
             })
             // 登录
         wx.login({
-                success: res => {
-                    // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                    if (res.code) {
-                        // 获取 OPenID，HACK：这个请求本应该在后端完成，为了信息安全，但是先这样做啦
-                        wx.request({
-                            url: that.globalData.apiPrefix + "/openid?code=" + res.code,
-                            success: function(res) {
-                                if (res.data) {
-                                    var data = JSON.parse(res.data.data)
-                                    that.globalData.userInfo.openid = data.openid
-                                        // console.log("=> userInfo:");
-                                        // console.log(that.globalData.userInfo)
-                                } else {
-                                    console.log('获取OpenID失败！' + res.errMsg)
-                                }
-                                that.getToken();
-                            }
-                        })
-                    } else {
-                        console.log('登录失败！' + res.errMsg)
-                    }
-                }
-            })
-            // 获取用户信息
-        wx.getSetting({
             success: res => {
-                if (res.authSetting['scope.userInfo']) {
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                    wx.getUserInfo({
-                        success: res => {
-                            // 可以将 res 发送给后台解码出 unionId
-                            that.globalData.userInfo = res.userInfo
-                                // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                                // 所以此处加入 callback 以防止这种情况
-                            if (that.userInfoReadyCallback) {
-                                that.userInfoReadyCallback(res)
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                if (res.code) {
+                    // 获取 OPenID，HACK：这个请求本应该在后端完成，为了信息安全，但是先这样做啦
+                    wx.request({
+                        url: that.globalData.apiPrefix + "/openid?code=" + res.code,
+                        success: function(res) {
+                            if (res.data) {
+                                var data = JSON.parse(res.data.data)
+                                that.globalData.userInfo.openid = data.openid
+                                    // console.log("=> userInfo:");
+                                    // console.log(that.globalData.userInfo)
+                            } else {
+                                console.log('获取OpenID失败！' + res.errMsg)
                             }
+                            that.getToken();
                         }
                     })
+                } else {
+                    console.log('登录失败！' + res.errMsg)
+                }
+            }
+        })
+    },
+    getUserInfo: function() {
+        var that = this;
+        wx.getUserInfo({
+            success: res => {
+                // 可以将 res 发送给后台解码出 unionId
+                if (typeof(that.globalData.userInfo) === "object")
+                    that.globalData.userInfo = Object.assign(that.globalData.userInfo, res.userInfo)
+                else {
+                    that.globalData.userInfo = res.userInfo
+                }
+                console.log("userInfo")
+                console.log(that.globalData.userInfo)
+                    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                    // 所以此处加入 callback 以防止这种情况
+                if (that.userInfoReadyCallback) {
+                    that.userInfoReadyCallback(res)
                 }
             }
         })
@@ -93,6 +100,7 @@ App({
                 console.log(res)
             },
             complete: function(res) {
+                wx.hideToast();
                 that.globalData.finishGetToken = true;
             }
         })
@@ -107,7 +115,7 @@ App({
             success: function(res) {
                 let user = res.data.data
                 that.globalData.user = user
-                console.log(user)
+                console.log(that.globalData.userInfo)
             }
         })
     },

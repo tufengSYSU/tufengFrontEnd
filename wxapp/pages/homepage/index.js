@@ -68,6 +68,7 @@ Page({
         // TODO: get data via api
         var user = USER_SAMPLE
         let userInfo = app.globalData.userInfo
+        console.log(userInfo)
         user.avatar = userInfo.avatarUrl
         user.name = userInfo.nickName
         user.gender = (userInfo.gender === 1 ? "男" : "女")
