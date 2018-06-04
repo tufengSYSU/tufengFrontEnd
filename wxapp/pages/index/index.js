@@ -4,9 +4,17 @@ Page({
     data: {
         userInfo: {},
         multiIndex: [0, 0],
-        show: false
+        show: false,
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        showButton: true
     },
     onLoad: function() {
+        this.bindGetUserInfo();
+        wx.showToast({
+            title: '正在登录...',
+            icon: 'loading', // loading
+            duration: 10000
+        })
         var that = this
         watcher = setTimeout(function() {
             console.log("index page " + app.globalData.user)
@@ -24,6 +32,19 @@ Page({
         let multiArray = MULTIARRAY
         this.setData({
             multiArray
+        })
+    },
+    bindGetUserInfo: function(e) {
+        var that = this
+        wx.getSetting({
+            success: res => {
+                if (res.authSetting['scope.userInfo']) {
+                    app.getUserInfo();
+                    that.setData({
+                        showButton: false
+                    })
+                }
+            }
         })
     },
     bindMultiPickerChange: function(e) {

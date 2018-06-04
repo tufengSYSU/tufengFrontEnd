@@ -199,6 +199,27 @@ Page({
         var flag = true;
         var successFlag = true;
         var stage = this.getActivityStage()
+        if (this.data.activities === undefined || this.data.activities.length === 0) {
+            wx.showToast({
+                title: "尚未录入活动",
+                icon: "loading",
+                duration: 1500,
+                mask: true
+            })
+            return;
+        }
+        var activity_id = this.data.activities[this.data.activitiesIndex].activity.id
+        console.log("activity_id = " + activity_id)
+
+        if (activity_id === undefined) {
+            wx.showToast({
+                title: "录入活动出错",
+                icon: "loading",
+                duration: 1500,
+                mask: true
+            })
+            return;
+        }
 
         if (this.data.stageFullName == "") {
             flag = false;
@@ -224,7 +245,7 @@ Page({
 
         if (flag == true) {
             wx.request({
-                url: 'https://ancestree.site/api/activities/61/activity_stages',
+                url: 'https://ancestree.site/api/activities/' + activity_id + '/activity_stages',
                 header: {
                     "Content-Type": "application/json"
                 },
@@ -274,8 +295,33 @@ Page({
             endDate: "2018-02-02"
         })
         console.log(this.data.organizationID)
-            //this.append(); why???
-            //this.getActivity()
+
+        this.getOrgActivities();
+    },
+    getOrgActivities: function() {
+        let id = this.data.organizationID
+        var that = this
+        wx.request({
+            url: 'https://ancestree.site/api/activities?oid=' + id,
+            method: 'GET',
+            success: function(res) {
+                let activities = res.data.data
+                let activitiesName = activities.map(item => {
+                    if (item.activity.short_name === undefined || item.activity.short_name === "") {
+                        return item.activity.name
+                    }
+                    return item.activity.short_name
+                })
+                if (activitiesName.length === 0) {
+                    activitiesName.push("尚未录入活动")
+                }
+                console.log(activities)
+                that.setData({
+                    activities,
+                    activitiesName
+                })
+            }
+        })
     },
     getActivity: function() {
         var activity = ACTIVITY_SAMPLE;
@@ -291,7 +337,7 @@ Page({
         activity.prize = this.data.prize;
         activity.other_prize = "";
         //        activity.organization_id = this.data.organizationID;
-        activity.organization_id = 101002;
+        activity.organization_id = this.data.organizationID ? this.data.organizationID : 101002;
 
         this.setData({
             activity

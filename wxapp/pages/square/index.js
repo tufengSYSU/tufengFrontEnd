@@ -35,7 +35,7 @@ Page({
         this.getHotSample();
         this.getIcon();
         this.getConcerns();
-        this.getMyOrganizaion();
+        this.getMyOrganization();
         this.getNearbyOrganization();
         const previousMargin = (this.data.windowSize.width - 220) / 2 - 10;
         const nextMargin = previousMargin;
@@ -114,7 +114,7 @@ Page({
             user
         })
     },
-    getMyOrganizaion: function() {
+    getMyOrganization: function() {
         var that = this
         let user = this.data.user;
         let url = "https://ancestree.site/api/users/" + user.id + "/organizations"
@@ -127,12 +127,12 @@ Page({
                     user
                 })
                 if (that.data.nearbyOrganization != undefined) {
-                    that.getMyOrganizaionById()
+                    that.getMyOrganizationById()
                 }
             }
         })
     },
-    getMyOrganizaionById: function() {
+    getMyOrganizationById: function() {
         let nearbyOrganization = this.data.nearbyOrganization;
         let myOrg = this.data.user.myOrganization;
         nearbyOrganization.forEach((org) => {
@@ -165,7 +165,7 @@ Page({
                     nearbyOrganization: data
                 })
                 if (that.data.user.myOrganization != undefined) {
-                    that.getMyOrganizaionById();
+                    that.getMyOrganizationById();
                 }
             },
         })
@@ -238,22 +238,23 @@ Page({
         })
     },
     rollTo: function(e) {
-
+        console.log(e)
         var t = e.currentTarget.dataset.text;
+        var id = e.currentTarget.dataset.id;
         if (t == "信息维护") {
             wx.navigateTo({
-                url: "./news/index"
+                url: `./news/index?organizationid=${id}`
             })
         }
         if (t == "启动报名") {
-            let url = `./enroll/index?organizationid=${this.data.organizationID}`
+            let url = `./enroll/index?organizationid=${id}`
             wx.navigateTo({
                 url: url
             })
         }
         if (t == "发布活动") {
             //console.log(this.data.organizationID)
-            let url = `./push/index?organizationid=${this.data.organizationID}`
+            let url = `./push/index?organizationid=${id}`
             wx.navigateTo({
                 url: url
             })

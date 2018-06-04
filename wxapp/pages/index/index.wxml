@@ -1,12 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-    <view wx:if="{{show === false}}">
-        <image src="../../assets/icon/load.gif"></image>
-    </view>
-    <view class="picker" wx:if="{{show === true}}">
+    <button wx:if="{{showButton}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+    <view class="picker" wx:if="{{show}}">
         <view class="outline">选择校区</view>
-        <picker mode="multiSelector" bindchange="bindMultiPickerChange" 
-        bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
             <view class="picker">
                 <span>{{multiArray[0][multiIndex[0]]}}</span> - <span>{{multiArray[1][multiIndex[1]]}}</span>
             </view>

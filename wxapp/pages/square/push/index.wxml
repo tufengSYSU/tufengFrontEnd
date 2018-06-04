@@ -44,7 +44,7 @@
         <view class="title">发布活动阶段</view>
         <view class="activity-selector">
             <view class="outline">选择活动</view>
-            <picker mode="selector" range="{{activities}}" value="{{activitiesIndex}}" bindchange="chooseActivity">{{activities[activitiesIndex]}}</picker>
+            <picker mode="selector" range="{{activitiesName}}" value="{{activitiesIndex}}" bindchange="chooseActivity">{{activitiesName[activitiesIndex]}}</picker>
         </view>
         <view class="tr">
             <view class="td1">阶段名称</view>
@@ -80,7 +80,7 @@
         </view>
     </view>
 
-    <button class="release" bindtap="releaseActivityStage">发布活动阶段</button>
+    <button class="releaseStage" bindtap="releaseActivityStage">发布活动阶段</button>
 
 
 </view>

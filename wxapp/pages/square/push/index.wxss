@@ -146,3 +146,12 @@
     border: 1px solid #ff9800;
     border-radius: 5px;
 }
+
+.releaseStage {
+    margin: 20px auto;
+    width: 40%;
+    border-right: solid 1px #F0F0F0;
+    color: #ff9800;
+    font-size: 16px;
+    background-color: white;
+}
