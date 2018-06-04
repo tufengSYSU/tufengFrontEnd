@@ -4,16 +4,9 @@ Page({
         casIndex: 0,
         startTime: '00:00',
         endTime: '00:00',
-        <<
-        << << < HEAD
-        startDate: '2018-01-01',
-        endDate: '2018-01-01',
         stages: [],
-        ===
-        === =
         startDate: (new Date()).toLocaleDateString,
-        endDate: (new Date()).toLocaleDateString >>>
-            >>> > bravos
+        endDate: (new Date()).toLocaleDateString
     },
 
     onLoad: function(option) {
@@ -112,9 +105,6 @@ Page({
             casIndex: e.detail.value
         })
     },
-    <<
-    << << < HEAD
-
     addStage: function() {
         var flag = true;
         var successFlag = true;
@@ -201,12 +191,6 @@ Page({
         }
         //var that = this
     },
-    ===
-    === =
-
-    >>>
-    >>> > bravos
-
 })
 
 const A_STAGE_SAMPLE = {

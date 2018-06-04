@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/square/index",
         "pages/index/index",
         "pages/activities/index",
+        "pages/square/index",
         "pages/calendar/index",
         "pages/homepage/index",
         "pages/activities/album_live/index",
