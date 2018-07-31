@@ -1,5 +1,8 @@
 {
 	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
@@ -8,9 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.1",
-	"appid": "wxe394906b703e6f6d",
-	"projectname": "%E6%A0%A1%E5%9B%AD%E5%85%88%E8%9C%82",
+	"libVersion": "1.9.98",
+	"appid": "wxcf38b0daff83a060",
+	"projectname": "%E5%9B%BE%E8%9C%82%E6%97%B6%E4%BB%A3",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -18,10 +21,6 @@
 			"list": []
 		},
 		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
 			"current": -1,
 			"list": []
 		},
