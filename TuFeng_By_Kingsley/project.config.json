@@ -4,16 +4,16 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.98",
+	"libVersion": "2.2.1",
 	"appid": "wxcf38b0daff83a060",
-	"projectname": "%E5%9B%BE%E8%9C%82%E6%97%B6%E4%BB%A3",
+	"projectname": "TuFeng_By_Kingsley",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

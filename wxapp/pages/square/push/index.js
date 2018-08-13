@@ -158,7 +158,7 @@ Page({
 
         if (flag == true) {
             wx.request({
-                url: 'https://ancestree.site/api/activities',
+                url: 'http://ancestree.site/api/activities',
                 header: {
                     "Content-Type": "application/json"
                 },
@@ -245,7 +245,7 @@ Page({
 
         if (flag == true) {
             wx.request({
-                url: 'https://ancestree.site/api/activities/' + activity_id + '/activity_stages',
+                url: 'http://ancestree.site/api/activities/' + activity_id + '/activity_stages',
                 header: {
                     "Content-Type": "application/json"
                 },
@@ -302,7 +302,7 @@ Page({
         let id = this.data.organizationID
         var that = this
         wx.request({
-            url: 'https://ancestree.site/api/activities?oid=' + id,
+            url: 'http://ancestree.site/api/activities?oid=' + id,
             method: 'GET',
             success: function(res) {
                 let activities = res.data.data

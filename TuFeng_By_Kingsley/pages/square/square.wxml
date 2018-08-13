@@ -1,0 +1,14 @@
+<!--pages/square/square.wxml-->
+<view class='container'>
+  <view class='school'>
+    <image class='logo' src='../../assets/images/SYSU_Logo.png' mode='aspectFit'/>
+    <text class='school-name'>中山大学广州校区东校园</text>
+    <view class='date-container'>
+      <text>date</text>
+    </view>
+  </view>
+
+  <view wx:for='{{activityArray}}' wx:key='{{index}}'>
+    <activity-card activity='{{item}}'/>
+  </view>
+</view>

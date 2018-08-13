@@ -1,0 +1,26 @@
+/* pages/square/square.wxss */
+.school {
+  background-color: red;
+  width: 88vw;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  border-radius: 6vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.logo {
+  height: 6vh;
+  width: 6vh;
+  margin: 0.5rem;
+  margin-right: 0;
+}
+.school-name {
+  color: white;
+  font-weight: bold;
+}
+.date-container {
+  margin-right: 0.5rem;
+  color: white;
+}

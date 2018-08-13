@@ -1,0 +1,155 @@
+/* components/activity_card.wxss */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 88vw;
+  border-radius: 6vw;
+  margin-top: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-info {
+  width: 100%;
+  margin: 1rem;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+}
+.asso-icon {
+  width: 10vw;
+  height: 10vw;
+  background-color: white;
+}
+.title {
+  margin-left: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.activity-name {
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.asso-name {
+  color: white;
+  font-size: 0.6rem;
+}
+.favorite {
+  width: 6%;
+  align-self: flex-start;
+  position: relative;
+  left: 0.43rem;
+}
+.favorite image {
+  width: 100%;
+}
+.cover {
+  width: 100%;
+}
+.main-tag {
+  width: 50%;
+  height: 1.4rem;
+  position: relative;
+  top: -0.7rem;
+  margin-bottom: -1.4rem;
+}
+.main-tag-info {
+  width: 45%;
+  color: white;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  top: -0.4rem;
+  margin-bottom: -0.6rem;
+}
+.sub-tag {
+  width: 7%;
+  height: 2.4rem;
+  position: relative;
+  top: -11.4rem;
+  left: 6.5rem;
+  margin-bottom: -2.4rem;
+}
+.sub-tag-info {
+  color: white;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  width: 7%;
+  margin-bottom: -1.8rem;
+  position: relative;
+  top: -11.2rem;
+  left: 6.7rem;
+}
+.sub-info {
+  width: 85%;
+  display: flex;
+  margin-top: 1.8rem;
+}
+.time-line-block {
+  width: 50%;
+}
+.time-line {
+  list-style-type: none;
+  border-left: 1px solid white;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  margin-right: -3rem;
+}
+.time-line li {
+  position: relative;
+}
+.time-line li a {
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 0.8rem;
+  position: relative;
+  top: -1rem;
+  left: -0.2rem;
+}
+.time-line li b:before {
+  content: '';
+  position: absolute;
+  left: -0.38rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 2px solid white;
+  border-radius: 1rem;
+  background: white;
+}
+.time-line li span {
+  position: absolute;
+  color: #fff;
+  font-size: 0.8rem;
+  top: -0.2rem;
+  left: -2.5rem;
+}
+.detail-block {
+  width: 50%;
+}
+.detail {
+  list-style-type: none;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  color: orange;
+  font-weight: bold;
+  margin-left: 1rem;
+  position: relative;
+  top: -0.3rem;
+}
+.detail li {
+  margin-top: 0.15rem;
+}

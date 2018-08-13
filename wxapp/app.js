@@ -78,7 +78,7 @@ App({
         console.log(userInfo.openid)
         var that = this
         wx.request({
-            url: 'https://ancestree.site/api/auth',
+            url: 'http://ancestree.site/api/auth',
             data: {
                 openid: userInfo.openid,
                 password: "PASSWORD",

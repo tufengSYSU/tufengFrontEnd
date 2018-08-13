@@ -20,7 +20,7 @@ Page({
     getActivities: function() {
         var that = this
         wx.request({
-            url: "https://ancestree.site/api/activities",
+            url: "http://ancestree.site/api/activities",
             header: {
                 "content-Type": "application/json"
             },
@@ -142,7 +142,7 @@ Page({
         if (flag == true) {
             var ID = this.data.idList[this.data.casIndex];
             wx.request({
-                url: `https://ancestree.site/api/activities/${ID}/activity_stages`,
+                url: `http://ancestree.site/api/activities/${ID}/activity_stages`,
                 header: {
                     "content-Type": "application/json"
                 },

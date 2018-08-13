@@ -1,0 +1,38 @@
+<!--components/activity_card.wxml-->
+<view class='card' style='background-image: url("../../assets/images/background.png")'>
+  <view class='main-info'>
+    <image class='asso-icon'></image>
+    <view class='title'>
+      <text class='activity-name'>{{activity.title}}</text>
+      <text class='asso-name'>{{assoStr}}</text>
+    </view>
+    <view class='favorite'>
+      <image src='../../assets/images/star_filled.png' mode='widthFix'/>
+    </view>
+  </view>
+  
+  <image class='cover' src='../../assets/images/cover1.png' mode='widthFix' />
+  
+  <image class='main-tag' src='../../assets/images/mainTag.png' />
+  <view class='main-tag-info'>
+    <text class='location'>{{activity.location}}</text>
+    <text class='time'>{{activity.time}}</text>
+  </view>
+  <image class='sub-tag' src='../../assets/images/subTag.png' />
+  <view class='sub-tag-info'>
+    <text>{{activity.activity_type}}</text>
+  </view>
+  
+  <view class='sub-info'>
+    <view class='time-line-block'>
+      <ul class="time-line" wx:for='{{activity.schedule}}' wx:key='unique'>
+        <li><span>{{item.date}}</span><b></b><a href="javascript:void(0)">{{item.sub_activity}}</a></li>
+      </ul>
+    </view>
+    <view class='detail-block'>
+      <ul class='detail' wx:for='{{activity.detail}}' wx:key='unique'>
+        <li><span>#{{item}}</span></li>
+      </ul>
+    </view>
+  </view>
+</view>
